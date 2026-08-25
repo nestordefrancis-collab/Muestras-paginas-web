@@ -247,10 +247,14 @@ a{color:inherit;}
 @media (min-width:880px){.tri{grid-template-columns:minmax(0,.9fr) minmax(0,1fr);}}
 .tri__copy{display:flex;flex-direction:column;gap:1.5rem;align-items:flex-start;}
 .tri img{width:100%;height:auto;object-fit:cover;aspect-ratio:4/3;}
+/* El fondo del contenedor hace de linea separadora, asi que una celda que
+   falta se ve como un bloque vacio. Columnas fijas que dividen exacto el
+   numero de fichas (4): 1 o 2 columnas, nunca 3. */
 .afec{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  display:grid;grid-template-columns:1fr;
   gap:1px;background:var(--line);border:1px solid var(--line);width:100%;
 }
+@media (min-width:420px){.afec{grid-template-columns:repeat(2,minmax(0,1fr));}}
 .afec div{background:var(--paper);padding:1rem;}
 .section--surface .afec div{background:var(--surface);}
 .afec dt{
@@ -265,7 +269,11 @@ a{color:inherit;}
 .barber img{width:100%;height:auto;object-fit:cover;aspect-ratio:1/1;}
 
 /* ---------- reviews ---------- */
-.revs{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);}
+/* Mismo motivo que .afec: columnas que dividen exacto las 6 resenas (1, 2 o 3),
+   nunca 4, que dejaria dos huecos en la segunda fila. */
+.revs{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line);}
+@media (min-width:560px){.revs{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media (min-width:900px){.revs{grid-template-columns:repeat(3,minmax(0,1fr));}}
 .rev{background:var(--paper);padding:1.5rem;display:flex;flex-direction:column;gap:.85rem;}
 .section--surface .rev{background:var(--surface);}
 .rev blockquote{margin:0;font-size:.9375rem;line-height:1.55;}
