@@ -15,7 +15,7 @@
 <meta property="og:image" content="https://nestordefrancis-collab.github.io/Muestras-paginas-web/the-barber-lab-lujo/assets/img/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Fachada de The Barber Lab con su rótulo dorado sobre negro">
+<meta property="og:image:alt" content="Logotipo de The Barber Lab en oro sobre negro">
 <meta property="og:locale" content="es_ES">
 <meta name="twitter:card" content="summary_large_image">
 <title>The Barber Lab</title>
@@ -224,18 +224,19 @@ a{color:inherit;}
   text-align:center;
   border-bottom:1px solid rgba(200,164,92,.14);
 }
-.hero__bg{
-  position:absolute;inset:0;z-index:-1;overflow:hidden;
-}
-.hero__bg img{
-  width:100%;height:100%;object-fit:cover;object-position:50% 42%;
-  opacity:.28;filter:contrast(1.08) saturate(.55) brightness(.9);
-}
-.hero__bg::after{
-  content:'';position:absolute;inset:0;
+/* Sin fotografía: la portada es un campo negro con el oro entrando por
+   arriba, como una vitrina iluminada desde el techo. */
+.hero::before{
+  content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:
-    radial-gradient(58% 50% at 50% 42%, rgba(11,10,8,.5), rgba(11,10,8,.92) 72%),
-    linear-gradient(180deg,rgba(11,10,8,.85),transparent 28%,rgba(11,10,8,.96));
+    radial-gradient(52% 42% at 50% 30%, rgba(200,164,92,.16), transparent 68%),
+    radial-gradient(90% 70% at 50% 108%, rgba(11,10,8,.9), transparent 60%);
+}
+/* filete de oro que cierra la portada por abajo */
+.hero::after{
+  content:'';position:absolute;left:50%;bottom:0;transform:translateX(-50%);
+  width:min(760px,82vw);height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold-dk),transparent);
 }
 .hero__in{display:flex;flex-direction:column;align-items:center;gap:1.6rem;}
 .hero__logo{width:min(330px,68vw);height:auto;}
@@ -282,26 +283,6 @@ a{color:inherit;}
   .section__head{grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:1.25rem 3rem;align-items:start;}
 }
 .section__head .eyebrow{padding-top:.55rem;}
-
-/* ---------------- banda de fachada ---------------- */
-/* La foto de la fachada es casi cuadrada (1200×1174): se enseña entera,
-   sin recortar, con el marco ajustado a ella. */
-.plate{
-  position:relative;padding:clamp(.5rem,1.1vw,.85rem);
-  max-width:820px;margin-inline:auto;
-}
-.plate figure{margin:0;position:relative;}
-.plate img{
-  width:100%;height:auto;
-  transition:filter 1s var(--ease);
-}
-@media (hover:hover){.plate:hover img{filter:saturate(1.1) brightness(1.04);}}
-.plate figcaption{
-  display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;align-items:baseline;
-  padding:1.05rem .55rem .3rem;
-  font-size:.6875rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
-}
-.plate figcaption b{color:var(--gold-lt);font-weight:400;letter-spacing:.2em;}
 
 /* ---------------- en la silla ----------------
    Sin foto: la cita hace de pieza central, en un panel de vidrio
@@ -589,9 +570,6 @@ a{color:inherit;}
 
   <!-- ===== portada ===== -->
   <header class="hero">
-    <div class="hero__bg" aria-hidden="true">
-      <img src="assets/img/shop.jpg" alt="" loading="eager" fetchpriority="high">
-    </div>
     <div class="wrap hero__in">
       <p class="eyebrow">Leganés · Madrid · desde el nº 35 de Monegros</p>
       <img class="hero__logo" src="assets/img/logo.png" alt="The Barber Lab">
@@ -608,22 +586,6 @@ a{color:inherit;}
       </div>
     </div>
   </header>
-
-  <!-- ===== fachada ===== -->
-  <section class="section" style="padding-top:clamp(2.5rem,6vw,4.5rem)">
-    <div class="wrap">
-      <div class="plate glass reveal">
-        <figure>
-          <img src="assets/img/shop.jpg" alt="Fachada de The Barber Lab: rótulo dorado sobre negro, toldo verde y una Kawasaki verde aparcada en la puerta" loading="lazy">
-          <figcaption>
-            <b>La casa</b>
-            <span>Calle Monegros, 35 — 28915 Leganés</span>
-            <span>Rótulo original en oro sobre negro</span>
-          </figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
 
   <!-- ===== en la silla ===== -->
   <section class="section" id="trabajo">

@@ -31,7 +31,7 @@ Todo lo que hay en la página está sacado de una fuente concreta:
 | Tricología (algas, ampolla, afecciones) | Descripción del servicio en Booksy |
 | Horario y dirección | Booksy |
 | Teléfono | Rótulo del escaparate |
-| Fotos | Del propio negocio |
+| Logotipo y foto de tricología | Del propio negocio |
 | Plano | OpenStreetMap, centrado en la dirección |
 
 **No hay contenido inventado.** Hubo una sección de "colección de cortes" con
@@ -39,11 +39,22 @@ seis cortes acotados uno a uno; se quitó porque los nombres, las guardas y los
 tiempos de mantenimiento eran plausibles pero inventados, y el negocio no
 publica ese desglose en ninguna parte.
 
-**La página no enseña ningún corte.** Solo había una foto (`cut1.jpg`, una nuca
-con un diseño a navaja) y una sola foto se quedaba corta, así que la sección
-*En la silla* pasó a construirse sobre la reseña. Es la pieza que falta: en
-cuanto haya material real —cortes que Omar quiera anunciar, o fotos suyas de
-Instagram— aquí es donde va.
+## El estado de las fotos
+
+De las cuatro imágenes de partida quedan dos, y hace falta material nuevo:
+
+- `logo.png` — el logotipo. Se usa en la barra y como pieza central de la portada.
+- `lab.jpg` — el tratamiento capilar. Va de fondo en la sección del laboratorio.
+- ~~`cut1.jpg`~~ — una nuca con un diseño a navaja. Retirada: una sola foto de
+  corte se quedaba corta, así que *En la silla* se construyó sobre la reseña.
+- ~~`shop.jpg`~~ — la fachada con la moto. Retirada por decisión del cliente.
+
+Las dos retiradas siguen en [`the-barber-lab/`](../the-barber-lab/) y en el
+historial de git, así que se recuperan con un `git checkout` si hicieran falta.
+
+Consecuencia: la página no enseña ni un corte ni el local. Es el hueco grande
+que le queda. En cuanto haya fotos nuevas del negocio, los sitios naturales son
+la portada (donde ahora hay campo negro) y *En la silla*.
 
 ## Estructura
 
@@ -51,14 +62,13 @@ Instagram— aquí es donde va.
 index.html          la página completa (marcado + estilos)
 assets/img/
   logo.png          logotipo dorado, fondo transparente
-  shop.jpg          fachada del local (se enseña entera, sin recortar)
   lab.jpg           tratamiento capilar
   og.jpg            miniatura para WhatsApp y redes
 ```
 
-`shop.jpg` es casi cuadrada (1200×1174). El marco de la fachada está limitado a
-820 px de ancho y la deja a su proporción natural, con `height:auto`: la idea es
-que se vea la foto completa, rótulo y moto incluidos, no una franja recortada.
+`og.jpg` no es una foto: es el logotipo en oro sobre negro, con marco y
+guilloché, compuesto a 1200×630 para que la previsualización del enlace sea de
+la casa y no de una foto suelta.
 
 ## El mapa
 
