@@ -31,7 +31,7 @@ Todo lo que hay en la página está sacado de una fuente concreta:
 | Tricología (algas, ampolla, afecciones) | Descripción del servicio en Booksy |
 | Horario y dirección | Booksy |
 | Teléfono | Rótulo del escaparate |
-| Logotipo y foto de tricología | Del propio negocio |
+| Logotipo y fotos | Del propio negocio |
 | Plano | OpenStreetMap, centrado en la dirección |
 
 **No hay contenido inventado.** Hubo una sección de "colección de cortes" con
@@ -41,20 +41,21 @@ publica ese desglose en ninguna parte.
 
 ## El estado de las fotos
 
-De las cuatro imágenes de partida quedan dos, y hace falta material nuevo:
+De las cuatro imágenes de partida quedan tres:
 
 - `logo.png` — el logotipo. Se usa en la barra y como pieza central de la portada.
+- `cut1.jpg` — una nuca con un diseño a navaja. Es la única foto de un corte, y
+  va en *En la silla*, junto a la reseña.
 - `lab.jpg` — el tratamiento capilar. Va de fondo en la sección del laboratorio.
-- ~~`cut1.jpg`~~ — una nuca con un diseño a navaja. Retirada: una sola foto de
-  corte se quedaba corta, así que *En la silla* se construyó sobre la reseña.
-- ~~`shop.jpg`~~ — la fachada con la moto. Retirada por decisión del cliente.
+- ~~`shop.jpg`~~ — la fachada con la moto. Retirada por decisión del cliente, de
+  la banda de fachada, del fondo de la portada y de la previsualización.
 
-Las dos retiradas siguen en [`the-barber-lab/`](../the-barber-lab/) y en el
-historial de git, así que se recuperan con un `git checkout` si hicieran falta.
+`shop.jpg` sigue en [`the-barber-lab/`](../the-barber-lab/) y en el historial de
+git, así que se recupera con un `git checkout` si hiciera falta.
 
-Consecuencia: la página no enseña ni un corte ni el local. Es el hueco grande
-que le queda. En cuanto haya fotos nuevas del negocio, los sitios naturales son
-la portada (donde ahora hay campo negro) y *En la silla*.
+Consecuencia: la página no enseña el local, y de cortes solo tiene esa foto. En
+cuanto haya fotos nuevas del negocio, los sitios naturales son la portada (donde
+ahora hay campo negro) y *En la silla*.
 
 ## Estructura
 
@@ -62,6 +63,7 @@ la portada (donde ahora hay campo negro) y *En la silla*.
 index.html          la página completa (marcado + estilos)
 assets/img/
   logo.png          logotipo dorado, fondo transparente
+  cut1.jpg          detalle de corte a navaja
   lab.jpg           tratamiento capilar
   og.jpg            miniatura para WhatsApp y redes
 ```

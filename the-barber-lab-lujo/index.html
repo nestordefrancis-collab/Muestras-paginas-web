@@ -285,19 +285,46 @@ a{color:inherit;}
 .section__head .eyebrow{padding-top:.55rem;}
 
 /* ---------------- en la silla ----------------
-   Sin foto: la cita hace de pieza central, en un panel de vidrio
-   con una comilla de oro sobredimensionada al margen. */
+   Un panel de vidrio con la foto del trabajo a un lado y la reseña al
+   otro, bajo una comilla de oro sobredimensionada. */
 .silla{
-  position:relative;max-width:940px;margin:0 auto;
-  padding:clamp(1.6rem,4vw,3.2rem) clamp(1.4rem,4vw,3.4rem);
-  display:flex;flex-direction:column;gap:1.25rem;align-items:flex-start;
+  position:relative;max-width:1120px;margin:0 auto;
+  padding:clamp(1rem,2.2vw,1.6rem);
+  display:grid;gap:clamp(1.4rem,3.5vw,2.8rem);align-items:center;
+}
+@media (min-width:900px){
+  .silla{grid-template-columns:minmax(0,.82fr) minmax(0,1fr);}
+}
+.silla__fig{margin:0;position:relative;overflow:hidden;}
+.silla__fig img{
+  width:100%;height:auto;
+  transition:transform 1.2s var(--ease),filter 1.2s var(--ease);
+}
+@media (hover:hover){
+  .silla:hover .silla__fig img{transform:scale(1.04);filter:saturate(1.06);}
+}
+.stampref{
+  position:absolute;top:1rem;left:1rem;z-index:2;
+  font-size:.625rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold-lt);background:rgba(11,10,8,.72);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  border:1px solid var(--edge);padding:.4rem .7rem;
+}
+.silla__body{
+  position:relative;
+  padding:clamp(.4rem,1.6vw,1.4rem) clamp(.4rem,1.6vw,1.6rem) clamp(.6rem,1.6vw,1.4rem) 0;
+  display:flex;flex-direction:column;gap:1.15rem;align-items:flex-start;
 }
 .silla__mark{
-  position:absolute;right:clamp(1rem,3vw,2.4rem);top:-.4rem;
-  font-family:var(--serif);font-size:clamp(7rem,14vw,12rem);line-height:1;
+  position:absolute;right:0;top:-2.6rem;
+  font-family:var(--serif);font-size:clamp(6rem,11vw,9.5rem);line-height:1;
   color:var(--gold);opacity:.13;pointer-events:none;user-select:none;
 }
-.silla .prose{max-width:44em;}
+.silla .prose{max-width:42em;}
+@media (max-width:899px){
+  .silla__body{padding-inline:clamp(.4rem,3vw,1.2rem);}
+  .silla__mark{top:-1.8rem;}
+}
 .pull{
   font-family:var(--serif);font-weight:300;font-style:italic;
   font-size:clamp(1.5rem,3.4vw,2.6rem);line-height:1.24;
@@ -590,15 +617,21 @@ a{color:inherit;}
   <!-- ===== en la silla ===== -->
   <section class="section" id="trabajo">
     <div class="wrap">
-      <figure class="silla glass reveal">
-        <span class="silla__mark" aria-hidden="true">”</span>
-        <p class="eyebrow">En la silla</p>
-        <blockquote class="pull">Un chaval increíble, buen trato y trabaja de lujo un 10</blockquote>
-        <figcaption class="byline">Isra · reseña en Booksy</figcaption>
-        <h2 class="title">Omar Rubén Corbalán</h2>
-        <p class="prose">De las 164 reseñas del local en Booksy, la inmensa mayoría lo mencionan por su nombre. Probablemente sea la mejor descripción posible del sitio.</p>
-        <p class="prose">Diseños a navaja, barba y afeitado con toalla caliente. Y el tratamiento capilar, que es lo que separa a esta barbería del resto del barrio.</p>
-      </figure>
+      <div class="silla glass reveal">
+        <figure class="silla__fig">
+          <span class="stampref">Trabajo del local</span>
+          <img src="assets/img/cut1.jpg" alt="Nuca de un corte con la línea marcada por encima de la oreja y un diseño abierto a navaja en el lateral" loading="lazy">
+        </figure>
+        <div class="silla__body">
+          <span class="silla__mark" aria-hidden="true">”</span>
+          <p class="eyebrow">En la silla</p>
+          <blockquote class="pull">Un chaval increíble, buen trato y trabaja de lujo un 10</blockquote>
+          <p class="byline">Isra · reseña en Booksy</p>
+          <h2 class="title">Omar Rubén Corbalán</h2>
+          <p class="prose">De las 164 reseñas del local en Booksy, la inmensa mayoría lo mencionan por su nombre. Probablemente sea la mejor descripción posible del sitio.</p>
+          <p class="prose">Diseños a navaja, barba y afeitado con toalla caliente. Y el tratamiento capilar, que es lo que separa a esta barbería del resto del barrio.</p>
+        </div>
+      </div>
     </div>
   </section>
 
