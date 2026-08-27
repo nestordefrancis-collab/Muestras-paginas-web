@@ -41,21 +41,18 @@ publica ese desglose en ninguna parte.
 
 ## El estado de las fotos
 
-De las cuatro imágenes de partida quedan tres:
+Dónde va cada una:
 
-- `logo.png` — el logotipo. Se usa en la barra y como pieza central de la portada.
+- `logo.png` — el logotipo. En la barra y como pieza central de la portada.
+- `shop.jpg` — la fachada. Va **solo de fondo velado** en la portada, al 28 % de
+  opacidad y bajo dos capas de negro: da sitio sin competir con el logotipo.
+  Hubo una banda que la enseñaba entera debajo de la portada; se quitó.
 - `cut1.jpg` — una nuca con un diseño a navaja. Es la única foto de un corte, y
   va en *En la silla*, junto a la reseña.
-- `lab.jpg` — el tratamiento capilar. Va de fondo en la sección del laboratorio.
-- ~~`shop.jpg`~~ — la fachada con la moto. Retirada por decisión del cliente, de
-  la banda de fachada, del fondo de la portada y de la previsualización.
+- `lab.jpg` — el tratamiento capilar. De fondo en la sección del laboratorio.
 
-`shop.jpg` sigue en [`the-barber-lab/`](../the-barber-lab/) y en el historial de
-git, así que se recupera con un `git checkout` si hiciera falta.
-
-Consecuencia: la página no enseña el local, y de cortes solo tiene esa foto. En
-cuanto haya fotos nuevas del negocio, los sitios naturales son la portada (donde
-ahora hay campo negro) y *En la silla*.
+Con una sola foto de corte, esa parte se queda corta. En cuanto haya material
+nuevo del negocio, *En la silla* es donde entra.
 
 ## Estructura
 
@@ -63,6 +60,7 @@ ahora hay campo negro) y *En la silla*.
 index.html          la página completa (marcado + estilos)
 assets/img/
   logo.png          logotipo dorado, fondo transparente
+  shop.jpg          fachada del local (solo como fondo de la portada)
   cut1.jpg          detalle de corte a navaja
   lab.jpg           tratamiento capilar
   og.jpg            miniatura para WhatsApp y redes
