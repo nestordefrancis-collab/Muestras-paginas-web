@@ -37,8 +37,13 @@ Todo lo que hay en la página está sacado de una fuente concreta:
 **No hay contenido inventado.** Hubo una sección de "colección de cortes" con
 seis cortes acotados uno a uno; se quitó porque los nombres, las guardas y los
 tiempos de mantenimiento eran plausibles pero inventados, y el negocio no
-publica ese desglose en ninguna parte. Si algún día se consiguen los cortes
-reales —preguntándole a Omar o mirando su Instagram— se puede volver a montar.
+publica ese desglose en ninguna parte.
+
+**La página no enseña ningún corte.** Solo había una foto (`cut1.jpg`, una nuca
+con un diseño a navaja) y una sola foto se quedaba corta, así que la sección
+*En la silla* pasó a construirse sobre la reseña. Es la pieza que falta: en
+cuanto haya material real —cortes que Omar quiera anunciar, o fotos suyas de
+Instagram— aquí es donde va.
 
 ## Estructura
 
@@ -48,7 +53,6 @@ assets/img/
   logo.png          logotipo dorado, fondo transparente
   shop.jpg          fachada del local (se enseña entera, sin recortar)
   lab.jpg           tratamiento capilar
-  cut1.jpg          detalle de corte a navaja
   og.jpg            miniatura para WhatsApp y redes
 ```
 
