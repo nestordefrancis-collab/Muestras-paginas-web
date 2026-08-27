@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="The Barber Lab, barbería en Leganés (Madrid): colección de cortes, arreglo de barba, afeitado tradicional y tratamiento capilar. Reserva tu cita.">
+<meta name="description" content="The Barber Lab, barbería en Leganés (Madrid): corte, arreglo de barba, afeitado tradicional y tratamiento capilar. Reserva tu cita.">
 <meta name="theme-color" content="#0B0A08">
 <meta name="color-scheme" content="dark">
 <!-- Propuesta de rediseño: fuera de los buscadores para no confundirse con la web real del negocio. -->
 <meta name="robots" content="noindex, nofollow">
 <meta property="og:title" content="The Barber Lab — Leganés">
-<meta property="og:description" content="Colección de cortes, barba, afeitado tradicional y tricología en Leganés. 4,9 ★ sobre 164 reseñas.">
+<meta property="og:description" content="Corte, barba, afeitado tradicional y tricología en Leganés. 4,9 ★ sobre 164 reseñas.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://nestordefrancis-collab.github.io/Muestras-paginas-web/the-barber-lab-lujo/">
 <meta property="og:image" content="https://nestordefrancis-collab.github.io/Muestras-paginas-web/the-barber-lab-lujo/assets/img/og.jpg">
@@ -284,190 +284,24 @@ a{color:inherit;}
 .section__head .eyebrow{padding-top:.55rem;}
 
 /* ---------------- banda de fachada ---------------- */
+/* La foto de la fachada es casi cuadrada (1200×1174): se enseña entera,
+   sin recortar, con el marco ajustado a ella. */
 .plate{
   position:relative;padding:clamp(.5rem,1.1vw,.85rem);
+  max-width:820px;margin-inline:auto;
 }
-.plate figure{margin:0;position:relative;overflow:hidden;}
+.plate figure{margin:0;position:relative;}
 .plate img{
-  width:100%;height:clamp(240px,44vw,520px);object-fit:cover;object-position:50% 46%;
-  transform:scale(1.01);
-  transition:transform 1.3s var(--ease),filter 1.3s var(--ease);
+  width:100%;height:auto;
+  transition:filter 1s var(--ease);
 }
-@media (hover:hover){.plate:hover img{transform:scale(1.05);filter:saturate(1.08);}}
+@media (hover:hover){.plate:hover img{filter:saturate(1.1) brightness(1.04);}}
 .plate figcaption{
-  position:absolute;left:0;right:0;bottom:0;
-  padding:2.6rem 1.4rem 1.15rem;
-  background:linear-gradient(180deg,transparent,rgba(11,10,8,.9));
   display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;align-items:baseline;
+  padding:1.05rem .55rem .3rem;
   font-size:.6875rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
 }
 .plate figcaption b{color:var(--gold-lt);font-weight:400;letter-spacing:.2em;}
-
-/* ============================================================
-   LA COLECCIÓN — el catálogo de cortes
-   Cada corte es una lámina técnica: el degradado dibujado,
-   la línea acotada y la ficha de ejecución al lado.
-   Funciona sin JavaScript (radios + :checked).
-   ============================================================ */
-.vitrina{position:relative;}
-.vsel{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;}
-
-.vitrina__grid{display:grid;gap:1.25rem;}
-@media (min-width:1000px){
-  .vitrina__grid{grid-template-columns:minmax(0,1fr) minmax(268px,.42fr);align-items:stretch;}
-}
-
-/* — el escaparate — */
-.stage{display:grid;padding:clamp(1.1rem,2.4vw,2rem);}
-.cut{
-  grid-area:1/1;
-  display:grid;gap:clamp(1.25rem,3vw,2.5rem);align-items:center;
-  opacity:0;visibility:hidden;transform:translateY(14px) scale(.985);
-  transition:opacity .55s var(--ease),transform .7s var(--ease),visibility 0s linear .55s;
-}
-@media (min-width:720px){
-  .cut{grid-template-columns:minmax(0,.92fr) minmax(0,1fr);}
-}
-.vsel:nth-of-type(1):checked ~ .vitrina__grid .cut:nth-of-type(1),
-.vsel:nth-of-type(2):checked ~ .vitrina__grid .cut:nth-of-type(2),
-.vsel:nth-of-type(3):checked ~ .vitrina__grid .cut:nth-of-type(3),
-.vsel:nth-of-type(4):checked ~ .vitrina__grid .cut:nth-of-type(4),
-.vsel:nth-of-type(5):checked ~ .vitrina__grid .cut:nth-of-type(5),
-.vsel:nth-of-type(6):checked ~ .vitrina__grid .cut:nth-of-type(6){
-  opacity:1;visibility:visible;transform:none;transition-delay:0s;
-}
-
-/* la lámina */
-.plateau{
-  position:relative;margin:0;
-  background:
-    radial-gradient(70% 60% at 50% 38%, rgba(200,164,92,.13), transparent 68%),
-    linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.015));
-  border:1px solid rgba(200,164,92,.16);
-  padding:.6rem;
-}
-.plateau::before{
-  content:'';position:absolute;inset:.35rem;border:1px solid rgba(200,164,92,.13);pointer-events:none;
-}
-.dib{width:100%;height:auto;display:block;}
-.dib .line{fill:none;stroke:rgba(242,237,225,.42);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
-.dib .edge{fill:none;stroke:var(--gold-lt);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.9;}
-.dib .thin{fill:none;stroke:rgba(235,215,164,.5);stroke-width:1.1;stroke-linecap:round;}
-.dib .lead{fill:none;stroke:rgba(200,164,92,.55);stroke-width:1;stroke-dasharray:3 4;}
-.dib .flow path{fill:none;stroke:rgba(11,10,8,.16);stroke-width:2.2;stroke-linecap:round;}
-.dib .tag{
-  font-family:var(--sans);font-size:11px;font-weight:400;
-  letter-spacing:.16em;text-transform:uppercase;fill:var(--gold);
-}
-.dib .dot{fill:var(--gold);}
-
-/* ficha del corte */
-.cut__body{display:flex;flex-direction:column;gap:1.05rem;align-items:flex-start;}
-.cut__ref{
-  display:flex;align-items:center;gap:.7rem;
-  font-size:.6875rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:0;
-}
-.cut__ref::after{content:'';width:2.2rem;height:1px;background:var(--edge-2);}
-.cut__name{
-  font-family:var(--serif);font-weight:400;
-  font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1.08;margin:0;
-}
-.cut__desc{color:var(--muted);margin:0;max-width:34em;font-size:.9375rem;line-height:1.7;}
-.specs{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:1px;background:rgba(200,164,92,.16);
-  border:1px solid rgba(200,164,92,.16);width:100%;
-}
-.specs > div{background:rgba(255,255,255,.03);padding:.8rem .95rem;}
-.specs dt{
-  font-size:.625rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:0 0 .2rem;
-}
-.specs dd{margin:0;font-family:var(--serif);font-size:1.15rem;color:var(--cream);line-height:1.2;}
-.cut__foot{
-  display:flex;flex-wrap:wrap;align-items:baseline;gap:.6rem 1.1rem;width:100%;
-  padding-top:.9rem;border-top:1px solid rgba(200,164,92,.16);
-}
-.cut__price{font-family:var(--serif);font-size:1.6rem;color:var(--gold-lt);line-height:1;margin:0;}
-.cut__price small{font-family:var(--sans);font-size:.625rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.3rem;}
-
-/* — el índice — */
-.index{
-  display:flex;flex-direction:column;
-  padding:clamp(.6rem,1.4vw,1rem);
-}
-.index__h{
-  font-size:.625rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);
-  margin:0 0 .5rem;padding:.4rem .8rem;
-}
-.index label{
-  display:grid;grid-template-columns:2.4rem minmax(0,1fr);gap:.1rem .6rem;
-  align-items:baseline;cursor:pointer;
-  padding:.72rem .8rem;position:relative;
-  border-top:1px solid rgba(200,164,92,.13);
-  transition:background .35s var(--ease),padding-left .35s var(--ease);
-}
-.index label:first-of-type{border-top:0;}
-.index label::before{
-  content:'';position:absolute;left:0;top:.55rem;bottom:.55rem;width:2px;
-  background:var(--gold);transform:scaleY(0);transform-origin:top center;
-  transition:transform .45s var(--ease);
-}
-.index i{
-  font-style:normal;font-size:.75rem;letter-spacing:.1em;color:var(--gold-dk);
-  font-variant-numeric:tabular-nums;transition:color .35s var(--ease);
-}
-.index b{
-  font-family:var(--serif);font-weight:400;font-size:1.15rem;line-height:1.2;
-  color:rgba(242,237,225,.75);transition:color .35s var(--ease);
-}
-.index em{
-  grid-column:2;font-style:normal;font-size:.6875rem;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--muted);opacity:.75;
-}
-@media (hover:hover){
-  .index label:hover{background:rgba(200,164,92,.06);}
-  .index label:hover b{color:var(--cream);}
-}
-.vsel:nth-of-type(1):checked ~ .vitrina__grid .index label:nth-of-type(1),
-.vsel:nth-of-type(2):checked ~ .vitrina__grid .index label:nth-of-type(2),
-.vsel:nth-of-type(3):checked ~ .vitrina__grid .index label:nth-of-type(3),
-.vsel:nth-of-type(4):checked ~ .vitrina__grid .index label:nth-of-type(4),
-.vsel:nth-of-type(5):checked ~ .vitrina__grid .index label:nth-of-type(5),
-.vsel:nth-of-type(6):checked ~ .vitrina__grid .index label:nth-of-type(6){
-  background:rgba(200,164,92,.1);padding-left:1.1rem;
-}
-.vsel:nth-of-type(1):checked ~ .vitrina__grid .index label:nth-of-type(1)::before,
-.vsel:nth-of-type(2):checked ~ .vitrina__grid .index label:nth-of-type(2)::before,
-.vsel:nth-of-type(3):checked ~ .vitrina__grid .index label:nth-of-type(3)::before,
-.vsel:nth-of-type(4):checked ~ .vitrina__grid .index label:nth-of-type(4)::before,
-.vsel:nth-of-type(5):checked ~ .vitrina__grid .index label:nth-of-type(5)::before,
-.vsel:nth-of-type(6):checked ~ .vitrina__grid .index label:nth-of-type(6)::before{
-  transform:scaleY(1);
-}
-.vsel:nth-of-type(1):checked ~ .vitrina__grid .index label:nth-of-type(1) b,
-.vsel:nth-of-type(2):checked ~ .vitrina__grid .index label:nth-of-type(2) b,
-.vsel:nth-of-type(3):checked ~ .vitrina__grid .index label:nth-of-type(3) b,
-.vsel:nth-of-type(4):checked ~ .vitrina__grid .index label:nth-of-type(4) b,
-.vsel:nth-of-type(5):checked ~ .vitrina__grid .index label:nth-of-type(5) b,
-.vsel:nth-of-type(6):checked ~ .vitrina__grid .index label:nth-of-type(6) b{color:var(--gold-lt);}
-.vsel:nth-of-type(1):checked ~ .vitrina__grid .index label:nth-of-type(1) i,
-.vsel:nth-of-type(2):checked ~ .vitrina__grid .index label:nth-of-type(2) i,
-.vsel:nth-of-type(3):checked ~ .vitrina__grid .index label:nth-of-type(3) i,
-.vsel:nth-of-type(4):checked ~ .vitrina__grid .index label:nth-of-type(4) i,
-.vsel:nth-of-type(5):checked ~ .vitrina__grid .index label:nth-of-type(5) i,
-.vsel:nth-of-type(6):checked ~ .vitrina__grid .index label:nth-of-type(6) i{color:var(--gold);}
-/* el teclado ve lo mismo que el ratón */
-.vsel:nth-of-type(1):focus-visible ~ .vitrina__grid .index label:nth-of-type(1),
-.vsel:nth-of-type(2):focus-visible ~ .vitrina__grid .index label:nth-of-type(2),
-.vsel:nth-of-type(3):focus-visible ~ .vitrina__grid .index label:nth-of-type(3),
-.vsel:nth-of-type(4):focus-visible ~ .vitrina__grid .index label:nth-of-type(4),
-.vsel:nth-of-type(5):focus-visible ~ .vitrina__grid .index label:nth-of-type(5),
-.vsel:nth-of-type(6):focus-visible ~ .vitrina__grid .index label:nth-of-type(6){
-  outline:2px solid var(--gold);outline-offset:-2px;
-}
-.vitrina__note{
-  margin:1rem 0 0;font-size:.6875rem;letter-spacing:.1em;color:var(--muted);opacity:.75;
-}
 
 /* ---------------- trabajo real ---------------- */
 .work{display:grid;gap:clamp(1.5rem,4vw,3rem);align-items:center;}
@@ -731,129 +565,6 @@ a{color:inherit;}
 
 <div class="backdrop" aria-hidden="true"></div>
 
-<!-- ===== definiciones compartidas de las láminas ===== -->
-<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
-  <defs>
-    <!-- perfil de la cabeza: idéntico en las seis láminas -->
-    <path id="hd-face" d="M88 214C84 120 134 44 204 42c64-2 92 46 94 96 1 20 4 30 11 38 9 10 17 22 17 28 0 7-9 10-19 11-6 1-8 4-8 11 0 7-3 12-10 14 6 9 4 20-7 24-9 3-18 2-26-2-5 18-16 30-32 37"/>
-    <path id="hd-neck" d="M224 299c8 31 14 74 16 121"/>
-    <path id="hd-back" d="M88 214c0 40 8 68 20 88 12 20 18 48 18 78v40"/>
-    <path id="hd-ear" d="M180 190c13 0 17 16 11 32-4 12-12 18-20 14-6-3-8-12-6-24 2-14 7-22 15-22Z"/>
-    <path id="hd-ear2" d="M180 202c5 1 6 8 3 16"/>
-
-    <!-- trama de puntos: el pelo rapado -->
-    <pattern id="stipple" width="5.5" height="5.5" patternUnits="userSpaceOnUse">
-      <circle cx="2.75" cy="2.75" r=".95" fill="#EBD7A4"/>
-    </pattern>
-
-    <!-- degradados verticales: cada uno disuelve el pelo a su altura -->
-    <linearGradient id="g1" gradientUnits="userSpaceOnUse" x1="0" y1="30" x2="0" y2="250">
-      <stop offset="0" stop-color="#EBD7A4" stop-opacity=".92"/>
-      <stop offset=".46" stop-color="#D9BB7A" stop-opacity=".8"/>
-      <stop offset=".58" stop-color="#C8A45C" stop-opacity=".38"/>
-      <stop offset=".84" stop-color="#C8A45C" stop-opacity=".08"/>
-      <stop offset="1" stop-color="#C8A45C" stop-opacity="0"/>
-    </linearGradient>
-    <linearGradient id="g2" gradientUnits="userSpaceOnUse" x1="0" y1="30" x2="0" y2="282">
-      <stop offset="0" stop-color="#EBD7A4" stop-opacity=".92"/>
-      <stop offset=".6" stop-color="#D9BB7A" stop-opacity=".8"/>
-      <stop offset=".71" stop-color="#C8A45C" stop-opacity=".4"/>
-      <stop offset=".9" stop-color="#C8A45C" stop-opacity=".08"/>
-      <stop offset="1" stop-color="#C8A45C" stop-opacity="0"/>
-    </linearGradient>
-    <linearGradient id="g3" gradientUnits="userSpaceOnUse" x1="0" y1="20" x2="0" y2="278">
-      <stop offset="0" stop-color="#EBD7A4" stop-opacity=".9"/>
-      <stop offset=".8" stop-color="#D9BB7A" stop-opacity=".76"/>
-      <stop offset="1" stop-color="#C8A45C" stop-opacity=".46"/>
-    </linearGradient>
-    <linearGradient id="g4" gradientUnits="userSpaceOnUse" x1="0" y1="20" x2="0" y2="234">
-      <stop offset="0" stop-color="#EBD7A4" stop-opacity=".92"/>
-      <stop offset="1" stop-color="#C9A75F" stop-opacity=".74"/>
-    </linearGradient>
-    <linearGradient id="g5" gradientUnits="userSpaceOnUse" x1="0" y1="20" x2="0" y2="238">
-      <stop offset="0" stop-color="#EBD7A4" stop-opacity=".88"/>
-      <stop offset="1" stop-color="#C9A75F" stop-opacity=".72"/>
-    </linearGradient>
-    <linearGradient id="g6" gradientUnits="userSpaceOnUse" x1="0" y1="70" x2="0" y2="262">
-      <stop offset="0" stop-color="#C8A45C" stop-opacity=".3"/>
-      <stop offset="1" stop-color="#C8A45C" stop-opacity=".16"/>
-    </linearGradient>
-
-    <!-- máscaras: dónde y con cuánta densidad cae la trama.
-         El <use> de la oreja, en negro, abre el hueco: el degradado
-         rodea la oreja, no le pasa por encima. -->
-    <linearGradient id="mg1" gradientUnits="userSpaceOnUse" x1="0" y1="125" x2="0" y2="262">
-      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
-      <stop offset=".28" stop-color="#fff" stop-opacity=".9"/>
-      <stop offset=".6" stop-color="#fff" stop-opacity=".6"/>
-      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
-    </linearGradient>
-    <!-- la trama también se apaga hacia la sien, para que el recorte
-         del cráneo no se lea como un borde recto -->
-    <linearGradient id="mgx" gradientUnits="userSpaceOnUse" x1="206" y1="0" x2="284" y2="0">
-      <stop offset="0" stop-color="#000" stop-opacity="0"/>
-      <stop offset="1" stop-color="#000" stop-opacity="1"/>
-    </linearGradient>
-    <!-- el pelo pasa por detrás de la oreja, nunca por encima -->
-    <mask id="mear">
-      <rect x="-46" y="0" width="406" height="420" fill="#fff"/>
-      <use href="#hd-ear" fill="#000"/>
-    </mask>
-    <mask id="m1">
-      <rect x="-46" y="120" width="406" height="150" fill="url(#mg1)"/>
-      <rect x="206" y="0" width="160" height="420" fill="url(#mgx)"/>
-      <use href="#hd-ear" fill="#000"/>
-    </mask>
-    <linearGradient id="mg2" gradientUnits="userSpaceOnUse" x1="0" y1="170" x2="0" y2="292">
-      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
-      <stop offset=".25" stop-color="#fff" stop-opacity=".9"/>
-      <stop offset=".6" stop-color="#fff" stop-opacity=".55"/>
-      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
-    </linearGradient>
-    <mask id="m2">
-      <rect x="-46" y="166" width="406" height="130" fill="url(#mg2)"/>
-      <rect x="206" y="0" width="160" height="420" fill="url(#mgx)"/>
-      <use href="#hd-ear" fill="#000"/>
-    </mask>
-    <linearGradient id="mg4" gradientUnits="userSpaceOnUse" x1="0" y1="222" x2="0" y2="312">
-      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
-      <stop offset=".14" stop-color="#fff" stop-opacity=".85"/>
-      <stop offset=".7" stop-color="#fff" stop-opacity=".5"/>
-      <stop offset="1" stop-color="#fff" stop-opacity=".1"/>
-    </linearGradient>
-    <mask id="m4">
-      <rect x="-46" y="218" width="406" height="98" fill="url(#mg4)"/>
-      <rect x="206" y="0" width="160" height="420" fill="url(#mgx)"/>
-      <use href="#hd-ear" fill="#000"/>
-    </mask>
-    <mask id="m5">
-      <rect x="-46" y="222" width="406" height="94" fill="url(#mg4)"/>
-      <rect x="206" y="0" width="160" height="420" fill="url(#mgx)"/>
-      <use href="#hd-ear" fill="#000"/>
-    </mask>
-    <linearGradient id="mg6" gradientUnits="userSpaceOnUse" x1="0" y1="48" x2="0" y2="292">
-      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
-      <stop offset=".14" stop-color="#fff" stop-opacity=".7"/>
-      <stop offset=".82" stop-color="#fff" stop-opacity=".62"/>
-      <stop offset="1" stop-color="#fff" stop-opacity=".08"/>
-    </linearGradient>
-    <linearGradient id="mgx6" gradientUnits="userSpaceOnUse" x1="236" y1="0" x2="300" y2="0">
-      <stop offset="0" stop-color="#000" stop-opacity="0"/>
-      <stop offset="1" stop-color="#000" stop-opacity="1"/>
-    </linearGradient>
-    <mask id="m6">
-      <rect x="-46" y="44" width="406" height="252" fill="url(#mg6)"/>
-      <rect x="236" y="0" width="140" height="420" fill="url(#mgx6)"/>
-      <use href="#hd-ear" fill="#000"/>
-    </mask>
-
-    <!-- recorte: la trama nunca se sale del cráneo -->
-    <clipPath id="skull">
-      <path d="M88 214C84 120 134 44 204 42c64-2 92 46 94 96 -2 30-28 58-62 76-14 26-36 50-64 66-22 12-48 20-64 22-14-24-24-56-24-88Z"/>
-    </clipPath>
-  </defs>
-</svg>
-
 <!-- ===== barra ===== -->
 <div class="topbar">
   <div class="topbar__in">
@@ -862,7 +573,6 @@ a{color:inherit;}
       <span>The Barber Lab</span>
     </a>
     <nav class="topnav">
-      <a href="#coleccion">Colección</a>
       <a href="#carta">Carta</a>
       <a href="#laboratorio">Laboratorio</a>
       <a href="#resenas">Reseñas</a>
@@ -883,10 +593,10 @@ a{color:inherit;}
       <p class="eyebrow">Leganés · Madrid · desde el nº 35 de Monegros</p>
       <img class="hero__logo" src="assets/img/logo.png" alt="The Barber Lab">
       <h1>La barbería que trabaja <em>como un laboratorio</em></h1>
-      <p class="lede">Seis cortes de casa, barba y afeitado tradicional. Y una consulta de tricología con ampolla formulada para tu cuero cabelludo — algo que casi ninguna barbería del barrio hace.</p>
+      <p class="lede">Corte, barba y afeitado tradicional en Leganés. Y una consulta de tricología con ampolla formulada para tu cuero cabelludo — algo que casi ninguna barbería del barrio hace.</p>
       <div class="hero__acts">
         <a class="btn" href="https://booksy.com/es-es/18909_the-barber-lab_barberia_52996_leganes" target="_blank" rel="noopener">Reservar en Booksy</a>
-        <a class="btn btn--ghost" href="#coleccion">Ver la colección</a>
+        <a class="btn btn--ghost" href="#carta">Ver la carta</a>
       </div>
       <div class="capsule glass">
         <div><b class="num">4,9 ★</b><span>164 reseñas</span></div>
@@ -912,267 +622,20 @@ a{color:inherit;}
     </div>
   </section>
 
-  <!-- ============================================================
-       LA COLECCIÓN
-       ============================================================ -->
-  <section class="section" id="coleccion">
-    <div class="wrap">
-      <div class="section__head reveal">
-        <p class="eyebrow">La colección</p>
-        <div>
-          <h2 class="display">Seis cortes de casa, <em>acotados uno a uno</em>.</h2>
-          <p class="lede" style="margin-top:1.1rem">No es un muestrario de fotos: es la ficha técnica de cada corte. Dónde arranca el degradado, con qué guarda, con qué herramienta y cuánto aguanta antes de volver. Elige uno y mira cómo está construido.</p>
-        </div>
-      </div>
-
-      <div class="vitrina reveal">
-        <input class="vsel" type="radio" name="corte" id="k1" checked>
-        <input class="vsel" type="radio" name="corte" id="k2">
-        <input class="vsel" type="radio" name="corte" id="k3">
-        <input class="vsel" type="radio" name="corte" id="k4">
-        <input class="vsel" type="radio" name="corte" id="k5">
-        <input class="vsel" type="radio" name="corte" id="k6">
-
-        <div class="vitrina__grid">
-
-          <div class="stage glass">
-
-            <!-- 01 · degradado a piel -->
-            <article class="cut">
-              <figure class="plateau">
-                <svg class="dib" viewBox="-40 18 400 394" role="img" aria-label="Lámina del degradado a piel: el pelo del techo se disuelve hasta la piel por encima de la oreja">
-                  <path fill="url(#g1)" mask="url(#mear)" d="M286 112C272 58 178 30 120 82 96 104 78 142 78 186l2 54c38 22 98 16 134-10 16-11 28-34 38-62 8-24 20-46 34-56Z"/>
-                  <g clip-path="url(#skull)"><rect x="-46" y="140" width="406" height="130" fill="url(#stipple)" mask="url(#m1)"/></g>
-                  <use href="#hd-face" class="line"/><use href="#hd-neck" class="line"/><use href="#hd-back" class="line"/>
-                  <use href="#hd-ear" class="thin"/><use href="#hd-ear2" class="thin"/>
-                  <path class="edge" d="M286 112C272 58 178 30 120 82 96 104 78 142 78 186"/>
-                  <path class="lead" d="M-26 152H84"/><circle class="dot" cx="84" cy="152" r="2.6"/>
-                  <text class="tag" x="-26" y="142">Línea alta</text>
-                  <path class="lead" d="M-26 254H92"/><circle class="dot" cx="92" cy="254" r="2.6"/>
-                  <text class="tag" x="-26" y="244">Piel</text>
-                </svg>
-              </figure>
-              <div class="cut__body">
-                <p class="cut__ref">BL · 01</p>
-                <h3 class="cut__name">Degradado a piel</h3>
-                <p class="cut__desc">Sube desde la piel hasta la guarda del techo sin un solo escalón. Es el que más se pide y el que menos perdona: si la transición no está limpia, se ve desde la otra acera.</p>
-                <dl class="specs">
-                  <div><dt>Guarda</dt><dd class="num">0 → 3</dd></div>
-                  <div><dt>Arranque</dt><dd>Alto</dd></div>
-                  <div><dt>Herramienta</dt><dd>Máquina y navaja</dd></div>
-                  <div><dt>Vuelve en</dt><dd class="num">2 semanas</dd></div>
-                </dl>
-                <div class="cut__foot">
-                  <p class="cut__price"><small>Servicio · corte</small>12,00 € <span style="font-family:var(--sans);font-size:.625rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)">· 30 min</span></p>
-                  <a class="btn btn--sm btn--ghost" style="margin-left:auto" href="https://booksy.com/es-es/18909_the-barber-lab_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 02 · degradado medio -->
-            <article class="cut">
-              <figure class="plateau">
-                <svg class="dib" viewBox="-40 18 400 394" role="img" aria-label="Lámina del degradado medio: la transición arranca a la altura de la sien y deja peso en el lateral">
-                  <path fill="url(#g2)" mask="url(#mear)" d="M288 112C274 54 172 26 114 80 86 104 70 148 70 196l4 76c44 24 116 14 152-14 14-11 26-42 34-76 6-30 16-58 28-70Z"/>
-                  <g clip-path="url(#skull)"><rect x="-46" y="188" width="406" height="112" fill="url(#stipple)" mask="url(#m2)"/></g>
-                  <use href="#hd-face" class="line"/><use href="#hd-neck" class="line"/><use href="#hd-back" class="line"/>
-                  <use href="#hd-ear" class="thin"/><use href="#hd-ear2" class="thin"/>
-                  <path class="edge" d="M288 112C274 54 172 26 114 80 86 104 70 148 70 196"/>
-                  <path class="lead" d="M-26 198H82"/><circle class="dot" cx="82" cy="198" r="2.6"/>
-                  <text class="tag" x="-26" y="188">Línea media</text>
-                  <path class="lead" d="M-26 278H100"/><circle class="dot" cx="100" cy="278" r="2.6"/>
-                  <text class="tag" x="-26" y="268">Nuca suave</text>
-                </svg>
-              </figure>
-              <div class="cut__body">
-                <p class="cut__ref">BL · 02</p>
-                <h3 class="cut__name">Degradado medio</h3>
-                <p class="cut__desc">Arranca a la altura de la sien y conserva peso en el lateral. Aguanta mucho mejor el crecimiento: entre visita y visita casi no se nota que ha pasado un mes.</p>
-                <dl class="specs">
-                  <div><dt>Guarda</dt><dd class="num">0,5 → 4</dd></div>
-                  <div><dt>Arranque</dt><dd>Medio</dd></div>
-                  <div><dt>Herramienta</dt><dd>Máquina y tijera</dd></div>
-                  <div><dt>Vuelve en</dt><dd class="num">3–4 semanas</dd></div>
-                </dl>
-                <div class="cut__foot">
-                  <p class="cut__price"><small>Servicio · corte</small>12,00 € <span style="font-family:var(--sans);font-size:.625rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)">· 30 min</span></p>
-                  <a class="btn btn--sm btn--ghost" style="margin-left:auto" href="https://booksy.com/es-es/18909_the-barber-lab_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 03 · clásico a tijera -->
-            <article class="cut">
-              <figure class="plateau">
-                <svg class="dib" viewBox="-40 18 400 394" role="img" aria-label="Lámina del clásico a tijera: más longitud arriba, raya marcada y patilla recta delante de la oreja">
-                  <path fill="url(#g3)" mask="url(#mear)" d="M292 104C282 42 160 16 100 80 72 110 60 154 62 200l4 52c38 22 102 16 140-6l20-10c12-20 18-46 22-70 6-30 24-50 44-62Z"/>
-                  <use href="#hd-face" class="line"/><use href="#hd-neck" class="line"/><use href="#hd-back" class="line"/>
-                  <use href="#hd-ear" class="thin"/><use href="#hd-ear2" class="thin"/>
-                  <path class="edge" d="M292 104C282 42 160 16 100 80 72 110 60 154 62 200"/>
-                  <path class="thin" d="M132 66c38 14 76 30 108 48"/>
-                  <!-- el peinado: la tijera deja el pelo con dirección -->
-                  <g class="flow" mask="url(#mear)">
-                    <path d="M120 88C106 126 96 168 90 208"/>
-                    <path d="M150 78C138 118 124 160 112 202"/>
-                    <path d="M178 90C168 128 154 170 142 210"/>
-                    <path d="M204 102C196 138 182 178 170 218"/>
-                    <path d="M228 116C222 150 212 186 200 224"/>
-                  </g>
-                  <path class="edge" d="M206 246l20-10c12-20 18-46 22-70"/>
-                  <path class="lead" d="M-26 266H96"/><circle class="dot" cx="96" cy="266" r="2.6"/>
-                  <text class="tag" x="-26" y="256">Corte bajo</text>
-                  <path class="lead" d="M352 66H216"/><circle class="dot" cx="216" cy="66" r="2.6"/>
-                  <text class="tag" x="352" y="56" text-anchor="end">Raya</text>
-                </svg>
-              </figure>
-              <div class="cut__body">
-                <p class="cut__ref">BL · 03</p>
-                <h3 class="cut__name">Clásico a tijera</h3>
-                <p class="cut__desc">Todo trabajado a tijera, sin máquina: se peina a un lado y se puede llevar con la raya marcada o sin ella. El corte de siempre, hecho como se hacía siempre.</p>
-                <dl class="specs">
-                  <div><dt>Longitud</dt><dd class="num">3–5 cm</dd></div>
-                  <div><dt>Arranque</dt><dd>Bajo</dd></div>
-                  <div><dt>Herramienta</dt><dd>Sólo tijera</dd></div>
-                  <div><dt>Vuelve en</dt><dd class="num">5–6 semanas</dd></div>
-                </dl>
-                <div class="cut__foot">
-                  <p class="cut__price"><small>Servicio · corte</small>12,00 € <span style="font-family:var(--sans);font-size:.625rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)">· 30 min</span></p>
-                  <a class="btn btn--sm btn--ghost" style="margin-left:auto" href="https://booksy.com/es-es/18909_the-barber-lab_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 04 · casquete con diseño -->
-            <article class="cut">
-              <figure class="plateau">
-                <svg class="dib" viewBox="-40 18 400 394" role="img" aria-label="Lámina del casquete con diseño: línea recta por encima de la oreja, peso arriba y un diseño abierto a navaja en el lateral">
-                  <path fill="url(#g4)" mask="url(#mear)" d="M292 118C288 46 168 14 106 76 80 102 66 152 66 200l2 30c42 14 112 10 162-4 10-26 16-56 22-76 8-26 22-42 40-32Z"/>
-                  <g clip-path="url(#skull)"><rect x="-46" y="232" width="406" height="82" fill="url(#stipple)" mask="url(#m4)"/></g>
-                  <use href="#hd-face" class="line"/><use href="#hd-neck" class="line"/><use href="#hd-back" class="line"/>
-                  <use href="#hd-ear" class="thin"/><use href="#hd-ear2" class="thin"/>
-                  <path class="edge" d="M292 118C288 46 168 14 106 76 80 102 66 152 66 200l2 30"/>
-                  <path class="edge" d="M68 230c42 14 112 10 162-4"/>
-                  <path class="edge" d="M104 262l26 14-10-18 30 16-12-18 28 14"/>
-                  <path class="lead" d="M-26 232H86"/><circle class="dot" cx="86" cy="232" r="2.6"/>
-                  <text class="tag" x="-26" y="222">Línea recta</text>
-                  <path class="lead" d="M352 274H196"/><circle class="dot" cx="196" cy="274" r="2.6"/>
-                  <text class="tag" x="352" y="264" text-anchor="end">Navaja</text>
-                </svg>
-              </figure>
-              <div class="cut__body">
-                <p class="cut__ref">BL · 04</p>
-                <h3 class="cut__name">Casquete con diseño</h3>
-                <p class="cut__desc">Línea recta por encima de la oreja, todo el peso arriba y un diseño abierto a navaja en el lateral. Es el que más se comparte al salir por la puerta.</p>
-                <dl class="specs">
-                  <div><dt>Guarda</dt><dd class="num">0 → 2</dd></div>
-                  <div><dt>Arranque</dt><dd>Línea recta</dd></div>
-                  <div><dt>Herramienta</dt><dd>Máquina y navaja</dd></div>
-                  <div><dt>Vuelve en</dt><dd class="num">2 semanas</dd></div>
-                </dl>
-                <div class="cut__foot">
-                  <p class="cut__price"><small>Servicio · corte</small>12,00 € <span style="font-family:var(--sans);font-size:.625rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)">· 30 min</span></p>
-                  <a class="btn btn--sm btn--ghost" style="margin-left:auto" href="#trabajo">Ver una foto real</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 05 · texturizado desconectado -->
-            <article class="cut">
-              <figure class="plateau">
-                <svg class="dib" viewBox="-40 18 400 394" role="img" aria-label="Lámina del texturizado desconectado: puntas desfiladas arriba y un salto marcado con el lateral">
-                  <path fill="url(#g5)" mask="url(#mear)" d="M286 112 278 84 268 96 258 52 248 74 232 34 222 58 202 24 192 48 172 26 160 50 140 38 130 62 112 56 104 80 90 78 84 104 74 108 72 136 66 150 70 176 68 200 70 234c42 16 114 12 160-4 10-26 16-56 22-78 8-26 20-46 34-56Z"/>
-                  <g clip-path="url(#skull)"><rect x="-46" y="236" width="406" height="76" fill="url(#stipple)" mask="url(#m5)"/></g>
-                  <use href="#hd-face" class="line"/><use href="#hd-neck" class="line"/><use href="#hd-back" class="line"/>
-                  <use href="#hd-ear" class="thin"/><use href="#hd-ear2" class="thin"/>
-                  <path class="edge" d="M70 234c46 16 118 12 164-4"/>
-                  <path class="lead" d="M-26 236H88"/><circle class="dot" cx="88" cy="236" r="2.6"/>
-                  <text class="tag" x="-26" y="226">Desconexión</text>
-                  <path class="lead" d="M352 52H216"/><circle class="dot" cx="216" cy="52" r="2.6"/>
-                  <text class="tag" x="352" y="42" text-anchor="end">Punta</text>
-                </svg>
-              </figure>
-              <div class="cut__body">
-                <p class="cut__ref">BL · 05</p>
-                <h3 class="cut__name">Texturizado desconectado</h3>
-                <p class="cut__desc">Puntas desfiladas arriba y un salto marcado contra el lateral: aquí no hay transición, hay un corte limpio entre las dos longitudes. Pide producto mate y treinta segundos de espejo.</p>
-                <dl class="specs">
-                  <div><dt>Guarda</dt><dd class="num">1 uniforme</dd></div>
-                  <div><dt>Arranque</dt><dd>Desconexión</dd></div>
-                  <div><dt>Herramienta</dt><dd>Tijera de entresacar</dd></div>
-                  <div><dt>Vuelve en</dt><dd class="num">3 semanas</dd></div>
-                </dl>
-                <div class="cut__foot">
-                  <p class="cut__price"><small>Servicio · corte</small>12,00 € <span style="font-family:var(--sans);font-size:.625rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)">· 30 min</span></p>
-                  <a class="btn btn--sm btn--ghost" style="margin-left:auto" href="https://booksy.com/es-es/18909_the-barber-lab_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- 06 · rapado y perfilado -->
-            <article class="cut">
-              <figure class="plateau">
-                <svg class="dib" viewBox="-40 18 400 394" role="img" aria-label="Lámina del rapado y perfilado: una sola guarda en toda la cabeza y el contorno repasado a navaja">
-                  <path fill="url(#g6)" mask="url(#mear)" d="M284 114C274 60 186 36 126 82 100 102 84 146 84 194l4 64c40 22 102 14 136-8 12-12 20-40 28-68 8-30 20-56 32-70Z"/>
-                  <g clip-path="url(#skull)"><rect x="-46" y="58" width="406" height="230" fill="url(#stipple)" mask="url(#m6)"/></g>
-                  <use href="#hd-face" class="line"/><use href="#hd-neck" class="line"/><use href="#hd-back" class="line"/>
-                  <use href="#hd-ear" class="thin"/><use href="#hd-ear2" class="thin"/>
-                  <path class="edge" d="M284 114C274 60 186 36 126 82 100 102 84 146 84 194l4 64"/>
-                  <path class="edge" d="M224 250c12-12 20-40 28-68"/>
-                  <path class="lead" d="M352 108H278"/><circle class="dot" cx="278" cy="108" r="2.6"/>
-                  <text class="tag" x="352" y="98" text-anchor="end">Frente</text>
-                  <path class="lead" d="M352 216H248"/><circle class="dot" cx="248" cy="216" r="2.6"/>
-                  <text class="tag" x="352" y="206" text-anchor="end">Patilla</text>
-                </svg>
-              </figure>
-              <div class="cut__body">
-                <p class="cut__ref">BL · 06</p>
-                <h3 class="cut__name">Rapado y perfilado</h3>
-                <p class="cut__desc">Una sola guarda en toda la cabeza y el contorno repasado a navaja: frente, patillas y nuca a filo. Es el corte más rápido de la carta y, con diferencia, el que más dura bien.</p>
-                <dl class="specs">
-                  <div><dt>Guarda</dt><dd class="num">1 uniforme</dd></div>
-                  <div><dt>Arranque</dt><dd>Sin degradado</dd></div>
-                  <div><dt>Herramienta</dt><dd>Máquina y navaja</dd></div>
-                  <div><dt>Vuelve en</dt><dd class="num">4 semanas</dd></div>
-                </dl>
-                <div class="cut__foot">
-                  <p class="cut__price"><small>Servicio · corte</small>12,00 € <span style="font-family:var(--sans);font-size:.625rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)">· 30 min</span></p>
-                  <a class="btn btn--sm btn--ghost" style="margin-left:auto" href="https://booksy.com/es-es/18909_the-barber-lab_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a>
-                </div>
-              </div>
-            </article>
-
-          </div><!-- /stage -->
-
-          <nav class="index glass" aria-label="Colección de cortes">
-            <p class="index__h">Elige el corte</p>
-            <label for="k1"><i class="num">01</i><b>Degradado a piel</b><em>Guarda 0 → 3 · alto</em></label>
-            <label for="k2"><i class="num">02</i><b>Degradado medio</b><em>Guarda 0,5 → 4 · medio</em></label>
-            <label for="k3"><i class="num">03</i><b>Clásico a tijera</b><em>3–5 cm · sin máquina</em></label>
-            <label for="k4"><i class="num">04</i><b>Casquete con diseño</b><em>Línea recta · navaja</em></label>
-            <label for="k5"><i class="num">05</i><b>Texturizado desconectado</b><em>Guarda 1 · desconexión</em></label>
-            <label for="k6"><i class="num">06</i><b>Rapado y perfilado</b><em>Guarda 1 · a filo</em></label>
-          </nav>
-
-        </div><!-- /grid -->
-        <p class="vitrina__note">Los seis entran dentro del servicio de corte: 12,00 € y media hora. La diferencia está en la ejecución, no en la factura.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== trabajo real ===== -->
-  <section class="section" id="trabajo" style="padding-top:0">
+  <!-- ===== en la silla ===== -->
+  <section class="section" id="trabajo">
     <div class="wrap">
       <div class="work reveal">
         <figure class="work__fig glass">
-          <span class="stampref">BL · 04 — trabajo real</span>
-          <span class="frame"><img src="assets/img/cut1.jpg" alt="Nuca de un corte tipo casquete con la línea recta marcada y un diseño abierto a navaja en el lateral" loading="lazy"></span>
+          <span class="stampref">Trabajo del local</span>
+          <span class="frame"><img src="assets/img/cut1.jpg" alt="Nuca de un corte con la línea marcada por encima de la oreja y un diseño abierto a navaja en el lateral" loading="lazy"></span>
         </figure>
         <div style="display:flex;flex-direction:column;gap:1.4rem;align-items:flex-start">
           <p class="eyebrow">En la silla</p>
           <h2 class="title">Omar Rubén Corbalán</h2>
           <p class="pull">Un chaval increíble, buen trato y trabaja de lujo un 10</p>
           <p class="prose">De las 164 reseñas del local en Booksy, la inmensa mayoría lo mencionan por su nombre. Probablemente sea la mejor descripción posible del sitio.</p>
-          <p class="prose">Corte clásico, degradados, diseños a navaja, barba y afeitado a toalla caliente. Y el tratamiento capilar, que es lo que separa a esta barbería del resto del barrio.</p>
+          <p class="prose">Diseños a navaja, barba y afeitado con toalla caliente. Y el tratamiento capilar, que es lo que separa a esta barbería del resto del barrio.</p>
         </div>
       </div>
     </div>
@@ -1198,7 +661,7 @@ a{color:inherit;}
             <p class="line__n">01</p>
             <h4 class="line__name">Corte</h4>
             <p class="line__price num">12,00 €</p>
-            <p class="line__desc">Cualquiera de los seis de <a href="#coleccion">la colección</a>. No incluye lavado; se puede añadir aparte.</p>
+            <p class="line__desc">No incluye lavado de cabello; se puede añadir aparte.</p>
             <p class="line__meta">30 min</p>
           </div>
 
@@ -1462,7 +925,7 @@ a{color:inherit;}
         <a href="tel:+34633627227">633 627 227</a>
       </nav>
     </div>
-    <p class="note">Propuesta de rediseño — no es la web oficial de The Barber Lab. Servicios, precios, horarios, reseñas y fotografías proceden de su ficha pública en Booksy; el teléfono está tomado del rótulo de su escaparate y el plano es de OpenStreetMap, centrado en esa dirección. La colección de cortes son láminas dibujadas y nombres genéricos de barbería a modo de ejemplo: los estilos, las guardas y los tiempos de mantenimiento están por confirmar con el negocio, igual que el resto del contenido, antes de publicar nada.</p>
+    <p class="note">Propuesta de rediseño — no es la web oficial de The Barber Lab. Servicios, precios, horarios, reseñas y fotografías proceden de su ficha pública en Booksy; el teléfono está tomado del rótulo de su escaparate y el plano es de OpenStreetMap, centrado en esa dirección. Todo está pendiente de verificar con el negocio antes de publicar.</p>
   </div>
 </footer>
 
