@@ -6,9 +6,13 @@ carpeta y es un sitio estático independiente: se abre con doble clic sobre
 
 ## Muestras
 
-| Muestra | Negocio | Sector |
-| --- | --- | --- |
-| [`the-barber-lab/`](the-barber-lab/) | The Barber Lab — Leganés, Madrid | Barbería |
+| Muestra | Negocio | Sector | Registro |
+| --- | --- | --- | --- |
+| [`the-barber-lab/`](the-barber-lab/) | The Barber Lab — Leganés, Madrid | Barbería | Editorial, papel y tinta |
+| [`the-barber-lab-lujo/`](the-barber-lab-lujo/) | The Barber Lab — Leganés, Madrid | Barbería | Casa de lujo: negro, oro y vidrio |
+
+Cuando hay dos filas del mismo negocio son propuestas alternativas para el
+mismo cliente, no versiones sucesivas: se le enseñan las dos y elige.
 
 ## Ver una muestra en local
 
