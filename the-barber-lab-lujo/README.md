@@ -1,11 +1,14 @@
 # The Barber Lab — versión "casa de lujo"
 
-Segunda propuesta para **The Barber Lab**, barbería en Leganés (Madrid).
-Alternativa a [`the-barber-lab/`](../the-barber-lab/), no sustituta: la otra
-es editorial y de papel; esta va al registro de una casa de lujo.
+Propuesta de rediseño para **The Barber Lab**, barbería en Leganés (Madrid),
+en el registro de una casa de lujo.
 
 Página estática, sin dependencias ni proceso de build: HTML y CSS en un único
 archivo, con las imágenes servidas desde `assets/img/`.
+
+Hubo antes otra propuesta para el mismo negocio, editorial y de papel, en una
+carpeta `the-barber-lab/`. Se retiró del repositorio el 28 de agosto de 2026;
+sigue en el historial de git si hiciera falta recuperarla.
 
 ## De qué va la propuesta
 
