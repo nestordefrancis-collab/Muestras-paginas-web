@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taller RS 49 — Especialistas en Audi, BMW, Mercedes y VW en Madrid</title>
+<meta name="description" content="Taller mecánico familiar en Carabanchel desde 1972. Especialistas en marcas alemanas. Recogemos tu coche donde esté y te lo devolvemos en 1-2 días. 4,9/5 con más de 400 reseñas.">
+<link rel="canonical" href="https://tallerrs49.es/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Taller RS 49 — Especialistas en marcas alemanas desde 1972">
+<meta property="og:description" content="Taller mecánico familiar en Carabanchel. Audi, BMW, Mercedes y Volkswagen. Recogemos tu coche donde esté.">
+<meta property="og:image" content="assets/img/fachada-letrero.jpg">
+<meta property="og:locale" content="es_ES">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TALLER RS 49 — hoja técnica
+   Paleta tomada del propio taller: naranja del logo RS49 (#DC5100
+   muestreado del PNG original) y azul del letrero de fachada
+   (#2643A7 muestreado de la foto). Base blanco / negro.
+   ============================================================ */
+
+:root{
+  --bg:#ffffff;
+  --fg:#0c0e12;
+  --fg-soft:#5c6270;
+  --line:#e2e4e9;
+  --line-strong:#c8ccd4;
+  --surface:#f5f6f8;
+
+  --band-bg:#0c0e12;
+  --band-fg:#ffffff;
+  --band-soft:rgba(255,255,255,.62);
+  --band-line:rgba(255,255,255,.15);
+
+  --naranja:#dc5100;
+  --naranja-hi:#ff6a14;
+  --azul:#2643a7;
+  --azul-deep:#131c3d;
+
+  --shell:1320px;
+  --rail:96px;
+  --head:66px;
+  --ease:cubic-bezier(.2,.7,.3,1);
+}
+
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0a0c10;
+    --fg:#edeff3;
+    --fg-soft:#98a0ad;
+    --line:#232833;
+    --line-strong:#333a48;
+    --surface:#12151b;
+    --band-bg:#151a22;
+    --band-soft:rgba(255,255,255,.6);
+    --band-line:rgba(255,255,255,.13);
+    --naranja:#ff6a14;
+    --naranja-hi:#ff8340;
+    --azul:#5b7ae0;
+    --azul-deep:#0f1730;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0a0c10;
+  --fg:#edeff3;
+  --fg-soft:#98a0ad;
+  --line:#232833;
+  --line-strong:#333a48;
+  --surface:#12151b;
+  --band-bg:#151a22;
+  --band-soft:rgba(255,255,255,.6);
+  --band-line:rgba(255,255,255,.13);
+  --naranja:#ff6a14;
+  --naranja-hi:#ff8340;
+  --azul:#5b7ae0;
+  --azul-deep:#0f1730;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--fg);
+  font-family:"Archivo",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4,p,ul,figure{margin:0}
+ul{padding:0;list-style:none}
+button{font:inherit}
+
+/* ---------- utilidades tipográficas ---------- */
+.mono{
+  font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;
+}
+.display{
+  font-weight:800;letter-spacing:-.035em;line-height:.94;text-transform:uppercase;
+}
+.lede{font-size:clamp(16px,1.6vw,19px);color:var(--fg-soft);line-height:1.6;max-width:52ch}
+.acc{color:var(--naranja)}
+
+.shell{width:min(100% - 40px,var(--shell));margin-inline:auto}
+@media(max-width:640px){.shell{width:calc(100% - 32px)}}
+
+.sec{padding:clamp(64px,9vw,132px) 0;position:relative}
+.sec-head{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;margin-bottom:20px}
+.sec-rule{margin-bottom:clamp(26px,3.8vw,46px)}
+.sec-head .idx{color:var(--naranja)}
+.sec-head h2{font-size:clamp(30px,4.6vw,60px);text-wrap:balance}
+
+:focus-visible{outline:2px solid var(--naranja);outline-offset:3px}
+.band :focus-visible,.hero :focus-visible,.quote :focus-visible,.foot :focus-visible,.mbar :focus-visible{outline-color:var(--naranja-hi)}
+
+/* línea que se dibuja al entrar en pantalla */
+.rule{height:1px;background:var(--line);transform:scaleX(0);transform-origin:0 50%;
+  transition:transform 1.05s var(--ease)}
+.rule.in{transform:scaleX(1)}
+.band .rule{background:var(--band-line)}
+
+/* ---------- cabecera fija ---------- */
+.head{
+  position:fixed;inset:0 0 auto 0;height:var(--head);z-index:60;
+  display:flex;align-items:center;
+  background:color-mix(in srgb,var(--bg) 86%,transparent);
+  backdrop-filter:saturate(1.4) blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.head-in{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand img{height:24px;width:auto}
+.brand .txt{display:flex;flex-direction:column;line-height:1}
+.brand .txt b{font-size:13px;letter-spacing:.02em;font-weight:700;white-space:nowrap}
+.brand .txt span{font-size:9.5px;letter-spacing:.22em;color:var(--fg-soft);margin-top:3px;white-space:nowrap}
+@media(max-width:430px){
+  .brand img{height:21px}
+  .brand .txt b{font-size:11.5px}
+  .brand .txt span{font-size:8.5px;letter-spacing:.14em}
+  .btn{height:38px;padding:0 15px;font-size:12.5px;gap:7px}
+}
+.head-act{display:flex;align-items:center;gap:10px}
+.tel-h{display:flex;flex-direction:column;align-items:flex-end;line-height:1.15;padding-right:4px}
+.tel-h span{font-size:9.5px;letter-spacing:.18em;color:var(--fg-soft)}
+.tel-h b{font-size:15px;font-weight:600;letter-spacing:-.01em}
+@media(max-width:860px){.tel-h{display:none}}
+
+.btn{
+  display:inline-flex;align-items:center;gap:9px;height:42px;padding:0 20px;
+  font-size:13px;font-weight:600;letter-spacing:.02em;white-space:nowrap;
+  border:1px solid transparent;transition:.28s var(--ease);
+}
+.btn svg{width:15px;height:15px;flex:none}
+.btn-fill{background:var(--naranja);color:#fff}
+.btn-fill:hover{background:var(--naranja-hi)}
+.btn-line{border-color:var(--line-strong);color:var(--fg)}
+.btn-line:hover{border-color:var(--naranja);color:var(--naranja)}
+.btn-ghost{border-color:var(--band-line);color:#fff}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.06)}
+
+/* ---------- raíl lateral fijo ---------- */
+.rail{
+  position:fixed;left:0;top:var(--head);bottom:0;width:var(--rail);z-index:50;
+  border-right:1px solid var(--line);
+  display:none;flex-direction:column;justify-content:space-between;
+  padding:34px 0 26px;background:var(--bg);
+}
+.rail ol{display:flex;flex-direction:column;gap:2px;margin:0;padding:0;list-style:none}
+.rail a{
+  display:flex;align-items:center;gap:9px;padding:7px 0 7px 22px;
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.14em;
+  color:var(--fg-soft);transition:.25s var(--ease);
+}
+.rail a::before{content:"";width:12px;height:1px;background:var(--line-strong);transition:.25s var(--ease)}
+.rail a:hover{color:var(--fg)}
+.rail a:hover::before{width:18px;background:var(--fg)}
+.rail a.on{color:var(--naranja)}
+.rail a.on::before{width:24px;background:var(--naranja)}
+.rail .vert{
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  margin-left:26px;color:var(--fg-soft);
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.28em;
+}
+@media(min-width:1180px){
+  .rail{display:flex}
+  body{padding-left:var(--rail)}
+  .head{padding-left:var(--rail)}
+}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:min(94vh,860px);display:flex;align-items:flex-end;
+  padding-top:calc(var(--head) + 40px);overflow:hidden;background:#0c0e12}
+.hero-media{position:absolute;inset:0}
+.hero-media img{width:100%;height:100%;object-fit:cover;object-position:64% 52%;
+  transform:scale(1.06);animation:slowzoom 18s var(--ease) forwards}
+@keyframes slowzoom{to{transform:scale(1)}}
+.hero-media::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(96deg,rgba(6,8,12,.94) 0%,rgba(6,8,12,.72) 34%,rgba(6,8,12,.28) 64%,rgba(6,8,12,.42) 100%),
+    linear-gradient(180deg,rgba(6,8,12,.62) 0%,rgba(6,8,12,.10) 30%,rgba(6,8,12,.55) 74%,rgba(6,8,12,.9) 100%);
+}
+.hero-in{position:relative;z-index:2;padding-bottom:clamp(26px,3.6vw,50px);color:#fff}
+.hero .kick{color:rgba(255,255,255,.72);display:block;margin-bottom:20px}
+.hero h1{font-size:clamp(33px,5.1vw,74px)}
+.hero h1 em{font-style:normal;color:var(--naranja-hi);display:block}
+.hero p{color:rgba(255,255,255,.78);margin-top:26px;max-width:46ch;font-size:clamp(15px,1.5vw,18px)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+
+/* tira de datos técnicos bajo el hero */
+.spec{
+  position:relative;z-index:2;margin-top:clamp(44px,6vw,76px);
+  border-top:1px solid var(--band-line);
+  display:grid;grid-template-columns:repeat(4,1fr);
+}
+.spec div{padding:20px 22px 24px 0;border-right:1px solid var(--band-line)}
+.spec div:last-child{border-right:0}
+.spec span{display:block;color:rgba(255,255,255,.5);margin-bottom:9px}
+.spec b{display:block;font-size:clamp(15px,1.7vw,21px);font-weight:600;letter-spacing:-.015em;color:#fff}
+@media(max-width:860px){
+  .spec{grid-template-columns:repeat(2,1fr)}
+  .spec div{border-bottom:1px solid var(--band-line);padding:16px 16px 18px 0}
+  .spec div:nth-child(2n){border-right:0}
+  .spec div:nth-last-child(-n+2){border-bottom:0}
+}
+
+/* ---------- proceso ---------- */
+.pasos{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.paso{padding:30px 26px 34px 0;border-right:1px solid var(--line);position:relative}
+.paso:last-child{border-right:0;padding-right:0}
+.paso .n{color:var(--naranja);display:block;margin-bottom:26px}
+.paso .ico{width:42px;height:42px;color:var(--fg);margin-bottom:22px}
+.paso .ico svg{width:100%;height:100%}
+.paso h3{font-size:19px;font-weight:600;letter-spacing:-.015em;margin-bottom:8px}
+.paso p{font-size:14.5px;color:var(--fg-soft);line-height:1.55;max-width:30ch}
+@media(max-width:900px){
+  .pasos{grid-template-columns:repeat(2,1fr)}
+  .paso{border-bottom:1px solid var(--line);padding:26px 20px 28px 0}
+  .paso:nth-child(2n){border-right:0;padding-right:0}
+  .paso:nth-last-child(-n+2){border-bottom:0}
+}
+@media(max-width:560px){
+  .pasos{grid-template-columns:1fr}
+  .paso,.paso:nth-child(2n){border-right:0;padding-right:0}
+  .paso:nth-last-child(-n+2){border-bottom:1px solid var(--line)}
+  .paso:last-child{border-bottom:0}
+  .paso .n{margin-bottom:16px}
+}
+
+/* ---------- banda oscura ---------- */
+.band{background:var(--band-bg);color:var(--band-fg)}
+.band .lede,.band .sec-head h2{color:var(--band-fg)}
+.band .lede{color:var(--band-soft)}
+
+/* marcas */
+.marcas{display:grid;grid-template-columns:repeat(4,1fr)}
+.marca{padding:38px 0 42px;border-right:1px solid var(--band-line);position:relative;overflow:hidden}
+.marca:last-child{border-right:0}
+.marca b{
+  display:block;font-weight:800;letter-spacing:-.035em;line-height:.9;
+  font-size:clamp(23px,3.2vw,48px);padding-left:22px;
+  transition:color .3s var(--ease),transform .45s var(--ease);
+}
+.marca:first-child b{padding-left:0}
+.marca:hover b{color:var(--naranja-hi);transform:translateX(4px)}
+.marca:first-child:hover b{transform:translateX(2px)}
+.otras{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 24px;
+  padding-top:26px;border-top:1px solid var(--band-line);margin-top:0;
+}
+.otras p{color:var(--band-soft);font-size:15px}
+.otras .chips{display:flex;flex-wrap:wrap;gap:8px}
+.otras .chips i{
+  font-style:normal;font-family:"JetBrains Mono",monospace;font-size:10.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.78);
+  border:1px solid var(--band-line);padding:6px 11px;
+}
+@media(max-width:860px){
+  .marcas{grid-template-columns:repeat(2,1fr)}
+  .marca{border-bottom:1px solid var(--band-line);padding:24px 0 26px}
+  .marca:nth-child(2n){border-right:0}
+  .marca:nth-last-child(-n+2){border-bottom:0}
+  .marca b{padding-left:18px}
+  .marca:nth-child(2n+1) b{padding-left:0}
+}
+
+/* ---------- servicios ---------- */
+.serv-wrap{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:clamp(30px,5vw,72px);align-items:start}
+.serv-media{position:sticky;top:calc(var(--head) + 40px)}
+.serv-media figure{position:relative;overflow:hidden}
+.serv-media img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.serv-media figcaption{
+  margin-top:12px;color:var(--fg-soft);
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+}
+.serv-list{border-top:1px solid var(--line)}
+.srow{
+  display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:16px;
+  padding:19px 16px 19px 0;border-bottom:1px solid var(--line);
+  position:relative;transition:padding .32s var(--ease);
+}
+.srow::before{
+  content:"";position:absolute;left:0;top:50%;width:0;height:2px;
+  background:var(--naranja);transform:translateY(-50%);transition:width .32s var(--ease);
+}
+.srow:hover{padding-left:28px}
+.srow:hover::before{width:16px}
+.srow h3{font-size:clamp(17px,2vw,23px);font-weight:600;letter-spacing:-.02em}
+.srow em{
+  font-style:normal;font-family:"JetBrains Mono",monospace;font-size:10px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--fg-soft);white-space:nowrap;
+}
+.srow .arw{width:16px;height:16px;color:var(--naranja);opacity:0;transform:translateX(-6px);transition:.3s var(--ease)}
+.srow:hover .arw{opacity:1;transform:translateX(0)}
+@media(max-width:900px){
+  .serv-wrap{grid-template-columns:1fr}
+  .serv-media{position:static;order:2;margin-top:26px}
+  .serv-media img{aspect-ratio:16/10}
+  .srow{grid-template-columns:42px 1fr;gap:12px}
+  .srow em{display:none}
+  .srow .arw{display:none}
+}
+
+.extra{margin-top:clamp(30px,4vw,48px);padding-top:26px;border-top:1px solid var(--line)}
+.extra > span{display:block;color:var(--fg-soft);margin-bottom:16px}
+.extra .chips{display:flex;flex-wrap:wrap;gap:8px}
+.extra .chips i{
+  font-style:normal;font-family:"JetBrains Mono",monospace;font-size:10.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--fg);
+  border:1px solid var(--line-strong);padding:7px 12px;
+}
+
+/* ---------- historia ---------- */
+.hist{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,84px);align-items:center}
+.hist-txt p{color:var(--band-soft);margin-top:18px;max-width:50ch;font-size:15.5px}
+.hist-txt .year{
+  display:block;font-weight:800;letter-spacing:-.05em;line-height:.8;
+  font-size:clamp(76px,13vw,190px);color:var(--naranja);margin-bottom:8px;
+}
+.hist figure{position:relative}
+.hist img{width:100%;object-fit:cover;aspect-ratio:4/3}
+.hist figcaption{
+  margin-top:12px;color:rgba(255,255,255,.5);
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+}
+@media(max-width:880px){.hist{grid-template-columns:1fr}}
+
+.equipo{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,38px);
+  margin-top:clamp(46px,7vw,86px);border-top:1px solid var(--band-line)}
+.pers{padding-top:28px}
+.pers img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:grayscale(1) contrast(1.05);
+  transition:filter .5s var(--ease)}
+.pers:hover img{filter:grayscale(0) contrast(1)}
+.pers h4{margin-top:16px;font-size:19px;font-weight:600;letter-spacing:-.015em}
+.pers span{display:block;color:var(--naranja);margin-top:6px}
+.pers p{color:var(--band-soft);font-size:14px;margin-top:10px;max-width:32ch;padding-bottom:4px}
+@media(max-width:820px){
+  .equipo{grid-template-columns:1fr;gap:30px}
+  .pers img{aspect-ratio:16/9}
+}
+
+/* --- tira de fotos del taller --- */
+.strip{
+  display:grid;grid-auto-flow:column;grid-auto-columns:min(78vw,420px);gap:2px;
+  overflow-x:auto;scroll-snap-type:x mandatory;
+  margin-top:clamp(40px,6vw,74px);padding-top:26px;border-top:1px solid var(--band-line);
+  scrollbar-width:thin;
+}
+.strip::-webkit-scrollbar{height:2px}
+.strip::-webkit-scrollbar-thumb{background:var(--band-line)}
+.strip figure{margin:0;position:relative;overflow:hidden;scroll-snap-align:start}
+.strip img{width:100%;aspect-ratio:3/2;object-fit:cover;
+  filter:grayscale(.9) contrast(1.06);transition:filter .55s var(--ease),transform .9s var(--ease)}
+.strip figure:hover img{filter:none;transform:scale(1.045)}
+.strip figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:34px 14px 12px;color:#fff;
+  background:linear-gradient(0deg,rgba(6,8,12,.88),rgba(6,8,12,0));
+}
+
+/* --- banda de cita a sangre --- */
+.quote{position:relative;min-height:min(60vh,500px);display:flex;align-items:center;
+  overflow:hidden;background:#0c0e12}
+.quote > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 46%}
+.quote::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(94deg,rgba(6,8,12,.93) 0%,rgba(6,8,12,.6) 52%,rgba(6,8,12,.32) 100%)}
+.quote .shell{position:relative;z-index:2;color:#fff}
+.quote span{display:block;color:var(--naranja-hi);margin-bottom:20px}
+.quote p{font-size:clamp(25px,3.7vw,54px);font-weight:700;letter-spacing:-.035em;line-height:1.04;max-width:17ch}
+
+/* ---------- cifras + diferenciales ---------- */
+.cifras{display:grid;grid-template-columns:repeat(4,1fr)}
+.cifra{padding:26px 20px 30px 0;border-right:1px solid var(--line)}
+.cifra:last-child{border-right:0}
+.cifra b{display:block;font-weight:800;letter-spacing:-.045em;line-height:1;
+  font-size:clamp(30px,4.4vw,58px);font-variant-numeric:tabular-nums}
+.cifra span{display:block;color:var(--fg-soft);margin-top:12px}
+@media(max-width:820px){
+  .cifras{grid-template-columns:repeat(2,1fr)}
+  .cifra{border-bottom:1px solid var(--line);padding:20px 14px 22px 0}
+  .cifra:nth-child(2n){border-right:0}
+  .cifra:nth-last-child(-n+2){border-bottom:0}
+}
+.difs{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:clamp(46px,6vw,80px)}
+.dif{padding-right:26px;border-left:1px solid var(--line);padding-left:22px}
+.dif:first-child{border-left:0;padding-left:0}
+.dif h4{font-size:16px;font-weight:600;letter-spacing:-.01em;margin-bottom:9px}
+.dif h4::before{content:"";display:block;width:20px;height:2px;background:var(--naranja);margin-bottom:14px}
+.dif p{font-size:14px;color:var(--fg-soft);line-height:1.55}
+@media(max-width:820px){
+  .difs{grid-template-columns:1fr;gap:26px}
+  .dif{border-left:0;padding-left:0}
+}
+
+/* ---------- reseñas ---------- */
+.res-top{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  margin-bottom:clamp(28px,4vw,46px)}
+.score{display:flex;align-items:baseline;gap:14px}
+.score b{font-weight:800;letter-spacing:-.05em;font-size:clamp(46px,7vw,88px);line-height:.85}
+.score .stars{color:var(--naranja);letter-spacing:.1em;font-size:16px}
+.score .sub{color:var(--fg-soft);display:block;margin-top:6px}
+.rail-res{
+  display:grid;grid-auto-flow:column;grid-auto-columns:min(88vw,410px);gap:0;
+  overflow-x:auto;scroll-snap-type:x mandatory;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  scrollbar-width:thin;
+}
+.rail-res::-webkit-scrollbar{height:2px}
+.rail-res::-webkit-scrollbar-thumb{background:var(--line-strong)}
+.rev{
+  scroll-snap-align:start;padding:30px 30px 28px;border-right:1px solid var(--line);
+  display:flex;flex-direction:column;justify-content:space-between;min-height:270px;
+}
+.rev:first-child{padding-left:0}
+.rev:last-child{border-right:0}
+.rev p{font-size:15.5px;line-height:1.6}
+.rev p::before{content:"“";color:var(--naranja);font-size:30px;line-height:0;
+  position:relative;top:8px;margin-right:2px}
+.rev footer{margin-top:24px;display:flex;align-items:center;gap:10px}
+.rev footer b{font-size:14px;font-weight:600}
+.rev footer span{color:var(--fg-soft)}
+.hint{margin-top:14px;color:var(--fg-soft);display:flex;align-items:center;gap:8px}
+.hint svg{width:14px;height:14px}
+@media(max-width:640px){.rev{padding:24px 22px}.rev:first-child{padding-left:22px}}
+
+/* ---------- contacto ---------- */
+.cont{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(30px,5vw,72px);align-items:start}
+.cont figure img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.cont figcaption{margin-top:12px;color:var(--fg-soft);
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+.dl{border-top:1px solid var(--line)}
+.dl > div{display:grid;grid-template-columns:118px 1fr;gap:16px;padding:17px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.dl dt{color:var(--fg-soft);font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+.dl dd{margin:0;font-size:16px}
+.dl dd a:hover{color:var(--naranja)}
+.dl .hor{display:grid;gap:4px}
+.dl .hor i{font-style:normal;display:flex;justify-content:space-between;gap:18px;max-width:290px;font-size:15px}
+.dl .hor i span{color:var(--fg-soft)}
+.dl .hor i.off span{color:var(--fg-soft);opacity:.65}
+.cont-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+@media(max-width:880px){
+  .cont{grid-template-columns:1fr}
+  .dl > div{grid-template-columns:1fr;gap:6px}
+}
+
+/* ---------- pie ---------- */
+.foot{background:var(--band-bg);color:var(--band-fg);padding:clamp(48px,6vw,76px) 0 130px}
+.foot-top{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start}
+.foot img{height:30px;width:auto}
+.foot .claim{color:var(--band-soft);font-size:14px;max-width:34ch;margin-top:16px}
+.foot nav{display:flex;gap:26px;flex-wrap:wrap}
+.foot nav a{color:var(--band-soft);font-size:13.5px;transition:color .25s var(--ease)}
+.foot nav a:hover{color:#fff}
+.foot-bot{margin-top:clamp(34px,5vw,60px);padding-top:22px;border-top:1px solid var(--band-line);
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:rgba(255,255,255,.45)}
+.pend{color:var(--naranja-hi);border:1px dashed var(--naranja-hi);padding:4px 9px;display:inline-block}
+@media(min-width:900px){.foot{padding-bottom:clamp(48px,6vw,76px)}}
+
+/* ---------- barra móvil ---------- */
+.mbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:70;display:grid;grid-template-columns:1fr 1fr;
+  border-top:1px solid var(--band-line);background:rgba(12,14,18,.96);backdrop-filter:blur(10px);
+}
+.mbar a{
+  display:flex;align-items:center;justify-content:center;gap:9px;height:60px;
+  color:#fff;font-size:14px;font-weight:600;letter-spacing:.01em;
+}
+.mbar a svg{width:17px;height:17px}
+.mbar a+a{background:var(--naranja);border-left:1px solid transparent}
+@media(min-width:900px){.mbar{display:none}}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ CABECERA ══ -->
+<header class="head">
+  <div class="shell head-in">
+    <a class="brand" href="#inicio" aria-label="Taller RS 49, inicio">
+      <img src="assets/img/logo-rs49.png" alt="Taller RS 49">
+      <span class="txt"><b>TALLERES RS 49</b><span>MADRID · DESDE 1972</span></span>
+    </a>
+    <div class="head-act">
+      <a class="tel-h" href="tel:+34607669566"><span>LLÁMANOS</span><b>607 66 95 66</b></a>
+      <a class="btn btn-fill" href="https://wa.me/34607669566?text=Hola%2C%20quer%C3%ADa%20pedir%20cita%20en%20Taller%20RS%2049" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20.5l1.8-5.2A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+        Pedir cita
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ══ RAÍL LATERAL ══ -->
+<aside class="rail" aria-label="Índice de secciones">
+  <ol>
+    <li><a href="#inicio" data-rail="inicio">01</a></li>
+    <li><a href="#proceso" data-rail="proceso">02</a></li>
+    <li><a href="#marcas" data-rail="marcas">03</a></li>
+    <li><a href="#servicios" data-rail="servicios">04</a></li>
+    <li><a href="#taller" data-rail="taller">05</a></li>
+    <li><a href="#resenas" data-rail="resenas">06</a></li>
+    <li><a href="#contacto" data-rail="contacto">07</a></li>
+  </ol>
+  <span class="vert">CARABANCHEL · MADRID</span>
+</aside>
+
+<main>
+
+<!-- ══ 01 · HERO ══ -->
+<section class="hero" id="inicio">
+  <div class="hero-media">
+    <img src="assets/img/hero-audi-rs49.jpg" alt="Interior del Taller RS 49 con un Audi A6 en reparación junto al carro de herramientas de Talleres RS 49" fetchpriority="high">
+  </div>
+  <div class="shell hero-in">
+    <span class="mono kick">Taller familiar · Carabanchel · Madrid</span>
+    <h1 class="display">Especialistas en <em>marcas alemanas</em> desde 1972</h1>
+    <p>Audi, BMW, Mercedes y Volkswagen. Vamos a buscar tu coche donde se encuentre y te lo devolvemos, de media, en uno o dos días.</p>
+    <div class="hero-cta">
+      <a class="btn btn-fill" href="tel:+34607669566">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.2 2 2 0 0 1 6.5 3Z"/></svg>
+        607 66 95 66
+      </a>
+      <a class="btn btn-ghost" href="#servicios">Ver servicios</a>
+    </div>
+    <div class="spec">
+      <div><span class="mono">Fundado</span><b>1972</b></div>
+      <div><span class="mono">Valoración</span><b>4,9/5 · +400 reseñas</b></div>
+      <div><span class="mono">Reparación media</span><b>1–2 días</b></div>
+      <div><span class="mono">Recogida</span><b>Vamos a por tu coche</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 02 · PROCESO ══ -->
+<section class="sec" id="proceso">
+  <div class="shell">
+    <div class="sec-head">
+      <span class="mono idx">02 — Cómo trabajamos</span>
+      <h2 class="display">Tú llamas<br>nosotros hacemos el resto</h2>
+    </div>
+    <div class="pasos">
+      <article class="paso">
+        <span class="mono n">Paso 01</span>
+        <div class="ico" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 5h5.5l2.5 7-3.6 2.6a20 20 0 0 0 9 9L27 20l7 2.5V28a4 4 0 0 1-4.4 4C18.4 30.7 9.3 21.6 8 10.4A4 4 0 0 1 11 5Z"/>
+          </svg>
+        </div>
+        <h3>Llámanos</h3>
+        <p>Cuéntanos exactamente lo que te ocurre, sin moverte de donde estés.</p>
+      </article>
+      <article class="paso">
+        <span class="mono n">Paso 02</span>
+        <div class="ico" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 4v10M16.3 8.6 20 4.9l3.7 3.7"/><path d="M5 31h30"/><path d="M9 31v-5l3.4-6.6h15L32 26v5"/><circle cx="14" cy="31" r="2.8"/><circle cx="28" cy="31" r="2.8"/>
+          </svg>
+        </div>
+        <h3>Buscamos tu vehículo</h3>
+        <p>Vamos a buscar tu coche donde se encuentre, sin que te preocupes por nada.</p>
+      </article>
+      <article class="paso">
+        <span class="mono n">Paso 03</span>
+        <div class="ico" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="12" y="5" width="16" height="12" rx="1.5"/><path d="M13.5 9h13M13.5 12h13"/><path d="M20 17v10"/><circle cx="20" cy="30" r="3.2"/><path d="M9 30h7.8M23.2 30H31"/>
+          </svg>
+        </div>
+        <h3>Reparación</h3>
+        <p>Descansa y deja que nuestros profesionales se ocupen de tu coche.</p>
+      </article>
+      <article class="paso">
+        <span class="mono n">Paso 04</span>
+        <div class="ico" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11.5" cy="11.5" r="5"/><circle cx="11.5" cy="11.5" r="1.6"/><path d="M15.2 15.2 32 32"/><path d="M25.5 25.5l-4 4M28.7 28.7l-3.4 3.4"/>
+          </svg>
+        </div>
+        <h3>Entrega</h3>
+        <p>Te entregamos el coche donde tú quieras. Confía y disfruta.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 03 · MARCAS ══ -->
+<section class="sec band" id="marcas">
+  <div class="shell">
+    <div class="sec-head">
+      <span class="mono idx">03 — Especialización</span>
+      <h2 class="display">Mecánica alemana<br>es lo nuestro</h2>
+    </div>
+    <div class="marcas">
+      <div class="marca"><b>Audi</b></div>
+      <div class="marca"><b>BMW</b></div>
+      <div class="marca"><b>Mercedes</b></div>
+      <div class="marca"><b>Volkswagen</b></div>
+    </div>
+    <div class="otras">
+      <p>Pero también trabajamos con todas las demás</p>
+      <div class="chips">
+        <i>Ford</i><i>Toyota</i><i>Peugeot</i><i>Renault</i><i>Y el resto de marcas</i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 04 · SERVICIOS ══ -->
+<section class="sec" id="servicios">
+  <div class="shell">
+    <div class="sec-head">
+      <span class="mono idx">04 — Servicios</span>
+      <h2 class="display">Lo que hacemos<br>en el taller</h2>
+    </div>
+    <div class="serv-wrap">
+      <div class="serv-media">
+        <figure>
+          <img src="assets/img/motor-audi-v6.jpg" alt="Mecánico de Taller RS 49 revisando un motor V6 3.2 FSI de Audi" loading="lazy">
+          <figcaption>Motor V6 3.2 FSI · Taller RS 49</figcaption>
+        </figure>
+      </div>
+      <div class="serv-list">
+        <div class="srow"><h3>Revisión periódica</h3><em>Pre I.T.V.</em></div>
+        <div class="srow"><h3>Diagnóstico informático</h3><em>Diagnosis multimarca</em></div>
+        <div class="srow"><h3>Servicio integral</h3><em>Mecánica rápida</em></div>
+        <div class="srow"><h3>Electrónica del automóvil</h3><em>Electrónica</em></div>
+        <div class="srow"><h3>Inyección diésel</h3><em>Diésel</em></div>
+        <div class="srow"><h3>Inyección gasolina</h3><em>Gasolina</em></div>
+        <div class="srow"><h3>Ajustes de motor</h3><em>Motor</em></div>
+        <div class="srow"><h3>Trabajos a medida</h3><em>A medida</em></div>
+        <div class="srow"><h3>Recogida del vehículo</h3><em>Donde tú estés</em>
+          <svg class="arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+      </div>
+    </div>
+    <div class="extra">
+      <span class="mono">También en el taller</span>
+      <div class="chips">
+        <i>Dirección</i><i>Frenos y ABS</i><i>Suspensión</i><i>Aire acondicionado</i><i>Vehículos híbridos</i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CITA A SANGRE ══ -->
+<section class="quote" aria-label="Nuestra forma de trabajar">
+  <img src="assets/img/diagnosis-cenital.jpg" alt="Vista cenital del Taller RS 49 con equipos de diagnosis conectados a dos vehículos" loading="lazy">
+  <div class="shell">
+    <span class="mono">Profesionalidad</span>
+    <p>Tratamos tu coche como si fuera nuestro</p>
+  </div>
+</section>
+
+<!-- ══ 05 · HISTORIA Y EQUIPO ══ -->
+<section class="sec band" id="taller">
+  <div class="shell">
+    <div class="hist">
+      <div class="hist-txt">
+        <span class="mono idx" style="color:var(--naranja)">05 — Nuestra historia</span>
+        <span class="year">1972</span>
+        <h2 class="display" style="font-size:clamp(26px,3.4vw,42px)">Un taller familiar<br>que no ha cambiado</h2>
+        <p>Taller RS 49 nace en 1972 como un taller mecánico familiar. Desde sus inicios siempre hemos sido una empresa que ha buscado dar el mejor servicio de calidad. La fidelidad de nuestros clientes es nuestra mejor recompensa.</p>
+        <p>El creador de la empresa comenzó su carrera como jefe de taller de las marcas BMW y Porsche. Es en 1972 cuando decide crear su propio taller buscando en esencia la calidad en el trabajo y el mejor trato al cliente. Desde entonces siempre hemos intentado mantener esta línea: aportar la máxima calidad y el mejor servicio posible al cliente.</p>
+      </div>
+      <figure>
+        <img src="assets/img/nave-equipo.jpg" alt="Nave del Taller RS 49 con dos vehículos abiertos y el equipo trabajando" loading="lazy">
+        <figcaption>Calle Dolores Armengot, 29 · Carabanchel</figcaption>
+      </figure>
+    </div>
+
+    <div class="equipo">
+      <article class="pers">
+        <img src="assets/img/juan-carlos.jpg" alt="Juan Carlos, jefe de mecánica del Taller RS 49" loading="lazy">
+        <h4>Juan Carlos</h4>
+        <span class="mono">Jefe de mecánica</span>
+        <p>Su nivel de exigencia es máximo. Se preocupa por cada detalle y nunca deja nada a la improvisación.</p>
+      </article>
+      <article class="pers">
+        <img src="assets/img/marisol.jpg" alt="Marisol, responsable de calidad y atención al cliente del Taller RS 49" loading="lazy">
+        <h4>Marisol</h4>
+        <span class="mono">Calidad y atención al cliente</span>
+        <p>Es el eje organizativo de la empresa. La agenda está en su cabeza y la amabilidad es su seña de identidad.</p>
+      </article>
+      <article class="pers">
+        <img src="assets/img/jesus.jpg" alt="Jesús, mecánico y supervisor de procesos del Taller RS 49" loading="lazy">
+        <h4>Jesús</h4>
+        <span class="mono">Supervisor de procesos</span>
+        <p>Destaca por la organización y la calidad en el trabajo. Supervisa que todo funcione a la perfección.</p>
+      </article>
+    </div>
+
+    <div class="strip" tabindex="0" aria-label="Fotos del taller">
+      <figure>
+        <img src="assets/img/entrada-taller.jpg" alt="Pasillo de entrada del Taller RS 49 con un Audi A6 aparcado" loading="lazy">
+        <figcaption class="mono">Entrada · Dolores Armengot 29</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/img/nave-panoramica.jpg" alt="Panorámica de la nave del Taller RS 49 con dos mecánicos trabajando" loading="lazy">
+        <figcaption class="mono">Nave principal</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/img/nave-audi-subaru.jpg" alt="Audi A6 y otros vehículos abiertos dentro del Taller RS 49" loading="lazy">
+        <figcaption class="mono">Zona de trabajo</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/img/nave-mercedes.jpg" alt="Mercedes Clase R en el interior del Taller RS 49" loading="lazy">
+        <figcaption class="mono">Mercedes en taller</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CIFRAS + DIFERENCIALES ══ -->
+<section class="sec">
+  <div class="shell">
+    <div class="sec-head">
+      <span class="mono idx">— Cifras del taller</span>
+      <h2 class="display">En qué nos diferenciamos</h2>
+    </div>
+    <div class="cifras">
+      <div class="cifra"><b data-count="1820">1.820</b><span class="mono">Clientes</span></div>
+      <div class="cifra"><b data-count="19850">19.850</b><span class="mono">Coches reparados</span></div>
+      <div class="cifra"><b data-count="15020">15.020</b><span class="mono">Averías detectadas</span></div>
+      <div class="cifra"><b data-count="98" data-suffix="%">98%</b><span class="mono">Opinión cliente</span></div>
+    </div>
+    <div class="difs">
+      <div class="dif"><h4>Rapidez</h4><p>Tenemos una media de reparación de entre 1 y 2 días. Nos esforzamos por tener tu coche listo tan pronto como sea posible.</p></div>
+      <div class="dif"><h4>Profesionalidad</h4><p>Nuestro equipo tiene unos estándares de calidad muy elevados. Tratamos tu coche como si fuera nuestro.</p></div>
+      <div class="dif"><h4>Económico</h4><p>Porque la calidad no está reñida con el precio. Buscamos el equilibrio perfecto entre calidad y servicio.</p></div>
+      <div class="dif"><h4>Satisfacción</h4><p>Nuestros clientes, una vez que prueban, repiten. Tenemos una clientela fiel a nuestra forma de trabajar.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 06 · RESEÑAS ══ -->
+<section class="sec" id="resenas" style="padding-top:0">
+  <div class="shell">
+    <div class="res-top">
+      <div class="score">
+        <b>4,9</b>
+        <div>
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <span class="mono sub">Más de 400 reseñas en Google</span>
+        </div>
+      </div>
+      <span class="mono idx">06 — Nuestros clientes opinan</span>
+    </div>
+    <div class="rail-res" tabindex="0" aria-label="Reseñas de clientes en Google">
+      <article class="rev">
+        <p>Es impresionante la calidad del servicio, rapidez y profesionalidad de este taller, ya no los encuentras así. Recomiendo 100% al equipo de profesionales que hay en este taller. ¡Muchas gracias!</p>
+        <footer><b>Enrique Romero</b><span class="mono">Google</span></footer>
+      </article>
+      <article class="rev">
+        <p>Excelente taller mecánico, son de pura confianza, siempre con un diagnóstico del coche acertado. Si tú no puedes llevar el coche al taller te vienen a domicilio a por él y te lo devuelven sin problema ninguno. Trato excelente desde la recepción hasta el taller.</p>
+        <footer><b>Carlos Ocaña</b><span class="mono">Google</span></footer>
+      </article>
+      <article class="rev">
+        <p>Excelentes profesionales. Si alguien puede solucionar tu problema en el coche son ellos. Utilizo mi coche para trabajar y después de 220.000 km y 5 años lo tengo como el primer día. Un 10 en profesionalidad y otro 10 en trato personal.</p>
+        <footer><b>Javier Fernández</b><span class="mono">Google</span></footer>
+      </article>
+      <article class="rev">
+        <p>Un buen taller mecánico con un equipo de profesionales de categoría excelente, te explican todo con detalle y resuelven tus dudas. Dejar tu coche en este taller te da total confianza, gracias por tratarnos tan bien a nosotros y a nuestros coches.</p>
+        <footer><b>Patricia Peydro</b><span class="mono">Google</span></footer>
+      </article>
+    </div>
+    <span class="mono hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      Desliza para leer más
+    </span>
+  </div>
+</section>
+
+<!-- ══ 07 · CONTACTO ══ -->
+<section class="sec" id="contacto" style="padding-top:0">
+  <div class="shell">
+    <div class="sec-head">
+      <span class="mono idx">07 — Dónde estamos</span>
+      <h2 class="display">Te esperamos<br>en Carabanchel</h2>
+    </div>
+    <div class="cont">
+      <figure>
+        <img src="assets/img/fachada-letrero.jpg" alt="Fachada del Taller RS 49 en la Calle Dolores Armengot 29, con el rótulo Talleres RS 49" loading="lazy">
+        <figcaption>Busca este rótulo · Calle Dolores Armengot, 29</figcaption>
+      </figure>
+      <div>
+        <dl class="dl">
+          <div>
+            <dt>Dirección</dt>
+            <dd><a href="https://www.google.com/maps/search/?api=1&query=Calle+Dolores+Armengot+29+28025+Madrid" target="_blank" rel="noopener">Calle Dolores Armengot, 29<br>28025 Madrid</a></dd>
+          </div>
+          <div>
+            <dt>Teléfono</dt>
+            <dd><a href="tel:+34607669566">607 66 95 66</a></dd>
+          </div>
+          <div>
+            <dt>Email</dt>
+            <dd><a href="mailto:info@tallerrs49.es">info@tallerrs49.es</a></dd>
+          </div>
+          <div>
+            <dt>Horario</dt>
+            <dd class="hor">
+              <i>Lunes a jueves <span>6:30 – 15:00</span></i>
+              <i>Viernes <span>6:30 – 14:00</span></i>
+              <i class="off">Sábado y domingo <span>Cerrado</span></i>
+            </dd>
+          </div>
+        </dl>
+        <div class="cont-cta">
+          <a class="btn btn-fill" href="https://wa.me/34607669566?text=Hola%2C%20quer%C3%ADa%20pedir%20cita%20en%20Taller%20RS%2049" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20.5l1.8-5.2A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+            Escríbenos por WhatsApp
+          </a>
+          <a class="btn btn-line" href="https://www.google.com/maps/dir/?api=1&destination=Calle+Dolores+Armengot+29+28025+Madrid" target="_blank" rel="noopener">Cómo llegar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══ PIE ══ -->
+<footer class="foot">
+  <div class="shell">
+    <div class="foot-top">
+      <div>
+        <img src="assets/img/logo-rs49.png" alt="Taller RS 49">
+        <p class="claim">Taller mecánico familiar en Madrid desde 1972. Especialistas en Audi, BMW, Mercedes y Volkswagen.</p>
+      </div>
+      <nav aria-label="Enlaces legales y redes sociales">
+        <a href="https://tallerrs49.es/privacidad-aviso-legal-condiciones-uso/">Aviso legal y privacidad</a>
+        <a href="https://tallerrs49.es/politica-de-cookies/">Política de cookies</a>
+        <a href="https://www.facebook.com/TallerRs49/" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://twitter.com/TallerRs49" target="_blank" rel="noopener">Twitter</a>
+      </nav>
+    </div>
+    <div class="foot-bot mono">
+      <span>Talleres RS 49 · Calle Dolores Armengot, 29 · 28025 Madrid · 607 66 95 66</span>
+      <span class="pend">[PENDIENTE: razón social y CIF]</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ BARRA MÓVIL ══ -->
+<div class="mbar">
+  <a href="tel:+34607669566">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.2 2 2 0 0 1 6.5 3Z"/></svg>
+    Llamar
+  </a>
+  <a href="https://wa.me/34607669566?text=Hola%2C%20quer%C3%ADa%20pedir%20cita%20en%20Taller%20RS%2049" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20.5l1.8-5.2A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+    WhatsApp
+  </a>
+</div>
+
+<!-- SEO local · datos reales del negocio.
+     PENDIENTE: añadir "geo" con las coordenadas exactas de la ficha de Google. -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"AutoRepair",
+  "name":"Taller RS 49",
+  "alternateName":"Talleres RS 49",
+  "description":"Taller mecánico familiar en Madrid desde 1972, especializado en marcas alemanas: Audi, BMW, Mercedes y Volkswagen.",
+  "url":"https://tallerrs49.es/",
+  "telephone":"+34607669566",
+  "email":"info@tallerrs49.es",
+  "foundingDate":"1972",
+  "image":"https://tallerrs49.es/assets/img/fachada-letrero.jpg",
+  "address":{
+    "@type":"PostalAddress",
+    "streetAddress":"Calle Dolores Armengot, 29",
+    "postalCode":"28025",
+    "addressLocality":"Madrid",
+    "addressRegion":"Madrid",
+    "addressCountry":"ES"
+  },
+  "areaServed":{"@type":"City","name":"Madrid"},
+  "openingHoursSpecification":[
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"06:30","closes":"15:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Friday"],"opens":"06:30","closes":"14:00"}
+  ],
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"400","bestRating":"5"},
+  "sameAs":["https://www.facebook.com/TallerRs49/","https://twitter.com/TallerRs49"],
+  "hasOfferCatalog":{
+    "@type":"OfferCatalog","name":"Servicios",
+    "itemListElement":[
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Revisión periódica"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Diagnóstico informático"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Servicio integral"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Electrónica del automóvil"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Inyección diésel"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Inyección gasolina"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Ajustes de motor"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Trabajos a medida"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Recogida del vehículo"}}
+    ]
+  }
+}
+</script>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* --- líneas que se dibujan + separadores automáticos --- */
+  var seps = document.querySelectorAll(".sec-head");
+  Array.prototype.forEach.call(seps, function(h){
+    var r = document.createElement("div");
+    r.className = "rule sec-rule";
+    h.insertAdjacentElement("afterend", r);
+  });
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  },{threshold:.2});
+  document.querySelectorAll(".rule").forEach(function(el){ io.observe(el); });
+
+  /* --- contadores --- */
+  var fmt = new Intl.NumberFormat("es-ES");
+  var cio = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      cio.unobserve(e.target);
+      var el = e.target,
+          end = parseInt(el.getAttribute("data-count"),10),
+          suf = el.getAttribute("data-suffix") || "";
+      if(reduce){ el.textContent = fmt.format(end)+suf; return; }
+      var t0 = null, dur = 1500;
+      function step(t){
+        if(!t0) t0 = t;
+        var p = Math.min((t-t0)/dur,1);
+        var eased = 1 - Math.pow(1-p,3);
+        el.textContent = fmt.format(Math.round(end*eased)) + suf;
+        if(p<1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  },{threshold:.6});
+  document.querySelectorAll("[data-count]").forEach(function(el){ cio.observe(el); });
+
+  /* --- raíl: sección activa --- */
+  var links = {};
+  document.querySelectorAll(".rail a").forEach(function(a){ links[a.getAttribute("data-rail")] = a; });
+  var sio = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var a = links[e.target.id];
+      if(!a) return;
+      if(e.isIntersecting){
+        Object.keys(links).forEach(function(k){ links[k].classList.remove("on"); });
+        a.classList.add("on");
+      }
+    });
+  },{rootMargin:"-45% 0px -50% 0px"});
+  ["inicio","proceso","marcas","servicios","taller","resenas","contacto"].forEach(function(id){
+    var s = document.getElementById(id); if(s) sio.observe(s);
+  });
+})();
+</script>
+
+</body>
+</html>
