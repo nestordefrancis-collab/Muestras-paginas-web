@@ -17,6 +17,8 @@ imagen de stock ni un solo texto inventado.
 | Logo naranja | `Rs49-logo-definitivo.png` de su web |
 | Proceso (llamas → recogemos → reparamos → entregamos) | Home actual, textos suyos con las erratas corregidas |
 | Los 8 servicios + recogida | Home actual |
+| Descripciones de cada servicio | Página "Servicios" (`taller-de-coches-de-confianza`), textos literales suyos |
+| Turbos, cambios automáticos, climatización, emisiones | Página "Servicios" — servicios reales que no estaban en el brief |
 | Chips "también en el taller" | **Rótulo de la fachada** (dirección, frenos y ABS, suspensión, aire acondicionado, híbridos, pre-ITV) |
 | Historia de 1972 y el fundador | Página "Quiénes somos" |
 | Juan Carlos, Marisol y Jesús | Página "Quiénes somos" (fotos y descripciones suyas) |
@@ -47,9 +49,13 @@ propio taller**, no con un azul acero genérico:
 Tipografía **Archivo** (display + texto) y **JetBrains Mono** para numeración,
 etiquetas y datos: el aire de hoja técnica es lo que separa esto de un taller genérico.
 
-Esqueleto propio de esta muestra: raíl lateral fijo con índice de secciones,
-hero a sangre con tira de datos, filas de servicios con numeración 01–09, banda de
-cita a sangre, tira de fotos con scroll horizontal y reseñas en carril.
+Esqueleto propio de esta muestra: raíl lateral fijo con índice de secciones, hero a
+sangre con tira de datos, banda ancha de foto + rejilla de 13 servicios separados con
+descripción propia, banda de cita a sangre y reseñas en carril.
+
+Las cuatro fotos del taller que iban en carril al final de "Nuestra historia" se han
+quitado. Los archivos siguen en `assets/img/` (`entrada-taller`, `nave-panoramica`,
+`nave-audi-subaru`, `nave-mercedes`) por si hacen falta.
 
 ---
 
@@ -84,8 +90,15 @@ cita a sangre, tira de fotos con scroll horizontal y reseñas en carril.
 7. **`CGA Car Service`** aparece en el rótulo y en los polos del equipo. No se ha usado en
    la web porque no sé qué relación tiene con RS 49.
 
+8. **Su web promete vídeo por WhatsApp.** En su página de servicios: "te enviamos un
+   vídeo por whatsapp informándote de todo lo que hemos encontrado". Como esta muestra
+   va sin WhatsApp, ese argumento —que es bueno— se queda fuera. Si lo siguen haciendo,
+   merece la pena recuperarlo aunque el canal de contacto siga siendo solo el teléfono.
+
 ## Pendiente marcado en la página
 - `[PENDIENTE: razón social y CIF]` en el pie.
+- `[PENDIENTE: descripción]` en "Trabajos a medida": es el único servicio del que su web
+  no da ni una línea de texto.
 - Coordenadas exactas para el `geo` del schema (comentario en el HTML).
 - Precios: no hay ninguno en su web, así que no se inventa nada.
 

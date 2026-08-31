@@ -288,40 +288,47 @@ button{font:inherit}
 }
 
 /* ---------- servicios ---------- */
-.serv-wrap{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:clamp(30px,5vw,72px);align-items:start}
-.serv-media{position:sticky;top:calc(var(--head) + 40px)}
-.serv-media figure{position:relative;overflow:hidden}
-.serv-media img{width:100%;aspect-ratio:4/3;object-fit:cover}
-.serv-media figcaption{
-  margin-top:12px;color:var(--fg-soft);
-  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+.serv-hero{margin:0 0 clamp(34px,4.8vw,58px);position:relative}
+.serv-hero img{width:100%;aspect-ratio:21/8;object-fit:cover;object-position:50% 46%}
+.serv-hero figcaption{margin-top:12px;color:var(--fg-soft)}
+
+.serv-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.scard{
+  padding:30px 34px 36px;border-bottom:1px solid var(--line);border-left:1px solid var(--line);
+  position:relative;transition:background .3s var(--ease);
 }
-.serv-list{border-top:1px solid var(--line)}
-.srow{
-  display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:16px;
-  padding:19px 16px 19px 0;border-bottom:1px solid var(--line);
-  position:relative;transition:padding .32s var(--ease);
+.scard:nth-child(3n+1){border-left:0;padding-left:0}
+.scard:nth-child(3n){padding-right:0}
+.scard::before{
+  content:"";position:absolute;left:0;top:-1px;width:0;height:2px;
+  background:var(--naranja);transition:width .38s var(--ease);
 }
-.srow::before{
-  content:"";position:absolute;left:0;top:50%;width:0;height:2px;
-  background:var(--naranja);transform:translateY(-50%);transition:width .32s var(--ease);
+.scard:nth-child(3n+1)::before{left:0}
+.scard:hover{background:var(--surface)}
+.scard:hover::before{width:52px}
+.scard h3{font-size:clamp(18px,1.55vw,22px);font-weight:600;letter-spacing:-.02em;margin-bottom:11px;
+  text-wrap:balance}
+.scard p{font-size:14.5px;color:var(--fg-soft);line-height:1.55;max-width:34ch}
+.pend-in{color:var(--naranja);border:1px dashed var(--naranja);padding:2px 7px;display:inline-block;
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+
+@media(max-width:1000px){
+  .serv-grid{grid-template-columns:repeat(2,1fr)}
+  .scard{padding:26px 28px 30px}
+  .scard:nth-child(3n+1){border-left:1px solid var(--line);padding-left:28px}
+  .scard:nth-child(3n){padding-right:28px}
+  .scard:nth-child(2n+1){border-left:0;padding-left:0}
+  .scard:nth-child(2n){padding-right:0}
 }
-.srow:hover{padding-left:28px}
-.srow:hover::before{width:16px}
-.srow h3{font-size:clamp(17px,2vw,23px);font-weight:600;letter-spacing:-.02em}
-.srow em{
-  font-style:normal;font-family:"JetBrains Mono",monospace;font-size:10px;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--fg-soft);white-space:nowrap;
-}
-.srow .arw{width:16px;height:16px;color:var(--naranja);opacity:0;transform:translateX(-6px);transition:.3s var(--ease)}
-.srow:hover .arw{opacity:1;transform:translateX(0)}
-@media(max-width:900px){
-  .serv-wrap{grid-template-columns:1fr}
-  .serv-media{position:static;order:2;margin-top:26px}
-  .serv-media img{aspect-ratio:16/10}
-  .srow{grid-template-columns:42px 1fr;gap:12px}
-  .srow em{display:none}
-  .srow .arw{display:none}
+@media(max-width:620px){
+  .serv-hero img{aspect-ratio:16/10}
+  .serv-grid{grid-template-columns:1fr}
+  .scard,
+  .scard:nth-child(3n+1),
+  .scard:nth-child(3n),
+  .scard:nth-child(2n+1),
+  .scard:nth-child(2n){border-left:0;padding:22px 0 26px}
+  .scard p{max-width:none}
 }
 
 .extra{margin-top:clamp(30px,4vw,48px);padding-top:26px;border-top:1px solid var(--line)}
@@ -360,24 +367,6 @@ button{font:inherit}
 @media(max-width:820px){
   .equipo{grid-template-columns:1fr;gap:30px}
   .pers img{aspect-ratio:16/9}
-}
-
-/* --- tira de fotos del taller --- */
-.strip{
-  display:grid;grid-auto-flow:column;grid-auto-columns:min(78vw,420px);gap:2px;
-  overflow-x:auto;scroll-snap-type:x mandatory;
-  margin-top:clamp(40px,6vw,74px);padding-top:26px;border-top:1px solid var(--band-line);
-  scrollbar-width:thin;
-}
-.strip::-webkit-scrollbar{height:2px}
-.strip::-webkit-scrollbar-thumb{background:var(--band-line)}
-.strip figure{margin:0;position:relative;overflow:hidden;scroll-snap-align:start}
-.strip img{width:100%;aspect-ratio:3/2;object-fit:cover;
-  filter:grayscale(.9) contrast(1.06);transition:filter .55s var(--ease),transform .9s var(--ease)}
-.strip figure:hover img{filter:none;transform:scale(1.045)}
-.strip figcaption{
-  position:absolute;left:0;right:0;bottom:0;padding:34px 14px 12px;color:#fff;
-  background:linear-gradient(0deg,rgba(6,8,12,.88),rgba(6,8,12,0));
 }
 
 /* --- banda de cita a sangre --- */
@@ -637,31 +626,70 @@ button{font:inherit}
       <span class="mono idx">04 — Servicios</span>
       <h2 class="display">Lo que hacemos<br>en el taller</h2>
     </div>
-    <div class="serv-wrap">
-      <div class="serv-media">
-        <figure>
-          <img src="assets/img/motor-audi-v6.jpg" alt="Mecánico de Taller RS 49 revisando un motor V6 3.2 FSI de Audi" loading="lazy">
-          <figcaption>Motor V6 3.2 FSI · Taller RS 49</figcaption>
-        </figure>
-      </div>
-      <div class="serv-list">
-        <div class="srow"><h3>Revisión periódica</h3><em>Pre I.T.V.</em></div>
-        <div class="srow"><h3>Diagnóstico informático</h3><em>Diagnosis multimarca</em></div>
-        <div class="srow"><h3>Servicio integral</h3><em>Mecánica rápida</em></div>
-        <div class="srow"><h3>Electrónica del automóvil</h3><em>Electrónica</em></div>
-        <div class="srow"><h3>Inyección diésel</h3><em>Diésel</em></div>
-        <div class="srow"><h3>Inyección gasolina</h3><em>Gasolina</em></div>
-        <div class="srow"><h3>Ajustes de motor</h3><em>Motor</em></div>
-        <div class="srow"><h3>Trabajos a medida</h3><em>A medida</em></div>
-        <div class="srow"><h3>Recogida del vehículo</h3><em>Donde tú estés</em>
-          <svg class="arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </div>
-      </div>
+    <figure class="serv-hero">
+      <img src="assets/img/motor-audi-v6.jpg" alt="Mecánico de Taller RS 49 revisando un motor V6 3.2 FSI de Audi" loading="lazy">
+      <figcaption class="mono">Motor V6 3.2 FSI · Taller RS 49</figcaption>
+    </figure>
+
+    <div class="serv-grid">
+      <article class="scard">
+        <h3>Revisión periódica</h3>
+        <p>Mantenimiento al día y pre I.T.V.</p>
+      </article>
+      <article class="scard">
+        <h3>Diagnóstico informático</h3>
+        <p>Analizamos cada detalle de tu coche hasta encontrar el problema que tengas.</p>
+      </article>
+      <article class="scard">
+        <h3>Servicio integral</h3>
+        <p>Estudiamos todo el coche en su conjunto, no sólo el problema que nos cuentas.</p>
+      </article>
+      <article class="scard">
+        <h3>Electrónica del automóvil</h3>
+        <p>Reparación de cualquier centralita y módulo de mando.</p>
+      </article>
+      <article class="scard">
+        <h3>Inyección diésel</h3>
+        <p>Reparación de todo tipo de bomba e inyectores.</p>
+      </article>
+      <article class="scard">
+        <h3>Inyección gasolina</h3>
+        <p>Diagnosis de averías y reparación de componentes.</p>
+      </article>
+      <article class="scard">
+        <h3>Ajustes de motor</h3>
+        <p>Cualquier reparación de motor o culata, 100% garantizada.</p>
+      </article>
+      <article class="scard">
+        <h3>Turbos</h3>
+        <p>Diagnosis y reparación de turbos en gasolina y diésel.</p>
+      </article>
+      <article class="scard">
+        <h3>Cambios automáticos</h3>
+        <p>Reparación y mantenimiento de cambio automático.</p>
+      </article>
+      <article class="scard">
+        <h3>Climatización</h3>
+        <p>Reparación de climatizadores y aires acondicionados.</p>
+      </article>
+      <article class="scard">
+        <h3>Emisiones de gases</h3>
+        <p>Verificación y reparación del sistema, 100% efectivo.</p>
+      </article>
+      <article class="scard">
+        <h3>Trabajos a medida</h3>
+        <p><span class="pend-in">[PENDIENTE: descripción]</span></p>
+      </article>
+      <article class="scard">
+        <h3>Recogida y entrega</h3>
+        <p>Vamos a por tu coche donde se encuentre y te lo llevamos donde nos digas.</p>
+      </article>
     </div>
+
     <div class="extra">
       <span class="mono">También en el taller</span>
       <div class="chips">
-        <i>Dirección</i><i>Frenos y ABS</i><i>Suspensión</i><i>Aire acondicionado</i><i>Vehículos híbridos</i>
+        <i>Mecánica rápida</i><i>Dirección</i><i>Frenos y ABS</i><i>Suspensión</i><i>Vehículos híbridos</i>
       </div>
     </div>
   </div>
@@ -714,24 +742,6 @@ button{font:inherit}
       </article>
     </div>
 
-    <div class="strip" tabindex="0" aria-label="Fotos del taller">
-      <figure>
-        <img src="assets/img/entrada-taller.jpg" alt="Pasillo de entrada del Taller RS 49 con un Audi A6 aparcado" loading="lazy">
-        <figcaption class="mono">Entrada · Dolores Armengot 29</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/img/nave-panoramica.jpg" alt="Panorámica de la nave del Taller RS 49 con dos mecánicos trabajando" loading="lazy">
-        <figcaption class="mono">Nave principal</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/img/nave-audi-subaru.jpg" alt="Audi A6 y otros vehículos abiertos dentro del Taller RS 49" loading="lazy">
-        <figcaption class="mono">Zona de trabajo</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/img/nave-mercedes.jpg" alt="Mercedes Clase R en el interior del Taller RS 49" loading="lazy">
-        <figcaption class="mono">Mercedes en taller</figcaption>
-      </figure>
-    </div>
   </div>
 </section>
 
@@ -913,8 +923,12 @@ button{font:inherit}
       {"@type":"Offer","itemOffered":{"@type":"Service","name":"Inyección diésel"}},
       {"@type":"Offer","itemOffered":{"@type":"Service","name":"Inyección gasolina"}},
       {"@type":"Offer","itemOffered":{"@type":"Service","name":"Ajustes de motor"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Turbos"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Cambios automáticos"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Climatización"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Emisiones de gases"}},
       {"@type":"Offer","itemOffered":{"@type":"Service","name":"Trabajos a medida"}},
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Recogida del vehículo"}}
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Recogida y entrega del vehículo"}}
     ]
   }
 }
