@@ -62,8 +62,10 @@ cita a sangre, tira de fotos con scroll horizontal y reseñas en carril.
 
    Hay que confirmar cuál es el bueno; además la foto del rótulo enseña el horario viejo.
 
-2. **WhatsApp sin confirmar.** Los botones apuntan a `wa.me/34607669566`. Si ese número
-   no tiene WhatsApp, hay que cambiarlo o quitar los botones.
+2. **Solo llamada, sin WhatsApp.** El único CTA de contacto en toda la página es
+   `tel:607669566`, igual que en su web actual. No hay formulario ni ningún otro canal.
+   El email `info@tallerrs49.es` sigue en la ficha de datos de contacto (no como botón),
+   porque es un dato suyo que ya aparece en su web; si quieren que desaparezca, se quita.
 
 3. **Cifras de 2017.** 1.820 clientes / 19.850 coches / 15.020 averías / 98 % vienen de su
    web actual. Ocho años después seguramente se quedan cortas.
@@ -91,7 +93,7 @@ cita a sangre, tira de fotos con scroll horizontal y reseñas en carril.
 
 ## Técnico
 - Un solo `index.html`, sin frameworks. CSS y JS en línea.
-- Mobile-first, barra fija de Llamar / WhatsApp en móvil.
+- Mobile-first, barra fija de llamada a ancho completo en móvil.
 - Modo claro y oscuro.
 - Schema.org `AutoRepair` con los datos reales, horario y `aggregateRating` 4,9.
 - Fotos reescaladas y comprimidas: 1,3 MB en total para 14 imágenes.

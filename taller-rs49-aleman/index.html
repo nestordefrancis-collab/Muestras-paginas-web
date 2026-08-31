@@ -480,15 +480,14 @@ button{font:inherit}
 
 /* ---------- barra móvil ---------- */
 .mbar{
-  position:fixed;left:0;right:0;bottom:0;z-index:70;display:grid;grid-template-columns:1fr 1fr;
-  border-top:1px solid var(--band-line);background:rgba(12,14,18,.96);backdrop-filter:blur(10px);
+  position:fixed;left:0;right:0;bottom:0;z-index:70;display:grid;
+  border-top:1px solid var(--band-line);background:var(--naranja);
 }
 .mbar a{
-  display:flex;align-items:center;justify-content:center;gap:9px;height:60px;
-  color:#fff;font-size:14px;font-weight:600;letter-spacing:.01em;
+  display:flex;align-items:center;justify-content:center;gap:10px;height:62px;
+  color:#fff;font-size:15px;font-weight:600;letter-spacing:.01em;
 }
-.mbar a svg{width:17px;height:17px}
-.mbar a+a{background:var(--naranja);border-left:1px solid transparent}
+.mbar a svg{width:18px;height:18px}
 @media(min-width:900px){.mbar{display:none}}
 
 @media(prefers-reduced-motion:reduce){
@@ -507,10 +506,10 @@ button{font:inherit}
       <span class="txt"><b>TALLERES RS 49</b><span>MADRID · DESDE 1972</span></span>
     </a>
     <div class="head-act">
-      <a class="tel-h" href="tel:+34607669566"><span>LLÁMANOS</span><b>607 66 95 66</b></a>
-      <a class="btn btn-fill" href="https://wa.me/34607669566?text=Hola%2C%20quer%C3%ADa%20pedir%20cita%20en%20Taller%20RS%2049" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20.5l1.8-5.2A8.4 8.4 0 1 1 21 11.5Z"/></svg>
-        Pedir cita
+      <a class="tel-h" href="tel:607669566"><span>LLÁMANOS</span><b>607 66 95 66</b></a>
+      <a class="btn btn-fill" href="tel:607669566">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.2 2 2 0 0 1 6.5 3Z"/></svg>
+        Llamar ahora
       </a>
     </div>
   </div>
@@ -542,7 +541,7 @@ button{font:inherit}
     <h1 class="display">Especialistas en <em>marcas alemanas</em> desde 1972</h1>
     <p>Audi, BMW, Mercedes y Volkswagen. Vamos a buscar tu coche donde se encuentre y te lo devolvemos, de media, en uno o dos días.</p>
     <div class="hero-cta">
-      <a class="btn btn-fill" href="tel:+34607669566">
+      <a class="btn btn-fill" href="tel:607669566">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.2 2 2 0 0 1 6.5 3Z"/></svg>
         607 66 95 66
       </a>
@@ -816,7 +815,7 @@ button{font:inherit}
           </div>
           <div>
             <dt>Teléfono</dt>
-            <dd><a href="tel:+34607669566">607 66 95 66</a></dd>
+            <dd><a href="tel:607669566">607 66 95 66</a></dd>
           </div>
           <div>
             <dt>Email</dt>
@@ -832,9 +831,9 @@ button{font:inherit}
           </div>
         </dl>
         <div class="cont-cta">
-          <a class="btn btn-fill" href="https://wa.me/34607669566?text=Hola%2C%20quer%C3%ADa%20pedir%20cita%20en%20Taller%20RS%2049" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20.5l1.8-5.2A8.4 8.4 0 1 1 21 11.5Z"/></svg>
-            Escríbenos por WhatsApp
+          <a class="btn btn-fill" href="tel:607669566">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.2 2 2 0 0 1 6.5 3Z"/></svg>
+            Llamar ahora
           </a>
           <a class="btn btn-line" href="https://www.google.com/maps/dir/?api=1&destination=Calle+Dolores+Armengot+29+28025+Madrid" target="_blank" rel="noopener">Cómo llegar</a>
         </div>
@@ -869,13 +868,9 @@ button{font:inherit}
 
 <!-- ══ BARRA MÓVIL ══ -->
 <div class="mbar">
-  <a href="tel:+34607669566">
+  <a href="tel:607669566">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.2 2 2 0 0 1 6.5 3Z"/></svg>
-    Llamar
-  </a>
-  <a href="https://wa.me/34607669566?text=Hola%2C%20quer%C3%ADa%20pedir%20cita%20en%20Taller%20RS%2049" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20.5l1.8-5.2A8.4 8.4 0 1 1 21 11.5Z"/></svg>
-    WhatsApp
+    Llamar ahora · 607 66 95 66
   </a>
 </div>
 
