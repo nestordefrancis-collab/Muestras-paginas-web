@@ -487,6 +487,29 @@ button{font:inherit}
 .mbar a svg{width:18px;height:18px}
 @media(min-width:900px){.mbar{display:none}}
 
+/* ---------- aviso del teléfono en escritorio ----------
+   En un ordenador no hay marcador que atienda un enlace tel:, y dentro de
+   un iframe además deja el marco en blanco. En puntero fino se intercepta
+   el clic y se enseña el número. En móvil el enlace funciona como siempre. */
+.tostada{
+  position:fixed;left:50%;bottom:26px;z-index:90;
+  display:flex;align-items:center;gap:13px;
+  padding:15px 22px;background:var(--acero-fill);color:#fff;
+  border:1px solid rgba(255,255,255,.24);
+  transform:translate(-50%,14px);opacity:0;pointer-events:none;
+  transition:opacity .3s var(--ease),transform .3s var(--ease);
+}
+.tostada.on{opacity:1;transform:translate(-50%,0)}
+.tostada svg{width:17px;height:17px;color:#fff;flex:none}
+.tostada b{font-size:16px;font-weight:600;letter-spacing:.01em;white-space:nowrap}
+.tostada span{color:rgba(255,255,255,.74);white-space:nowrap}
+@media(max-width:900px){.tostada{bottom:80px}}
+@media(max-width:420px){
+  .tostada{left:16px;right:16px;transform:translateY(14px);justify-content:center}
+  .tostada.on{transform:translateY(0)}
+  .tostada span{display:none}
+}
+
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition-duration:.01ms!important}
   html{scroll-behavior:auto}
@@ -503,8 +526,8 @@ button{font:inherit}
       <span class="txt"><b>TALLERES RS 49</b><span>MADRID · DESDE 1972</span></span>
     </a>
     <div class="head-act">
-      <a class="tel-h" href="tel:607669566"><span>LLÁMANOS</span><b>607 66 95 66</b></a>
-      <a class="btn btn-fill" href="tel:607669566">
+      <a class="tel-h" href="tel:607669566" target="_top"><span>LLÁMANOS</span><b>607 66 95 66</b></a>
+      <a class="btn btn-fill" href="tel:607669566" target="_top">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.2 2 2 0 0 1 6.5 3Z"/></svg>
         Llamar ahora
       </a>
@@ -538,7 +561,7 @@ button{font:inherit}
     <h1 class="display">Especialistas en <em>marcas alemanas</em> desde 1972</h1>
     <p>Audi, BMW, Mercedes y Volkswagen. Vamos a buscar tu coche donde se encuentre y te lo devolvemos, de media, en uno o dos días.</p>
     <div class="hero-cta">
-      <a class="btn btn-fill" href="tel:607669566">
+      <a class="btn btn-fill" href="tel:607669566" target="_top">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.2 2 2 0 0 1 6.5 3Z"/></svg>
         607 66 95 66
       </a>
@@ -833,7 +856,7 @@ button{font:inherit}
           </div>
           <div>
             <dt>Teléfono</dt>
-            <dd><a href="tel:607669566">607 66 95 66</a></dd>
+            <dd><a href="tel:607669566" target="_top">607 66 95 66</a></dd>
           </div>
           <div>
             <dt>Email</dt>
@@ -849,7 +872,7 @@ button{font:inherit}
           </div>
         </dl>
         <div class="cont-cta">
-          <a class="btn btn-fill" href="tel:607669566">
+          <a class="btn btn-fill" href="tel:607669566" target="_top">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.2 2 2 0 0 1 6.5 3Z"/></svg>
             Llamar ahora
           </a>
@@ -886,10 +909,16 @@ button{font:inherit}
 
 <!-- ══ BARRA MÓVIL ══ -->
 <div class="mbar">
-  <a href="tel:607669566">
+  <a href="tel:607669566" target="_top">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.2 2 2 0 0 1 6.5 3Z"/></svg>
     Llamar ahora · 607 66 95 66
   </a>
+</div>
+
+<div class="tostada" id="tostada" role="status" aria-live="polite">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.2 2 2 0 0 1 6.5 3Z"/></svg>
+  <b>607 66 95 66</b>
+  <span class="mono">Lunes a jueves 6:30–15:00</span>
 </div>
 
 <!-- SEO local · datos reales del negocio.
@@ -984,6 +1013,24 @@ button{font:inherit}
     });
   },{threshold:.6});
   document.querySelectorAll("[data-count]").forEach(function(el){ cio.observe(el); });
+
+  /* --- teléfono en escritorio ---
+     Un enlace tel: no lleva a ninguna parte en un ordenador, y dentro de un
+     iframe (la vista previa del artifact) deja el marco en blanco. Con puntero
+     fino interceptamos el clic y enseñamos el número; en móvil no tocamos nada
+     y el enlace abre el marcador como siempre. */
+  var esRaton = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (esRaton) {
+    var tostada = document.getElementById("tostada"), reloj = null;
+    document.addEventListener("click", function(e){
+      var a = e.target.closest ? e.target.closest('a[href^="tel:"]') : null;
+      if (!a) return;
+      e.preventDefault();
+      tostada.classList.add("on");
+      clearTimeout(reloj);
+      reloj = setTimeout(function(){ tostada.classList.remove("on"); }, 3600);
+    });
+  }
 
   /* --- raíl: sección activa --- */
   var links = {};

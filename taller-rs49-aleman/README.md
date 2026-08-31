@@ -126,6 +126,10 @@ quitado. Los archivos siguen en `assets/img/` (`entrada-taller`, `nave-panoramic
 ## Técnico
 - Un solo `index.html`, sin frameworks. CSS y JS en línea.
 - Mobile-first, barra fija de llamada a ancho completo en móvil.
+- Los enlaces `tel:` llevan `target="_top"` y, en dispositivos de puntero fino
+  (ordenador), se interceptan para enseñar el número en un aviso en vez de navegar.
+  Sin esto, un `tel:` dentro de un iframe —la vista previa del artifact— deja el marco
+  en blanco. En móvil no se toca nada: el enlace abre el marcador.
 - Modo claro y oscuro.
 - Schema.org `AutoRepair` con los datos reales, horario y `aggregateRating` 4,9.
 - Fotos reescaladas y comprimidas: 1,3 MB en total para 14 imágenes.
