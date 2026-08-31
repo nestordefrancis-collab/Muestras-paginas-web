@@ -37,17 +37,31 @@ imagen de stock ni un solo texto inventado.
 
 ## Dirección de estilo
 
-Registro premium alemán —composición, aire y tipografía— pero con **los colores del
-propio taller**, no con un azul acero genérico:
+"Especialista alemán premium": base blanco / negro y **un único acento en azul acero**.
+Nada cálido en toda la página.
 
-| Token | Valor | De dónde sale |
-|---|---|---|
-| Naranja | `#dc5100` | muestreado del PNG del logo |
-| Azul | `#2643a7` | muestreado del rótulo de la fachada |
-| Base | blanco / `#0c0e12` | — |
+| Token | Valor | Uso | Contraste |
+|---|---|---|---|
+| `--acero-fill` | `#42607d` | relleno de botones y barra móvil | 6,56:1 con texto blanco |
+| `--acero-fill-hi` | `#527a9e` | hover de botón relleno | 4,53:1 con texto blanco |
+| `--acero` | `#42607d` claro / `#8fb2d2` oscuro | acento de texto sobre el fondo de página | 6,56:1 / 8,82:1 |
+| `--acero-lite` | `#8fb2d2` | acento sobre banda oscura o foto | 8,18:1 sobre foto |
+| Base | `#ffffff` / `#0c0e12` | fondo y texto | — |
 
-Tipografía **Archivo** (display + texto) y **JetBrains Mono** para numeración,
-etiquetas y datos: el aire de hoja técnica es lo que separa esto de un taller genérico.
+Los grises no son neutros puros: llevan sesgo azul (`#5c6270`, `#e2e4e9`, `#0c0e12`)
+para que la página entera se lea fría, no sólo el acento.
+
+El logotipo del taller es naranja sobre blanco opaco. Se le ha extraído el alfa
+(`logo-rs49-mask.png`) y se pinta por máscara CSS, así toma el color del token: acero
+en la cabecera, blanco en el pie. El PNG original sigue en `assets/img` intacto.
+
+Tipografía **Archivo** en peso 700 con tracking casi neutro (`-0.005em`) —geométrica y
+espaciada, no comprimida— y **JetBrains Mono** con `0.16em` de tracking para numeración,
+etiquetas y datos. El aire de hoja técnica es lo que separa esto de un taller genérico.
+
+Iconografía: cuatro iconos dibujados a mano en SVG, trazo de 1,2 px sobre lienzo de
+40 px, en azul acero. Teléfono, coche con flecha de recogida, pistón con biela y llave.
+Nada de clipart.
 
 Esqueleto propio de esta muestra: raíl lateral fijo con índice de secciones, hero a
 sangre con tira de datos, banda ancha de foto + rejilla de 13 servicios separados con
@@ -76,21 +90,26 @@ quitado. Los archivos siguen en `assets/img/` (`entrada-taller`, `nave-panoramic
 3. **Cifras de 2017.** 1.820 clientes / 19.850 coches / 15.020 averías / 98 % vienen de su
    web actual. Ocho años después seguramente se quedan cortas.
 
-4. **Marcas en tipografía, no en logos.** Audi, BMW, Mercedes y Volkswagen aparecen como
+4. **El acento acero es más discreto que un naranja.** Es lo que pide la dirección de
+   estilo y funciona mejor para un dueño de Audi o BMW, pero un CTA azul acero llama
+   menos la atención que uno cálido. Si en algún momento se mide conversión y flojea,
+   el sitio donde subirla es la barra fija de móvil, no toda la paleta.
+
+5. **Marcas en tipografía, no en logos.** Audi, BMW, Mercedes y Volkswagen aparecen como
    texto. Encaja mejor con el registro y evita el tema de marcas registradas. Si el cliente
    prefiere los logos oficiales, es un cambio de cinco minutos.
 
-5. **Sin mapa embebido.** En su lugar va la foto del rótulo + botones "Cómo llegar" y
+6. **Sin mapa embebido.** En su lugar va la foto del rótulo + botones "Cómo llegar" y
    "Abrir en Google Maps". Para encontrar un taller en un sótano de Carabanchel, reconocer
    el rótulo funciona mejor que un iframe. Si lo quieren, el `<iframe>` es una línea.
 
-6. **Redes sin verificar.** Los enlaces de Facebook y Twitter existen en su web; falta
+7. **Redes sin verificar.** Los enlaces de Facebook y Twitter existen en su web; falta
    comprobar si siguen activos. Un perfil abandonado resta.
 
-7. **`CGA Car Service`** aparece en el rótulo y en los polos del equipo. No se ha usado en
+8. **`CGA Car Service`** aparece en el rótulo y en los polos del equipo. No se ha usado en
    la web porque no sé qué relación tiene con RS 49.
 
-8. **Su web promete vídeo por WhatsApp.** En su página de servicios: "te enviamos un
+9. **Su web promete vídeo por WhatsApp.** En su página de servicios: "te enviamos un
    vídeo por whatsapp informándote de todo lo que hemos encontrado". Como esta muestra
    va sin WhatsApp, ese argumento —que es bueno— se queda fuera. Si lo siguen haciendo,
    merece la pena recuperarlo aunque el canal de contacto siga siendo solo el teléfono.
