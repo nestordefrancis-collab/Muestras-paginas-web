@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carlos Conde Leganés · Barbería en Parque Comercial Plaza Nueva</title>
+<meta name="description" content="Barbería y peluquería masculina en Leganés, dentro del Parque Comercial Plaza Nueva. Corte, barba y afeitado clásico. Abierto los siete días de 10:00 a 21:00.">
+<!-- Propuesta de rediseño: fuera de los buscadores para no confundirse con la web real del negocio. -->
+<meta name="robots" content="noindex,nofollow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Carlos Conde Leganés · Plaza Nueva">
+<meta property="og:description" content="Corte, barba y afeitado clásico en Leganés. Siete días, de 10:00 a 21:00.">
+<!-- URL completa a mano: es lo que exige WhatsApp para pintar la miniatura. -->
+<meta property="og:url" content="https://nestordefrancis-collab.github.io/Muestras-paginas-web/carlos-conde-leganes/">
+<meta property="og:image" content="https://nestordefrancis-collab.github.io/Muestras-paginas-web/carlos-conde-leganes/assets/img/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   CARLOS CONDE · LEGANÉS — dirección "Sala"
+   Paleta muestreada del logotipo del centro y del propio local.
+   ============================================================ */
+:root{
+  --papel:#F1E8DA;
+  --papel-2:#E7DAC6;
+  --hueso:#FBF7F0;
+  --taupe:#A8906C;
+  --taupe-dk:#8A7350;
+  --nogal:#54402A;
+  --nogal-dk:#2E2116;
+  --tinta:#231A12;
+  --tinta-2:#6B5B49;
+  --bronce:#A87830;
+  --bronce-lt:#C79A4E;
+  --luz:#FFE1B0;
+  --disp:'Oswald',"Arial Narrow",sans-serif;
+  --texto:'Ubuntu',system-ui,-apple-system,"Segoe UI",sans-serif;
+  --borde:1px solid rgba(84,64,42,.18);
+  --max:1280px;
+  --pad:clamp(1.25rem,5vw,4.5rem);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;background:var(--papel);color:var(--tinta);
+  font-family:var(--texto);font-size:17px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+/* grano cálido sobre todo el documento */
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.42;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.20'/%3E%3C/svg%3E");
+}
+img{display:block;max-width:100%;}
+a{color:inherit;}
+h1,h2,h3,h4{font-family:var(--disp);font-weight:400;margin:0;text-transform:uppercase;letter-spacing:.01em;}
+p{margin:0 0 1em;}
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--pad);}
+
+/* ---------- marca ---------- */
+.rombos{display:block;width:2.1em;height:1.2em;overflow:visible;}
+.rombos path{fill:none;stroke:currentColor;stroke-width:1.7;}
+.marca{display:inline-flex;align-items:center;gap:.55rem;flex:none;font-family:var(--disp);
+  font-weight:600;font-size:1.05rem;letter-spacing:.055em;text-transform:uppercase;text-decoration:none;line-height:1;}
+.marca span{white-space:nowrap;}
+.marca small{display:block;font-size:.42em;font-weight:400;letter-spacing:.22em;color:var(--bronce);margin-top:.28em;}
+
+/* ---------- barra ---------- */
+.barra{
+  position:fixed;inset:0 0 auto;z-index:50;display:flex;align-items:center;gap:1.5rem;
+  padding:.85rem var(--pad);background:rgba(241,232,218,.86);backdrop-filter:blur(14px) saturate(1.3);
+  border-bottom:1px solid rgba(84,64,42,0);transition:border-color .4s,padding .4s,background .4s;
+}
+.barra.pegada{border-bottom-color:rgba(84,64,42,.16);padding-block:.6rem;}
+.barra nav{margin-left:auto;display:flex;flex-wrap:nowrap;gap:1.75rem;}
+.barra nav a{
+  font-family:var(--disp);font-size:.78rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;
+  text-decoration:none;color:var(--tinta-2);position:relative;padding-block:.2rem;transition:color .25s;
+}
+.barra nav a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--bronce);transition:right .35s cubic-bezier(.2,.8,.2,1);}
+.barra nav a:hover{color:var(--tinta);}
+.barra nav a:hover::after{right:0;}
+/* El menú se retira antes de que empiece a partirse en dos líneas: con la
+   marca, el estado y el botón en la misma barra, por debajo de 1150 px ya no
+   caben los cinco enlaces. */
+@media(max-width:1150px){.barra nav{display:none;}.barra .estado{margin-left:auto;}}
+@media(max-width:900px){
+  /* el estado ya viaja en la ficha y en la barra fija de abajo */
+  .barra{gap:.9rem;}
+  .barra .estado{display:none;}
+  .barra .btn{margin-left:auto;}
+  .marca{font-size:.95rem;}
+  .marca small{font-size:.38em;letter-spacing:.18em;}
+}
+
+/* estado en vivo */
+.estado{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;font-family:var(--disp);
+  letter-spacing:.09em;text-transform:uppercase;color:var(--tinta-2);white-space:nowrap;}
+.punto{width:8px;height:8px;border-radius:50%;background:var(--bronce);box-shadow:0 0 0 0 rgba(168,120,48,.55);}
+.estado.abierto .punto{background:#4E7C42;animation:latido 2.6s infinite;}
+.estado.cerrado .punto{background:#A24B32;}
+@keyframes latido{0%{box-shadow:0 0 0 0 rgba(78,124,66,.5);}70%{box-shadow:0 0 0 9px rgba(78,124,66,0);}100%{box-shadow:0 0 0 0 rgba(78,124,66,0);}}
+
+/* ---------- botones ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+  font-family:var(--disp);font-size:.82rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;
+  text-decoration:none;padding:.92em 1.6em;border:1px solid var(--bronce);background:var(--bronce);color:var(--hueso);
+  border-radius:2px;cursor:pointer;transition:background .3s,color .3s,box-shadow .35s,transform .3s;
+}
+.btn:hover{background:var(--nogal-dk);border-color:var(--nogal-dk);box-shadow:0 12px 30px -14px rgba(46,33,22,.7);transform:translateY(-2px);}
+.btn.hueco{background:transparent;color:var(--tinta);border-color:rgba(84,64,42,.35);}
+.btn.hueco:hover{background:transparent;border-color:var(--bronce);color:var(--bronce);}
+.btn.mini{padding:.6em 1.05em;font-size:.7rem;letter-spacing:.12em;}
+
+/* ---------- bombillas ---------- */
+.bombillas{display:flex;gap:var(--sep,26px);align-items:center;}
+.bombillas i{
+  width:9px;height:9px;border-radius:50%;flex:none;
+  background:radial-gradient(circle at 40% 35%, #FFF6E4 0%, var(--luz) 45%, #D9A65E 100%);
+  box-shadow:0 0 10px 3px rgba(255,214,150,.75),0 0 26px 8px rgba(255,196,110,.28);
+  animation:parpadeo 6s infinite ease-in-out;
+}
+.bombillas i:nth-child(3n){animation-delay:-2.1s;}
+.bombillas i:nth-child(3n+1){animation-delay:-4.4s;}
+@keyframes parpadeo{0%,100%{opacity:1;}47%{opacity:.82;}52%{opacity:.97;}}
+
+/* ---------- portada ---------- */
+/* Portada apilada: el logotipo arriba y la foto del equipo en banda a lo ancho.
+   La foto es apaisada y las cuatro personas se reparten de lado a lado, así que
+   recortarla en vertical se cargaba media escena. */
+.portada{display:flex;flex-direction:column;min-height:100svh;}
+.portada .texto{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:6.75rem var(--pad) 2.25rem;position:relative;max-width:76rem;
+}
+.encima{font-family:var(--disp);font-size:.78rem;font-weight:400;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--bronce);margin:0 0 1.6rem;display:flex;align-items:center;gap:.8rem;}
+.encima::before{content:"";width:34px;height:1px;background:var(--bronce);}
+/* Logotipo: el doble rombo sobre el nombre, y el lema en su medida.
+   El lema va en em del propio bloque, así la proporción con el nombre
+   se mantiene en cualquier tamaño de pantalla. */
+/* Medida atada a la columna: "Carlos Conde" tiene que caber en UNA línea,
+   o el lema deja de medir lo mismo que el nombre y se rompe el logotipo. */
+.lockup{font-size:clamp(2.4rem,5.4vw,4.9rem);margin:0;}
+.lockup .rombos-gr{display:block;width:1.5em;height:auto;color:var(--bronce);margin-bottom:.26em;}
+.lockup .rombos-gr path{fill:none;stroke:currentColor;stroke-width:1.25;}
+.lockup .nombre{display:block;font-weight:600;line-height:.88;letter-spacing:-.004em;white-space:nowrap;}
+.lockup .lema{display:block;font-size:.183em;font-weight:400;letter-spacing:.148em;
+  color:var(--bronce);margin-top:.62em;}
+/* Logotipo a la izquierda y el texto de apoyo a su derecha, alineados por abajo:
+   así la portada cabe de una vez y la banda de foto no se cae del pliegue. */
+.cabecera-portada{display:grid;grid-template-columns:1.05fr .95fr;
+  gap:clamp(1.6rem,4.5vw,4.5rem);align-items:end;}
+.claim{font-family:var(--disp);font-size:clamp(1rem,1.45vw,1.25rem);font-weight:400;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--tinta);margin:0;}
+.entradilla{max-width:44ch;margin:1.1rem 0 0;color:var(--tinta-2);font-size:1.02rem;}
+@media(max-width:900px){
+  .cabecera-portada{grid-template-columns:1fr;align-items:start;}
+  .claim{margin-top:1.8rem;}
+}
+.acciones{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:2.4rem;}
+.datos{display:flex;flex-wrap:wrap;gap:0 2.2rem;margin:3.2rem 0 0;padding:1.6rem 0 0;border-top:var(--borde);list-style:none;}
+.datos li{display:flex;flex-direction:column;padding-block:.35rem;}
+.datos b{font-family:var(--disp);font-size:1.35rem;font-weight:500;line-height:1;letter-spacing:.01em;}
+.datos small{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-2);margin-top:.42rem;font-family:var(--disp);}
+
+/* Fila de bombillas haciendo de canto de espejo entre el texto y la foto */
+.divisoria{--sep:0;justify-content:space-between;padding:0 var(--pad) .85rem;}
+.portada .foto{position:relative;overflow:hidden;background:var(--nogal-dk);flex:1 0 auto;
+  aspect-ratio:1165/655;max-height:min(46vh,440px);}
+/* anclada arriba: lo que sobra por abajo son capas y sillas, las caras no se tocan */
+.portada .foto img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+.portada .foto::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(241,232,218,.4) 0%,rgba(241,232,218,0) 20%),
+             radial-gradient(85% 55% at 50% 0%,rgba(255,208,140,.22) 0%,rgba(255,208,140,0) 72%);
+}
+.ficha{
+  position:absolute;right:var(--pad);bottom:1.5rem;z-index:3;
+  background:rgba(251,247,240,.93);backdrop-filter:blur(8px);padding:1rem 1.35rem;border-radius:3px;
+  box-shadow:0 22px 50px -26px rgba(46,33,22,.75);max-width:19rem;
+}
+.ficha .estado{font-size:.72rem;}
+.ficha p{margin:.5rem 0 0;font-size:.83rem;line-height:1.45;color:var(--tinta-2);}
+@media(max-width:900px){
+  .portada{min-height:0;}
+  .portada .texto{padding-top:6.5rem;}
+  .portada .foto{max-height:none;}
+}
+@media(max-width:700px){
+  /* la banda se queda baja: en la tarjeta cabe el estado y poco más */
+  .ficha{left:.7rem;right:.7rem;bottom:.7rem;max-width:none;padding:.55rem .85rem;}
+  .ficha p{display:none;}
+  .divisoria i:nth-child(n+13){display:none;}
+}
+
+/* ---------- cinta ---------- */
+.cinta{border-block:var(--borde);background:var(--papel-2);}
+.cinta ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);max-width:var(--max);
+  margin-inline:auto;padding-inline:var(--pad);}
+.cinta li{padding:1.5rem 1.2rem 1.5rem 0;border-left:var(--borde);padding-left:1.4rem;
+  font-family:var(--disp);font-size:.86rem;letter-spacing:.06em;text-transform:uppercase;line-height:1.4;color:var(--tinta-2);}
+.cinta li:first-child{border-left:0;padding-left:0;}
+.cinta li b{display:block;color:var(--tinta);font-weight:500;font-size:1.02rem;letter-spacing:.03em;}
+@media(max-width:820px){.cinta ul{grid-template-columns:1fr 1fr;}
+  .cinta li:nth-child(3){border-left:0;padding-left:0;}
+  .cinta li:nth-child(-n+2){border-bottom:var(--borde);}}
+@media(max-width:460px){.cinta ul{grid-template-columns:1fr;}
+  .cinta li{border-left:0;padding-left:0;border-bottom:var(--borde);}
+  .cinta li:last-child{border-bottom:0;}}
+
+/* ---------- secciones ---------- */
+.seccion{padding-block:clamp(4.5rem,9vw,8rem);}
+.cabecera{display:grid;grid-template-columns:auto 1fr;gap:0 2.4rem;align-items:start;margin-bottom:3.2rem;}
+.num{font-family:var(--disp);font-size:.78rem;font-weight:500;letter-spacing:.2em;color:var(--bronce);
+  padding-top:.65rem;border-top:2px solid var(--bronce);}
+.cabecera h2{font-size:clamp(1.9rem,3.6vw,3.1rem);font-weight:300;line-height:1.02;max-width:22ch;}
+.cabecera h2 b{font-weight:600;}
+.cabecera .apoyo{grid-column:2;max-width:52ch;margin-top:1.1rem;color:var(--tinta-2);}
+@media(max-width:700px){.cabecera{grid-template-columns:1fr;gap:1.1rem;}
+  .cabecera .apoyo{grid-column:1;}
+  .num{justify-self:start;padding-inline:0;}}
+
+/* ---------- recorrido horizontal ---------- */
+.recorrido{position:relative;}
+/* Sin scroll-snap a propósito: con el snap puesto, el navegador re-encaja en
+   bucle (la página no llega a reposo) y además cancela el scrollBy suave de
+   las flechas. Arrastre libre y flechas que responden. */
+.pista{
+  display:flex;gap:1.1rem;overflow-x:auto;
+  padding:.4rem var(--pad) 1.6rem;margin-inline:calc(var(--pad) * -1);
+  scrollbar-width:none;-ms-overflow-style:none;cursor:grab;
+}
+.pista::-webkit-scrollbar{display:none;}
+.pista.arrastrando{cursor:grabbing;}
+.pista figure{margin:0;flex:none;width:min(30rem,78vw);}
+.pista figure:first-child{width:min(40rem,86vw);}
+.marco{overflow:hidden;background:var(--nogal-dk);position:relative;border-radius:2px;}
+.marco img{width:100%;aspect-ratio:4/5;object-fit:cover;transition:transform 1.1s cubic-bezier(.16,.8,.24,1),filter .6s;}
+.pista figure:first-child .marco img{aspect-ratio:16/10;}
+.marco::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(46,33,22,.05),rgba(46,33,22,.28));
+  opacity:0;transition:opacity .55s;}
+.pista figure:hover .marco img{transform:scale(1.045);filter:saturate(1.06) brightness(1.03);}
+.pista figure:hover .marco::after{opacity:1;}
+.pista figcaption{margin-top:.9rem;font-size:.86rem;color:var(--tinta-2);display:flex;gap:.7rem;align-items:baseline;}
+.pista figcaption em{font-family:var(--disp);font-style:normal;font-size:.72rem;letter-spacing:.16em;color:var(--bronce);}
+.mandos{display:flex;align-items:center;gap:1.2rem;margin-top:.4rem;}
+.progreso{flex:1;height:2px;background:rgba(84,64,42,.16);position:relative;overflow:hidden;}
+.progreso span{position:absolute;inset:0 auto 0 0;width:22%;background:var(--bronce);transition:width .18s linear,left .18s linear;}
+.flecha{width:44px;height:44px;border-radius:50%;border:1px solid rgba(84,64,42,.3);background:transparent;
+  display:grid;place-items:center;cursor:pointer;transition:border-color .3s,background .3s,transform .3s;color:var(--tinta);}
+.flecha:hover{border-color:var(--bronce);color:var(--bronce);transform:scale(1.06);}
+.flecha svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.6;}
+
+/* ---------- carta ---------- */
+.carta{display:grid;grid-template-columns:17.5rem 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:start;}
+.filtros{position:sticky;top:5.5rem;}
+.filtros h3,.filtros legend{font-family:var(--disp);font-size:.72rem;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--tinta-2);margin:0 0 .9rem;padding:0;}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.2rem;}
+.chip{
+  font-family:var(--disp);font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.55em 1em;border:1px solid rgba(84,64,42,.28);background:transparent;color:var(--tinta-2);
+  border-radius:100px;cursor:pointer;transition:all .28s;
+}
+.chip:hover{border-color:var(--bronce);color:var(--bronce);}
+.chip[aria-pressed="true"]{background:var(--nogal-dk);border-color:var(--nogal-dk);color:var(--luz);}
+fieldset{border:0;margin:0 0 2rem;padding:0;}
+.tiempo{display:grid;grid-template-columns:repeat(2,1fr);gap:.4rem;}
+.tiempo label{
+  font-family:var(--disp);font-size:.76rem;letter-spacing:.09em;text-transform:uppercase;text-align:center;
+  padding:.7em .4em;border:1px solid rgba(84,64,42,.22);cursor:pointer;transition:all .28s;color:var(--tinta-2);
+}
+.tiempo input{position:absolute;opacity:0;pointer-events:none;}
+.tiempo label:hover{border-color:var(--bronce);color:var(--bronce);}
+.tiempo input:checked + label{background:var(--bronce);border-color:var(--bronce);color:var(--hueso);}
+.tiempo input:focus-visible + label{outline:2px solid var(--nogal-dk);outline-offset:2px;}
+.recuento{font-family:var(--disp);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--bronce);
+  padding-top:1.2rem;border-top:var(--borde);}
+@media(max-width:860px){
+  .carta{grid-template-columns:1fr;}
+  .filtros{position:static;}
+  .tiempo{grid-template-columns:repeat(4,1fr);}
+}
+
+.lista{list-style:none;margin:0;padding:0;border-top:var(--borde);}
+.lista li{
+  display:grid;grid-template-columns:1fr auto auto;gap:.5rem 1.8rem;align-items:baseline;
+  padding:1.35rem 0;border-bottom:var(--borde);position:relative;
+  transition:opacity .38s,transform .38s;
+}
+.lista li::before{content:"";position:absolute;left:0;right:100%;bottom:-1px;height:1px;background:var(--bronce);
+  transition:right .5s cubic-bezier(.2,.8,.2,1);}
+.lista li:hover::before{right:0;}
+.lista li.fuera{display:none;}
+.lista .nom{grid-column:1;grid-row:1;font-family:var(--disp);font-size:1.16rem;font-weight:400;letter-spacing:.02em;text-transform:uppercase;line-height:1.2;}
+.lista .desc{grid-column:1;grid-row:2;font-size:.86rem;color:var(--tinta-2);margin:.3rem 0 0;max-width:46ch;line-height:1.5;}
+.lista .min{grid-column:2;grid-row:1;font-family:var(--disp);font-size:.76rem;letter-spacing:.12em;color:var(--tinta-2);white-space:nowrap;}
+.lista .eur{grid-column:3;grid-row:1;font-family:var(--disp);font-size:1.34rem;font-weight:500;white-space:nowrap;min-width:5.2rem;text-align:right;}
+.lista .eur.promo{color:var(--bronce);}
+.lista .ir{grid-column:3;grid-row:2;justify-self:end;opacity:0;transform:translateY(4px);transition:opacity .3s,transform .3s;}
+.lista li:hover .ir,.lista li:focus-within .ir{opacity:1;transform:none;}
+@media(max-width:640px){
+  .lista li{grid-template-columns:1fr auto;}
+  .lista .min{grid-column:1;font-size:.72rem;}
+  .lista .eur{grid-row:1;grid-column:2;}
+  .lista .ir{opacity:1;transform:none;grid-column:2;grid-row:3;}
+}
+
+/* ---------- barberos ---------- */
+.equipo{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;}
+.equipo li{background:var(--hueso);border:var(--borde);padding:2.2rem 1.5rem 1.6rem;position:relative;
+  display:flex;flex-direction:column;
+  transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s;}
+/* los textos de cada barbero no miden lo mismo: el botón se va al fondo
+   para que los cuatro queden alineados */
+.equipo li .btn{margin-top:auto;align-self:flex-start;}
+.equipo li::before{content:"";position:absolute;inset:.42rem .42rem auto;height:3px;
+  border-top:1px solid var(--bronce);border-bottom:1px solid var(--bronce);opacity:.55;}
+.equipo li:hover{transform:translateY(-6px);box-shadow:0 26px 46px -30px rgba(46,33,22,.65);}
+.equipo h3{font-size:1.65rem;font-weight:500;line-height:1;margin-bottom:1rem;padding-bottom:1rem;
+  border-bottom:var(--borde);transition:border-color .45s;}
+.equipo li:hover h3{border-bottom-color:var(--bronce);}
+.equipo blockquote{margin:0 0 1.2rem;font-size:.88rem;color:var(--tinta-2);line-height:1.55;}
+.equipo blockquote cite{display:block;font-style:normal;font-family:var(--disp);font-size:.68rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--bronce);margin-top:.6rem;}
+@media(max-width:960px){.equipo{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){.equipo{grid-template-columns:1fr;}}
+
+/* ---------- reseñas (bloque oscuro) ---------- */
+.oscuro{background:var(--nogal-dk);color:var(--papel);position:relative;overflow:hidden;}
+.oscuro::before{content:"";position:absolute;inset:auto 0 0;height:70%;
+  background:radial-gradient(70% 100% at 18% 100%,rgba(255,197,120,.16) 0%,rgba(255,197,120,0) 70%);}
+.oscuro .num{color:var(--bronce-lt);border-top-color:var(--bronce-lt);}
+.oscuro h2{color:var(--papel);}
+.oscuro .apoyo{color:rgba(241,232,218,.68);}
+.nota{display:grid;grid-template-columns:auto 1fr;gap:clamp(2rem,6vw,5rem);align-items:center;
+  padding-block:1rem;position:relative;}
+.nota p{margin:0;}
+.nota .cifra{font-family:var(--disp);font-size:clamp(5.5rem,13vw,10.5rem);font-weight:200;line-height:.8;color:var(--papel);}
+.nota .cifra sup{font-size:.24em;font-weight:400;color:var(--bronce-lt);vertical-align:top;margin-left:.2em;letter-spacing:.1em;}
+.nota .de{font-family:var(--disp);font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(241,232,218,.6);margin-top:1rem;}
+.barras{display:grid;gap:.55rem;max-width:34rem;}
+.barras div{display:grid;grid-template-columns:2.2rem 1fr 2.6rem;gap:.9rem;align-items:center;
+  font-family:var(--disp);font-size:.78rem;letter-spacing:.1em;color:rgba(241,232,218,.72);}
+.barras .riel{height:5px;background:rgba(241,232,218,.14);position:relative;overflow:hidden;}
+.barras .riel i{position:absolute;inset:0 auto 0 0;width:0;background:var(--bronce-lt);
+  transition:width 1.3s cubic-bezier(.16,.8,.24,1);}
+.barras .riel i.llena{width:var(--w);}
+.citas{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:4rem;}
+.citas blockquote{margin:0;padding-top:1.4rem;border-top:1px solid rgba(241,232,218,.18);}
+.citas p{font-size:1.02rem;line-height:1.55;color:var(--papel);}
+.citas cite{font-style:normal;font-family:var(--disp);font-size:.72rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--bronce-lt);}
+@media(max-width:880px){.nota{grid-template-columns:1fr;gap:2rem;}.citas{grid-template-columns:1fr;gap:1.2rem;}}
+
+/* ---------- peques ---------- */
+.peques{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(2rem,6vw,5rem);align-items:center;}
+.peques .marco img{aspect-ratio:3/4;}
+.peques h2{font-size:clamp(1.8rem,3.4vw,2.8rem);font-weight:300;line-height:1.04;margin-bottom:1.4rem;}
+.peques h2 b{font-weight:600;}
+.precio-suelto{display:flex;align-items:baseline;gap:.8rem;margin-top:2rem;padding-top:1.4rem;border-top:var(--borde);}
+.precio-suelto b{font-family:var(--disp);font-size:2.2rem;font-weight:500;line-height:1;}
+.precio-suelto span{font-family:var(--disp);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-2);}
+@media(max-width:820px){.peques{grid-template-columns:1fr;}}
+
+/* ---------- llegar ---------- */
+.llegar{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(2rem,6vw,4.5rem);align-items:start;}
+.horario{width:100%;border-collapse:collapse;margin:1.6rem 0 2rem;}
+.horario th,.horario td{text-align:left;padding:.62rem 0;border-bottom:var(--borde);
+  font-family:var(--disp);font-size:.88rem;font-weight:400;letter-spacing:.05em;}
+.horario th{text-transform:uppercase;color:var(--tinta-2);font-size:.78rem;letter-spacing:.14em;}
+.horario td:last-child{text-align:right;}
+.horario tr.hoy td,.horario tr.hoy th{color:var(--bronce);font-weight:500;}
+.direccion{font-family:var(--disp);font-size:1.15rem;line-height:1.5;letter-spacing:.02em;}
+.tel{margin:.9rem 0 0;}
+.tel a{font-family:var(--disp);font-size:1.6rem;font-weight:500;letter-spacing:.04em;
+  color:var(--bronce);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .3s;}
+.tel a:hover{border-bottom-color:var(--bronce);}
+.plano{background:var(--hueso);border:var(--borde);padding:1.6rem;border-radius:2px;}
+.plano svg{width:100%;height:auto;display:block;}
+.plano figcaption{font-size:.8rem;color:var(--tinta-2);margin-top:1rem;line-height:1.5;}
+@media(max-width:820px){.llegar{grid-template-columns:1fr;}}
+
+/* ---------- pie ---------- */
+.pie{border-top:var(--borde);padding-block:3rem 6rem;background:var(--papel-2);}
+.pie .fila{display:flex;flex-wrap:wrap;gap:2rem;align-items:center;justify-content:space-between;}
+.pie .legal{font-size:.76rem;color:var(--tinta-2);max-width:60ch;margin-top:2.4rem;line-height:1.6;}
+.pie a{color:var(--tinta-2);}
+
+/* ---------- barra fija móvil ---------- */
+.movil{
+  position:fixed;left:0;right:0;bottom:0;z-index:55;display:none;gap:1rem;align-items:center;
+  padding:.75rem 1rem;background:rgba(46,33,22,.96);backdrop-filter:blur(10px);
+  transform:translateY(110%);transition:transform .45s cubic-bezier(.2,.8,.2,1);
+}
+.movil.vista{transform:none;}
+.movil .estado{color:var(--luz);font-size:.7rem;}
+.movil .btn{flex:1;justify-content:center;}
+@media(max-width:900px){.movil{display:flex;}.pie{padding-bottom:6.5rem;}}
+
+/* ---------- revelado ---------- */
+.rev{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.16,.8,.24,1),transform .9s cubic-bezier(.16,.8,.24,1);}
+.rev.on{opacity:1;transform:none;}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;}
+  .rev{opacity:1;transform:none;}
+  html{scroll-behavior:auto;}
+}
+:focus-visible{outline:2px solid var(--bronce);outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<!-- ===================== barra ===================== -->
+<header class="barra" id="barra">
+  <a class="marca" href="#top">
+    <svg class="rombos" viewBox="0 0 30 16" aria-hidden="true"><path d="M1 8 L8 1 L15 8 L8 15 Z"/><path d="M15 8 L22 1 L29 8 L22 15 Z"/></svg>
+    <span>Carlos Conde<small>Leganés · Plaza Nueva</small></span>
+  </a>
+  <nav>
+    <a href="#local">El local</a>
+    <a href="#carta">La carta</a>
+    <a href="#barberos">Barberos</a>
+    <a href="#opiniones">Opiniones</a>
+    <a href="#llegar">Cómo llegar</a>
+  </nav>
+  <span class="estado" id="estado-barra" hidden><span class="punto"></span><span class="txt"></span></span>
+  <a class="btn mini" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a>
+</header>
+
+<main id="top">
+
+  <!-- ===================== portada ===================== -->
+  <section class="portada">
+    <div class="texto">
+      <p class="encima">Leganés · Parque Comercial Plaza Nueva</p>
+      <div class="cabecera-portada">
+        <h1 class="lockup">
+          <svg class="rombos-gr" viewBox="0 0 30 16" aria-hidden="true"><path d="M1 8 L8 1 L15 8 L8 15 Z"/><path d="M15 8 L22 1 L29 8 L22 15 Z"/></svg>
+          <span class="nombre">Carlos Conde</span>
+          <span class="lema">El cuidado integral del hombre</span>
+        </h1>
+        <div class="apoyo-portada">
+          <p class="claim">Barbería y peluquería masculina en Leganés</p>
+          <p class="entradilla">Corte, barba y afeitado clásico dentro de Plaza Nueva, junto a Carrefour. Abrimos los siete días de la semana de 10:00 a 21:00, y eliges con qué barbero te sientas.</p>
+          <div class="acciones">
+            <a class="btn" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar en Booksy</a>
+            <a class="btn hueco" href="#carta">Ver la carta</a>
+          </div>
+        </div>
+      </div>
+      <ul class="datos">
+        <li><b>4,7 ★</b><small>138 reseñas</small></li>
+        <li><b>7 días</b><small>de 10:00 a 21:00</small></li>
+        <li><b>2.900</b><small>plazas de parking gratis</small></li>
+        <li><b>Desde 1997</b><small>Barber Experience</small></li>
+      </ul>
+    </div>
+    <div class="bombillas divisoria" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="foto">
+      <img src="assets/img/equipo.jpg" alt="Dos barberos del local atendiendo a dos clientes frente a los espejos" fetchpriority="high">
+      <div class="ficha">
+        <span class="estado" id="estado-ficha"><span class="punto"></span><span class="txt">Comprobando el horario…</span></span>
+        <p id="estado-detalle">Avenida Puerta del Sol 2 · dentro del Parque Comercial Plaza Nueva</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== cinta ===================== -->
+  <div class="cinta">
+    <ul>
+      <li><b>Corte y degradado</b>desde 14,90 €</li>
+      <li><b>Barba y afeitado</b>navaja, toalla caliente</li>
+      <li><b>Cejas y estética</b>desde 2,90 €</li>
+      <li><b>Corte infantil</b>hasta los 12 años</li>
+    </ul>
+  </div>
+
+  <!-- ===================== el local ===================== -->
+  <section class="seccion" id="local">
+    <div class="wrap">
+      <div class="cabecera rev">
+        <span class="num">01</span>
+        <h2>Una sala de <b>toda la vida</b> con luz de camerino</h2>
+        <p class="apoyo">Roble claro, muebles de nogal y bombillas alrededor del espejo. Cuatro puestos, la estantería de producto a mano y un cartel de combate presidiendo la pared. Aquí no se corre: se corta, se conversa y se sale a la calle mirándose en el escaparate.</p>
+      </div>
+    </div>
+    <div class="recorrido wrap rev">
+      <div class="pista" id="pista" tabindex="0" aria-label="Recorrido fotográfico por el local">
+        <figure><div class="marco"><img src="assets/img/sala-local.jpg" alt="Vista general de la barbería con los cuatro puestos y el mostrador" loading="lazy"></div><figcaption><em>01</em>La sala al completo, con el mostrador a la entrada</figcaption></figure>
+        <figure><div class="marco"><img src="assets/img/sala-lamparas.jpg" alt="Lámparas campana sobre los puestos y carteles enmarcados en la pared" loading="lazy"></div><figcaption><em>02</em>Las lámparas campana y los carteles de la casa</figcaption></figure>
+        <figure><div class="marco"><img src="assets/img/sala-puesto.jpg" alt="Puesto de trabajo con espejo, repisa y producto" loading="lazy"></div><figcaption><em>03</em>Cada puesto con su espejo y su repisa</figcaption></figure>
+        <figure><div class="marco"><img src="assets/img/sala-productos.jpg" alt="Estantería de madera con botes de producto de barbería" loading="lazy"></div><figcaption><em>04</em>La estantería, de las ceras a los aceites de barba</figcaption></figure>
+        <figure><div class="marco"><img src="assets/img/sala-ceras.jpg" alt="Dos botes de cera abiertos sobre el mostrador de madera" loading="lazy"></div><figcaption><em>05</em>Matte o classic, según cómo lleves el día</figcaption></figure>
+        <figure><div class="marco"><img src="assets/img/sala-mostrador.jpg" alt="Mostrador con producto de barbería a la venta" loading="lazy"></div><figcaption><em>06</em>Lo que usamos contigo te lo puedes llevar</figcaption></figure>
+        <figure><div class="marco"><img src="assets/img/sala-ninos.jpg" alt="Silla infantil con forma de coche para el corte de los más pequeños" loading="lazy"></div><figcaption><em>07</em>La silla con volante, para que el primer corte no dé miedo</figcaption></figure>
+      </div>
+      <div class="mandos">
+        <button class="flecha" id="atras" aria-label="Foto anterior"><svg viewBox="0 0 24 24"><path d="M15 4 L7 12 L15 20"/></svg></button>
+        <button class="flecha" id="alante" aria-label="Foto siguiente"><svg viewBox="0 0 24 24"><path d="M9 4 L17 12 L9 20"/></svg></button>
+        <div class="progreso"><span id="progreso"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== la carta ===================== -->
+  <section class="seccion" id="carta">
+    <div class="wrap">
+      <div class="cabecera rev">
+        <span class="num">02</span>
+        <h2>La carta, con el <b>tiempo</b> que ocupa cada cosa</h2>
+        <p class="apoyo">Filtra por lo que te vas a hacer o por el rato que tienes libre. Cada servicio abre su hueco en Booksy, con el barbero que elijas.</p>
+      </div>
+
+      <div class="carta">
+        <div class="filtros rev">
+          <h3>Qué te haces</h3>
+          <div class="chips" id="chips">
+            <button class="chip" data-cat="todo" aria-pressed="true">Todo</button>
+            <button class="chip" data-cat="corte" aria-pressed="false">Corte</button>
+            <button class="chip" data-cat="barba" aria-pressed="false">Barba</button>
+            <button class="chip" data-cat="estetica" aria-pressed="false">Estética</button>
+            <button class="chip" data-cat="promo" aria-pressed="false">Promos</button>
+          </div>
+          <fieldset>
+            <legend>Cuánto rato tienes</legend>
+            <div class="tiempo" id="tiempo">
+              <input type="radio" name="t" id="t0" value="999" checked><label for="t0">El que haga falta</label>
+              <input type="radio" name="t" id="t1" value="15"><label for="t1">15 min</label>
+              <input type="radio" name="t" id="t2" value="30"><label for="t2">30 min</label>
+              <input type="radio" name="t" id="t3" value="60"><label for="t3">1 hora</label>
+            </div>
+          </fieldset>
+          <p class="recuento" id="recuento">19 servicios · desde 2,90 €</p>
+        </div>
+
+        <ul class="lista rev" id="lista">
+          <li data-cat="corte" data-min="25"><span class="nom">Corte clásico</span><p class="desc">Con máquina y tijera, sin degradar.</p><span class="min">25 min</span><span class="eur">17,90 €</span><a class="btn hueco mini ir" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a></li>
+          <li data-cat="corte" data-min="30"><span class="nom">Corte degradado</span><p class="desc">El más pedido de la casa, con el degradado a la altura que quieras.</p><span class="min">30 min</span><span class="eur">18,90 €</span><a class="btn hueco mini ir" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a></li>
+          <li data-cat="corte" data-min="30"><span class="nom">Corte a navaja</span><p class="desc">Perfilado y contornos rematados con hoja.</p><span class="min">30 min</span><span class="eur">20,90 €</span><a class="btn hueco mini ir" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a></li>
+          <li data-cat="corte" data-min="20"><span class="nom">Corte niñ@</span><p class="desc">Con máquina y tijera, hasta los 12 años.</p><span class="min">20 min</span><span class="eur">15,90 €</span><a class="btn hueco mini ir" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a></li>
+          <li data-cat="corte" data-min="10"><span class="nom">Arreglo de corte</span><p class="desc">Un repaso rápido entre visita y visita.</p><span class="min">10 min</span><span class="eur">14,90 €</span><a class="btn hueco mini ir" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a></li>
+          <li data-cat="corte" data-min="10"><span class="nom">Lavar y peinar</span><p class="desc">Lavado, secado y acabado con producto.</p><span class="min">10 min</span><span class="eur">9,00 €</span><a class="btn hueco mini ir" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a></li>
+
+          <li data-cat="barba" data-min="20"><span class="nom">Barba express</span><p class="desc">Para barba corta, de menos de dos centímetros: retoque de perímetro arriba y abajo.</p><span class="min">20 min</span><span class="eur">15,90 €</span><a class="btn hueco mini ir" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a></li>
+          <li data-cat="barba" data-min="20"><span class="nom">Tratamiento y diseño de barba</span><p class="desc">Para barba de más de dos centímetros o con forma: pico, cuadrada o degradada.</p><span class="min">20 min</span><span class="eur">15,90 €</span><a class="btn hueco mini ir" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a></li>
+          <li data-cat="barba" data-min="15"><span class="nom">Afeitado</span><p class="desc">A ras, con toalla caliente antes y bálsamo después.</p><span class="min">15 min</span><span class="eur">15,90 €</span><a class="btn hueco mini ir" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a></li>
+          <li data-cat="barba" data-min="30"><span class="nom">Afeitado clásico Italian Shave</span><p class="desc">El ritual completo, sin prisa, media hora para ti.</p><span class="min">30 min</span><span class="eur">17,90 €</span><a class="btn hueco mini ir" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a></li>
+          <li data-cat="barba" data-min="20"><span class="nom">Afeitado de cabeza</span><p class="desc">Rapado al cero y apurado con hoja.</p><span class="min">20 min</span><span class="eur">17,90 €</span><a class="btn hueco mini ir" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a></li>
+
+          <li data-cat="estetica" data-min="60"><span class="nom">Decoloración</span><p class="desc">Aclarado completo, se reserva aparte por el tiempo que lleva.</p><span class="min">1 h</span><span class="eur">40,00 €</span><a class="btn hueco mini ir" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a></li>
+          <li data-cat="estetica" data-min="15"><span class="nom">Black mask facial</span><p class="desc">Limpieza de cara con mascarilla de arrastre.</p><span class="min">15 min</span><span class="eur">6,90 €</span><a class="btn hueco mini ir" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a></li>
+          <li data-cat="estetica" data-min="5"><span class="nom">Marcar cejas</span><p class="desc">Perfilado rápido, se puede sumar al corte.</p><span class="min">5 min</span><span class="eur">5,90 €</span><a class="btn hueco mini ir" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a></li>
+          <li data-cat="estetica" data-min="5"><span class="nom">Black mask nariz</span><p class="desc">Puntos negros de la zona T.</p><span class="min">5 min</span><span class="eur">2,90 €</span><a class="btn hueco mini ir" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a></li>
+          <li data-cat="estetica" data-min="5"><span class="nom">Anti ojeras</span><p class="desc">Parche descongestivo bajo el ojo.</p><span class="min">5 min</span><span class="eur">2,90 €</span><a class="btn hueco mini ir" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a></li>
+
+          <li data-cat="promo" data-min="35"><span class="nom">Corte degradado + cejas</span><p class="desc">El pack de siempre, corte y perfilado en la misma silla.</p><span class="min">35 min</span><span class="eur promo">25,90 €</span><a class="btn hueco mini ir" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a></li>
+          <li data-cat="promo" data-min="40"><span class="nom">Corte clásico + afeitado o barba</span><p class="desc">Cuarenta minutos y sales nuevo.</p><span class="min">40 min</span><span class="eur promo">32,90 €</span><a class="btn hueco mini ir" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a></li>
+          <li data-cat="promo" data-min="90"><span class="nom">Decoloración + corte clásico</span><p class="desc">Cambio de color y corte, hora y media de reloj.</p><span class="min">1 h 30 min</span><span class="eur promo">55,00 €</span><a class="btn hueco mini ir" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== barberos ===================== -->
+  <section class="seccion" id="barberos">
+    <div class="wrap">
+      <div class="cabecera rev">
+        <span class="num">03</span>
+        <h2>Elige con <b>quién</b> te sientas</h2>
+        <p class="apoyo">Somos cuatro y cada uno tiene su clientela. En Booksy puedes reservar directamente con el tuyo, o dejar que te atienda el primero que quede libre.</p>
+      </div>
+      <ul class="equipo rev">
+        <li>
+          <h3>Roberto</h3>
+          <blockquote>«Gran profesionalidad y amabilidad, ya sé dónde tengo que ir siempre a cortarme el pelo»<cite>Alfonso · Booksy</cite></blockquote>
+          <a class="btn hueco mini" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a>
+        </li>
+        <li>
+          <h3>Mario</h3>
+          <blockquote>«Muy buen servicio y atención por parte de Mario, sin duda repetiré con él»<cite>Juan · Booksy</cite></blockquote>
+          <a class="btn hueco mini" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a>
+        </li>
+        <li>
+          <h3>Vidal</h3>
+          <blockquote>Corte, barba y afeitado clásico. Pregunta por su hueco en Booksy o pásate por el mostrador.</blockquote>
+          <a class="btn hueco mini" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a>
+        </li>
+        <li>
+          <h3>Andrés</h3>
+          <blockquote>«Excelente servicio por parte de Andrés, muy amable y muy cercano en todo momento»<cite>Felipe · Booksy</cite></blockquote>
+          <a class="btn hueco mini" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== opiniones ===================== -->
+  <section class="seccion oscuro" id="opiniones">
+    <div class="wrap">
+      <div class="cabecera rev">
+        <span class="num">04</span>
+        <h2>Lo que dicen los que <b>ya se sientan</b> aquí</h2>
+        <p class="apoyo">Nota media en Booksy sobre reseñas de clientes verificados, es decir, de gente que reservó y vino.</p>
+      </div>
+      <div class="nota rev">
+        <div>
+          <p class="cifra">4,7<sup>/5</sup></p>
+          <p class="de">138 reseñas verificadas</p>
+        </div>
+        <div class="barras" id="barras">
+          <div><span>5 ★</span><span class="riel"><i style="--w:90.6%"></i></span><span>125</span></div>
+          <div><span>4 ★</span><span class="riel"><i style="--w:3.6%"></i></span><span>5</span></div>
+          <div><span>3 ★</span><span class="riel"><i style="--w:0%"></i></span><span>0</span></div>
+          <div><span>2 ★</span><span class="riel"><i style="--w:0.7%"></i></span><span>1</span></div>
+          <div><span>1 ★</span><span class="riel"><i style="--w:5.1%"></i></span><span>7</span></div>
+        </div>
+      </div>
+      <div class="citas rev">
+        <blockquote><p>«Muy buen servicio y atención por parte de Mario, sin duda repetiré con él»</p><cite>Juan · corte degradado</cite></blockquote>
+        <blockquote><p>«Gran profesionalidad y amabilidad, ya sé dónde tengo que ir siempre a cortarme el pelo»</p><cite>Alfonso · corte clásico</cite></blockquote>
+        <blockquote><p>«Excelente servicio por parte de Andrés, muy amable y muy cercano en todo momento»</p><cite>Felipe · marcar cejas</cite></blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== peques ===================== -->
+  <section class="seccion">
+    <div class="wrap peques">
+      <div class="marco rev"><img src="assets/img/sala-ninos.jpg" alt="Silla infantil con forma de coche preparada para el corte de un niño" loading="lazy"></div>
+      <div class="rev">
+        <span class="num">05</span>
+        <h2 style="margin-top:1.6rem">El primer corte se hace en una <b>silla con volante</b></h2>
+        <p>Tenemos una silla de coche de verdad, con su volante y su claxon, para que los peques se sienten sin llorar y el corte salga recto. Hasta los doce años, con máquina y tijera, veinte minutos.</p>
+        <p>Y si vienes con prisa un sábado, reserva antes: son las horas que primero se llenan.</p>
+        <div class="precio-suelto">
+          <b>15,90 €</b><span>Corte niñ@ · 20 min</span>
+        </div>
+        <div class="acciones">
+          <a class="btn" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar hora</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== cómo llegar ===================== -->
+  <section class="seccion" id="llegar" style="background:var(--papel-2);border-top:var(--borde);">
+    <div class="wrap">
+      <div class="cabecera rev">
+        <span class="num">06</span>
+        <h2>Estamos <b>dentro</b> de Plaza Nueva</h2>
+        <p class="apoyo">En el parque comercial de la Avenida Puerta del Sol, el del Carrefour. Aparcas gratis y subes andando, sin buscar hueco en la calle.</p>
+      </div>
+      <div class="llegar">
+        <div class="rev">
+          <p class="direccion">Avenida Puerta del Sol, 2<br>Parque Comercial Plaza Nueva<br>28918 Leganés, Madrid</p>
+          <p class="tel"><a href="tel:+34911632160">911 632 160</a></p>
+          <table class="horario" id="horario">
+            <tbody>
+              <tr data-d="1"><th>Lunes</th><td>10:00 – 21:00</td></tr>
+              <tr data-d="2"><th>Martes</th><td>10:00 – 21:00</td></tr>
+              <tr data-d="3"><th>Miércoles</th><td>10:00 – 21:00</td></tr>
+              <tr data-d="4"><th>Jueves</th><td>10:00 – 21:00</td></tr>
+              <tr data-d="5"><th>Viernes</th><td>10:00 – 21:00</td></tr>
+              <tr data-d="6"><th>Sábado</th><td>10:00 – 21:00</td></tr>
+              <tr data-d="0"><th>Domingo</th><td>10:00 – 21:00</td></tr>
+            </tbody>
+          </table>
+          <div class="acciones">
+            <a class="btn" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar en Booksy</a>
+            <a class="btn hueco" href="tel:+34911632160">Llamar</a>
+            <a class="btn hueco" href="https://www.google.com/maps/search/?api=1&query=Carlos+Conde+Plaza+Nueva+Legan%C3%A9s" target="_blank" rel="noopener">Abrir en Google Maps</a>
+          </div>
+        </div>
+        <figure class="plano rev">
+          <svg viewBox="0 0 460 300" role="img" aria-label="Esquema de acceso: desde la Avenida Puerta del Sol se entra al Parque Comercial Plaza Nueva, y la barbería está en la galería junto al hipermercado">
+            <defs>
+              <style>
+                .l{fill:none;stroke:#8A7350;stroke-width:1.2}
+                .g{fill:none;stroke:#A87830;stroke-width:2;stroke-dasharray:6 5}
+                .t{font-family:Oswald,sans-serif;font-size:11px;letter-spacing:1.4px;fill:#6B5B49;text-transform:uppercase}
+                .tb{font-family:Oswald,sans-serif;font-size:13px;letter-spacing:1.2px;fill:#231A12}
+                .box{fill:#F1E8DA;stroke:#8A7350;stroke-width:1.1}
+              </style>
+            </defs>
+            <path class="l" d="M12 262 H448"/>
+            <text class="t" x="12" y="282">Avenida Puerta del Sol</text>
+            <rect class="box" x="40" y="60" width="380" height="170" rx="3"/>
+            <text class="t" x="58" y="84">Parque Comercial Plaza Nueva</text>
+            <rect class="box" x="58" y="100" width="150" height="76" rx="2"/>
+            <text class="t" x="72" y="142">Hipermercado</text>
+            <rect class="box" x="228" y="100" width="80" height="76" rx="2" fill="#E7DAC6"/>
+            <text class="t" x="240" y="136">Galería</text>
+            <text class="t" x="240" y="152">comercial</text>
+            <rect x="322" y="100" width="80" height="76" rx="2" fill="#A87830"/>
+            <text class="tb" x="336" y="132" fill="#FBF7F0">Carlos</text>
+            <text class="tb" x="336" y="150" fill="#FBF7F0">Conde</text>
+            <rect class="box" x="58" y="192" width="344" height="26" rx="2"/>
+            <text class="t" x="72" y="210">2.900 plazas de aparcamiento gratis</text>
+            <path class="g" d="M230 258 V236 H362 V182"/>
+            <circle cx="230" cy="258" r="4.5" fill="#A87830"/>
+            <g transform="translate(357,176)"><path d="M0 0 L5 9 L10 0 Z" fill="#A87830"/></g>
+          </svg>
+          <figcaption>Entras por la Avenida Puerta del Sol, aparcas en la explanada y nos encuentras en la galería, a la derecha del hipermercado.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== pie ===================== -->
+<footer class="pie">
+  <div class="wrap">
+    <div class="fila">
+      <a class="marca" href="#top">
+        <svg class="rombos" viewBox="0 0 30 16" aria-hidden="true"><path d="M1 8 L8 1 L15 8 L8 15 Z"/><path d="M15 8 L22 1 L29 8 L22 15 Z"/></svg>
+        <span>Carlos Conde<small>El cuidado integral del hombre</small></span>
+      </a>
+      <span class="estado" id="estado-pie"><span class="punto"></span><span class="txt"></span></span>
+      <a class="btn" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar en Booksy</a>
+    </div>
+    <p class="legal">Propuesta de rediseño no oficial, creada como muestra de trabajo. Los precios, horarios, fotografías y opiniones proceden de la ficha pública del negocio en Booksy, consultada en septiembre de 2026, y pueden haber cambiado. Carlos Conde Plaza Nueva (Leganés) — Avenida Puerta del Sol 2, 28918 Leganés.</p>
+  </div>
+</footer>
+
+<!-- ===================== barra fija móvil ===================== -->
+<div class="movil" id="movil">
+  <span class="estado" id="estado-movil"><span class="punto"></span><span class="txt"></span></span>
+  <a class="btn" href="https://booksy.com/es-es/68925_carlos-conde-plaza-nueva-leganes_barberia_52996_leganes" target="_blank" rel="noopener">Reservar</a>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- 1. estado en vivo (10:00–21:00, los siete días) ---------- */
+  var ABRE = 10, CIERRA = 21;
+  function ahoraMadrid(){
+    try { return new Date(new Date().toLocaleString('en-US',{timeZone:'Europe/Madrid'})); }
+    catch(e){ return new Date(); }
+  }
+  function rato(m){
+    var h = Math.floor(m/60), r = m%60;
+    if (h && r) return h + ' h ' + r + ' min';
+    if (h) return h + (h===1 ? ' hora' : ' horas');
+    return r + ' min';
+  }
+  function pintarEstado(){
+    var d = ahoraMadrid();
+    var min = d.getHours()*60 + d.getMinutes();
+    var abierto = min >= ABRE*60 && min < CIERRA*60;
+    var txt, detalle;
+    if (abierto){
+      var quedan = CIERRA*60 - min;
+      txt = quedan <= 60 ? 'Abierto · cierra en ' + rato(quedan) : 'Abierto ahora · hasta las 21:00';
+      detalle = quedan <= 45
+        ? 'Últimos huecos del día. Mañana volvemos a abrir a las 10:00.'
+        : 'Avenida Puerta del Sol 2 · dentro del Parque Comercial Plaza Nueva';
+    } else {
+      var faltan = min < ABRE*60 ? ABRE*60 - min : (24*60 - min) + ABRE*60;
+      txt = 'Cerrado · abre en ' + rato(faltan);
+      detalle = 'Abrimos todos los días de 10:00 a 21:00. Puedes reservar tu hora ahora mismo.';
+    }
+    ['estado-barra','estado-ficha','estado-pie','estado-movil'].forEach(function(id){
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.classList.toggle('abierto', abierto);
+      el.classList.toggle('cerrado', !abierto);
+      el.querySelector('.txt').textContent = txt;
+      el.hidden = false;
+    });
+    var det = document.getElementById('estado-detalle');
+    if (det) det.textContent = detalle;
+    var fila = document.querySelector('#horario tr[data-d="' + d.getDay() + '"]');
+    if (fila) fila.classList.add('hoy');
+  }
+  pintarEstado();
+  setInterval(pintarEstado, 60000);
+
+  /* ---------- 2. barra pegada + barra fija móvil ---------- */
+  var barra = document.getElementById('barra');
+  var movil = document.getElementById('movil');
+  function alScroll(){
+    var y = window.scrollY;
+    barra.classList.toggle('pegada', y > 20);
+    movil.classList.toggle('vista', y > window.innerHeight * 0.65);
+  }
+  alScroll();
+  window.addEventListener('scroll', alScroll, {passive:true});
+
+  /* ---------- 3. revelado por entrada en pantalla ---------- */
+  var piezas = document.querySelectorAll('.rev');
+  if ('IntersectionObserver' in window && !quieto){
+    var ojo = new IntersectionObserver(function(filas){
+      filas.forEach(function(f){
+        if (!f.isIntersecting) return;
+        f.target.classList.add('on');
+        ojo.unobserve(f.target);
+        if (f.target.querySelector('.riel')){
+          f.target.querySelectorAll('.riel i').forEach(function(b,i){
+            setTimeout(function(){ b.classList.add('llena'); }, 120 * i);
+          });
+        }
+      });
+    }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+    piezas.forEach(function(p){ ojo.observe(p); });
+  } else {
+    piezas.forEach(function(p){ p.classList.add('on'); });
+    document.querySelectorAll('.riel i').forEach(function(b){ b.classList.add('llena'); });
+  }
+
+  /* ---------- 4. recorrido horizontal ---------- */
+  var pista = document.getElementById('pista');
+  var barraProg = document.getElementById('progreso');
+  function paso(){
+    var f = pista.querySelector('figure');
+    return f ? f.getBoundingClientRect().width + 18 : 340;
+  }
+  function progreso(){
+    var recorrible = pista.scrollWidth - pista.clientWidth;
+    var visible = Math.max(12, (pista.clientWidth / pista.scrollWidth) * 100);
+    var pos = recorrible > 0 ? (pista.scrollLeft / recorrible) : 0;
+    barraProg.style.width = visible + '%';
+    barraProg.style.left = (pos * (100 - visible)) + '%';
+  }
+  progreso();
+  pista.addEventListener('scroll', progreso, {passive:true});
+  window.addEventListener('resize', progreso);
+  document.getElementById('alante').addEventListener('click', function(){ pista.scrollBy({left: paso(), behavior: quieto ? 'auto' : 'smooth'}); });
+  document.getElementById('atras').addEventListener('click', function(){ pista.scrollBy({left: -paso(), behavior: quieto ? 'auto' : 'smooth'}); });
+
+  /* arrastrar con el ratón */
+  var agarrado = false, xIni = 0, sIni = 0, movido = 0;
+  pista.addEventListener('pointerdown', function(e){
+    if (e.pointerType === 'touch') return;
+    agarrado = true; movido = 0; xIni = e.clientX; sIni = pista.scrollLeft;
+    pista.classList.add('arrastrando');
+  });
+  window.addEventListener('pointermove', function(e){
+    if (!agarrado) return;
+    var d = e.clientX - xIni;
+    movido = Math.max(movido, Math.abs(d));
+    pista.scrollLeft = sIni - d;
+  });
+  window.addEventListener('pointerup', function(){
+    if (!agarrado) return;
+    agarrado = false;
+    pista.classList.remove('arrastrando');
+  });
+  pista.addEventListener('click', function(e){ if (movido > 6) e.preventDefault(); }, true);
+
+  /* ---------- 5. filtros de la carta ---------- */
+  var lista = document.getElementById('lista');
+  var filas = Array.prototype.slice.call(lista.children);
+  var recuento = document.getElementById('recuento');
+  var cat = 'todo', tope = 999;
+
+  function euros(n){ return n.toFixed(2).replace('.', ',') + ' €'; }
+  function filtrar(){
+    var vistos = 0, barato = Infinity;
+    filas.forEach(function(li){
+      var okCat = (cat === 'todo' || li.dataset.cat === cat);
+      var okMin = parseInt(li.dataset.min, 10) <= tope;
+      var dentro = okCat && okMin;
+      li.classList.toggle('fuera', !dentro);
+      if (dentro){
+        vistos++;
+        var p = parseFloat(li.querySelector('.eur').textContent.replace(/[^\d,]/g,'').replace(',', '.'));
+        if (p < barato) barato = p;
+      }
+    });
+    recuento.textContent = vistos === 0
+      ? 'Ningún servicio entra en ese rato'
+      : vistos + (vistos === 1 ? ' servicio · ' : ' servicios · ') + 'desde ' + euros(barato);
+  }
+
+  document.getElementById('chips').addEventListener('click', function(e){
+    var b = e.target.closest('.chip');
+    if (!b) return;
+    this.querySelectorAll('.chip').forEach(function(c){ c.setAttribute('aria-pressed', String(c === b)); });
+    cat = b.dataset.cat;
+    filtrar();
+  });
+  document.getElementById('tiempo').addEventListener('change', function(e){
+    tope = parseInt(e.target.value, 10);
+    filtrar();
+  });
+  filtrar();
+})();
+</script>
+</body>
+</html>
