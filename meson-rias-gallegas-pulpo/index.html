@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mesón Rías Gallegas — Leganés</title>
+<script>document.documentElement.className+=" js"</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Colores muestreados de sus propias fotos: mantel, madera barnizada
+     y latón de las lámparas de forja del comedor. */
+  --papel:#faf8f2;
+  --mantel:#f1ede2;
+  --tinta:#14140f;
+  --tinta-2:#1d1c15;
+  --laton:#b08a55;        /* sobre fondo oscuro */
+  --laton-hondo:#8a6636;  /* sobre fondo claro */
+  --piedra:#b5ac9b;
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--papel);color:var(--tinta);
+  font-family:var(--sans);font-size:15px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding-left:32px;padding-right:32px}
+h1,h2,h3{font-family:var(--serif);font-weight:300;margin:0;line-height:1.02}
+.kicker{
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--laton-hondo);font-weight:500;
+}
+.oscuro .kicker{color:var(--laton)}
+
+/* ---------- cabecera ---------- */
+header{
+  position:sticky;top:0;z-index:50;background:var(--tinta);color:var(--mantel);
+  border-bottom:1px solid rgba(241,237,226,.12);
+}
+.bar{display:flex;align-items:center;justify-content:space-between;height:64px}
+.mark img{height:32px}
+nav{display:flex;gap:28px}
+nav a{
+  position:relative;text-decoration:none;font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;padding-bottom:3px;
+}
+nav a::after{
+  content:"";position:absolute;left:0;bottom:0;height:1px;width:0;
+  background:var(--laton);transition:width .45s cubic-bezier(.2,.7,.3,1);
+}
+nav a:hover::after{width:100%}
+
+/* ---------- portada ---------- */
+.hero{
+  position:relative;background:var(--tinta);color:var(--mantel);
+  min-height:min(86vh,880px);display:flex;flex-direction:column;justify-content:flex-end;
+  padding-top:96px;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:50% 55%;opacity:.5;filter:contrast(1.06) saturate(.85);
+}
+.hero::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(20,20,15,.78) 0%,rgba(20,20,15,.48) 38%,rgba(20,20,15,.94) 100%);
+}
+.hero-in,.hero-datos{position:relative;z-index:2}
+.hero-logo{width:clamp(190px,20vw,262px);margin-bottom:24px}
+.hero h1{font-size:clamp(66px,11vw,158px);letter-spacing:-.025em;margin-top:18px}
+.hero .lead{
+  font-family:var(--serif);font-size:clamp(20px,2vw,26px);line-height:1.4;
+  max-width:30ch;margin:26px 0 0;color:rgba(241,237,226,.82);
+}
+.hero-datos{
+  border-top:1px solid rgba(241,237,226,.2);margin-top:52px;
+  display:flex;gap:56px;padding:20px 0 30px;
+  font-size:12px;letter-spacing:.05em;color:rgba(241,237,226,.66);
+}
+
+/* ---------- premios (oscuro) ---------- */
+.oscuro{background:var(--tinta);color:var(--mantel)}
+.premios{padding-top:104px;padding-bottom:104px}
+.premio{
+  display:grid;grid-template-columns:170px 1fr 130px;gap:40px;align-items:center;
+  padding:34px 0;border-top:1px solid rgba(241,237,226,.16);
+}
+.premio:last-of-type{border-bottom:1px solid rgba(241,237,226,.16)}
+.premio .anio{
+  font-family:var(--serif);font-size:52px;line-height:1;color:rgba(241,237,226,.42);
+  transition:color .5s ease;
+}
+.premio:hover .anio{color:var(--laton)}
+.premio .titulo{font-family:var(--serif);font-size:29px;line-height:1.2}
+.premio .detalle{font-size:13px;color:rgba(241,237,226,.6);margin-top:8px}
+.premio .precio{font-family:var(--serif);font-size:26px;text-align:right}
+
+/* diplomas recortados, papel sobre la mesa */
+.evidencia{display:grid;grid-template-columns:1fr 1fr;gap:46px;margin-top:76px}
+.evidencia figure{margin:0}
+.evidencia img{
+  width:100%;box-shadow:0 26px 54px rgba(0,0,0,.55);
+  transition:transform .55s cubic-bezier(.2,.7,.3,1),box-shadow .55s ease;
+}
+.evidencia figure:hover img{transform:rotate(-1.2deg) translateY(-6px);box-shadow:0 40px 70px rgba(0,0,0,.62)}
+.pie-foto{
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(241,237,226,.5);padding-top:16px;
+}
+
+/* ---------- carta ---------- */
+.seccion{padding-top:100px;padding-bottom:100px}
+.seccion>h2{font-size:clamp(38px,5vw,64px);margin-bottom:8px}
+.seccion>.kicker{margin-bottom:24px;display:block}
+.mantel{background:var(--mantel)}
+.carta{margin-top:44px}
+.plato{display:flex;align-items:baseline;gap:14px;padding:17px 0;border-bottom:1px solid rgba(20,20,15,.1)}
+.plato .nombre{font-family:var(--serif);font-size:24px;flex:0 1 auto}
+.plato .nota{font-size:12px;color:var(--laton-hondo);letter-spacing:.04em;margin-left:10px;white-space:nowrap}
+.plato .leader{flex:1 1 auto;height:1px;min-width:24px;position:relative;top:-5px;overflow:hidden}
+.plato .leader i{
+  display:block;height:1px;width:100%;
+  background-image:linear-gradient(to right,var(--piedra) 0 2px,transparent 2px 6px);
+  background-size:6px 1px;
+  transition:width 1s cubic-bezier(.2,.7,.3,1);
+}
+/* Sin JavaScript todo se ve; la animación solo entra si el script vive. */
+.js .plato .leader i{width:0}
+.js .plato.visto .leader i{width:100%}
+.plato .precio{font-family:var(--serif);font-size:24px;min-width:74px;text-align:right}
+
+/* ---------- certificados ---------- */
+.certs{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:52px}
+.certs figure{margin:0}
+.cert-caja{
+  background:#fff;border:1px solid rgba(20,20,15,.1);
+  height:310px;display:flex;align-items:center;justify-content:center;padding:28px;
+  transition:transform .55s cubic-bezier(.2,.7,.3,1),box-shadow .55s ease;
+}
+.cert-caja img{max-height:100%;max-width:100%;width:auto;object-fit:contain}
+.certs figure:hover .cert-caja{
+  transform:translateY(-6px) rotate(-.9deg);box-shadow:0 24px 44px rgba(20,20,15,.16);
+}
+.certs figcaption{
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--laton-hondo);padding-top:15px;
+}
+
+/* ---------- la casa ---------- */
+.casa-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start}
+blockquote{margin:0;font-family:var(--serif);font-size:27px;line-height:1.42;color:rgba(241,237,226,.9)}
+blockquote cite{
+  display:block;font-family:var(--sans);font-size:12px;font-style:normal;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--laton);margin-top:22px;
+}
+.casa-grid{grid-template-columns:1.25fr .75fr}
+.retrato{margin:0}
+.retrato img{
+  width:100%;max-width:300px;
+  transition:transform .55s cubic-bezier(.2,.7,.3,1),box-shadow .55s ease;
+  box-shadow:0 18px 36px rgba(0,0,0,.45);
+}
+.retrato:hover img{transform:rotate(-1.2deg) translateY(-5px);box-shadow:0 32px 54px rgba(0,0,0,.55)}
+.premios-lista{margin:44px 0 0;padding:0;list-style:none;max-width:620px}
+.premios-lista li{
+  display:flex;gap:20px;align-items:baseline;
+  padding:15px 0;border-top:1px solid rgba(241,237,226,.16);
+}
+.premios-lista li:last-child{border-bottom:1px solid rgba(241,237,226,.16)}
+.premios-lista .que{display:block;font-family:var(--serif);font-size:23px;line-height:1.25}
+.premios-lista .quien{display:block;font-size:12px;color:rgba(241,237,226,.55);margin-top:5px;max-width:46ch}
+.premios-lista .cuando{
+  font-size:11px;letter-spacing:.16em;color:var(--laton);
+  min-width:64px;flex-shrink:0;padding-top:8px;
+}
+
+/* ---------- pie ---------- */
+footer{background:var(--tinta-2);color:var(--mantel);padding-top:88px;padding-bottom:60px}
+.pie-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px}
+footer h3{
+  font-size:14px;font-family:var(--sans);font-weight:500;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--laton);margin-bottom:16px;
+}
+footer a{text-decoration:none}
+footer p{margin:0 0 6px}
+.reservar{
+  display:inline-block;margin-top:14px;padding:15px 34px;
+  border:1px solid var(--laton);color:var(--mantel);text-decoration:none;
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  transition:background .4s ease,color .4s ease;
+}
+.reservar:hover{background:var(--laton);color:var(--tinta)}
+.legal{
+  margin-top:56px;padding-top:22px;border-top:1px solid rgba(241,237,226,.14);
+  font-size:11px;color:rgba(241,237,226,.45);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+}
+
+/* ---------- entrada ---------- */
+.js .rev{opacity:0;transform:translateY(16px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.3,1)}
+.js .rev.visto{opacity:1;transform:none}
+
+@media (max-width:900px){
+  .wrap{padding-left:22px;padding-right:22px}
+  nav{gap:16px}
+  nav a{font-size:10px;letter-spacing:.12em}
+  .hero{padding-top:80px;min-height:auto}
+  .hero h1{margin-top:14px}
+  .hero-datos{flex-direction:column;gap:6px;margin-top:44px}
+  .premios{padding-top:64px;padding-bottom:64px}
+  .seccion{padding-top:64px;padding-bottom:64px}
+  .premio{grid-template-columns:1fr;gap:6px;padding:26px 0}
+  .premio .anio{font-size:26px;color:var(--laton);letter-spacing:.04em}
+  .premio .titulo{font-size:25px}
+  .premio .precio{text-align:left;font-size:22px;margin-top:6px}
+  .evidencia{grid-template-columns:1fr;gap:34px;margin-top:48px}
+  .casa-grid,.pie-grid{grid-template-columns:1fr;gap:38px}
+  .retrato img{max-width:220px}
+  .hero-logo{margin-bottom:24px}
+  .certs{grid-template-columns:1fr;gap:26px}
+  .cert-caja{height:260px;padding:22px}
+  .premios-lista li{flex-direction:column;gap:4px}
+  .premios-lista .cuando{padding-top:0}
+  .plato{flex-wrap:wrap}
+  .plato .nota{margin-left:0;white-space:normal;flex-basis:100%}
+}
+@media (max-width:640px){
+  nav a:not(:last-child){display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .rev{opacity:1;transform:none;transition:none}
+  .js .plato .leader i{width:100%;transition:none}
+  .evidencia figure:hover img,.recortes figure:hover img{transform:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="mark" href="#"><img src="assets/img/logo.png" alt="Mesón Rías Gallegas"></a>
+    <nav>
+      <a href="#premios">Los premios</a>
+      <a href="#pulpo">Nuestro pulpo</a>
+      <a href="#carta">La carta</a>
+      <a href="#casa">La casa</a>
+      <a href="#reservar">Reservar</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <img class="hero-bg" src="assets/img/comedor-1.jpg" alt="Comedor del Mesón Rías Gallegas">
+    <div class="wrap hero-in">
+      <img class="hero-logo rev" src="assets/img/logo.png" alt="Mesón Rías Gallegas Restaurante">
+      <span class="kicker rev" style="color:var(--laton)">Leganés · desde 1981</span>
+      <h1 class="rev">Nuestro<br>Pulpo</h1>
+      <p class="lead rev">Mejor tapa de pulpo de Madrid en 2019 · Segundo mejor plato
+        de pulpo en 2019, 2020 y 2022</p>
+    </div>
+    <div class="wrap hero-datos rev">
+      <span>N.º 1 de 182 marisquerías de Leganés</span>
+      <span>1.883 valoraciones</span>
+      <span>Cocina dirigida por Orlando Pérez Silva</span>
+    </div>
+  </section>
+
+  <section class="oscuro" id="premios">
+    <div class="wrap premios">
+      <span class="kicker rev">Certamen Pulpo Pasión Madrid</span>
+      <h2 class="rev" style="font-size:clamp(38px,5vw,64px);margin:12px 0 48px">Tres platos premiados</h2>
+
+      <div class="premio rev">
+        <div class="anio">2019</div>
+        <div>
+          <div class="titulo">Pulpo a feira, queso de tetilla y pan gallego de artesa</div>
+          <div class="detalle">Mejor tapa de pulpo de Madrid</div>
+        </div>
+        <div class="precio">14,90 €</div>
+      </div>
+
+      <div class="premio rev">
+        <div class="anio">2019 · 20</div>
+        <div>
+          <div class="titulo">Pulpo a la brasa ahumado</div>
+          <div class="detalle">Segundo mejor plato de pulpo de Madrid, dos años seguidos</div>
+        </div>
+        <div class="precio">26,90 €</div>
+      </div>
+
+      <div class="premio rev">
+        <div class="anio">2022</div>
+        <div>
+          <div class="titulo">Empanadilla de pulpo con tinta y wakame</div>
+          <div class="detalle">Segundo mejor plato de pulpo de Madrid</div>
+        </div>
+        <div class="precio">7,10 €</div>
+      </div>
+
+      <div class="evidencia">
+        <figure class="rev">
+          <img src="assets/img/diploma-tapa-2019.jpg" alt="Diploma: la mejor tapa de pulpo de Madrid, ganador">
+          <figcaption class="pie-foto">Ganador · Mejor tapa de pulpo</figcaption>
+        </figure>
+        <figure class="rev">
+          <img src="assets/img/diploma-plato.jpg" alt="Diploma: el mejor plato de pulpo de Madrid, segundo clasificado">
+          <figcaption class="pie-foto">Segundo clasificado · Mejor plato de pulpo</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap seccion" id="pulpo">
+    <span class="kicker">De la carta</span>
+    <h2>Nuestro pulpo</h2>
+    <div class="carta">
+      <div class="plato">
+        <span class="nombre">Pulpo a feira, queso de tetilla y pan gallego de artesa</span>
+        <span class="nota">Mejor tapa 2019</span>
+        <span class="leader"><i></i></span><span class="precio">14,90</span>
+      </div>
+      <div class="plato">
+        <span class="nombre">Pulpo a feira</span>
+        <span class="leader"><i></i></span><span class="precio">25,10</span>
+      </div>
+      <div class="plato">
+        <span class="nombre">Pulpo con cachelos</span>
+        <span class="leader"><i></i></span><span class="precio">25,90</span>
+      </div>
+      <div class="plato">
+        <span class="nombre">Pulpo a la brasa ahumado</span>
+        <span class="nota">2.º mejor plato 2019 y 2020</span>
+        <span class="leader"><i></i></span><span class="precio">26,90</span>
+      </div>
+      <div class="plato">
+        <span class="nombre">Pizza crujiente de pulpo a feira</span>
+        <span class="leader"><i></i></span><span class="precio">13,80</span>
+      </div>
+      <div class="plato">
+        <span class="nombre">Empanadilla de pulpo con tinta y wakame</span>
+        <span class="nota">2.º mejor plato 2022</span>
+        <span class="leader"><i></i></span><span class="precio">7,10</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="mantel" id="carta">
+    <div class="wrap seccion">
+      <span class="kicker">También en la carta</span>
+      <h2>La cocina de hoy</h2>
+      <div class="carta">
+        <div class="plato">
+          <span class="nombre">Zamburiñas a la brasa con kimchi y lima</span>
+          <span class="leader"><i></i></span><span class="precio">21,80</span>
+        </div>
+        <div class="plato">
+          <span class="nombre">Tártaro y tuétano</span>
+          <span class="nota">Steak tartar sobre tuétano caramelizado a la brasa</span>
+          <span class="leader"><i></i></span><span class="precio">18,90</span>
+        </div>
+        <div class="plato">
+          <span class="nombre">Socarrat de carabineros</span>
+          <span class="leader"><i></i></span><span class="precio">19,90</span>
+        </div>
+        <div class="plato">
+          <span class="nombre">Tataki de atún sobre tuétano caramelizado a la brasa</span>
+          <span class="leader"><i></i></span><span class="precio">22,70</span>
+        </div>
+        <div class="plato">
+          <span class="nombre">«El faisán del mar»</span>
+          <span class="nota">Rodaballo salvaje</span>
+          <span class="leader"><i></i></span><span class="precio">28,50</span>
+        </div>
+        <div class="plato">
+          <span class="nombre">Chuletón de ternera</span>
+          <span class="nota">1.100 g aprox.</span>
+          <span class="leader"><i></i></span><span class="precio">64,90</span>
+        </div>
+        <div class="plato">
+          <span class="nombre">Caldo gallego</span>
+          <span class="leader"><i></i></span><span class="precio">7,80</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap seccion" id="certificados">
+    <span class="kicker">Reconocimientos externos</span>
+    <h2>Certificados</h2>
+    <div class="certs">
+      <figure class="rev">
+        <div class="cert-caja">
+          <img src="assets/img/cert-tripadvisor.png" alt="Certificado de Excelencia de Tripadvisor 2018">
+        </div>
+        <figcaption>Certificado de excelencia · Tripadvisor 2018</figcaption>
+      </figure>
+      <figure class="rev">
+        <div class="cert-caja">
+          <img src="assets/img/cert-tryp2020.png" alt="Tripadvisor Travellers' Choice 2020">
+        </div>
+        <figcaption>Travellers' Choice · Tripadvisor 2020</figcaption>
+      </figure>
+      <figure class="rev">
+        <div class="cert-caja">
+          <img src="assets/img/cert-restaurantguru.png" alt="Restaurant Guru 2020: Best Seafood in Leganés">
+        </div>
+        <figcaption>Best Seafood en Leganés · Restaurant Guru 2020</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="oscuro" id="casa">
+    <div class="wrap seccion">
+      <div class="casa-grid">
+        <div>
+          <span class="kicker">La casa</span>
+          <h2 style="margin:12px 0 32px">Desde 1981</h2>
+          <blockquote class="rev">
+            «Nuestra cocina está dirigida por uno de los tres chefs seleccionados para
+            representar a Galicia en una misión institucional y gastronómica en Tokio,
+            donde se dio a conocer la riqueza y tradición de la cocina gallega ante el mundo»
+            <cite>Mesón Rías Gallegas</cite>
+          </blockquote>
+        </div>
+        <figure class="retrato rev">
+          <img src="assets/img/chef-medalla.jpg" alt="Orlando Pérez Silva con la Medalla de Paul Bocuse">
+          <figcaption class="pie-foto">Orlando Pérez Silva con la Medalla de Paul Bocuse</figcaption>
+        </figure>
+      </div>
+
+      <ul class="premios-lista">
+        <li class="rev">
+          <span class="cuando">2016</span>
+          <span>
+            <span class="que">Plato de Oro de Gastronomía</span>
+          </span>
+        </li>
+        <li class="rev">
+          <span class="cuando">Madrid</span>
+          <span>
+            <span class="que">Premio Nacional «Villa de Madrid» de Gastronomía</span>
+            <span class="quien">Entregado por Radio Turismo</span>
+          </span>
+        </li>
+        <li class="rev">
+          <span class="cuando">París</span>
+          <span>
+            <span class="que">Medalla de Paul Bocuse</span>
+            <span class="quien">Entregada en la biblioteca del Hôtel de Ville de París, junto a otros trece cocineros españoles</span>
+          </span>
+        </li>
+        <li class="rev">
+          <span class="cuando">Tokio</span>
+          <span>
+            <span class="que">Misión institucional y gastronómica de Galicia</span>
+            <span class="quien">Uno de los tres chefs seleccionados</span>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer id="reservar">
+  <div class="wrap">
+    <div class="pie-grid">
+      <div>
+        <h3>Dónde</h3>
+        <p>C/ Lugo, 4</p>
+        <p>28914 Leganés, Madrid</p>
+      </div>
+      <div>
+        <h3>Contacto</h3>
+        <p><a href="tel:+34916930002">91 693 00 02</a></p>
+        <p><a href="mailto:riasgallegas@mesonriasgallegas.es">riasgallegas@mesonriasgallegas.es</a></p>
+      </div>
+      <div>
+        <h3>Mesa</h3>
+        <p>Reserva en línea o por teléfono</p>
+        <a class="reservar" href="https://connect.shore.com/widget/meson-rias-gallegas?locale=es" target="_blank" rel="noopener">Reservar mesa</a>
+      </div>
+    </div>
+    <div class="legal">
+      <span>Mesón Rías Gallegas · Leganés</span>
+      <span>Muestra de rediseño · contenido y fotografías del propio restaurante</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var todos=document.querySelectorAll('.rev,.plato');
+  function mostrarTodo(){
+    for(var i=0;i<todos.length;i++){todos[i].classList.add('visto')}
+  }
+  // Si el navegador no trae IntersectionObserver, se enseña todo y ya está.
+  if(!('IntersectionObserver' in window)){mostrarTodo();return}
+
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('visto');io.unobserve(e.target)}
+    })
+  },{threshold:.16,rootMargin:'0px 0px -8% 0px'});
+  Array.prototype.forEach.call(todos,function(el,i){
+    el.style.transitionDelay=(Math.min(i,6)*55)+'ms';
+    io.observe(el);
+  });
+  // Red de seguridad: pase lo que pase, a los tres segundos está todo visible.
+  setTimeout(mostrarTodo,3000);
+})();
+</script>
+</body>
+</html>
