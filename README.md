@@ -10,6 +10,7 @@ carpeta y es un sitio estático independiente: se abre con doble clic sobre
 | --- | --- | --- | --- |
 | [`the-barber-lab-lujo/`](the-barber-lab-lujo/) | The Barber Lab — Leganés, Madrid | Barbería | Casa de lujo: negro, oro y vidrio |
 | [`carlos-conde-leganes/`](carlos-conde-leganes/) | Carlos Conde Plaza Nueva — Leganés, Madrid | Barbería | Sala cálida: papel, nogal y luz de bombilla |
+| [`meson-rias-gallegas-pulpo/`](meson-rias-gallegas-pulpo/) | Mesón Rías Gallegas — Leganés, Madrid | Restaurante gallego | Pizarra y latón: portada oscura y carta sobre mantel |
 ## Ver una muestra en local
 
 ```bash
