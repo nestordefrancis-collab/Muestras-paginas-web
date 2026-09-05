@@ -183,7 +183,9 @@ blockquote cite{
 /* ---------- dónde estamos ---------- */
 .donde{position:relative;background:var(--tinta)}
 .mapa{position:relative}
-.mapa>img{width:100%;height:clamp(380px,48vh,540px);object-fit:cover;object-position:center 52%}
+.lienzo{position:relative;line-height:0}
+/* El alto mínimo tiene que superar al de la tarjeta: si no, se desborda. */
+.lienzo img{width:100%;height:clamp(470px,52vh,580px);object-fit:cover;object-position:center 52%}
 .creditos{
   position:absolute;right:14px;bottom:12px;z-index:3;
   font-size:10px;letter-spacing:.06em;color:rgba(20,20,15,.6);
@@ -257,9 +259,14 @@ footer p{margin:0 0 6px}
   .hero-logo{margin-bottom:24px}
   .certs{grid-template-columns:1fr;gap:26px}
   .cert-caja{height:260px;padding:22px}
-  .mapa>img{height:300px}
-  .tarjeta-cont{position:static;display:block;transform:none;max-width:none}
-  .tarjeta{max-width:none;padding:34px 22px;box-shadow:none}
+  .lienzo img{height:300px}
+  /* El mapa va a sangre, así que la tarjeta también: si no, quedan dos
+     anchuras distintas una encima de otra. */
+  .tarjeta-cont{
+    position:static;display:block;transform:none;max-width:none;
+    padding-left:0;padding-right:0;
+  }
+  .tarjeta{max-width:none;padding:34px 22px 38px;box-shadow:none}
   .tarjeta .calle{font-size:38px}
   .premios-lista li{flex-direction:column;gap:4px}
   .premios-lista .cuando{padding-top:0}
@@ -509,8 +516,10 @@ footer p{margin:0 0 6px}
 
 <section class="donde" id="donde">
   <div class="mapa">
-    <img src="assets/img/mapa-leganes.jpg" alt="Mapa de la zona: el mesón está en la calle de Lugo, junto a la avenida del Museo, en Leganés">
-    <span class="creditos">Mapa © OpenStreetMap</span>
+    <div class="lienzo">
+      <img src="assets/img/mapa-leganes.jpg" alt="Mapa de la zona: el mesón está en la calle de Lugo, junto a la avenida del Museo, en Leganés">
+      <span class="creditos">Mapa © OpenStreetMap</span>
+    </div>
     <div class="wrap tarjeta-cont">
       <div class="tarjeta rev">
         <span class="kicker">Dónde estamos</span>
