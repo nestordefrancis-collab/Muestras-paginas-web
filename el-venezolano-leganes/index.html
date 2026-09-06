@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>El Venezolano</title>
+<meta name="description" content="Cocina venezolana en Leganes: dieciseis arepas, ocho con nombre propio, contadas una a una. Carta completa, precios y reservas.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="El Venezolano — Leganés">
+<meta property="og:description" content="Cocina venezolana en Leganes: dieciseis arepas, ocho con nombre propio, contadas una a una. Carta completa, precios y reservas.">
+<meta property="og:image" content="assets/img/mesa.jpg">
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Schibsted+Grotesk:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap">
+
+<style>
+/* ---------- tokens (light complete on bare :root) ---------- */
+:root{
+  --masa:#F5EDDE;      /* ground   */
+  --queso:#FFFBF2;     /* surface  */
+  --caraota:#1E1813;   /* ink      */
+  --muted:#6A5D4C;
+  --line:#DED2BC;
+  --papelon:#8C3A16;   /* accent   */
+  --cachapa:#D89B2C;
+  --aguacate:#58663C;
+
+  /* Inversion pair — always the opposite of the page ground, in BOTH themes.
+     Kept separate from --caraota, which is semantic ink and flips with the theme. */
+  --flip-bg:#1E1813;
+  --flip-ink:#F5EDDE;
+  --flip-accent:#E8B44E;
+  --flip-line:rgba(245,237,222,.18);
+  --on-papelon:#F5EDDE;
+
+  --display:"Bricolage Grotesque","Schibsted Grotesk",system-ui,sans-serif;
+  --sans:"Schibsted Grotesk",system-ui,-apple-system,sans-serif;
+  --mono:"DM Mono",ui-monospace,"Courier New",monospace;
+
+  --pad:clamp(1.15rem,4.5vw,4rem);
+  --maxw:1180px;
+  --dock:4.75rem;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --masa:#17120E;
+    --queso:#211A13;
+    --caraota:#F3EAD9;
+    --muted:#B0A089;
+    --line:#35291D;
+    --papelon:#E07A42;
+    --cachapa:#E8B44E;
+    --aguacate:#95A667;
+    --flip-bg:#F3EAD9;
+    --flip-ink:#17120E;
+    --flip-accent:#8C3A16;
+    --flip-line:rgba(23,18,14,.18);
+    --on-papelon:#17120E;
+  }
+}
+:root[data-theme="dark"]{
+  --masa:#17120E;
+  --queso:#211A13;
+  --caraota:#F3EAD9;
+  --muted:#B0A089;
+  --line:#35291D;
+  --papelon:#E07A42;
+  --cachapa:#E8B44E;
+  --aguacate:#95A667;
+  --flip-bg:#F3EAD9;
+  --flip-ink:#17120E;
+  --flip-accent:#8C3A16;
+  --flip-line:rgba(23,18,14,.18);
+  --on-papelon:#17120E;
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*,*::before,*::after{transition:none !important;animation:none !important;}}
+body{
+  margin:0;
+  padding-bottom:var(--dock);
+  background:var(--masa);
+  color:var(--caraota);
+  font-family:var(--sans);
+  font-size:1rem;line-height:1.6;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+:focus-visible{outline:2px solid var(--papelon);outline-offset:3px;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad);}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;}
+
+/* ---------- header: static, not sticky ---------- */
+.top{padding:1.5rem 0 .5rem;}
+.top__in{display:flex;flex-wrap:wrap;gap:.75rem 1.5rem;align-items:baseline;justify-content:space-between;}
+.brand{font-family:var(--display);font-size:1.05rem;font-weight:800;letter-spacing:-.02em;margin:0;}
+.top__meta{font-family:var(--mono);font-size:.75rem;color:var(--muted);margin:0;}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(2.5rem,7vw,5rem) 0 clamp(2rem,5vw,3rem);}
+.hero h1{
+  font-family:var(--display);
+  font-size:clamp(2.3rem,7vw,5.25rem);
+  line-height:.98;letter-spacing:-.035em;font-weight:800;
+  margin:0 0 1.5rem;text-wrap:balance;max-width:15ch;
+}
+.hero h1 em{font-style:normal;color:var(--papelon);}
+.hero__lede{font-size:clamp(1.05rem,1.7vw,1.25rem);color:var(--muted);max-width:46ch;margin:0;line-height:1.55;}
+.hero__figure{margin:clamp(2rem,5vw,3rem) 0 0;}
+.hero__figure img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;}
+.hero__cap{font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-top:.65rem;}
+
+/* ---------- section scaffold ---------- */
+.sec{padding-block:clamp(3rem,8vw,5.5rem);}
+.sec--q{background:var(--queso);}
+.sec__h{
+  font-family:var(--display);
+  font-size:clamp(1.6rem,3.6vw,2.6rem);
+  line-height:1.05;letter-spacing:-.028em;font-weight:600;margin:0 0 .75rem;
+  text-wrap:balance;
+}
+.sec__intro{color:var(--muted);max-width:52ch;margin:0 0 clamp(1.75rem,4vw,2.75rem);line-height:1.6;}
+.kicker{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--papelon);margin:0 0 .9rem;
+}
+
+/* ---------- el léxico ---------- */
+.lex{list-style:none;padding:0;margin:0;border-top:1px solid var(--line);}
+.lex li{border-bottom:1px solid var(--line);}
+.lex__row{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:.2rem 1.25rem;
+  padding:1.1rem 1rem;
+  margin-inline:-1rem;
+  transition:background-color .18s ease,color .18s ease;
+}
+.lex__name{
+  font-family:var(--display);font-size:clamp(1.2rem,2.4vw,1.65rem);
+  font-weight:600;letter-spacing:-.02em;margin:0;line-height:1.15;
+}
+.lex__price{
+  font-family:var(--mono);font-size:.95rem;font-weight:500;
+  font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right;
+  align-self:center;grid-row:span 2;
+}
+.lex__gloss{grid-column:1;font-size:.9rem;color:var(--muted);margin:0;max-width:54ch;line-height:1.5;}
+.lex__gloss b{color:var(--aguacate);font-weight:500;}
+/* the entry gets marked, like a dictionary you run your finger down */
+@media (hover:hover){
+  .lex__row:hover{background:var(--flip-bg);color:var(--flip-ink);}
+  .lex__row:hover .lex__gloss{color:var(--flip-ink);opacity:.82;}
+  .lex__row:hover .lex__gloss b{color:var(--flip-accent);opacity:1;}
+  .lex__row:hover .lex__price{color:var(--flip-accent);}
+}
+
+/* plain ones, tighter */
+.plain{list-style:none;padding:0;margin:1.5rem 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0 2rem;}
+.plain li{
+  display:flex;align-items:baseline;gap:.6rem;
+  padding:.6rem 0;border-bottom:1px solid var(--line);font-size:.95rem;
+}
+.plain span:first-child{flex:1 1 auto;}
+.plain span:last-child{font-family:var(--mono);font-size:.85rem;font-variant-numeric:tabular-nums;color:var(--muted);}
+
+/* ---------- carta ---------- */
+.cat{margin-bottom:clamp(2rem,4vw,3rem);break-inside:avoid;}
+.cat__h{
+  font-family:var(--display);font-size:1.15rem;font-weight:800;letter-spacing:-.015em;
+  margin:0 0 .2rem;
+  padding-bottom:.5rem;border-bottom:2px solid var(--papelon);
+  display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+}
+.cat__h small{font-family:var(--mono);font-size:.7rem;font-weight:400;color:var(--muted);letter-spacing:.06em;}
+.cat ul{list-style:none;padding:0;margin:0;}
+.cat li{display:flex;align-items:baseline;gap:.5rem;padding:.55rem 0;border-bottom:1px solid var(--line);}
+.cat li>span:first-child{flex:1 1 auto;font-size:.95rem;}
+.cat li i{display:block;font-style:normal;font-size:.8rem;color:var(--muted);line-height:1.4;margin-top:.15rem;}
+.cat li>b{font-family:var(--mono);font-size:.875rem;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.cols{columns:2;column-gap:clamp(2rem,5vw,4rem);}
+@media (max-width:760px){.cols{columns:1;}}
+
+/* ---------- image band ---------- */
+/* El fondo del contenedor hace de linea separadora, asi que una celda que
+   falta se ve como un bloque vacio. Columnas que dividen exacto las 3 fotos. */
+.band{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border-block:1px solid var(--line);}
+@media (min-width:700px){.band{grid-template-columns:repeat(3,minmax(0,1fr));}}
+.band figure{margin:0;background:var(--masa);}
+.band img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;}
+.band figcaption{font-family:var(--mono);font-size:.7rem;color:var(--muted);padding:.7rem 1rem 1rem;}
+.band figcaption b{display:block;font-family:var(--sans);font-size:.95rem;font-weight:700;color:var(--caraota);margin-bottom:.2rem;letter-spacing:-.01em;}
+
+/* ---------- locales ---------- */
+.locs{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.5rem;}
+.loc{border-top:2px solid var(--caraota);padding-top:1rem;}
+.loc h3{font-family:var(--display);font-size:1.25rem;font-weight:600;margin:0 0 .35rem;letter-spacing:-.02em;}
+.loc p{margin:0;font-size:.9rem;color:var(--muted);line-height:1.55;}
+.loc .tbc{font-family:var(--mono);font-size:.7rem;color:var(--papelon);letter-spacing:.06em;text-transform:uppercase;margin-top:.5rem;}
+
+/* ---------- proof ---------- */
+.proof{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:2rem;}
+.proof div b{display:block;font-family:var(--display);font-size:clamp(2.2rem,5vw,3.4rem);font-weight:800;line-height:1;letter-spacing:-.03em;}
+.proof div span{display:block;font-size:.875rem;color:var(--muted);margin-top:.4rem;line-height:1.45;}
+
+/* ---------- practical ---------- */
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:2rem;}
+.info h3{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--papelon);margin:0 0 .6rem;font-weight:400;}
+.info p{margin:0;font-size:.95rem;color:var(--muted);line-height:1.6;}
+.info a{color:var(--caraota);text-decoration:none;border-bottom:1px solid var(--line);}
+.info a:hover{border-color:var(--papelon);}
+
+/* ---------- bottom dock ---------- */
+.dock{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;
+  background:var(--flip-bg);
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+}
+.dock a{
+  display:flex;align-items:center;justify-content:center;gap:.45rem;
+  min-height:var(--dock);padding:.5rem .75rem;
+  color:var(--flip-ink);text-decoration:none;
+  font-size:.875rem;font-weight:700;letter-spacing:-.005em;
+  border-right:1px solid var(--flip-line);
+  transition:background-color .16s ease,color .16s ease;
+  text-align:center;
+}
+.dock a:last-child{border-right:0;}
+.dock a small{display:block;font-family:var(--mono);font-size:.62rem;font-weight:400;opacity:.7;letter-spacing:.06em;text-transform:uppercase;}
+.dock a span{display:flex;flex-direction:column;gap:.1rem;}
+.dock .is-primary{background:var(--papelon);color:var(--on-papelon);}
+@media (hover:hover){
+  .dock a:hover{background:var(--flip-accent);color:var(--flip-bg);}
+}
+
+/* ---------- footer ---------- */
+.foot{padding-block:2.25rem;border-top:1px solid var(--line);}
+.foot__in{display:flex;flex-wrap:wrap;gap:.75rem 2rem;align-items:center;justify-content:space-between;}
+.foot small{color:var(--muted);font-size:.75rem;}
+.foot nav{display:flex;gap:1.25rem;flex-wrap:wrap;}
+.foot nav a{color:var(--muted);text-decoration:none;font-size:.8125rem;}
+.foot nav a:hover{color:var(--caraota);}
+.note{
+  margin-top:1.5rem;padding-top:1.1rem;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:.68rem;line-height:1.65;color:var(--muted);
+}
+</style>
+
+<header class="top wrap">
+  <div class="top__in">
+    <p class="brand">El Venezolano</p>
+    <p class="top__meta">Leganés · Getafe · Carabanchel</p>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero wrap">
+    <h1>Dieciséis arepas. Ocho con <em>nombre propio</em>.</h1>
+    <p class="hero__lede">Cocina venezolana en Leganés desde hace años. Reina pepiada, sifrina, pelua, catira: cada nombre trae una historia detrás, y aquí te la contamos antes de que pidas.</p>
+    <figure class="hero__figure">
+      <img src="assets/img/mesa.jpg" alt="Mesa con arepas apiladas, cachapa con carne mechada, empanadas, patacón y una cerveza Polar">
+      <figcaption class="hero__cap">Arepas, cachapas, empanadas y patacones — la mesa de un domingo</figcaption>
+    </figure>
+  </section>
+
+  <section class="sec sec--q" id="lexico">
+    <div class="wrap">
+      <p class="kicker">El léxico</p>
+      <h2 class="sec__h">Las que tienen nombre</h2>
+      <p class="sec__intro">En Venezuela las arepas no se llaman por lo que llevan, se llaman por lo que parecen o por a quién recuerdan. Estas ocho son las que traen cuento.</p>
+
+      <ul class="lex">
+        <li><div class="lex__row">
+          <p class="lex__name">Reina pepiada</p>
+          <p class="lex__price">7,70 €</p>
+          <p class="lex__gloss">Pollo y aguacate. <b>«Pepiada» es «con curvas»</b> — se bautizó en honor a Susana Duijm, Miss Mundo venezolana en 1955.</p>
+        </div></li>
+
+        <li><div class="lex__row">
+          <p class="lex__name">Sifrina</p>
+          <p class="lex__price">7,70 €</p>
+          <p class="lex__gloss">Reina pepiada con queso amarillo. <b>«Sifrina» es «pija»</b> — la reina, pero arreglada para salir.</p>
+        </div></li>
+
+        <li><div class="lex__row">
+          <p class="lex__name">Pelua</p>
+          <p class="lex__price">7,70 €</p>
+          <p class="lex__gloss">Carne mechada con queso amarillo. <b>«Peluda»</b>, por las hebras de carne y queso rallado que se desbordan.</p>
+        </div></li>
+
+        <li><div class="lex__row">
+          <p class="lex__name">Catira</p>
+          <p class="lex__price">7,70 €</p>
+          <p class="lex__gloss">Pollo mechado con queso amarillo. <b>«Catira» es «rubia»</b>, por el color de los dos rellenos.</p>
+        </div></li>
+
+        <li><div class="lex__row">
+          <p class="lex__name">Dominó</p>
+          <p class="lex__price">7,70 €</p>
+          <p class="lex__gloss">Frijol negro y queso blanco. <b>Negro sobre blanco</b>, igual que la ficha del dominó.</p>
+        </div></li>
+
+        <li><div class="lex__row">
+          <p class="lex__name">Pabellón</p>
+          <p class="lex__price">8,50 €</p>
+          <p class="lex__gloss">Carne mechada, frijol negro, plátano y queso blanco. <b>El plato nacional de Venezuela</b>, metido dentro de una arepa.</p>
+        </div></li>
+
+        <li><div class="lex__row">
+          <p class="lex__name">La española</p>
+          <p class="lex__price">8,50 €</p>
+          <p class="lex__gloss">Reina pepiada, tajada de plátano maduro y queso de mano. <b>La que se inventó aquí</b>, del lado de acá del charco.</p>
+        </div></li>
+
+        <li><div class="lex__row">
+          <p class="lex__name">Parrillera</p>
+          <p class="lex__price">8,50 €</p>
+          <p class="lex__gloss">Carne, pollo, cerdo y queso de mano. <b>Lo que sale de la parrilla</b>, todo junto y sin elegir.</p>
+        </div></li>
+      </ul>
+
+      <p class="kicker" style="margin-top:clamp(2.5rem,5vw,3.5rem)">Sin misterio</p>
+      <h3 class="sec__h" style="font-size:clamp(1.3rem,2.6vw,1.8rem)">Las de toda la vida</h3>
+      <ul class="plain">
+        <li><span>Queso</span><span>7,00 €</span></li>
+        <li><span>Pollo</span><span>7,00 €</span></li>
+        <li><span>Mechada</span><span>7,00 €</span></li>
+        <li><span>Jamón y queso</span><span>7,00 €</span></li>
+        <li><span>Atún</span><span>7,00 €</span></li>
+        <li><span>Huevo revuelto</span><span>7,00 €</span></li>
+        <li><span>Tajada con queso</span><span>7,70 €</span></li>
+        <li><span>Cordon bleu</span><span>7,70 €</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="band">
+    <figure>
+      <img src="assets/img/arepa.jpg" alt="Arepa rellena de pollo mechado sobre pizarra negra">
+      <figcaption><b>La arepa</b>Maíz, plancha y relleno. Sin gluten por naturaleza.</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/img/cachapa.jpg" alt="Cachapa de maíz dulce con reina pepiada y queso blanco rallado">
+      <figcaption><b>La cachapa</b>Maíz tierno y dulce, hecha torta. Siete versiones.</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/img/pabellon.jpg" alt="Pabellón criollo: caraotas negras, arroz blanco, carne mechada, huevo frito y tajada">
+      <figcaption><b>El pabellón</b>Caraotas, arroz, mechada, tajada y huevo. 12 €.</figcaption>
+    </figure>
+  </div>
+
+  <section class="sec" id="carta">
+    <div class="wrap">
+      <p class="kicker">La carta completa</p>
+      <h2 class="sec__h">Todo lo demás</h2>
+      <p class="sec__intro">Precio medio en mesa, unos 15 €. Los de arriba son las arepas; aquí va el resto de la carta.</p>
+
+      <div class="cols">
+
+        <div class="cat">
+          <h3 class="cat__h">Para compartir <small>6</small></h3>
+          <ul>
+            <li><span>Tequeños <i>8 unidades</i></span><b>8,90 €</b></li>
+            <li><span>Pastelitos <i>Queso, papa con queso, andino, pizza o pollo</i></span><b>3,90 €</b></li>
+            <li><span>Tostones playeros <i>5 uds. Repollo, zanahoria, queso y salsas</i></span><b>7,50 €</b></li>
+            <li><span>Tostones con mechada <i>5 uds.</i></span><b>9,00 €</b></li>
+            <li><span>Tostones mixtos <i>10 uds. Queso, mechada y pollo</i></span><b>11,90 €</b></li>
+            <li><span>Tajadas con queso <i>Plátano maduro y queso blanco</i></span><b>8,00 €</b></li>
+          </ul>
+        </div>
+
+        <div class="cat">
+          <h3 class="cat__h">Platos <small>5</small></h3>
+          <ul>
+            <li><span>Pabellón criollo <i>Arroz, mechada, caraotas, queso, tajada y huevo</i></span><b>12,00 €</b></li>
+            <li><span>Cochino frito <i>Con tostones</i></span><b>12,00 €</b></li>
+            <li><span>Ensalada césar</span><b>8,00 €</b></li>
+            <li><span>Bravas</span><b>6,00 €</b></li>
+            <li><span>Bravioli</span><b>6,00 €</b></li>
+          </ul>
+        </div>
+
+        <div class="cat">
+          <h3 class="cat__h">Cachapas <small>7</small></h3>
+          <ul>
+            <li><span>Con queso de mano</span><b>9,00 €</b></li>
+            <li><span>Con jamón y queso</span><b>9,00 €</b></li>
+            <li><span>De cochino</span><b>11,90 €</b></li>
+            <li><span>Con carne mechada</span><b>11,90 €</b></li>
+            <li><span>Con pollo mechado</span><b>11,90 €</b></li>
+            <li><span>Con reina pepiada</span><b>12,50 €</b></li>
+            <li><span>De pabellón <i>Rellena de caraotas, mechada, tajadas y queso</i></span><b>13,00 €</b></li>
+          </ul>
+        </div>
+
+        <div class="cat">
+          <h3 class="cat__h">Patacones <small>3</small></h3>
+          <ul>
+            <li><span>Carne mechada</span><b>11,90 €</b></li>
+            <li><span>Pollo mechado</span><b>11,90 €</b></li>
+            <li><span>Mixto</span><b>12,50 €</b></li>
+          </ul>
+        </div>
+
+        <div class="cat">
+          <h3 class="cat__h">Empanadas <small>13</small></h3>
+          <ul>
+            <li><span>Carne mechada</span><b>3,90 €</b></li>
+            <li><span>Pollo</span><b>3,90 €</b></li>
+            <li><span>Molida</span><b>3,90 €</b></li>
+            <li><span>Queso</span><b>3,90 €</b></li>
+            <li><span>Jamón y queso</span><b>3,90 €</b></li>
+            <li><span>Cordon bleu</span><b>4,50 €</b></li>
+            <li><span>Pelua <i>Mechada con queso amarillo</i></span><b>4,50 €</b></li>
+            <li><span>Dominó <i>Frijol negro y queso blanco</i></span><b>4,50 €</b></li>
+            <li><span>Tajada con queso</span><b>4,50 €</b></li>
+            <li><span>Cazón</span><b>4,50 €</b></li>
+            <li><span>Pabellón</span><b>5,00 €</b></li>
+            <li><span>Gambas con calamar</span><b>5,00 €</b></li>
+            <li><span>Caraqueña <i>Sajonia, queso amarillo y carne molida</i></span><b>5,00 €</b></li>
+          </ul>
+        </div>
+
+        <div class="cat">
+          <h3 class="cat__h">Burgers y pepitos <small>9</small></h3>
+          <ul>
+            <li><span>Burger de carne, pollo, chuleta o chorizo</span><b>10,50 €</b></li>
+            <li><span>Burger La reina <i>Carne, pollo, cerdo y chorizo</i></span><b>14,50 €</b></li>
+            <li><span>Enrollado mixto</span><b>12,50 €</b></li>
+            <li><span>Pepito de carne o pollo</span><b>20,00 €</b></li>
+            <li><span>Pepito La reina <i>Carne, pollo, cerdo y chorizo</i></span><b>25,00 €</b></li>
+          </ul>
+        </div>
+
+        <div class="cat">
+          <h3 class="cat__h">Bebidas <small>11</small></h3>
+          <ul>
+            <li><span>Papelón con limón</span><b>2,60 €</b></li>
+            <li><span>Maltín</span><b>2,60 €</b></li>
+            <li><span>Zumos naturales <i>Mango, fresa, mora, maracuyá, lulo, tamarindo, piña, guanábana, guayaba</i></span><b>3,50 €</b></li>
+            <li><span>Zumos en leche</span><b>3,90 €</b></li>
+            <li><span>Refrescos y kolita</span><b>3,00 €</b></li>
+            <li><span>Cerveza <i>Tercio, jarra, copa 1906 o Radler</i></span><b>2,90 €</b></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="band">
+    <figure>
+      <img src="assets/img/patacon.jpg" alt="Dos patacones montados con carne mechada, pollo, repollo y salsas">
+      <figcaption><b>Patacones</b>Plátano verde en vez de pan. Desde 11,90 €.</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/img/tajada.jpg" alt="Tajadas de plátano maduro cubiertas de queso blanco rallado">
+      <figcaption><b>Tajadas con queso</b>Dulce y salado a la vez. 8 €.</figcaption>
+    </figure>
+    <figure>
+      <img src="assets/img/burger.jpg" alt="Hamburguesa La reina con carne, pollo, cerdo, chorizo, huevo y queso">
+      <figcaption><b>La reina</b>Carne, pollo, cerdo y chorizo. 14,50 €.</figcaption>
+    </figure>
+  </div>
+
+  <section class="sec sec--q">
+    <div class="wrap">
+      <p class="kicker">Lo que dice la gente</p>
+      <div class="proof">
+        <div><b>4,8</b><span>sobre 5 en Google, con más de 2.300 reseñas</span></div>
+        <div><b>9,0</b><span>sobre 10 en TheFork, con 448 opiniones</span></div>
+        <div><b>15 €</b><span>precio medio por persona en mesa</span></div>
+        <div><b>3</b><span>locales en el sur de Madrid</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="locales">
+    <div class="wrap">
+      <p class="kicker">Dónde estamos</p>
+      <h2 class="sec__h">Tres casas</h2>
+      <div class="locs">
+        <div class="loc">
+          <h3>Leganés</h3>
+          <p>C. de el Sol, 11<br>28911 Leganés, Madrid</p>
+          <p style="margin-top:.6rem"><a href="tel:+34642062198" style="color:var(--caraota);text-decoration:none;border-bottom:1px solid var(--line)">642 06 21 98</a></p>
+        </div>
+        <div class="loc">
+          <h3>Getafe</h3>
+          <p>Segundo local del grupo.</p>
+          <p class="tbc">Dirección por confirmar</p>
+        </div>
+        <div class="loc">
+          <h3>Carabanchel</h3>
+          <p>Tercer local del grupo.</p>
+          <p class="tbc">Dirección por confirmar</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--q" id="info">
+    <div class="wrap">
+      <div class="info">
+        <div>
+          <h3>Reservas</h3>
+          <p><a href="https://www.thefork.es/restaurante/el-venezolano-r808241" target="_blank" rel="noopener">Reservar en TheFork</a><br>o por teléfono al <a href="tel:+34642062198">642 06 21 98</a></p>
+        </div>
+        <div>
+          <h3>Horario</h3>
+          <p>Por confirmar con el restaurante.</p>
+        </div>
+        <div>
+          <h3>En la mesa</h3>
+          <p>Terraza y reservados.<br>Arepas sin gluten.</p>
+        </div>
+        <div>
+          <h3>Síguenos</h3>
+          <p><a href="https://www.instagram.com/elvenezolano24/" target="_blank" rel="noopener">@elvenezolano24</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__in">
+      <small>El Venezolano · C. de el Sol, 11 · 28911 Leganés</small>
+      <nav>
+        <a href="#lexico">El léxico</a>
+        <a href="#carta">La carta</a>
+        <a href="#locales">Locales</a>
+        <a href="https://www.instagram.com/elvenezolano24/" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+    <p class="note">Propuesta de rediseño — no es la web oficial de El Venezolano. Carta, precios, valoraciones y fotografías proceden de su ficha pública en TheFork y Google; el teléfono, de su ficha de Google. Horario y direcciones de Getafe y Carabanchel están sin confirmar. Las explicaciones de los nombres de las arepas son una propuesta editorial y conviene revisarlas con el restaurante antes de publicar.</p>
+  </div>
+</footer>
+
+<nav class="dock" aria-label="Acciones">
+  <a class="is-primary" href="https://www.thefork.es/restaurante/el-venezolano-r808241" target="_blank" rel="noopener"><span>Reservar<small>TheFork</small></span></a>
+  <a href="tel:+34642062198"><span>Llamar<small>642 06 21 98</small></span></a>
+  <a href="https://www.google.com/maps/search/?api=1&amp;query=C.+de+el+Sol+11,+28911+Legan%C3%A9s"  target="_blank" rel="noopener"><span>Cómo llegar<small>Leganés</small></span></a>
+</nav>
+</body>
+</html>
