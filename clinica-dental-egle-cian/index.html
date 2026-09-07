@@ -144,6 +144,18 @@ h3{
 .tel small{font-size:.6875rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.78;}
 .tel b{font-size:1.25rem;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.01em;}
 .tel:hover,.tel:focus-visible{background:transparent;color:#fff;}
+/* En el móvil el enlace tel: abre el marcador. En un ordenador no hace
+   nada, así que ahí el guion lo convierte en «copiar el número» y avisa
+   aquí. Si el guion no corre, el número sigue visible y el enlace tel:
+   sigue siendo válido: no se pierde nada. */
+.tel .copia{
+  display:block;
+  font-size:.6875rem;font-weight:800;letter-spacing:.1em;
+  text-transform:uppercase;
+  height:0;overflow:hidden;opacity:0;
+  transition:opacity .2s ease;
+}
+.tel.copiado .copia{height:auto;opacity:1;}
 .panel-blanco .tel,.panel-cielo .tel{
   background:var(--cian-panel);color:#fff;border-color:var(--cian-panel);
 }
@@ -152,19 +164,27 @@ h3{
   background:transparent;color:var(--cian-texto);
 }
 
-/* ---------- foto a sangre con pie ---------- */
-.escena{margin:0;position:relative;}
-.escena img{width:100%;height:clamp(18rem,52vw,34rem);object-fit:cover;}
-/* las fotos son suyas y vienen cuadradas de redes: hay que decirle
-   al recorte dónde están las caras para que no las siegue */
-.escena--sonrisas img{object-position:center 46%;}
-.escena--equipo img{object-position:center 46%;}
-.escena--madrid img{object-position:center 20%;}
-.escena--recepcion img{object-position:center 55%;}
-.escena figcaption{
-  padding:.85rem var(--pad) 1.1rem;
+/* ---------- galería ----------
+   Las fotos que tienen son de móvil y de su ficha de Google: entre 767
+   y 1600 px. Se muestran contenidas y por debajo de su resolución real,
+   nunca a sangre, para que no se vea el reescalado. */
+.galeria{
+  display:grid;gap:1.25rem;
+  grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));
+  max-width:76rem;
+  margin-top:clamp(1.75rem,4vw,2.75rem);
+}
+.galeria figure{margin:0;}
+.galeria img{
+  width:100%;height:clamp(12rem,20vw,17rem);object-fit:cover;
+  background:var(--cielo);
+}
+.galeria .g-equipo img{object-position:center 46%;}
+.galeria .g-madrid img{object-position:center 22%;}
+.galeria .g-recepcion img{object-position:center 58%;}
+.galeria figcaption{
+  margin-top:.6rem;
   font-size:.8125rem;color:var(--gris);
-  background:var(--blanco);
 }
 
 /* ---------- las tres puertas ---------- */
@@ -332,11 +352,6 @@ h3{
     </ul>
   </section>
 
-  <figure class="escena escena--sonrisas">
-    <img src="assets/img/sonrisas.jpg" alt="Dos pacientes riendo" width="1080" height="745">
-    <figcaption>De su propia campaña: no necesitas filtros para hacer brillar tu sonrisa</figcaption>
-  </figure>
-
   <!-- ============ las tres puertas ============ -->
   <section class="panel panel-blanco" id="empezar">
     <p class="pico" style="color:var(--cian-texto)">Por dónde empezar</p>
@@ -371,8 +386,28 @@ h3{
     </div>
   </section>
 
+  <!-- ============ galería: las dos clínicas por dentro ============ -->
+  <section class="panel panel-cielo" id="pordentro">
+    <p class="pico" style="color:var(--cian-texto)">Por dentro</p>
+    <h2>Las dos, por dentro</h2>
+    <div class="galeria">
+      <figure class="g-equipo">
+        <img src="assets/img/equipo.jpg" alt="Una profesional de la clínica atendiendo a una paciente en el gabinete" width="767" height="767" loading="lazy">
+        <figcaption>En el gabinete, con la prótesis preparada en la bandeja</figcaption>
+      </figure>
+      <figure class="g-recepcion">
+        <img src="assets/img/recepcion.jpg" alt="Recepción de la clínica de Leganés, con el mostrador de piedra y las mamparas de cristal" width="1600" height="800" loading="lazy">
+        <figcaption>Recepción de Leganés, en la calle de la Sagra</figcaption>
+      </figure>
+      <figure class="g-madrid">
+        <img src="assets/img/madrid.jpg" alt="Recibidor de la clínica de Madrid centro, con el mural de la sonrisa sobre la pared turquesa" width="1024" height="1024" loading="lazy">
+        <figcaption>Recibidor de Madrid centro, en Núñez de Arce</figcaption>
+      </figure>
+    </div>
+  </section>
+
   <!-- ============ tira horizontal de tratamientos ============ -->
-  <section class="panel panel-cielo" id="tratamientos">
+  <section class="panel panel-blanco" id="tratamientos">
     <p class="pico" style="color:var(--cian-texto)">Los once</p>
     <h2>Desde la profilaxis hasta la prótesis</h2>
 
@@ -394,13 +429,8 @@ h3{
     </div>
   </section>
 
-  <figure class="escena escena--equipo">
-    <img src="assets/img/equipo.jpg" alt="Una profesional de la clínica atendiendo a una paciente en el gabinete" width="767" height="767">
-    <figcaption>En el gabinete, con una prótesis preparada en la bandeja</figcaption>
-  </figure>
-
   <!-- ============ la revisión ============ -->
-  <section class="panel panel-blanco" id="revision">
+  <section class="panel panel-cielo" id="revision">
     <p class="pico" style="color:var(--cian-texto)">La revisión</p>
     <h2>Venir cuando no duele sale más barato</h2>
     <div class="medida">
@@ -420,11 +450,6 @@ h3{
       <li><a class="tel" href="tel:+34916035123"><small>Madrid centro</small><b>916 03 51 23</b></a></li>
     </ul>
   </section>
-
-  <figure class="escena escena--recepcion">
-    <img src="assets/img/recepcion.jpg" alt="Recepción de la clínica de Leganés, con el mostrador de piedra y las mamparas de cristal" width="1600" height="800" loading="lazy">
-    <figcaption>Recepción de la clínica de Leganés, en la calle de la Sagra</figcaption>
-  </figure>
 
   <!-- ============ urgencias ============ -->
   <section class="panel panel-cian" id="urgencias">
@@ -446,11 +471,6 @@ h3{
       <span>Y mientras tanto, cambia el cepillo cada tres meses. Es su propio consejo y sigue siendo el más rentable.</span>
     </div>
   </section>
-
-  <figure class="escena escena--madrid">
-    <img src="assets/img/madrid.jpg" alt="Recibidor de la clínica de Madrid centro, con el mural de la sonrisa y la pared turquesa" width="1024" height="1024">
-    <figcaption>Recibidor de la clínica de Madrid centro, en la calle Núñez de Arce</figcaption>
-  </figure>
 
   <!-- ============ dónde ============ -->
   <section class="panel panel-blanco" id="donde">
@@ -520,6 +540,88 @@ h3{
   <a href="tel:+34916857673"><small>Leganés</small><span>916 85 76 73</span></a>
   <a href="tel:+34916035123"><small>Madrid centro</small><span>916 03 51 23</span></a>
 </nav>
+
+<script>
+/* Mejora opcional: en un ordenador, pulsar el número lo copia al
+   portapapeles en vez de no hacer nada. En el móvil no se toca nada y
+   el enlace sigue abriendo el marcador. Todo va dentro de try/catch:
+   si algo falla, queda el comportamiento normal del enlace. */
+(function(){
+  try{
+    if (window.matchMedia && window.matchMedia('(hover: none)').matches) return;
+
+    /* Respaldo de toda la vida: un textarea fuera de pantalla y
+       execCommand. Funciona aunque el portapapeles moderno se niegue
+       (contexto no seguro, documento sin foco, permiso denegado). */
+    function copiaClasica(texto){
+      var ta = document.createElement('textarea');
+      ta.value = texto;
+      ta.setAttribute('readonly','');
+      ta.style.position = 'fixed';
+      ta.style.top = '0';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, texto.length);
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch(e){ ok = false; }
+      document.body.removeChild(ta);
+      return ok;
+    }
+
+    function copiar(texto){
+      return new Promise(function(cumple, falla){
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(texto).then(cumple, function(){
+            copiaClasica(texto) ? cumple() : falla();
+          });
+        } else {
+          copiaClasica(texto) ? cumple() : falla();
+        }
+      });
+    }
+
+    /* Último recurso: si el navegador no deja copiar, al menos deja el
+       número seleccionado para que un Ctrl+C lo lleve. Esto funciona
+       siempre, sin permisos. */
+    function seleccionar(nodo){
+      try{
+        var rango = document.createRange();
+        rango.selectNodeContents(nodo);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(rango);
+        return true;
+      }catch(e){ return false; }
+    }
+
+    document.querySelectorAll('a.tel').forEach(function(a){
+      var aviso = document.createElement('span');
+      aviso.className = 'copia';
+      a.appendChild(aviso);
+
+      function avisar(texto){
+        aviso.textContent = texto;
+        a.classList.add('copiado');
+        clearTimeout(a._t);
+        a._t = setTimeout(function(){ a.classList.remove('copiado'); }, 2600);
+      }
+
+      a.addEventListener('click', function(ev){
+        var caja = a.querySelector('b') || a;
+        var numero = caja.textContent.trim();
+        ev.preventDefault();
+        copiar(numero).then(function(){
+          avisar('Número copiado');
+        }).catch(function(){
+          seleccionar(caja);
+          avisar('Pulsa Ctrl+C para copiarlo');
+        });
+      });
+    });
+  }catch(e){ /* sin mejora, el enlace tel: sigue estando */ }
+})();
+</script>
 
 </body>
 </html>
