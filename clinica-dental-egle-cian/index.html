@@ -8,7 +8,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Clínica Dental Egle">
 <meta property="og:description" content="La revision y el presupuesto no te cuestan nada. Leganes y Madrid centro.">
-<meta property="og:image" content="assets/img/sonrisas.jpg">
+<meta property="og:image" content="assets/img/recepcion.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,34 +16,38 @@
 
 <style>
 /* ==========================================================
-   Clínica Dental Egle — dirección «Cian»
-   No es una paleta inventada: es la que ellos ya usan en sus
-   propias piezas de redes. El cian está muestreado de tres
-   tarjetas suyas (#17B2EE, #01AAED, #01A0E0) y el azul pálido
-   de la pared de su clínica de Madrid (#AFDEF3).
-   Sin JavaScript.
+   Clínica Dental Egle — dirección «Cian», esqueleto de carpetas
+   Cada sección es una carpeta que se queda pegada arriba y la
+   siguiente se monta encima, dejando la pestaña de las anteriores
+   asomando. Todo con position:sticky, sin JavaScript: si el
+   navegador no lo soporta, quedan una debajo de otra y se lee igual.
+
+   Paleta tomada de sus propias piezas de redes: el cian de tres
+   tarjetas suyas (#17B2EE, #01AAED, #01A0E0) y el azul pálido de la
+   pared de su clínica de Madrid (#AFDEF3).
    ========================================================== */
 
 :root{
   --blanco:#FFFFFF;
-  --nieve:#F1F8FC;          /* fondo general, blanco azulado */
-  --cielo:#DCEFFA;          /* banda tintada suave */
-  --cielo-fuerte:#AFDEF3;   /* pared de su clínica de Madrid */
-  --cian:#00A8E8;           /* su cian de marca */
-  --cian-panel:#0086C4;     /* panel con texto blanco encima */
-  --cian-texto:#00658F;     /* cian legible sobre blanco */
+  --nieve:#F1F8FC;
+  --cielo:#DCEFFA;
+  --cielo-fuerte:#AFDEF3;
+  --cian:#00A8E8;
+  --cian-panel:#0086C4;
+  --cian-texto:#00658F;
   --tinta:#0D2331;
   --gris:#54697A;
   --linea:#CFE3EF;
 
   --sans:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --pad:clamp(1.25rem,5vw,4.5rem);
+  --pad:clamp(1.25rem,4.5vw,4rem);
+  --pestana:2.75rem;   /* alto de la pestaña de cada carpeta */
   --dock:0rem;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --blanco:#0C1720;
-    --nieve:#0A141C;
+    --nieve:#071016;
     --cielo:#122634;
     --cielo-fuerte:#1B3D52;
     --cian:#35BDF2;
@@ -56,7 +60,7 @@
 }
 :root[data-theme="dark"]{
   --blanco:#0C1720;
-  --nieve:#0A141C;
+  --nieve:#071016;
   --cielo:#122634;
   --cielo-fuerte:#1B3D52;
   --cian:#35BDF2;
@@ -87,248 +91,245 @@ a{color:inherit;}
 .salto:focus{left:.5rem;top:.5rem;}
 :where(a,button):focus-visible{outline:3px solid var(--cian);outline-offset:3px;}
 
-/* ---------- tipografía de titulares: caps compactas,
-     que es como ellos escriben en sus propias piezas ---------- */
-.grande,h1,h2{
-  font-weight:900;
-  text-transform:uppercase;
-  letter-spacing:-.018em;
-  line-height:.95;
-  margin:0;
+/* ================= las carpetas ================= */
+.archivador{position:relative;}
+
+.carpeta{
+  position:sticky;
+  top:calc(var(--i) * var(--pestana));
+  z-index:calc(var(--i) + 1);
+  min-height:calc(100svh - var(--i) * var(--pestana));
+  display:flex;flex-direction:column;
+  border-radius:1.25rem 1.25rem 0 0;
+  box-shadow:0 -20px 45px -26px rgba(13,35,49,.42);
+  overflow:hidden;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .carpeta,
+  :root:not([data-theme="light"]) .pie{box-shadow:0 -20px 45px -22px rgba(0,0,0,.75);}
+}
+:root[data-theme="dark"] .carpeta,
+:root[data-theme="dark"] .pie{box-shadow:0 -20px 45px -22px rgba(0,0,0,.75);}
+
+/* la pestaña: lo único que se ve de las carpetas ya apiladas */
+.pestana{
+  flex:none;
+  height:var(--pestana);
+  display:flex;align-items:center;gap:.7rem;
+  padding:0 var(--pad);
+  font-size:.6875rem;font-weight:800;
+  letter-spacing:.16em;text-transform:uppercase;
+  border-bottom:1px solid var(--linea);
+}
+.pestana .num{opacity:.55;font-variant-numeric:tabular-nums;}
+.pestana .punto{
+  width:.5rem;height:.5rem;flex:none;
+  background:var(--cian);
+  transform:rotate(45deg);
+}
+.cuerpo{
+  flex:1;
+  padding:clamp(1.75rem,4.5vw,4rem) var(--pad) clamp(2.25rem,5vw,4.5rem);
+  display:flex;flex-direction:column;justify-content:center;
+}
+
+/* colores de cada carpeta */
+.c-cian{background:var(--cian-panel);color:#fff;}
+.c-cian .pestana{border-bottom-color:rgba(255,255,255,.28);color:rgba(255,255,255,.9);}
+.c-cian .pestana .punto{background:#fff;}
+.c-blanco{background:var(--blanco);}
+.c-blanco .pestana{color:var(--cian-texto);}
+.c-cielo{background:var(--cielo);}
+.c-cielo .pestana{color:var(--cian-texto);border-bottom-color:var(--cielo-fuerte);}
+
+/* ================= tipografía ================= */
+h1,h2{
+  font-weight:900;text-transform:uppercase;
+  letter-spacing:-.018em;line-height:.95;margin:0;
   text-wrap:balance;
 }
-h1{font-size:clamp(2.5rem,7.5vw,5.75rem);}
-h2{font-size:clamp(1.9rem,4.6vw,3.5rem);}
-h3{
-  font-size:clamp(1.15rem,1.9vw,1.4rem);
-  font-weight:800;margin:0;line-height:1.15;
-  letter-spacing:-.01em;
+h1{font-size:clamp(2.3rem,6.6vw,5rem);}
+h2{font-size:clamp(1.8rem,4.2vw,3.15rem);}
+h3{font-size:clamp(1.1rem,1.8vw,1.35rem);font-weight:800;margin:0;line-height:1.15;letter-spacing:-.01em;}
+.entrada{
+  font-size:clamp(1rem,.97rem + .35vw,1.2rem);
+  max-width:38rem;margin:1.25rem 0 0;color:var(--gris);
 }
-.pico{
-  font-size:.75rem;font-weight:800;
-  letter-spacing:.17em;text-transform:uppercase;
-  margin:0 0 1.25rem;
-}
+.c-cian .entrada{color:rgba(255,255,255,.9);}
+.medida{max-width:40rem;}
+.medida p{color:var(--gris);margin:1rem 0 0;}
+.c-cian .medida p{color:rgba(255,255,255,.92);}
+.nota{margin:1.4rem 0 0;font-size:.8125rem;color:var(--gris);}
+.c-cian .nota{color:rgba(255,255,255,.8);}
 
-/* ---------- panel a pantalla completa ---------- */
-.panel{padding:clamp(3rem,8vw,7rem) var(--pad);}
-.panel-cian{background:var(--cian-panel);color:#fff;}
-.panel-cian .pico{color:rgba(255,255,255,.82);}
-.panel-blanco{background:var(--blanco);}
-.panel-cielo{background:var(--cielo);}
-
-/* ---------- portada ---------- */
-.portada{
-  min-height:min(92svh,54rem);
-  display:flex;flex-direction:column;justify-content:center;
-  gap:clamp(1.75rem,4vw,3rem);
-}
-.portada .marca{width:min(15rem,52vw);height:auto;}
-.portada h1{max-width:16ch;}
-.portada .apoyo{
-  font-size:clamp(1.05rem,1rem + .4vw,1.3rem);
-  max-width:38rem;color:rgba(255,255,255,.9);
-  margin:0;
-}
-
-/* ---------- botones de llamada ---------- */
-.llamadas{display:flex;flex-wrap:wrap;gap:.75rem;margin:0;padding:0;list-style:none;}
+/* ================= botones de teléfono ================= */
+.llamadas{display:flex;flex-wrap:wrap;gap:.7rem;margin:1.9rem 0 0;padding:0;list-style:none;}
 .tel{
   display:flex;flex-direction:column;gap:.05rem;
-  padding:.85rem 1.5rem;
-  text-decoration:none;
+  padding:.8rem 1.4rem;text-decoration:none;
   background:#fff;color:var(--cian-texto);
   border:2px solid #fff;
   transition:background .22s ease,color .22s ease;
 }
 .tel small{font-size:.6875rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.78;}
-.tel b{font-size:1.25rem;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.01em;}
+.tel b{font-size:1.2rem;font-weight:800;font-variant-numeric:tabular-nums;}
 .tel:hover,.tel:focus-visible{background:transparent;color:#fff;}
+.c-blanco .tel,.c-cielo .tel{background:var(--cian-panel);color:#fff;border-color:var(--cian-panel);}
+.c-blanco .tel:hover,.c-blanco .tel:focus-visible,
+.c-cielo .tel:hover,.c-cielo .tel:focus-visible{background:transparent;color:var(--cian-texto);}
 /* En el móvil el enlace tel: abre el marcador. En un ordenador no hace
-   nada, así que ahí el guion lo convierte en «copiar el número» y avisa
-   aquí. Si el guion no corre, el número sigue visible y el enlace tel:
-   sigue siendo válido: no se pierde nada. */
+   nada, así que ahí el guion lo convierte en «copiar el número». */
 .tel .copia{
-  display:block;
-  font-size:.6875rem;font-weight:800;letter-spacing:.1em;
-  text-transform:uppercase;
-  height:0;overflow:hidden;opacity:0;
+  display:block;font-size:.6875rem;font-weight:800;letter-spacing:.1em;
+  text-transform:uppercase;height:0;overflow:hidden;opacity:0;
   transition:opacity .2s ease;
 }
 .tel.copiado .copia{height:auto;opacity:1;}
-.panel-blanco .tel,.panel-cielo .tel{
-  background:var(--cian-panel);color:#fff;border-color:var(--cian-panel);
-}
-.panel-blanco .tel:hover,.panel-blanco .tel:focus-visible,
-.panel-cielo .tel:hover,.panel-cielo .tel:focus-visible{
-  background:transparent;color:var(--cian-texto);
-}
 
-/* ---------- galería ----------
-   Las fotos que tienen son de móvil y de su ficha de Google: entre 767
-   y 1600 px. Se muestran contenidas y por debajo de su resolución real,
-   nunca a sangre, para que no se vea el reescalado. */
-.galeria{
-  display:grid;gap:1.25rem;
-  grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));
-  max-width:76rem;
-  margin-top:clamp(1.75rem,4vw,2.75rem);
-}
-.galeria figure{margin:0;}
-.galeria img{
-  width:100%;height:clamp(12rem,20vw,17rem);object-fit:cover;
-  background:var(--cielo);
-}
-.galeria .g-equipo img{object-position:center 46%;}
-.galeria .g-madrid img{object-position:center 22%;}
-.galeria .g-recepcion img{object-position:center 58%;}
-.galeria figcaption{
-  margin-top:.6rem;
-  font-size:.8125rem;color:var(--gris);
-}
-
-/* ---------- las tres puertas ---------- */
+/* ================= las tres puertas ================= */
 .puertas{
   display:grid;gap:1px;
-  grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));
-  background:var(--linea);
-  border:1px solid var(--linea);
-  margin-top:clamp(1.75rem,4vw,2.75rem);
+  grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));
+  background:var(--linea);border:1px solid var(--linea);
+  margin-top:1.9rem;
 }
 .puerta{
-  display:flex;flex-direction:column;gap:.6rem;
-  padding:clamp(1.5rem,3vw,2.25rem);
-  background:var(--blanco);
-  text-decoration:none;
+  display:flex;flex-direction:column;gap:.45rem;
+  padding:clamp(1.1rem,2.4vw,1.9rem);
+  background:var(--blanco);text-decoration:none;
   transition:background .25s ease,color .25s ease;
 }
-.puerta .marca-num{
-  font-size:.6875rem;font-weight:800;letter-spacing:.16em;
-  color:var(--cian-texto);text-transform:uppercase;
-  transition:color .25s ease;
-}
-.puerta p{margin:0;color:var(--gris);font-size:.9375rem;transition:color .25s ease;}
-.puerta .flecha{
-  margin-top:auto;padding-top:1.1rem;
-  font-weight:800;font-size:.875rem;
-  color:var(--cian-texto);
-  transition:color .25s ease,transform .25s ease;
-}
-/* inversión de bloque entera: la puerta se vuelve cian */
+.puerta .marca-num{font-size:.6875rem;font-weight:800;letter-spacing:.16em;color:var(--cian-texto);transition:color .25s ease;}
+.puerta p{margin:0;color:var(--gris);font-size:.9rem;transition:color .25s ease;}
+.puerta .flecha{margin-top:auto;padding-top:.9rem;font-weight:800;font-size:.85rem;color:var(--cian-texto);transition:color .25s ease,transform .25s ease;}
 .puerta:hover,.puerta:focus-visible{background:var(--cian-panel);color:#fff;}
 .puerta:hover .marca-num,.puerta:focus-visible .marca-num,
 .puerta:hover p,.puerta:focus-visible p,
 .puerta:hover .flecha,.puerta:focus-visible .flecha{color:#fff;}
 .puerta:hover .flecha,.puerta:focus-visible .flecha{transform:translateX(.35rem);}
 
-/* ---------- tira horizontal de tratamientos ---------- */
-.tira-marco{margin-top:clamp(1.75rem,4vw,2.5rem);}
+/* ================= tira de tratamientos ================= */
 .tira{
-  display:grid;
-  grid-auto-flow:column;
-  grid-auto-columns:minmax(15rem,17rem);
-  gap:1px;
-  overflow-x:auto;
-  scroll-snap-type:x proximity;
-  padding:0;margin:0;list-style:none;
-  background:var(--linea);
-  border:1px solid var(--linea);
-  overscroll-behavior-x:contain;
+  display:grid;grid-auto-flow:column;
+  grid-auto-columns:minmax(14rem,16rem);
+  gap:1px;overflow-x:auto;
+  scroll-snap-type:x proximity;overscroll-behavior-x:contain;
+  padding:0;margin:1.9rem 0 0;list-style:none;
+  background:var(--linea);border:1px solid var(--linea);
 }
 .tira li{scroll-snap-align:start;}
 .ficha{
-  display:flex;flex-direction:column;gap:.5rem;
-  height:100%;
-  padding:1.35rem 1.35rem 1.6rem;
-  background:var(--blanco);
-  text-decoration:none;
+  display:flex;flex-direction:column;gap:.4rem;height:100%;
+  padding:1.15rem 1.2rem 1.4rem;
+  background:var(--blanco);text-decoration:none;
   transition:background .25s ease,color .25s ease;
 }
-.ficha .n{
-  font-size:2.25rem;font-weight:900;line-height:1;
-  color:var(--cielo-fuerte);
-  font-variant-numeric:tabular-nums;
-  transition:color .25s ease;
-}
-.ficha p{margin:0;font-size:.875rem;color:var(--gris);transition:color .25s ease;}
+.ficha .n{font-size:2rem;font-weight:900;line-height:1;color:var(--cielo-fuerte);font-variant-numeric:tabular-nums;transition:color .25s ease;}
+.ficha p{margin:0;font-size:.85rem;color:var(--gris);transition:color .25s ease;}
 .ficha:hover,.ficha:focus-visible{background:var(--cian-panel);color:#fff;}
 .ficha:hover .n,.ficha:focus-visible .n,
 .ficha:hover p,.ficha:focus-visible p{color:#fff;}
-.pista{
-  margin:.85rem 0 0;font-size:.8125rem;color:var(--gris);
-}
 
-/* ---------- las dos clínicas ---------- */
-.sedes{
-  display:grid;gap:1px;
-  grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));
-  background:var(--linea);
-  border:1px solid var(--linea);
-  margin-top:clamp(1.75rem,4vw,2.75rem);
+/* ================= galería =================
+   Sus fotos van de 767 a 1600 px: se muestran contenidas y siempre
+   por debajo de su resolución real, nunca a sangre. */
+.galeria{
+  display:grid;gap:1rem;
+  grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));
+  max-width:70rem;margin-top:1.9rem;
 }
-.sede{
-  background:var(--blanco);
-  padding:clamp(1.5rem,3vw,2.5rem);
-  display:flex;flex-direction:column;gap:.55rem;
-}
-.sede h3{font-size:clamp(1.4rem,2.6vw,1.9rem);text-transform:uppercase;}
-.sede address{font-style:normal;color:var(--gris);}
-.metro{
-  display:inline-flex;align-items:center;gap:.45rem;
-  font-size:.8125rem;font-weight:600;color:var(--cian-texto);
-}
-.rombo{
-  width:.85rem;height:.85rem;
-  background:var(--cian);
-  transform:rotate(45deg);
-  flex:none;
-}
-.sede .tel{align-self:flex-start;margin-top:.9rem;}
+.galeria figure{margin:0;}
+.galeria img{width:100%;height:clamp(9rem,17vw,14rem);object-fit:cover;background:var(--cielo);}
+.g-equipo img{object-position:center 46%;}
+.g-madrid img{object-position:center 22%;}
+.g-recepcion img{object-position:center 58%;}
+.galeria figcaption{margin-top:.5rem;font-size:.78125rem;color:var(--gris);}
 
-/* ---------- texto corrido ---------- */
-.medida{max-width:40rem;}
-.medida p{color:var(--gris);}
-.medida p:first-of-type{color:var(--tinta);font-size:1.125rem;}
-.panel-cian .medida p,.panel-cian .medida p:first-of-type{color:rgba(255,255,255,.92);}
-
-/* ---------- dato suelto ---------- */
+/* ================= dato suelto ================= */
 .dato{
-  display:flex;flex-wrap:wrap;align-items:baseline;gap:.75rem 1.5rem;
-  margin-top:clamp(1.5rem,3vw,2.25rem);
-  padding-top:1.5rem;
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.6rem 1.4rem;
+  margin-top:1.75rem;padding-top:1.4rem;
   border-top:2px solid rgba(255,255,255,.35);
 }
-.dato b{font-size:clamp(2.5rem,6vw,4rem);font-weight:900;line-height:.9;}
-.dato span{font-weight:600;max-width:22rem;}
+.dato b{font-size:clamp(2.1rem,5vw,3.4rem);font-weight:900;line-height:.9;}
+.dato span{font-weight:600;max-width:24rem;}
 
-/* ---------- pie ---------- */
-.pie{
-  background:var(--cian-panel);color:#fff;
-  padding:clamp(2.5rem,5vw,4rem) var(--pad);
-  display:flex;flex-wrap:wrap;gap:1.75rem 3rem;
-  align-items:end;justify-content:space-between;
+/* ================= las dos clínicas ================= */
+.sedes{
+  display:grid;gap:1px;
+  grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));
+  background:var(--linea);border:1px solid var(--linea);
+  margin-top:1.9rem;
 }
-.pie img{width:9rem;height:auto;}
+.sede{background:var(--blanco);padding:clamp(1.2rem,2.6vw,2rem);display:flex;flex-direction:column;gap:.45rem;}
+.sede h3{font-size:clamp(1.25rem,2.2vw,1.7rem);text-transform:uppercase;}
+.sede address{font-style:normal;color:var(--gris);font-size:.9rem;}
+.sede .apunte{margin:.35rem 0 0;font-size:.85rem;color:var(--gris);}
+.metro{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:600;color:var(--cian-texto);}
+.rombo{width:.8rem;height:.8rem;background:var(--cian);transform:rotate(45deg);flex:none;}
+.sede .tel{align-self:flex-start;margin-top:.8rem;}
+
+/* ================= pie ================= */
+.pie{
+  position:relative;z-index:50;
+  background:var(--cian-panel);color:#fff;
+  padding:clamp(2.25rem,5vw,3.75rem) var(--pad);
+  display:flex;flex-wrap:wrap;gap:1.5rem 3rem;
+  align-items:end;justify-content:space-between;
+  border-radius:1.25rem 1.25rem 0 0;
+  box-shadow:0 -20px 45px -26px rgba(13,35,49,.42);
+}
+.pie img{width:8.5rem;height:auto;}
 .pie p{margin:0;font-size:.8125rem;color:rgba(255,255,255,.85);max-width:26rem;}
 
-/* ---------- barra inferior en móvil ---------- */
+/* ================= barra inferior en móvil ================= */
 .barra{display:none;}
-@media (max-width:720px){
-  :root{--dock:4.5rem;}
+
+@media (max-width:760px){
+  :root{--pestana:2.35rem;--dock:4.35rem;}
   body{padding-bottom:var(--dock);}
+  .cuerpo{justify-content:flex-start;}
+  /* la galería pasa a tira deslizable para que la carpeta no crezca
+     más alto que la pantalla y se quede contenido fuera de alcance */
+  .galeria{
+    display:grid;grid-auto-flow:column;grid-auto-columns:70%;
+    gap:.75rem;overflow-x:auto;scroll-snap-type:x proximity;
+    overscroll-behavior-x:contain;
+  }
+  .galeria figure{scroll-snap-align:start;}
+  .galeria img{height:9.5rem;}
+  .llamadas{gap:.5rem;}
+  .tel{padding:.7rem 1.1rem;}
+
+  /* Igual que la galería: las puertas y las sedes pasan a tira
+     deslizable. Apiladas en vertical hacían la carpeta más alta que la
+     pantalla, y al quedarse pegada arriba su parte de abajo no se podía
+     alcanzar. */
+  .puertas,.sedes{
+    display:grid;grid-auto-flow:column;grid-auto-columns:84%;
+    gap:1px;overflow-x:auto;
+    scroll-snap-type:x proximity;overscroll-behavior-x:contain;
+  }
+  .puerta,.sede{scroll-snap-align:start;}
+  .cuerpo{padding-top:1.35rem;padding-bottom:1.6rem;}
+  .entrada{margin-top:.9rem;}
+  .puertas,.sedes,.tira,.galeria,.llamadas{margin-top:1.35rem;}
+
   .barra{
     display:grid;grid-template-columns:1fr 1fr;
-    position:fixed;left:0;right:0;bottom:0;z-index:20;
+    position:fixed;left:0;right:0;bottom:0;z-index:60;
     background:var(--cian-panel);
   }
-  .barra a{
-    padding:.7rem .5rem calc(.7rem + env(safe-area-inset-bottom));
-    text-align:center;text-decoration:none;color:#fff;line-height:1.2;
-  }
+  .barra a{padding:.65rem .5rem calc(.65rem + env(safe-area-inset-bottom));text-align:center;text-decoration:none;color:#fff;line-height:1.2;}
   .barra a + a{border-left:1px solid rgba(255,255,255,.3);}
   .barra small{display:block;font-size:.625rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.8;}
-  .barra span{display:block;font-size:.9375rem;font-weight:800;font-variant-numeric:tabular-nums;}
-  .escena img{height:15rem;}
+  .barra span{display:block;font-size:.9rem;font-weight:800;font-variant-numeric:tabular-nums;}
+}
+
+/* Pantallas bajas: si no cabe una carpeta entera, se desmonta el
+   apilado y quedan una detrás de otra. Antes leerlo que el efecto. */
+@media (max-height:620px){
+  .carpeta{position:static;min-height:0;}
 }
 </style>
 </head>
@@ -336,82 +337,64 @@ h3{
 
 <a class="salto" href="#contenido">Saltar al contenido</a>
 
-<main id="contenido">
+<main class="archivador" id="contenido">
 
-  <!-- ============ portada ============ -->
-  <section class="panel panel-cian portada">
-    <img class="marca" src="assets/img/logo-blanco.png" alt="Clínica Dental Egle" width="350" height="185">
-    <h1>La revisión y el presupuesto no te cuestan nada</h1>
-    <p class="apoyo">
-      Dos clínicas, una en Leganés y otra en pleno centro de Madrid. Llama,
-      te vemos, y te decimos qué necesitas antes de que decidas nada.
-    </p>
-    <ul class="llamadas">
-      <li><a class="tel" href="tel:+34916857673"><small>Leganés</small><b>916 85 76 73</b></a></li>
-      <li><a class="tel" href="tel:+34916035123"><small>Madrid centro</small><b>916 03 51 23</b></a></li>
-    </ul>
-  </section>
-
-  <!-- ============ las tres puertas ============ -->
-  <section class="panel panel-blanco" id="empezar">
-    <p class="pico" style="color:var(--cian-texto)">Por dónde empezar</p>
-    <h2>No hace falta que sepas cómo se llama</h2>
-    <div class="medida">
-      <p>
-        Nadie llega a una clínica pidiendo una profilaxis. Se llega porque
-        algo duele, porque algo no gusta al mirarse, o porque toca revisión.
-        Elige por ahí y ya lo ponemos nosotros en nombre técnico.
+  <!-- ================= 01 ================= -->
+  <section class="carpeta c-cian" style="--i:0" id="inicio">
+    <p class="pestana"><span class="punto" aria-hidden="true"></span><span class="num">01</span> Clínica Dental Egle</p>
+    <div class="cuerpo">
+      <img src="assets/img/logo-blanco.png" alt="Clínica Dental Egle" width="350" height="185" style="width:min(14rem,50vw);height:auto;margin-bottom:1.6rem">
+      <h1>La revisión y el presupuesto no te cuestan nada</h1>
+      <p class="entrada">
+        Dos clínicas, una en Leganés y otra en pleno centro de Madrid. Llama,
+        te vemos, y te decimos qué necesitas antes de que decidas nada.
       </p>
-    </div>
-
-    <div class="puertas">
-      <a class="puerta" href="#urgencias">
-        <span class="marca-num">01</span>
-        <h3>Me duele</h3>
-        <p>Urgencias. Llámanos dentro del horario de atención y te atendemos en la clínica a la mayor brevedad.</p>
-        <span class="flecha">Ir a urgencias →</span>
-      </a>
-      <a class="puerta" href="#tratamientos">
-        <span class="marca-num">02</span>
-        <h3>No me gusta cómo se ve</h3>
-        <p>Estética dental, blanqueamiento con sistema Philips Zoom, ortodoncia y prótesis. La primera consulta no cuesta nada.</p>
-        <span class="flecha">Ver tratamientos →</span>
-      </a>
-      <a class="puerta" href="#revision">
-        <span class="marca-num">03</span>
-        <h3>Vengo a revisión</h3>
-        <p>Odontología general y limpieza. Cada seis meses, aunque no duela nada: es cuando sale más barato.</p>
-        <span class="flecha">Cómo funciona →</span>
-      </a>
+      <ul class="llamadas">
+        <li><a class="tel" href="tel:+34916857673"><small>Leganés</small><b>916 85 76 73</b></a></li>
+        <li><a class="tel" href="tel:+34916035123"><small>Madrid centro</small><b>916 03 51 23</b></a></li>
+      </ul>
+      <p class="nota">Lunes a viernes, de 10:00 a 14:30 y de 16:00 a 20:00.</p>
     </div>
   </section>
 
-  <!-- ============ galería: las dos clínicas por dentro ============ -->
-  <section class="panel panel-cielo" id="pordentro">
-    <p class="pico" style="color:var(--cian-texto)">Por dentro</p>
-    <h2>Las dos, por dentro</h2>
-    <div class="galeria">
-      <figure class="g-equipo">
-        <img src="assets/img/equipo.jpg" alt="Una profesional de la clínica atendiendo a una paciente en el gabinete" width="767" height="767" loading="lazy">
-        <figcaption>En el gabinete, con la prótesis preparada en la bandeja</figcaption>
-      </figure>
-      <figure class="g-recepcion">
-        <img src="assets/img/recepcion.jpg" alt="Recepción de la clínica de Leganés, con el mostrador de piedra y las mamparas de cristal" width="1600" height="800" loading="lazy">
-        <figcaption>Recepción de Leganés, en la calle de la Sagra</figcaption>
-      </figure>
-      <figure class="g-madrid">
-        <img src="assets/img/madrid.jpg" alt="Recibidor de la clínica de Madrid centro, con el mural de la sonrisa sobre la pared turquesa" width="1024" height="1024" loading="lazy">
-        <figcaption>Recibidor de Madrid centro, en Núñez de Arce</figcaption>
-      </figure>
+  <!-- ================= 02 ================= -->
+  <section class="carpeta c-blanco" style="--i:1" id="empezar">
+    <p class="pestana"><span class="punto" aria-hidden="true"></span><span class="num">02</span> Por dónde empezar</p>
+    <div class="cuerpo">
+      <h2>No hace falta que sepas cómo se llama</h2>
+      <p class="entrada">
+        Nadie llega a una clínica pidiendo una profilaxis. Se llega porque algo
+        duele, porque algo no gusta al mirarse, o porque toca revisión.
+      </p>
+      <div class="puertas">
+        <a class="puerta" href="#urgencias">
+          <span class="marca-num">01</span>
+          <h3>Me duele</h3>
+          <p>Urgencias. Llámanos dentro del horario de atención y te atendemos en la clínica a la mayor brevedad.</p>
+          <span class="flecha">Ir a urgencias →</span>
+        </a>
+        <a class="puerta" href="#tratamientos">
+          <span class="marca-num">02</span>
+          <h3>No me gusta cómo se ve</h3>
+          <p>Estética, blanqueamiento con Philips Zoom, ortodoncia y prótesis. La primera consulta no cuesta nada.</p>
+          <span class="flecha">Ver tratamientos →</span>
+        </a>
+        <a class="puerta" href="#revision">
+          <span class="marca-num">03</span>
+          <h3>Vengo a revisión</h3>
+          <p>Odontología general y limpieza. Cada seis meses, aunque no duela nada: es cuando sale más barato.</p>
+          <span class="flecha">Cómo funciona →</span>
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- ============ tira horizontal de tratamientos ============ -->
-  <section class="panel panel-blanco" id="tratamientos">
-    <p class="pico" style="color:var(--cian-texto)">Los once</p>
-    <h2>Desde la profilaxis hasta la prótesis</h2>
-
-    <div class="tira-marco">
+  <!-- ================= 03 ================= -->
+  <section class="carpeta c-cielo" style="--i:2" id="tratamientos">
+    <p class="pestana"><span class="punto" aria-hidden="true"></span><span class="num">03</span> Los once tratamientos</p>
+    <div class="cuerpo">
+      <h2>Desde la profilaxis hasta la prótesis</h2>
+      <p class="entrada">Desliza la tira para verlos todos.</p>
       <ul class="tira">
         <li><a class="ficha" href="tel:+34916857673"><span class="n">01</span><h3>Odontología general</h3><p>La caries, a tiempo, antes de que llegue a destruir la pieza</p></a></li>
         <li><a class="ficha" href="tel:+34916857673"><span class="n">02</span><h3>Implantes</h3><p>Raíces de titanio puro que sostienen el diente nuevo sin tallar los sanos de al lado</p></a></li>
@@ -425,116 +408,108 @@ h3{
         <li><a class="ficha" href="tel:+34916857673"><span class="n">10</span><h3>Profilaxis</h3><p>La limpieza, lo más eficaz que existe para no tener que hacer nada más</p></a></li>
         <li><a class="ficha" href="#urgencias"><span class="n">11</span><h3>Urgencias</h3><p>Si duele hoy, se mira hoy, dentro del horario de atención</p></a></li>
       </ul>
-      <p class="pista">Desliza la tira para verlos todos →</p>
     </div>
   </section>
 
-  <!-- ============ la revisión ============ -->
-  <section class="panel panel-cielo" id="revision">
-    <p class="pico" style="color:var(--cian-texto)">La revisión</p>
-    <h2>Venir cuando no duele sale más barato</h2>
-    <div class="medida">
-      <p>
-        Si tus dientes están en condiciones normales y los cuidas de forma
-        responsable, con un control preventivo cada seis meses basta. Si el
-        cuadro es más complicado, mejor que lo veamos antes.
-      </p>
-      <p>
-        La revisión y el presupuesto no tienen coste, así que saber en qué
-        situación estás no te compromete a nada. De cada consulta sales
-        sabiendo qué hay, qué cuesta y cuánto puede esperar.
-      </p>
-    </div>
-    <ul class="llamadas" style="margin-top:2rem">
-      <li><a class="tel" href="tel:+34916857673"><small>Leganés</small><b>916 85 76 73</b></a></li>
-      <li><a class="tel" href="tel:+34916035123"><small>Madrid centro</small><b>916 03 51 23</b></a></li>
-    </ul>
-  </section>
-
-  <!-- ============ urgencias ============ -->
-  <section class="panel panel-cian" id="urgencias">
-    <p class="pico">Urgencias</p>
-    <h2>Si duele hoy, se mira hoy</h2>
-    <div class="medida">
-      <p>
-        Llámanos dentro del horario de atención telefónica y te atendemos en
-        la clínica a la mayor brevedad posible. No hace falta que seas
-        paciente nuestro.
-      </p>
-    </div>
-    <ul class="llamadas" style="margin-top:2rem">
-      <li><a class="tel" href="tel:+34916857673"><small>Leganés</small><b>916 85 76 73</b></a></li>
-      <li><a class="tel" href="tel:+34916035123"><small>Madrid centro</small><b>916 03 51 23</b></a></li>
-    </ul>
-    <div class="dato">
-      <b>3M</b>
-      <span>Y mientras tanto, cambia el cepillo cada tres meses. Es su propio consejo y sigue siendo el más rentable.</span>
-    </div>
-  </section>
-
-  <!-- ============ dónde ============ -->
-  <section class="panel panel-blanco" id="donde">
-    <p class="pico" style="color:var(--cian-texto)">Dónde estamos</p>
-    <h2>Una en Leganés y otra en Sol</h2>
-
-    <div class="sedes">
-      <div class="sede">
-        <h3>Leganés</h3>
-        <address>
-          Calle de la Sagra 21-23<br>
-          28915 Leganés, Madrid
-        </address>
-        <span class="metro"><span class="rombo" aria-hidden="true"></span> Metro Julián Besteiro</span>
-        <a class="tel" href="tel:+34916857673"><small>Llamar</small><b>916 85 76 73</b></a>
-      </div>
-      <div class="sede">
-        <h3>Madrid centro</h3>
-        <address>
-          Calle Núñez de Arce 10<br>
-          28012 Madrid
-        </address>
-        <span class="metro"><span class="rombo" aria-hidden="true"></span> Metro Sol</span>
-        <a class="tel" href="tel:+34916035123"><small>Llamar</small><b>916 03 51 23</b></a>
+  <!-- ================= 04 ================= -->
+  <section class="carpeta c-blanco" style="--i:3" id="pordentro">
+    <p class="pestana"><span class="punto" aria-hidden="true"></span><span class="num">04</span> Por dentro</p>
+    <div class="cuerpo">
+      <h2>Las dos, por dentro</h2>
+      <div class="galeria">
+        <figure class="g-equipo">
+          <img src="assets/img/equipo.jpg" alt="Una profesional de la clínica atendiendo a una paciente en el gabinete" width="767" height="767" loading="lazy">
+          <figcaption>En el gabinete, con la prótesis preparada en la bandeja</figcaption>
+        </figure>
+        <figure class="g-recepcion">
+          <img src="assets/img/recepcion.jpg" alt="Recepción de la clínica de Leganés, con el mostrador de piedra y las mamparas de cristal" width="1600" height="800" loading="lazy">
+          <figcaption>Recepción de Leganés, en la calle de la Sagra</figcaption>
+        </figure>
+        <figure class="g-madrid">
+          <img src="assets/img/madrid.jpg" alt="Recibidor de la clínica de Madrid centro, con el mural de la sonrisa sobre la pared turquesa" width="1024" height="1024" loading="lazy">
+          <figcaption>Recibidor de Madrid centro, en Núñez de Arce</figcaption>
+        </figure>
       </div>
     </div>
-
-    <p class="pista" style="margin-top:1.5rem">
-      Lunes a viernes, de 10:00 a 14:30 y de 16:00 a 20:00.
-    </p>
   </section>
 
-  <!-- ============ turismo dental ============ -->
-  <section class="panel panel-cielo" id="turismo">
-    <p class="pico" style="color:var(--cian-texto)">Vienes de fuera</p>
-    <h2>La clínica de Sol está a dos calles de Santa Ana</h2>
-    <div class="medida">
-      <p>
-        Tratamos a bastantes pacientes que vienen de fuera de España, y por eso
-        la consulta del centro está donde está: a un paseo de la Puerta del Sol
-        y del Barrio de las Letras.
-      </p>
-      <p>
-        Con un tratamiento de estética suele bastar un solo viaje. Si son
-        implantes o una rehabilitación completa, harán falta varias visitas,
-        porque el hueso necesita su tiempo para integrar el implante. Para
-        planificarlo hace falta una ortopantomografía y unas fotos de tu
-        sonrisa; llámanos y te decimos cómo hacérnoslas llegar.
-      </p>
+  <!-- ================= 05 ================= -->
+  <section class="carpeta c-cielo" style="--i:4" id="revision">
+    <p class="pestana"><span class="punto" aria-hidden="true"></span><span class="num">05</span> La revisión</p>
+    <div class="cuerpo">
+      <h2>Venir cuando no duele sale más barato</h2>
+      <div class="medida">
+        <p>
+          Si tus dientes están en condiciones normales y los cuidas de forma
+          responsable, con un control preventivo cada seis meses basta. Si el
+          cuadro es más complicado, mejor que lo veamos antes.
+        </p>
+        <p>
+          La revisión y el presupuesto no tienen coste, así que saber en qué
+          situación estás no te compromete a nada. De cada consulta sales
+          sabiendo qué hay, qué cuesta y cuánto puede esperar.
+        </p>
+      </div>
+      <ul class="llamadas">
+        <li><a class="tel" href="tel:+34916857673"><small>Leganés</small><b>916 85 76 73</b></a></li>
+        <li><a class="tel" href="tel:+34916035123"><small>Madrid centro</small><b>916 03 51 23</b></a></li>
+      </ul>
     </div>
-    <ul class="llamadas" style="margin-top:2rem">
-      <li><a class="tel" href="tel:+34916035123"><small>Madrid centro</small><b>+34 916 03 51 23</b></a></li>
-    </ul>
   </section>
 
-  <footer class="pie">
-    <img src="assets/img/logo-blanco.png" alt="" width="350" height="185" loading="lazy">
-    <p>
-      Clínica Dental Egle S.L. · Calle de la Sagra 21-23, Leganés ·
-      Calle Núñez de Arce 10, Madrid.
-    </p>
-  </footer>
+  <!-- ================= 06 ================= -->
+  <section class="carpeta c-cian" style="--i:5" id="urgencias">
+    <p class="pestana"><span class="punto" aria-hidden="true"></span><span class="num">06</span> Urgencias</p>
+    <div class="cuerpo">
+      <h2>Si duele hoy, se mira hoy</h2>
+      <p class="entrada">
+        Llámanos dentro del horario de atención telefónica y te atendemos en la
+        clínica a la mayor brevedad posible. No hace falta que seas paciente nuestro.
+      </p>
+      <ul class="llamadas">
+        <li><a class="tel" href="tel:+34916857673"><small>Leganés</small><b>916 85 76 73</b></a></li>
+        <li><a class="tel" href="tel:+34916035123"><small>Madrid centro</small><b>916 03 51 23</b></a></li>
+      </ul>
+      <div class="dato">
+        <b>3M</b>
+        <span>Y mientras tanto, cambia el cepillo cada tres meses. Es su propio consejo y sigue siendo el más rentable.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 07 ================= -->
+  <section class="carpeta c-blanco" style="--i:6" id="donde">
+    <p class="pestana"><span class="punto" aria-hidden="true"></span><span class="num">07</span> Dónde estamos</p>
+    <div class="cuerpo">
+      <h2>Una en Leganés y otra en Sol</h2>
+      <div class="sedes">
+        <div class="sede">
+          <h3>Leganés</h3>
+          <address>Calle de la Sagra 21-23<br>28915 Leganés, Madrid</address>
+          <span class="metro"><span class="rombo" aria-hidden="true"></span> Metro Julián Besteiro</span>
+          <a class="tel" href="tel:+34916857673"><small>Llamar</small><b>916 85 76 73</b></a>
+        </div>
+        <div class="sede">
+          <h3>Madrid centro</h3>
+          <address>Calle Núñez de Arce 10<br>28012 Madrid</address>
+          <span class="metro"><span class="rombo" aria-hidden="true"></span> Metro Sol</span>
+          <p class="apunte">A dos calles de la Plaza de Santa Ana, por si vienes de fuera a hacerte el tratamiento.</p>
+          <a class="tel" href="tel:+34916035123"><small>Llamar</small><b>916 03 51 23</b></a>
+        </div>
+      </div>
+      <p class="nota">Lunes a viernes, de 10:00 a 14:30 y de 16:00 a 20:00. La revisión y el presupuesto no tienen coste.</p>
+    </div>
+  </section>
 
 </main>
+
+<footer class="pie">
+  <img src="assets/img/logo-blanco.png" alt="" width="350" height="185" loading="lazy">
+  <p>
+    Clínica Dental Egle S.L. · Calle de la Sagra 21-23, Leganés ·
+    Calle Núñez de Arce 10, Madrid.
+  </p>
+</footer>
 
 <nav class="barra" aria-label="Llamar a la clínica">
   <a href="tel:+34916857673"><small>Leganés</small><span>916 85 76 73</span></a>
@@ -544,15 +519,12 @@ h3{
 <script>
 /* Mejora opcional: en un ordenador, pulsar el número lo copia al
    portapapeles en vez de no hacer nada. En el móvil no se toca nada y
-   el enlace sigue abriendo el marcador. Todo va dentro de try/catch:
-   si algo falla, queda el comportamiento normal del enlace. */
+   el enlace sigue abriendo el marcador. Si el guion no corre, el número
+   se ve igual y el enlace tel: sigue siendo válido. */
 (function(){
   try{
     if (window.matchMedia && window.matchMedia('(hover: none)').matches) return;
 
-    /* Respaldo de toda la vida: un textarea fuera de pantalla y
-       execCommand. Funciona aunque el portapapeles moderno se niegue
-       (contexto no seguro, documento sin foco, permiso denegado). */
     function copiaClasica(texto){
       var ta = document.createElement('textarea');
       ta.value = texto;
@@ -581,9 +553,6 @@ h3{
       });
     }
 
-    /* Último recurso: si el navegador no deja copiar, al menos deja el
-       número seleccionado para que un Ctrl+C lo lleve. Esto funciona
-       siempre, sin permisos. */
     function seleccionar(nodo){
       try{
         var rango = document.createRange();
