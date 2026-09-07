@@ -11,6 +11,7 @@ carpeta y es un sitio estático independiente: se abre con doble clic sobre
 | [`the-barber-lab-lujo/`](the-barber-lab-lujo/) | The Barber Lab — Leganés, Madrid | Barbería | Casa de lujo: negro, oro y vidrio |
 | [`meson-rias-gallegas-pulpo/`](meson-rias-gallegas-pulpo/) | Mesón Rías Gallegas — Leganés, Madrid | Restaurante gallego | Pizarra y latón: portada oscura y carta sobre mantel |
 | [`el-venezolano-leganes/`](el-venezolano-leganes/) | El Venezolano — Leganés, Madrid | Restaurante venezolano | Botica del maíz: masa, papelón y caraota, con las arepas como léxico |
+| [`clinica-dental-egle-estudio/`](clinica-dental-egle-estudio/) | Clínica Dental Egle — Leganés, Madrid | Clínica dental | Estudio: hueso y mármol, panel fijo con las dos consultas y los tratamientos como catálogo |
 
 ## Ver una muestra en local
 

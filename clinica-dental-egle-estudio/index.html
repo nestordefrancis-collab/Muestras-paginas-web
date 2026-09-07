@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Clínica Dental Egle — Leganés</title>
+<meta name="description" content="Clinica dental en Leganes con dos consultas: Polvoranca 31 y de la Sagra 21-23. Once tratamientos, urgencias y revision con presupuesto sin coste.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Clínica Dental Egle — Leganés">
+<meta property="og:description" content="Arte y diseno dental en Leganes. La revision y el presupuesto no te cuestan nada.">
+<meta property="og:image" content="assets/img/recepcion.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&display=swap">
+
+<style>
+/* ============================================================
+   Clínica Dental Egle — dirección «Estudio»
+   Colores tomados del logo y del propio local: el negro del
+   óvalo, el cian del filete, el azul royal de los paneles de
+   pared y el hueso del mármol de la recepción.
+   Sin JavaScript: la página se lee entera con los scripts
+   desactivados, y ninguna animación puede ocultar contenido.
+   ============================================================ */
+
+:root{
+  --hueso:#F4F2EE;      /* fondo      */
+  --papel:#FBFAF8;      /* superficie */
+  --tinta:#101114;      /* texto      */
+  --gris:#63666E;
+  --linea:#DCD8D0;
+  --linea-fina:#E7E4DD;
+  --azul:#062A77;       /* royal de los paneles del local */
+  --cian:#00AEFF;       /* filete del logo */
+  --sobre-azul:#F4F2EE;
+
+  --display:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --sans:"Inter Tight",system-ui,-apple-system,"Segoe UI",sans-serif;
+
+  --pad:clamp(1.25rem,4vw,3.25rem);
+  --panel-w:clamp(19rem,29vw,25rem);
+  --dock:0rem;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --hueso:#0D0F12;
+    --papel:#14171C;
+    --tinta:#ECE9E3;
+    --gris:#9AA0AB;
+    --linea:#272C34;
+    --linea-fina:#1D2128;
+    --azul:#8CB8FF;
+    --cian:#00AEFF;
+    --sobre-azul:#0D0F12;
+  }
+}
+:root[data-theme="dark"]{
+  --hueso:#0D0F12;
+  --papel:#14171C;
+  --tinta:#ECE9E3;
+  --gris:#9AA0AB;
+  --linea:#272C34;
+  --linea-fina:#1D2128;
+  --azul:#8CB8FF;
+  --cian:#00AEFF;
+  --sobre-azul:#0D0F12;
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+body{
+  margin:0;
+  background:var(--hueso);
+  color:var(--tinta);
+  font-family:var(--sans);
+  font-size:clamp(1rem,.96rem + .18vw,1.0625rem);
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+
+::selection{background:var(--cian);color:#001018;}
+
+.salto{
+  position:absolute;left:-9999px;top:0;
+  background:var(--azul);color:var(--sobre-azul);
+  padding:.7rem 1.1rem;z-index:99;
+}
+.salto:focus{left:.5rem;top:.5rem;}
+
+:where(a,button):focus-visible{
+  outline:2px solid var(--cian);
+  outline-offset:3px;
+}
+
+/* ---------- armazón: panel fijo + columna que corre ---------- */
+.armazon{
+  display:grid;
+  grid-template-columns:var(--panel-w) minmax(0,1fr);
+  align-items:start;
+}
+
+/* ---------- panel izquierdo ---------- */
+.panel{
+  position:sticky;top:0;
+  height:100svh;
+  display:flex;flex-direction:column;
+  gap:1.5rem;
+  padding:clamp(1.5rem,2.6vw,2.5rem) clamp(1.25rem,2.2vw,2.25rem);
+  border-right:1px solid var(--linea);
+  background:var(--hueso);
+  overflow:auto;
+}
+.marca{display:block;}
+.marca img{width:min(15rem,86%);height:auto;}
+/* el óvalo del logo es negro sobre transparente: en modo oscuro
+   se le da un halo mínimo para que no se pierda contra el fondo */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .marca img,
+  :root:not([data-theme="light"]) .pie img{
+    filter:drop-shadow(0 0 1px rgba(236,233,227,.5));
+  }
+}
+:root[data-theme="dark"] .marca img,
+:root[data-theme="dark"] .pie img{
+  filter:drop-shadow(0 0 1px rgba(236,233,227,.5));
+}
+
+.lema{
+  margin:.9rem 0 0;
+  font-size:.6875rem;
+  letter-spacing:.19em;
+  text-transform:uppercase;
+  color:var(--gris);
+}
+.filete{
+  height:2px;width:2.75rem;
+  background:var(--cian);
+  margin:1.1rem 0 0;
+}
+
+.indice{margin-top:.35rem;}
+.indice ul{list-style:none;margin:0;padding:0;}
+.indice li + li{margin-top:.1rem;}
+.indice a{
+  display:block;
+  padding:.3rem 0;
+  text-decoration:none;
+  font-size:.9375rem;
+  color:var(--tinta);
+  transition:letter-spacing .28s ease,color .28s ease;
+}
+.indice a::before{
+  content:"";
+  display:inline-block;
+  width:0;height:1px;
+  background:var(--cian);
+  vertical-align:.28em;
+  margin-right:0;
+  transition:width .28s ease,margin-right .28s ease;
+}
+.indice a:hover,.indice a:focus-visible{
+  letter-spacing:.045em;
+  color:var(--azul);
+}
+.indice a:hover::before,.indice a:focus-visible::before{
+  width:1.1rem;margin-right:.5rem;
+}
+
+.sedes{margin-top:auto;display:grid;gap:.65rem;}
+.sede{
+  position:relative;
+  display:block;
+  padding:.8rem .9rem;
+  text-decoration:none;
+  background:var(--papel);
+  border:1px solid var(--linea-fina);
+}
+.sede::after{
+  content:"";
+  position:absolute;inset:-1px;
+  border:1px solid var(--cian);
+  clip-path:inset(0 100% 0 0);
+  transition:clip-path .4s cubic-bezier(.32,.72,0,1);
+  pointer-events:none;
+}
+.sede:hover::after,.sede:focus-visible::after{clip-path:inset(0 0 0 0);}
+.sede b{
+  display:block;
+  font-weight:600;font-size:.75rem;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gris);
+}
+.sede span{
+  display:block;
+  font-family:var(--display);
+  font-size:1.375rem;line-height:1.2;
+  color:var(--azul);
+  margin-top:.15rem;
+  font-variant-numeric:tabular-nums;
+}
+.sede em{
+  display:block;font-style:normal;
+  font-size:.8125rem;color:var(--gris);margin-top:.1rem;
+}
+.horario{
+  font-size:.8125rem;color:var(--gris);
+  border-top:1px solid var(--linea-fina);
+  padding-top:.85rem;
+  margin:.2rem 0 0;
+}
+.horario strong{color:var(--tinta);font-weight:500;}
+
+/* ---------- columna de contenido ---------- */
+.flujo{min-width:0;}
+.bloque{
+  padding:clamp(3.25rem,7vw,6.5rem) var(--pad);
+  border-bottom:1px solid var(--linea-fina);
+}
+.limite{max-width:46rem;}
+
+.rotulo{
+  font-size:.6875rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--gris);
+  margin:0 0 1.5rem;
+}
+.rotulo::before{
+  content:"";
+  display:inline-block;
+  width:1.6rem;height:1px;
+  background:var(--cian);
+  vertical-align:.32em;
+  margin-right:.7rem;
+}
+
+h1,h2,h3{
+  font-family:var(--display);
+  font-weight:400;
+  letter-spacing:-.02em;
+  line-height:1.04;
+  color:var(--tinta);
+  margin:0;
+  text-wrap:balance;
+}
+h1{font-size:clamp(2.65rem,7.2vw,5.25rem);letter-spacing:-.035em;}
+h2{font-size:clamp(2rem,4.4vw,3.35rem);letter-spacing:-.028em;}
+h3{font-size:clamp(1.35rem,2.2vw,1.75rem);letter-spacing:-.018em;}
+
+.entrada{
+  font-size:clamp(1.0625rem,1rem + .35vw,1.25rem);
+  color:var(--gris);
+  max-width:34rem;
+  margin:1.6rem 0 0;
+}
+
+/* ---------- portada ---------- */
+.portada{padding-top:clamp(3.5rem,9vh,7rem);}
+.portada h1 em{font-style:italic;color:var(--azul);}
+
+.llamadas{
+  display:flex;flex-wrap:wrap;gap:.75rem;
+  margin-top:2.25rem;
+}
+.btn{
+  display:inline-flex;align-items:baseline;gap:.6rem;
+  padding:.85rem 1.35rem;
+  text-decoration:none;
+  font-size:.9375rem;
+  border:1px solid var(--azul);
+  background:var(--azul);color:var(--sobre-azul);
+  transition:background .25s ease,color .25s ease;
+}
+.btn span{font-variant-numeric:tabular-nums;letter-spacing:.01em;}
+.btn small{font-size:.75rem;opacity:.75;letter-spacing:.1em;text-transform:uppercase;}
+.btn:hover,.btn:focus-visible{background:transparent;color:var(--azul);}
+.btn.hueca{background:transparent;color:var(--azul);}
+.btn.hueca:hover,.btn.hueca:focus-visible{background:var(--azul);color:var(--sobre-azul);}
+
+.gratis{
+  margin:1.4rem 0 0;
+  font-size:.8125rem;color:var(--gris);
+}
+
+/* ---------- figura a sangre ---------- */
+.sangre{margin:0;padding:0;border-bottom:1px solid var(--linea-fina);}
+.sangre img{width:100%;height:auto;}
+.sangre figcaption{
+  padding:.9rem var(--pad) 1.4rem;
+  font-size:.8125rem;color:var(--gris);
+}
+
+/* ---------- cita ---------- */
+.cita{
+  font-family:var(--display);
+  font-size:clamp(1.6rem,3.4vw,2.5rem);
+  line-height:1.16;letter-spacing:-.022em;
+  margin:0;max-width:38rem;
+}
+.cita + p{margin-top:1.75rem;color:var(--gris);max-width:36rem;}
+
+/* ---------- catálogo de tratamientos ---------- */
+.catalogo{list-style:none;margin:2.5rem 0 0;padding:0;max-width:52rem;}
+.catalogo li{border-top:1px solid var(--linea-fina);}
+.catalogo li:last-child{border-bottom:1px solid var(--linea-fina);}
+.pieza{
+  display:grid;
+  grid-template-columns:3.25rem minmax(0,1fr);
+  gap:0 1rem;
+  padding:1.15rem .25rem;
+  text-decoration:none;
+  transition:background .3s ease;
+}
+.pieza:hover,.pieza:focus-visible{background:var(--papel);}
+.num{
+  font-size:.75rem;
+  color:var(--cian);
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.1em;
+  padding-top:.42rem;
+}
+.pieza h3{
+  transition:letter-spacing .32s cubic-bezier(.32,.72,0,1),color .32s ease;
+}
+.pieza:hover h3,.pieza:focus-visible h3{
+  letter-spacing:.006em;
+  color:var(--azul);
+}
+.pieza p{
+  margin:.3rem 0 0;
+  color:var(--gris);
+  font-size:.9375rem;
+  max-width:34rem;
+}
+
+/* ---------- la clínica: texto y foto pequeña ---------- */
+.consulta{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,20rem);
+  gap:clamp(1.75rem,4vw,3.5rem);
+  align-items:start;
+  margin-top:2.25rem;
+}
+.consulta figure{margin:0;}
+.consulta img{
+  width:100%;height:auto;
+  border:1px solid var(--linea-fina);
+}
+.consulta figcaption{
+  margin-top:.6rem;font-size:.8125rem;color:var(--gris);
+}
+.consulta p{margin:0 0 1.1rem;color:var(--gris);}
+.consulta p:first-of-type{color:var(--tinta);}
+
+/* ---------- urgencias ---------- */
+.urgencias{
+  background:var(--papel);
+  border-left:2px solid var(--cian);
+}
+.urgencias .telefonos{
+  display:flex;flex-wrap:wrap;gap:.75rem;
+  margin-top:2rem;
+}
+
+/* ---------- fichas de las dos consultas ---------- */
+.mapa{
+  display:grid;gap:1.25rem;
+  grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));
+  max-width:52rem;margin-top:2.5rem;
+}
+.ficha{
+  border:1px solid var(--linea-fina);
+  background:var(--papel);
+  padding:1.4rem 1.35rem 1.5rem;
+}
+.ficha h3{margin-bottom:.55rem;}
+.ficha address{font-style:normal;color:var(--gris);font-size:.9375rem;}
+.ficha .tel{
+  display:inline-block;
+  margin-top:1rem;
+  font-family:var(--display);
+  font-size:1.5rem;
+  color:var(--azul);
+  text-decoration:none;
+  font-variant-numeric:tabular-nums;
+  border-bottom:1px solid transparent;
+  transition:border-color .28s ease;
+}
+.ficha .tel:hover,.ficha .tel:focus-visible{border-bottom-color:var(--cian);}
+
+/* ---------- pie ---------- */
+.pie{
+  padding:clamp(2.5rem,5vw,4rem) var(--pad);
+  border-top:1px solid var(--linea);
+  display:flex;flex-wrap:wrap;gap:1.5rem 2.5rem;
+  align-items:end;justify-content:space-between;
+  font-size:.8125rem;color:var(--gris);
+}
+.pie img{width:9.5rem;height:auto;}
+.pie p{margin:0;max-width:24rem;}
+
+/* ---------- barra inferior, sólo móvil ---------- */
+.barra{display:none;}
+
+/* ---------- movimiento ----------
+   No hay revelados al hacer scroll: el contenido nunca depende
+   de que una animación llegue a ejecutarse. Todo el vocabulario
+   de interacción vive en el hover, que no puede ocultar nada. */
+
+/* ============================ móvil ============================ */
+@media (max-width:720px){
+  :root{--dock:4.5rem;}
+  .armazon{grid-template-columns:1fr;}
+  .panel{
+    position:static;height:auto;
+    border-right:0;
+    border-bottom:1px solid var(--linea);
+    gap:1.15rem;
+    overflow:visible;
+  }
+  .panel .sedes{display:none;}
+  .panel .indice{margin-top:.25rem;}
+  .indice ul{display:flex;flex-wrap:wrap;gap:.15rem 1.15rem;}
+  .indice a{font-size:.875rem;}
+  .indice a::before{display:none;}
+  .consulta{grid-template-columns:1fr;}
+  .pie{padding-bottom:calc(var(--dock) + 1.5rem);}
+
+  .barra{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    position:fixed;left:0;right:0;bottom:0;
+    z-index:20;
+    background:var(--azul);
+  }
+  .barra a{
+    padding:.7rem .5rem calc(.7rem + env(safe-area-inset-bottom));
+    text-align:center;text-decoration:none;
+    color:var(--sobre-azul);
+    line-height:1.25;
+  }
+  .barra a + a{border-left:1px solid rgba(244,242,238,.28);}
+  .barra small{
+    display:block;font-size:.625rem;
+    letter-spacing:.13em;text-transform:uppercase;opacity:.78;
+  }
+  .barra span{
+    display:block;font-size:.9375rem;font-weight:500;
+    font-variant-numeric:tabular-nums;
+  }
+}
+</style>
+</head>
+<body>
+
+<a class="salto" href="#contenido">Saltar al contenido</a>
+
+<div class="armazon">
+
+  <!-- ===================== panel fijo ===================== -->
+  <aside class="panel">
+    <div>
+      <a class="marca" href="#contenido" aria-label="Clínica Dental Egle, inicio">
+        <img src="assets/img/logo-egle.png" alt="Clínica Dental Egle" width="603" height="243">
+      </a>
+      <p class="lema">Arte &amp; Diseño Dental</p>
+      <div class="filete" aria-hidden="true"></div>
+    </div>
+
+    <nav class="indice" aria-label="Secciones">
+      <ul>
+        <li><a href="#tratamientos">Tratamientos</a></li>
+        <li><a href="#clinica">La clínica</a></li>
+        <li><a href="#urgencias">Urgencias</a></li>
+        <li><a href="#turismo">Turismo dental</a></li>
+        <li><a href="#donde">Dónde estamos</a></li>
+      </ul>
+    </nav>
+
+    <div class="sedes">
+      <a class="sede" href="tel:+34614148980">
+        <b>Leganés centro</b>
+        <span>614 148 980</span>
+        <em>c/ Polvoranca 31</em>
+      </a>
+      <a class="sede" href="tel:+34649173770">
+        <b>Zarzaquemada</b>
+        <span>649 173 770</span>
+        <em>c/ de la Sagra 21-23</em>
+      </a>
+      <p class="horario">
+        <strong>Lunes a viernes</strong><br>
+        10:00 – 14:30 &nbsp;·&nbsp; 16:00 – 20:00
+      </p>
+    </div>
+  </aside>
+
+  <!-- ===================== contenido ===================== -->
+  <main class="flujo" id="contenido">
+
+    <section class="bloque portada">
+      <p class="rotulo">Clínica Dental Egle · Leganés</p>
+      <h1>La revisión y el presupuesto <em>no te cuestan nada</em></h1>
+      <p class="entrada">
+        Dos consultas en Leganés, once tratamientos y un equipo que te explica
+        qué necesitas antes de que decidas nada.
+      </p>
+      <div class="llamadas">
+        <a class="btn" href="tel:+34614148980">
+          <small>Leganés centro</small><span>614 148 980</span>
+        </a>
+        <a class="btn hueca" href="tel:+34649173770">
+          <small>Zarzaquemada</small><span>649 173 770</span>
+        </a>
+      </div>
+      <p class="gratis">Se pide cita por teléfono, de lunes a viernes de 10:00 a 14:30 y de 16:00 a 20:00.</p>
+    </section>
+
+    <figure class="sangre">
+      <img src="assets/img/recepcion.jpg"
+           alt="Recepción de la clínica de Zarzaquemada: suelo de mármol, mostrador de piedra y mamparas de cristal con el diente del logotipo"
+           width="1600" height="800">
+      <figcaption>Recepción de la consulta de Zarzaquemada, en la calle de la Sagra</figcaption>
+    </figure>
+
+    <section class="bloque">
+      <p class="rotulo">Quiénes somos</p>
+      <blockquote class="cita">
+        No hay nada más hermoso que una sonrisa sana, tanto para la gente que
+        le rodea como para su propio bienestar
+      </blockquote>
+      <p>
+        Nos comprometemos a servirte de guía a la hora de decidir qué tratamiento
+        es el más razonable para ti, poniendo a tu disposición la experiencia de
+        nuestros profesionales, especialistas en diferentes campos de la
+        odontología, y unas instalaciones equipadas con la última tecnología.
+      </p>
+    </section>
+
+    <section class="bloque" id="tratamientos">
+      <p class="rotulo">Once tratamientos</p>
+      <h2>Desde la profilaxis hasta la prótesis</h2>
+      <p class="entrada">
+        Una gama completa de tratamientos de última generación para mantener
+        tus dientes sanos y bonitos durante toda tu vida.
+      </p>
+
+      <ol class="catalogo">
+        <li><a class="pieza" href="tel:+34614148980">
+          <span class="num" aria-hidden="true">01</span>
+          <div>
+            <h3>Odontología General</h3>
+            <p>Diagnóstico y tratamiento de la caries antes de que llegue a destruir la pieza</p>
+          </div>
+        </a></li>
+        <li><a class="pieza" href="tel:+34614148980">
+          <span class="num" aria-hidden="true">02</span>
+          <div>
+            <h3>Implantes Dentales</h3>
+            <p>Raíces artificiales de titanio puro que se integran en el hueso y sostienen el diente nuevo sin tallar los sanos de al lado</p>
+          </div>
+        </a></li>
+        <li><a class="pieza" href="tel:+34614148980">
+          <span class="num" aria-hidden="true">03</span>
+          <div>
+            <h3>Endodoncia</h3>
+            <p>Endodoncia rotatoria, con las técnicas más modernas y tiempos de tratamiento menores para el paciente</p>
+          </div>
+        </a></li>
+        <li><a class="pieza" href="tel:+34614148980">
+          <span class="num" aria-hidden="true">04</span>
+          <div>
+            <h3>Ortodoncia</h3>
+            <p>Alineación de los dientes y corrección de la mordida, con aparatología fija o removible, en niños y en adultos</p>
+          </div>
+        </a></li>
+        <li><a class="pieza" href="tel:+34614148980">
+          <span class="num" aria-hidden="true">05</span>
+          <div>
+            <h3>Odontopediatría</h3>
+            <p>Desde que salen los primeros dientes, entre los seis meses y el año, con dentistas acostumbrados a atender niños</p>
+          </div>
+        </a></li>
+        <li><a class="pieza" href="tel:+34614148980">
+          <span class="num" aria-hidden="true">06</span>
+          <div>
+            <h3>Estética Dental</h3>
+            <p>El arte de la percepción: forma, color y textura trabajados junto al resto de especialidades</p>
+          </div>
+        </a></li>
+        <li><a class="pieza" href="tel:+34614148980">
+          <span class="num" aria-hidden="true">07</span>
+          <div>
+            <h3>Rehabilitación Oral</h3>
+            <p>Tres tipos de prótesis dental, según los espacios, el remanente y lo que cada paciente espera</p>
+          </div>
+        </a></li>
+        <li><a class="pieza" href="tel:+34614148980">
+          <span class="num" aria-hidden="true">08</span>
+          <div>
+            <h3>Blanqueamiento Dental</h3>
+            <p>Sistema Philips Zoom de uso clínico: varios tonos menos, en el conjunto o en una sola pieza oscurecida</p>
+          </div>
+        </a></li>
+        <li><a class="pieza" href="tel:+34614148980">
+          <span class="num" aria-hidden="true">09</span>
+          <div>
+            <h3>Periodoncia</h3>
+            <p>Para que los dientes se mantengan sanos, las encías tienen que estarlo: prevención y tratamiento de la periodontitis</p>
+          </div>
+        </a></li>
+        <li><a class="pieza" href="tel:+34614148980">
+          <span class="num" aria-hidden="true">10</span>
+          <div>
+            <h3>Profilaxis</h3>
+            <p>La limpieza, el procedimiento más importante para prevenir. Recomendada cada seis meses</p>
+          </div>
+        </a></li>
+        <li><a class="pieza" href="#urgencias">
+          <span class="num" aria-hidden="true">11</span>
+          <div>
+            <h3>Servicio de Urgencias</h3>
+            <p>Llámanos dentro del horario de atención telefónica y te atendemos en la clínica a la mayor brevedad</p>
+          </div>
+        </a></li>
+      </ol>
+    </section>
+
+    <section class="bloque" id="clinica">
+      <p class="rotulo">La clínica</p>
+      <h2>Instalaciones modernas y la última tecnología</h2>
+      <div class="consulta">
+        <div>
+          <p>
+            La clínica se caracteriza por un buen clima de confianza y una
+            atención de primera línea. Somos un equipo competente y eficaz, con
+            amplios conocimientos técnicos, y ofrecemos una gama de servicios
+            dentales a unos precios muy competitivos y de la máxima calidad.
+          </p>
+          <p>
+            Si tus dientes se encuentran en condiciones normales y los cuidas de
+            forma responsable, deberías someterte a un control preventivo por lo
+            menos una vez cada seis meses. Si presentan un cuadro más
+            complicado, consúltanos.
+          </p>
+          <p>
+            Nuestro consejo: déjate asesorar por nuestros especialistas y
+            reserva después de cada consulta tu próxima visita.
+          </p>
+        </div>
+        <figure>
+          <img src="assets/img/gabinete.jpg"
+               alt="Gabinete de la clínica, con el sillón, la lámpara y la radiografía panorámica en pantalla"
+               width="388" height="247" loading="lazy">
+          <figcaption>Uno de los gabinetes, con la panorámica en pantalla</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="bloque urgencias" id="urgencias">
+      <p class="rotulo">Urgencias</p>
+      <h2>Si te duele hoy, llámanos hoy</h2>
+      <p class="entrada">
+        Ponte en contacto con nosotros dentro del horario de atención telefónica
+        y te atenderemos en la clínica a la mayor brevedad posible.
+      </p>
+      <div class="telefonos">
+        <a class="btn" href="tel:+34614148980">
+          <small>Leganés centro</small><span>614 148 980</span>
+        </a>
+        <a class="btn hueca" href="tel:+34649173770">
+          <small>Zarzaquemada</small><span>649 173 770</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="bloque" id="turismo">
+      <p class="rotulo">Turismo dental</p>
+      <h2>Vuelve a casa con la sonrisa hecha</h2>
+      <div class="limite">
+        <p>
+          Estamos especializados en tratamientos dentales para quien viene de
+          fuera: además del encanto de Madrid y de su gastronomía, España ofrece
+          precios más competitivos que otros países con el mismo nivel
+          odontológico y el mismo desarrollo tecnológico.
+        </p>
+        <p>
+          Contamos con especialistas en estética dental e implantología que
+          trabajan con protocolos pensados para tratarte con rapidez sin bajar la
+          calidad. Si lo que buscas es un tratamiento de estética, con un solo
+          viaje suele bastar. Si son implantes o una rehabilitación completa,
+          harán falta varias visitas: el hueso necesita su tiempo para integrar
+          el implante.
+        </p>
+        <p>
+          Para planificarlo bien, lo primero es una ortopantomografía —la
+          radiografía panorámica de toda la boca— y unas fotos de tu sonrisa.
+          Llámanos y te decimos cómo hacérnoslas llegar.
+        </p>
+      </div>
+      <div class="llamadas">
+        <a class="btn" href="tel:+34614148980">
+          <small>Leganés centro</small><span>+34 614 148 980</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="bloque" id="donde">
+      <p class="rotulo">Dónde estamos</p>
+      <h2>Dos consultas en Leganés</h2>
+      <div class="mapa">
+        <div class="ficha">
+          <h3>Leganés centro</h3>
+          <address>
+            c/ Polvoranca 31<br>
+            Leganés, Madrid
+          </address>
+          <a class="tel" href="tel:+34614148980">614 148 980</a>
+        </div>
+        <div class="ficha">
+          <h3>Zarzaquemada</h3>
+          <address>
+            c/ de la Sagra 21-23<br>
+            28915 Leganés, Madrid
+          </address>
+          <a class="tel" href="tel:+34649173770">649 173 770</a>
+        </div>
+      </div>
+      <p class="gratis">
+        Lunes a viernes, de 10:00 a 14:30 y de 16:00 a 20:00. La revisión y el
+        presupuesto no tienen coste.
+      </p>
+    </section>
+
+    <footer class="pie">
+      <img src="assets/img/logo-egle.png" alt="" width="603" height="243" loading="lazy">
+      <p>
+        Clínica Dental Egle S.L. · c/ Polvoranca 31 y c/ de la Sagra 21-23,
+        Leganés, Madrid.
+      </p>
+    </footer>
+
+  </main>
+</div>
+
+<nav class="barra" aria-label="Llamar a la clínica">
+  <a href="tel:+34614148980"><small>Leganés centro</small><span>614 148 980</span></a>
+  <a href="tel:+34649173770"><small>Zarzaquemada</small><span>649 173 770</span></a>
+</nav>
+
+</body>
+</html>
