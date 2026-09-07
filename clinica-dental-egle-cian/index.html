@@ -288,7 +288,25 @@ h3{font-size:clamp(1.1rem,1.8vw,1.35rem);font-weight:800;margin:0;line-height:1.
 @media (max-width:760px){
   :root{--pestana:2.35rem;--dock:4.35rem;}
   body{padding-bottom:var(--dock);}
-  .cuerpo{justify-content:flex-start;}
+
+  /* La carpeta ocupa la pantalla entera, así que el contenido tiene que
+     llenarla o se ve medio vacía. El bloque principal de cada carpeta
+     crece hasta el borde de abajo, y las que no tienen ninguno centran
+     lo que llevan en vez de amontonarlo arriba. */
+  .cuerpo{justify-content:center;}
+  /* Los topes evitan que al estirarse la foto acabe pidiendo más
+     píxeles de los que tiene el original y se vea reescalada. */
+  .cuerpo > .tira{flex:1 1 auto;min-height:0;max-height:22rem;}
+  /* La ficha se estira con la tira: el número se queda arriba y el
+     nombre con su explicación caen al pie, en vez de amontonarse
+     todo arriba y dejar la mitad de la ficha en blanco. */
+  .ficha .n{margin-bottom:auto;}
+  .cuerpo > .galeria{flex:1 1 auto;min-height:0;max-height:26rem;}
+  .cuerpo > .puertas{flex:1 1 auto;min-height:0;max-height:23rem;}
+  .cuerpo > .sedes{flex:0 1 auto;min-height:0;}
+  .galeria figure{display:flex;flex-direction:column;min-height:0;}
+  .galeria img{flex:1 1 auto;height:auto;min-height:8rem;}
+  .galeria figcaption{flex:none;}
   /* la galería pasa a tira deslizable para que la carpeta no crezca
      más alto que la pantalla y se quede contenido fuera de alcance */
   .galeria{
@@ -297,7 +315,6 @@ h3{font-size:clamp(1.1rem,1.8vw,1.35rem);font-weight:800;margin:0;line-height:1.
     overscroll-behavior-x:contain;
   }
   .galeria figure{scroll-snap-align:start;}
-  .galeria img{height:9.5rem;}
   .llamadas{gap:.5rem;}
   .tel{padding:.7rem 1.1rem;}
 
@@ -311,7 +328,9 @@ h3{font-size:clamp(1.1rem,1.8vw,1.35rem);font-weight:800;margin:0;line-height:1.
     scroll-snap-type:x proximity;overscroll-behavior-x:contain;
   }
   .puerta,.sede{scroll-snap-align:start;}
-  .cuerpo{padding-top:1.35rem;padding-bottom:1.6rem;}
+  /* La barra de llamar va fija encima de la carpeta: el cuerpo se
+     reserva ese alto para que no le tape el último renglón. */
+  .cuerpo{padding-top:1.35rem;padding-bottom:calc(1.4rem + var(--dock));}
   .entrada{margin-top:.9rem;}
   .puertas,.sedes,.tira,.galeria,.llamadas{margin-top:1.35rem;}
 
@@ -412,10 +431,10 @@ h3{font-size:clamp(1.1rem,1.8vw,1.35rem);font-weight:800;margin:0;line-height:1.
   </section>
 
   <!-- ================= 04 ================= -->
-  <section class="carpeta c-blanco" style="--i:3" id="pordentro">
-    <p class="pestana"><span class="punto" aria-hidden="true"></span><span class="num">04</span> Por dentro</p>
+  <section class="carpeta c-blanco" style="--i:3" id="clinicas">
+    <p class="pestana"><span class="punto" aria-hidden="true"></span><span class="num">04</span> Nuestras clínicas</p>
     <div class="cuerpo">
-      <h2>Las dos, por dentro</h2>
+      <h2>Nuestras clínicas por dentro</h2>
       <div class="galeria">
         <figure class="g-equipo">
           <img src="assets/img/equipo.jpg" alt="Una profesional de la clínica atendiendo a una paciente en el gabinete" width="767" height="767" loading="lazy">
