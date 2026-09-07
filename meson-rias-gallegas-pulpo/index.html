@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mesón Rías Gallegas — Leganés</title>
+<!-- Muestra de rediseño: fuera de los buscadores para que no compita con
+     la web real del negocio ni se confunda con ella. -->
+<meta name="robots" content="noindex, nofollow">
 <script>document.documentElement.className+=" js"</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -222,7 +225,8 @@ blockquote cite{
 .como-llegar:hover{background:var(--tinta);color:var(--papel)}
 
 /* ---------- pie ---------- */
-footer{background:var(--tinta-2);color:var(--mantel);padding-top:88px;padding-bottom:60px}
+/* El hueco de abajo deja sitio al sello, que va fijo en esa esquina. */
+footer{background:var(--tinta-2);color:var(--mantel);padding-top:88px;padding-bottom:98px}
 .pie-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px}
 footer h3{
   font-size:14px;font-family:var(--sans);font-weight:500;letter-spacing:.18em;
@@ -240,6 +244,26 @@ footer p{margin:0 0 6px}
 .legal{
   margin-top:56px;padding-top:22px;border-top:1px solid rgba(241,237,226,.14);
   font-size:11px;color:rgba(241,237,226,.45);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+}
+
+/* ---------- marca de muestra ----------
+   Siempre visible, para que nadie confunda esta página con la web real
+   del mesón. No intercepta el ratón: es solo un sello. */
+.marca-muestra{
+  position:fixed;left:20px;bottom:20px;z-index:80;pointer-events:none;
+  display:flex;align-items:center;gap:9px;
+  padding:9px 16px;border:1px solid rgba(176,138,85,.45);
+  background:rgba(20,20,15,.84);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  color:var(--laton);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  box-shadow:0 10px 26px rgba(0,0,0,.3);
+}
+.marca-muestra::before{
+  content:"";width:5px;height:5px;border-radius:50%;background:var(--laton);
+}
+.nota-muestra{
+  margin:26px 0 0;max-width:76ch;
+  font-size:11px;line-height:1.75;color:rgba(241,237,226,.5);
 }
 
 /* ---------- entrada ---------- */
@@ -260,6 +284,8 @@ footer p{margin:0 0 6px}
   .evidencia{grid-template-columns:1fr;gap:34px;margin-top:48px}
   .casa-grid,.pie-grid{grid-template-columns:1fr;gap:38px}
   .retrato img{max-width:220px}
+  /* En móvil ocupa mucho de ancho de pantalla: se encoge. */
+  .marca-muestra{left:12px;bottom:12px;padding:6px 11px;gap:7px;font-size:8.5px;letter-spacing:.11em}
   .hero-logo{margin-bottom:24px}
   .certs{grid-template-columns:1fr;gap:26px}
   .cert-caja{height:260px;padding:22px}
@@ -344,6 +370,8 @@ html:has(.conmutador:checked){overflow:hidden}
 </style>
 </head>
 <body>
+
+<span class="marca-muestra" aria-label="Esto es una muestra de rediseño">Esto es una muestra</span>
 
 <header>
   <div class="wrap bar">
@@ -618,8 +646,15 @@ html:has(.conmutador:checked){overflow:hidden}
     </div>
     <div class="legal">
       <span>Mesón Rías Gallegas · Leganés</span>
-      <span>Muestra de rediseño · contenido y fotografías del propio restaurante</span>
+      <span>Muestra de rediseño</span>
     </div>
+    <p class="nota-muestra">Esto es una muestra — no es la web oficial del Mesón Rías Gallegas.
+      Los platos, los precios y las anotaciones de los premios están tomados de su propia
+      carta; las fotografías, los diplomas y los recortes de prensa, de su web y de su
+      galería; los certificados, de los que ellos mismos publican; la valoración es de
+      Restaurant Guru y el plano, de OpenStreetMap centrado en su dirección. La dirección
+      está pendiente de confirmar: su web dice calle de Lugo y un recorte de prensa dice
+      Vereda de los Estudiantes. Nada de esto se ha verificado todavía con el negocio.</p>
   </div>
 </footer>
 
