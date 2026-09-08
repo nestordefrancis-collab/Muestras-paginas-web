@@ -42,6 +42,7 @@
   --sans:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
   --pad:clamp(1.25rem,4.5vw,4rem);
   --pestana:2.75rem;   /* alto de la pestaña de cada carpeta */
+  --reposo:42svh;      /* cuánto se queda quieta antes de que la tape la siguiente */
   --dock:0rem;
 }
 @media (prefers-color-scheme:dark){
@@ -99,6 +100,15 @@ a{color:inherit;}
   top:calc(var(--i) * var(--pestana));
   z-index:calc(var(--i) + 1);
   min-height:calc(100svh - var(--i) * var(--pestana));
+  /* Reposo. Sin esto la carpeta siguiente empieza a taparla justo en el
+     mismo píxel en que la actual acaba de quedarse pegada, y no llegas a
+     verla entera. El margen alarga el documento por debajo sin tocar la
+     caja, así que la carpeta se queda quieta este rato antes de que la
+     siguiente suba por encima. */
+  margin-bottom:var(--reposo);
+  /* Nota: alargar el margen de la última carpeta no le da más reposo.
+     Lo que puede quedarse pegada depende del sitio que quede detrás de
+     ella dentro del archivador, y eso lo marca el alto del pie. */
   display:flex;flex-direction:column;
   border-radius:1.25rem 1.25rem 0 0;
   box-shadow:0 -20px 45px -26px rgba(13,35,49,.42);
@@ -315,6 +325,9 @@ h3{font-size:clamp(1.1rem,1.8vw,1.35rem);font-weight:800;margin:0;line-height:1.
   position:relative;z-index:50;
   background:var(--cian-panel);color:#fff;
   padding:clamp(2.25rem,5vw,3.75rem) var(--pad);
+  /* El alto del pie es lo que le da reposo a la última carpeta: cuanto
+     más cuerpo tiene, más rato se queda ella posada en la pila. */
+  min-height:38svh;
   display:flex;flex-wrap:wrap;gap:1.5rem 3rem;
   align-items:end;justify-content:space-between;
   border-radius:1.25rem 1.25rem 0 0;
@@ -337,11 +350,11 @@ h3{font-size:clamp(1.1rem,1.8vw,1.35rem);font-weight:800;margin:0;line-height:1.
   .cuerpo{justify-content:center;}
   /* Los topes evitan que al estirarse la foto acabe pidiendo más
      píxeles de los que tiene el original y se vea reescalada. */
-  .cuerpo > .tira{flex:1 1 auto;min-height:0;max-height:22rem;}
-  /* La ficha se estira con la tira: el número se queda arriba y el
-     nombre con su explicación caen al pie, en vez de amontonarse
-     todo arriba y dejar la mitad de la ficha en blanco. */
-  .ficha .n{margin-bottom:auto;}
+  /* La tira se queda con su alto natural y la ficha agrupa número,
+     nombre y explicación juntos y centrados. Estirarla dejaba el número
+     arriba del todo y un socavón hasta el texto. */
+  .cuerpo > .tira{flex:1 1 auto;min-height:0;max-height:18rem;}
+  .ficha{justify-content:center;}
   .cuerpo > .galeria{flex:1 1 auto;min-height:0;max-height:26rem;}
   .cuerpo > .puertas{flex:1 1 auto;min-height:0;max-height:23rem;}
   /* Alto fijo para el plano: con flex no encogía lo bastante y la ficha
