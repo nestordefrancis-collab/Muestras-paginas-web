@@ -262,6 +262,47 @@ h3{font-size:clamp(1.1rem,1.8vw,1.35rem);font-weight:800;margin:0;line-height:1.
   margin-top:1.9rem;
 }
 .sede{background:var(--blanco);padding:clamp(1.2rem,2.6vw,2rem);display:flex;flex-direction:column;gap:.45rem;}
+.datos{display:flex;flex-direction:column;gap:.45rem;min-width:0;}
+/* En pantalla ancha sobra sitio a los lados: el plano se pone al lado de
+   los datos y la ficha deja de crecer hacia abajo, que es lo que hacía
+   que la carpeta no cupiera en su hueco. */
+@media (min-width:761px){
+  .sede{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+    column-gap:1.35rem;
+    align-items:center;
+  }
+  .plano{margin:0;height:100%;}
+  .plano img{height:100%;min-height:11rem;}
+}
+
+/* El plano es una imagen estática, no un iframe: así se ve también en
+   la versión de un solo archivo y sin conexión. Teselas de
+   OpenStreetMap, y al pulsarlo abre la ruta en Google Maps. */
+.plano{
+  display:block;position:relative;
+  margin:0 0 .9rem;
+  border:1px solid var(--linea);
+  overflow:hidden;text-decoration:none;
+  background:var(--cielo);
+}
+.plano img{width:100%;height:9rem;object-fit:cover;}
+.plano .llegar{
+  position:absolute;left:0;bottom:0;
+  background:var(--cian-panel);color:#fff;
+  font-size:.6875rem;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:.42rem .75rem;
+  transition:padding-right .25s ease;
+}
+.plano:hover .llegar,.plano:focus-visible .llegar{padding-right:1.4rem;}
+.plano .credito{
+  position:absolute;right:0;bottom:0;
+  background:rgba(255,255,255,.85);color:#3A4A55;
+  font-size:.5625rem;letter-spacing:.02em;
+  padding:.18rem .38rem;
+}
 .sede h3{font-size:clamp(1.25rem,2.2vw,1.7rem);text-transform:uppercase;}
 .sede address{font-style:normal;color:var(--gris);font-size:.9rem;}
 .sede .apunte{margin:.35rem 0 0;font-size:.85rem;color:var(--gris);}
@@ -286,7 +327,7 @@ h3{font-size:clamp(1.1rem,1.8vw,1.35rem);font-weight:800;margin:0;line-height:1.
 .barra{display:none;}
 
 @media (max-width:760px){
-  :root{--pestana:2.35rem;--dock:4.35rem;}
+  :root{--pestana:2rem;--dock:4.35rem;}
   body{padding-bottom:var(--dock);}
 
   /* La carpeta ocupa la pantalla entera, así que el contenido tiene que
@@ -303,7 +344,18 @@ h3{font-size:clamp(1.1rem,1.8vw,1.35rem);font-weight:800;margin:0;line-height:1.
   .ficha .n{margin-bottom:auto;}
   .cuerpo > .galeria{flex:1 1 auto;min-height:0;max-height:26rem;}
   .cuerpo > .puertas{flex:1 1 auto;min-height:0;max-height:23rem;}
+  /* Alto fijo para el plano: con flex no encogía lo bastante y la ficha
+     se salía de su caja por debajo, quedando el botón de llamar detrás
+     de la barra fija. */
   .cuerpo > .sedes{flex:0 1 auto;min-height:0;}
+  .sede{min-height:0;padding:.95rem;gap:.35rem;}
+  .plano{flex:none;margin-bottom:.55rem;}
+  .plano img{height:7rem;}
+  /* El horario ya está en la carpeta 01 y lo de Santa Ana es un adorno:
+     en móvil sobran, y son justo lo que hacía que la carpeta no cupiera
+     en su hueco y acabara deslizándose por encima de las pestañas. */
+  #donde .nota,
+  #donde .apunte{display:none;}
   .galeria figure{display:flex;flex-direction:column;min-height:0;}
   .galeria img{flex:1 1 auto;height:auto;min-height:8rem;}
   .galeria figcaption{flex:none;}
@@ -503,32 +555,50 @@ h3{font-size:clamp(1.1rem,1.8vw,1.35rem);font-weight:800;margin:0;line-height:1.
       <h2>Una en Leganés y otra en Sol</h2>
       <div class="sedes">
         <div class="sede">
+          <a class="plano" href="https://www.google.com/maps/dir/?api=1&amp;destination=40.333355,-3.753176" target="_blank" rel="noopener">
+            <img src="assets/img/plano-leganes.jpg" alt="Plano de Zarzaquemada: la clínica está en la calle de la Sagra, a un paso del metro Julián Besteiro" width="760" height="420" loading="lazy">
+            <span class="llegar">Cómo llegar →</span>
+            <span class="credito">© OpenStreetMap</span>
+          </a>
+          <div class="datos">
           <h3>Leganés</h3>
           <address>Calle de la Sagra 21-23<br>28915 Leganés, Madrid</address>
           <span class="metro"><span class="rombo" aria-hidden="true"></span> Metro Julián Besteiro</span>
           <a class="tel" href="tel:+34916857673"><small>Llamar</small><b>916 85 76 73</b></a>
+          </div>
         </div>
         <div class="sede">
+          <a class="plano" href="https://www.google.com/maps/dir/?api=1&amp;destination=40.415443,-3.701415" target="_blank" rel="noopener">
+            <img src="assets/img/plano-madrid.jpg" alt="Plano del Barrio de las Letras: la clínica está en la calle Núñez de Arce, entre la Puerta del Sol y el Paseo del Prado" width="760" height="420" loading="lazy">
+            <span class="llegar">Cómo llegar →</span>
+            <span class="credito">© OpenStreetMap</span>
+          </a>
+          <div class="datos">
           <h3>Madrid centro</h3>
           <address>Calle Núñez de Arce 10<br>28012 Madrid</address>
           <span class="metro"><span class="rombo" aria-hidden="true"></span> Metro Sol</span>
-          <p class="apunte">A dos calles de la Plaza de Santa Ana, por si vienes de fuera a hacerte el tratamiento.</p>
+          <p class="apunte">A un paso de la Plaza de Santa Ana.</p>
           <a class="tel" href="tel:+34916035123"><small>Llamar</small><b>916 03 51 23</b></a>
+          </div>
         </div>
       </div>
       <p class="nota">Lunes a viernes, de 10:00 a 14:30 y de 16:00 a 20:00. La revisión y el presupuesto no tienen coste.</p>
     </div>
   </section>
 
-</main>
-
-<footer class="pie">
+  <!-- El pie va dentro del archivador a propósito: si la última carpeta
+       es el último hijo, no le queda recorrido para quedarse pegada y se
+       desliza por encima de las pestañas. Con el pie detrás, la 07 se
+       posa en la pila y es el pie el que sube por encima. -->
+  <footer class="pie">
   <img src="assets/img/logo-blanco.png" alt="" width="350" height="185" loading="lazy">
   <p>
     Clínica Dental Egle S.L. · Calle de la Sagra 21-23, Leganés ·
     Calle Núñez de Arce 10, Madrid.
   </p>
-</footer>
+  </footer>
+
+</main>
 
 <nav class="barra" aria-label="Llamar a la clínica">
   <a href="tel:+34916857673"><small>Leganés</small><span>916 85 76 73</span></a>
