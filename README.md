@@ -13,6 +13,7 @@ carpeta y es un sitio estático independiente: se abre con doble clic sobre
 | [`el-venezolano-leganes/`](el-venezolano-leganes/) | El Venezolano — Leganés, Madrid | Restaurante venezolano | Botica del maíz: masa, papelón y caraota, con las arepas como léxico |
 | [`clinica-dental-egle-estudio/`](clinica-dental-egle-estudio/) | Clínica Dental Egle — Leganés, Madrid | Clínica dental | Estudio: hueso y mármol, panel fijo con las dos consultas y los tratamientos como catálogo |
 | [`clinica-dental-egle-cian/`](clinica-dental-egle-cian/) | Clínica Dental Egle — Leganés y Madrid | Clínica dental | Cian: su propio blanco y azul de redes, en carpetas que se apilan al bajar, con entrada por síntoma |
+| [`asador-de-salamanca-horno/`](asador-de-salamanca-horno/) | El Asador de Salamanca — Leganés, Madrid | Asador y banquetes | Boca de horno: carbón y nogal, con el arco de ladrillo de su logo como ventana y las fotos abriéndose de abajo arriba |
 
 ## Ver una muestra en local
 

@@ -1,0 +1,982 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El Asador de Salamanca · Horno de leña en Leganés</title>
+<meta name="description" content="Asador con horno de leña en Leganés: cochinillo, cordero lechal y carnes a la brasa. Tres salones, menú del día, menú de fin de semana y celebraciones de hasta 170 invitados. Reservas en el 669 90 92 37.">
+<meta name="theme-color" content="#120e0b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23120e0b'/%3E%3Cpath d='M14 54V32a18 18 0 0 1 36 0v22' fill='none' stroke='%23b88a5e' stroke-width='7'/%3E%3Cpath d='M32 51c-6 0-9-4-8-9 1-4 5-6 5-11 4 3 5 6 4 9 2-1 3-3 3-5 3 3 4 6 4 9 0 4-3 7-8 7z' fill='%23e07a33'/%3E%3C/svg%3E">
+<script>
+  /* Todo se ve sin JavaScript. Las animaciones solo se preparan si este
+     documento lleva la clase «js», y si el guion del final no llega a
+     marcar window.__animOk, se quita la clase y la página queda entera. */
+  document.documentElement.classList.add('js');
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!window.__animOk) document.documentElement.classList.remove('js');
+  });
+</script>
+<link rel="preload" as="image" href="assets/img/brasa-chuleton.webp" type="image/webp" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500&family=Alegreya+SC:wght@500;700&family=Alegreya+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ==================================================================
+   El Asador de Salamanca · «Boca de horno»
+   Carbón y nogal, con el arco de ladrillo de su logo como ventana.
+
+   Estructura: sin barra fija. Un botón con forma de arco abre el
+   índice a pantalla completa, y la reserva flota abajo a la derecha.
+   La portada es el propio logo a tamaño de pantalla: el arco de
+   dovelas, el fuego dentro y el rótulo debajo.
+
+   Vocabulario de interacción:
+   · las fotos se abren de abajo arriba, como la boca del horno
+   · lo que se toca se calienta: del cuero a la brasa, con resplandor
+   · en las fichas del horno, una ascua sigue al cursor
+   · los salones se funden uno en otro al pasar por la lista
+   ================================================================== */
+:root{
+  --carbon:#120e0b; --tizon:#19130f; --hollin:#211913; --nogal:#271d16; --nogal-2:#3a2b1f;
+  --roble:#6e4b32; --cuero:#b88a5e; --cuero-2:#d6ad7f; --brasa:#e07a33;
+  --cal:#efe5d6; --cal-2:#ded1bf; --ceniza:#a89888;
+  --papel:#ece0cc; --tinta:#2b1e15; --almagre:#8e3a22;
+  --linea:rgba(184,138,94,.26);
+  --serif:"Alegreya",Georgia,"Times New Roman",serif;
+  --sc:"Alegreya SC","Alegreya",Georgia,serif;
+  --sans:"Alegreya Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --ancho:1180px; --pad:clamp(20px,5vw,56px);
+  --arco:26px 26px 3px 3px;
+  --curva:cubic-bezier(.7,0,.2,1);
+  --suave:cubic-bezier(.2,.7,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--carbon);color:var(--cal);font:400 1.125rem/1.62 var(--serif);font-kerning:normal;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+a[href^="tel:"]{white-space:nowrap}
+:focus-visible{outline:2px solid var(--brasa);outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.saltar{position:absolute;left:16px;top:-80px;z-index:100;padding:.6em 1em;background:var(--cuero);color:var(--carbon);font:700 1rem var(--sans);text-decoration:none;border-radius:var(--arco)}
+.saltar:focus{top:16px}
+.envoltura{max-width:var(--ancho);margin-inline:auto;padding-inline:var(--pad)}
+
+/* ---------- marcadores: cada marco enseña al instante su foto en diminuto y
+   borrosa (28 px ampliados) mientras llega la de verdad ---------- */
+.ph{position:relative;background-color:var(--hollin)}
+.ph::before{content:"";position:absolute;inset:-8%;background:var(--ph,none) center/cover no-repeat;filter:blur(16px)}
+.ph > img{position:relative}
+.ph-brasa-chuleton{--ph:url(data:image/webp;base64,UklGRrgCAABXRUJQVlA4WAoAAAAgAAAAGwAAEgAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggygAAANAFAJ0BKhwAEwA+0WCpT6glI6IoCAEAGglmAJ0yhHzoDiSunbdc2GofdCTfp1f4pTXgTAm3bpAA/myLT5oyBbyp3oFSA2sCKdfoGlju5LCSi5iQm4BYPg+of9jty7Z72j102bMvPGwce/ruP+W7yFhneejPx9iu7rW61JZiLlgAPACYykqTrhoDeFoXtPZsfsAAHZo30gCyVvbRggM2UJ/K+/wu5TmkYYnRdt63G8njtd7YKb2ed8TatG22ykCwJLK6tfaWJv1AAAA=)}
+.ph-cochinillo{--ph:url(data:image/webp;base64,UklGRsICAABXRUJQVlA4WAoAAAAgAAAAGwAADwAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDgg1AAAABAFAJ0BKhwAEAA+0VSjS6gkoyGwCAEAGgloAJ0vXhQAgrBOcEKAWpGc7Bx5L9fGJYAA/mqOgBGNAQuypUlHGFRUkFB17aK9am4kKagsm2IeFc88rBvrgYSJnpZUtYb0PwBtmG0HeCDGC2lo3XWYpT24XxWp7QhBF3K2/POB9OERMIpZucuTXlWaqFJFRCTFmthDKsi70l1sChBS8AdqlHmcJgSlkT3/d7bE+AslL6HbEIiS6fTEfeXTxzXUeytXSKgbBqN5m3/fUdSvVKLBEEQ8gAAA)}
+.ph-cordero-barro{--ph:url(data:image/webp;base64,UklGRvgCAABXRUJQVlA4WAoAAAAgAAAAGwAAEgAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggCgEAADAGAJ0BKhwAEwA+0VqqTaglJCIoCqkAGglAFqNmh+76BXE49NT7gJDxNZGHmSh3EHv+IFLnY/WspoAA/urzixM57KqZGUC7e9IJ6TbNpHlDVk3BqHUHl1L8wOi71iCs5RzjIJhPZTQBVYSZ4xLAeerhGYCiW5u4aRooHnIbnFWD7CyoWXnAdAXLYg3OW6lgrLintxhnjJEs6Gl/AclcXBm2BK2LDZyFMjzv4trQrCheHxsgrADSJpk3o8PT082fyHaaZpjPHH15Ooy6RhHD0FS3quXmBPsb6vgWNlBOms5GbtQ/MVEkfj/zNt+Pz1xj1qjzT11fVBE/MRfwleGDexwkPOkghQaiTAAA)}
+.ph-cuarto-asado{--ph:url(data:image/webp;base64,UklGRsoCAABXRUJQVlA4WAoAAAAgAAAAGwAAEQAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDgg3AAAAPAFAJ0BKhwAEgA+0VynTiglI6IoCqkAGgliAJ0y0/RsH/0UsiGtGo5mz6DWd1XAMrNs9P+rWbaAAP7oauuoHwDcQi9jsmAMNMxd9De0iSMrMMpWY+NxuHL7tuJ0k1qcAJtKs3PDU25L2ymZLHiAG6Kg3oUszqVbCOrLsUL9OtGQXBV1h76vjDLk67nzMq+C5CJGZrXfQ+0tijqaufuxUSddpJ47bpVKHdUIntoVi0uUlBPnRGYIv+IBxNEE9pIOGyLI+5+zCRbV5M6Hs3gHpbg60uqUorABnUEAAAA=)}
+.ph-chuleton-panaderas{--ph:url(data:image/webp;base64,UklGRhYDAABXRUJQVlA4WAoAAAAgAAAAGwAAHgAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggKAEAAFAGAJ0BKhwAHwA+wU6fS6ekIqG3+qgA8BgJZgCdBHkKYD3toR+FNHDwGnjGqwSVBu8+FLIj55VQUcN2AP7tSSK8F7gtuCBx6jjMIt7Ap5QeVtXTdqmTVM0pDGmIZBkZVR6k83gmfOMbb40WxAGV2+679ZSeTzkLDOdh8egUjaxDIe+VOrKtn6z89sBEyykeRzFkuXkIwObeBgykEzhWoSRUwsp7MWJP6pHLYzbxLVQwop7QUdoNt554DZQL7E75FCkPFo7YY2+75E0IDx+M79ZaaMhWkTgmW0Zx68fREzipX7m8J75YmOXcLN0C56V7dpQSj7B7PJ6T57edVuUkfnI/qSnPbbfhjlBal83D3IqQCb/S4Y72mf+vs89wOc/xQOt/s5v4SgAA)}
+.ph-croquetas-romesco{--ph:url(data:image/webp;base64,UklGRpgCAABXRUJQVlA4WAoAAAAgAAAAGwAAEAAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggqgAAANAEAJ0BKhwAEQA+0VikS6glI6GwCAEAGglmNwADAOwACp5NTzzHd9rxXuWSFwgAAP6GnhWfT9dVatJlf4mXvWP4WQL1oWCEMHN8Q/DlFkFwTzatjQXKJYfgdtbnEKDQPvyRrHosPzijcM8iqIdY/0/ZWu8vANk0DjWi4/C0W8jap1UQgmFHiwE8Bawucyx6C8LpsEFVXxBsXCFzeVsL86wNazIw4iCHAIAA)}
+.ph-solomillo{--ph:url(data:image/webp;base64,UklGRvoCAABXRUJQVlA4WAoAAAAgAAAAGwAAEgAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggDAEAADAGAJ0BKhwAEwA+0VqpTaglJCIoCqkAGglsAJ0y44KaSZ94Y/97Iwr8VUPfAn0lEam8EFWm3u7p9ZAA8ppudvaSwuZZmoLB6zEbVhNvO5VWQ5WiDZMHKKIvsc7D8sRsliv399r5Gti2L8JcES8/G1N5nCncb0J6coeBee2YY176oicZGNfQPNguId509Xsl4nUG9vBxM0zn0I6yVT1aH7F92P0LfDt36Z0BOiF2CQDlEdr1vwNolHfwWuJOEkr11C6n1IZ2ga0Rz4yxVqbenegfh8XC+BpdDvfmjcfPioSi84hDLnTY/rqq9kiX6l3gaN6uT40zGt/Z1CJBRFQSdMkoYEMEd2CmKDQAAAA=)}
+.ph-tarta-queso{--ph:url(data:image/webp;base64,UklGRiQDAABXRUJQVlA4WAoAAAAgAAAAGwAAGwAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggNgEAANAGAJ0BKhwAHAA+0WCoT6glI6IoCAEAGglAE6ZQZkXP+xf7d5XWEYz13bSk+voUM5YBXGE9qtHS7zlovcMgAAD+2bZNRny/XgUsAXC8tk9lAAygrkHMBVDFHWcBQens4WZoXDWFeHiCIel2bGh7xvngW/zjznXdgVXL5w9Tm4yjLVUp34RvVuMuPZjPGLQdgYhRJUC/uzFbY6mWVxTEmHTG9Pvvq1x0G+TuzKIVaMDDXTUGjfTOMgNRkEPVLM+FCKuz8mch82mPYPwV0Us2gP88LrdPHlxhMt3PEYyUwrNhy9OG8e16yofXiswgSdsLbweIeD1sPmKAGAJh58k9ft5LGIS7XFtK+ReXMiSTL6CSisvRB3BhvYKoEx1WERYsxQQCNmEGyhw36Zz9ZP0NpH1+WXwAAAA=)}
+.ph-salon-castellano{--ph:url(data:image/webp;base64,UklGRuoCAABXRUJQVlA4WAoAAAAgAAAAGwAAFAAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDgg/AAAAJAFAJ0BKhwAFQA+0VynTiglI6IoCqkAGglkALsAEiW6jAXxpanfL7Ti62jPBT7FK3Epl9IAAPzs/uwoc4TvHAYoA7oFUIFXoT7GrFbAlCbVYYK0B6lnnESRj5spflLiwFnrP14uLtsMCW091SDu/t4Kyp8kzgfodYudK65EKoRKWYvqfDmWso5bHu3Vt480X7MpmGvnT/V4YXKo69gysZhSrfL9OcZlv0frieutRK17tB9SU+OmPxxSj+k20GTvmcW00hLM2f/JdVFYFmBfVK1wcmcdfZkDmCGb8uFY/8w7sJUwbMmZotyb94DPVcf2IAIw9rK8Zp42zSAAAA==)}
+.ph-salon-terraza{--ph:url(data:image/webp;base64,UklGRuYCAABXRUJQVlA4WAoAAAAgAAAAGwAAGgAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDgg+AAAABAGAJ0BKhwAGwA+0WCpT6glI6IoCAEAGgljAMTZjORcMclTtBwZI6s0F4gKCu5GbKnImLkQWil4AADOP7skLhEe9P/syTQhsQ6Pgm+i7LASgxdw/jrEoZLEHBR2fRRsFB2u/XnugoVJxyKC7jYEDcH0v8VWGeuDSDdYBP57Ur/I6fX7h+o88vqBEt6QEGIrFtBDGtmok69ExO6Jf32XQAmH+M6efphvnLO56xT2A5wAt47avRVWRPscM1e8jwpSy2wizYoRrkVMFXNOpBX4vAnxpCqA8/rSRETokan+PA0HbykkqxIuYZXKMgXI94IDBDVO0/DgAAAA)}
+.ph-salon-celebraciones{--ph:url(data:image/webp;base64,UklGRrwCAABXRUJQVlA4WAoAAAAgAAAAGwAAEwAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggzgAAAJAFAJ0BKhwAFAA+0VqpTaglJCIoCqkAGglAFiPurtoDhvkbZyMvcvIbsp5F5JFl9aNgDj/AAPgeGzmslBMGhKYTAAU0iFQ3Va1JDxb6eyYtnjIXCcd8rEjvZZP+6DqhX4ZX8gyC+h5RAyQC3vYZun5HyirtvginnrVgKMAjwD7t9Xsb4h62Q9BzGTTui83HHwX2hAuzR7blChEmOjyGXeuExXx6Md7qFHHpvmXBWrNH4s/ZhoF2Zq0gAB/hct16PsuPNKPYFG8FRMLghQAA)}
+.ph-mesa-boda{--ph:url(data:image/webp;base64,UklGRp4CAABXRUJQVlA4WAoAAAAgAAAAGwAAFQAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggsAAAAFAFAJ0BKhwAFgA+0VikS6glI6GwCAEAGgllAM44Id9hfY6oI7mDFNHqa42LWbDu5lqUAAD+78f2pgxRkzybTcjJ4Wi3vylEWA++O/DFb/XBWeYHGaQKlZsLOAyQRaGGCdEq95UnzQCEH/VBgY2FlEi7uJSrcE/XZXxIZIA5uzxu7e3T2b/R0nPop0cLHpQ/VdSOSOkD3RC9e4mLXgxXbM2jp5r+R2KtM+VTdxAkAAAA)}
+.js .carga{transition:opacity .5s ease}
+.js .carga.espera{opacity:0}
+.seccion{padding-block:clamp(76px,11vw,150px)}
+
+/* ---------- rótulos ---------- */
+.ceja{display:flex;align-items:center;gap:.7em;margin:0 0 1.1rem;font:700 .95rem/1.2 var(--sc);letter-spacing:.2em;text-transform:lowercase;color:var(--cuero)}
+.ceja::before{content:"";flex:none;width:16px;height:9px;border:1.5px solid currentColor;border-bottom:0;border-radius:9px 9px 0 0}
+.titular{margin:0 0 1.2rem;font:800 clamp(2.1rem,4.6vw,3.8rem)/1.03 var(--serif);letter-spacing:-.012em;color:var(--cal);text-wrap:balance}
+.entrada{margin:0;max-width:40ch;color:var(--ceniza);font-size:1.18rem}
+
+/* ---------- botones con boca de horno ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:50px;padding:.7em 1.5em .75em;border:1px solid transparent;border-radius:var(--arco);font:700 1.02rem/1.1 var(--sans);letter-spacing:.02em;text-decoration:none;cursor:pointer;transition:background-color .35s,color .35s,border-color .35s,box-shadow .5s}
+.btn svg{width:1.15em;height:1.15em;flex:none}
+.btn-brasa{background:var(--cuero);color:var(--carbon)}
+.btn-brasa:hover{background:var(--cuero-2);box-shadow:0 14px 34px -14px rgba(224,122,51,.9),0 0 0 1px rgba(224,122,51,.55)}
+.btn-linea{border-color:var(--cuero);color:var(--cal);background:transparent}
+.btn-linea:hover{border-color:var(--brasa);color:var(--cuero-2);background:rgba(224,122,51,.07);box-shadow:0 0 30px -8px rgba(224,122,51,.5)}
+
+/* ---------- botón del índice y reserva flotante ---------- */
+.menu-btn{position:fixed;top:16px;right:16px;z-index:90;display:flex;flex-direction:column;align-items:center;gap:6px;min-width:66px;padding:12px 14px 10px;border:1px solid var(--linea);border-radius:40px 40px 6px 6px;background:rgba(18,14,11,.84);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--cal);text-decoration:none;font:700 .8rem/1 var(--sc);letter-spacing:.18em;text-transform:lowercase;transition:border-color .35s,color .35s,box-shadow .5s}
+.menu-btn:hover{border-color:var(--brasa);color:var(--cuero-2);box-shadow:0 0 28px -6px rgba(224,122,51,.55)}
+.menu-arco{width:22px;height:12px;border:2px solid currentColor;border-bottom:0;border-radius:12px 12px 0 0}
+
+.reserva-fija{position:fixed;right:16px;bottom:16px;z-index:70;display:flex;gap:8px;align-items:stretch}
+.rf-tel{display:flex;flex-direction:column;justify-content:center;padding:9px 20px 10px;border-radius:var(--arco);background:var(--cuero);color:var(--carbon);text-decoration:none;box-shadow:0 18px 40px -16px #000;transition:background-color .35s,box-shadow .5s}
+.rf-k{font:700 .72rem/1.1 var(--sc);letter-spacing:.18em;text-transform:lowercase}
+.rf-n{font:700 1.08rem/1.2 var(--sans)}
+.rf-tel:hover{background:var(--cuero-2);box-shadow:0 16px 38px -14px rgba(224,122,51,.85)}
+.rf-wa{display:grid;place-items:center;width:54px;border:1px solid var(--linea);border-radius:var(--arco);background:var(--nogal-2);color:var(--cal);box-shadow:0 18px 40px -16px #000;transition:color .35s,border-color .35s,box-shadow .5s}
+.rf-wa svg{width:25px;height:25px}
+.rf-wa:hover{color:var(--cuero-2);border-color:var(--brasa);box-shadow:0 0 26px -6px rgba(224,122,51,.6)}
+.js .reserva-fija{opacity:0;transform:translateY(24px);pointer-events:none;transition:opacity .5s,transform .6s var(--curva)}
+.js .reserva-fija.visible{opacity:1;transform:none;pointer-events:auto}
+
+/* ---------- índice a pantalla completa: se abre como la boca del horno ---------- */
+.indice{position:fixed;inset:0;z-index:85;overflow:auto;visibility:hidden;background:radial-gradient(110% 70% at 50% 112%,rgba(224,122,51,.24),transparent 60%),var(--carbon);clip-path:ellipse(0% 0% at 50% 100%);transition:clip-path .9s var(--curva),visibility 0s linear .9s}
+.indice:target,.indice.abierta{visibility:visible;clip-path:ellipse(160% 160% at 50% 100%);transition:clip-path .9s var(--curva),visibility 0s}
+.indice-dentro{min-height:100%;display:grid;grid-template-rows:auto 1fr auto;gap:2rem;padding:22px var(--pad) clamp(28px,5vw,56px)}
+.indice-cab{display:flex;align-items:center;gap:22px;padding-right:90px}
+.indice-cab img{width:58px}
+.indice-cerrar{font:700 .85rem/1 var(--sc);letter-spacing:.18em;text-transform:lowercase;color:var(--ceniza);text-decoration:none}
+.indice-cerrar:hover{color:var(--cuero-2)}
+.indice ol{align-self:center;width:100%;max-width:1000px;margin:0 auto;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 5vw}
+.indice li a{display:flex;align-items:baseline;gap:1rem;padding:.38em 0;border-bottom:1px solid var(--linea);text-decoration:none;font:700 clamp(1.8rem,4.2vw,3.2rem)/1.15 var(--serif);color:var(--cal);transition:color .35s,text-shadow .6s}
+.indice li a span{min-width:2.4em;font:700 .95rem/1 var(--sc);letter-spacing:.14em;color:var(--cuero);transition:color .35s}
+.indice li a:hover{color:var(--cuero-2);text-shadow:0 0 32px rgba(224,122,51,.5)}
+.indice li a:hover span{color:var(--brasa)}
+.indice-pie{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px 28px;max-width:1000px;width:100%;margin:0 auto;color:var(--ceniza);font:500 1.02rem/1.4 var(--sans)}
+.indice-pie a{color:var(--cal);text-decoration:none}
+.indice-pie a:hover{color:var(--cuero-2)}
+
+/* ---------- portada: el logo a tamaño de pantalla ---------- */
+.portada{position:relative;isolation:isolate;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:88px var(--pad) 52px;overflow:hidden;background:radial-gradient(60% 52% at 50% 40%,rgba(224,122,51,.12),transparent 70%),var(--carbon)}
+.sello{position:absolute;top:18px;left:var(--pad);width:58px}
+.portada-grid{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:end;gap:clamp(20px,4vw,64px);width:100%;max-width:1280px}
+.boca{position:relative;width:min(50vh,80vw,520px);width:min(50svh,80vw,520px);aspect-ratio:1/1}
+.boca::before{content:"";position:absolute;z-index:-1;inset:14% 16% 2%;background:radial-gradient(50% 55% at 50% 62%,rgba(224,122,51,.42),transparent 72%);filter:blur(34px)}
+.dovelas{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.dovelas .dv{transform-box:fill-box;transform-origin:50% 100%}
+.dovelas .solera{fill:#4a3222}
+.hueco{position:absolute;left:19%;right:19%;top:17%;bottom:6.4%;margin:0;overflow:hidden;border-radius:999px 999px 0 0;background-color:#050302}
+.hueco.ph::before{background-position:56% 62%}
+.hueco img{width:100%;height:100%;object-fit:cover;object-position:56% 62%}
+.hueco::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 34px 60px -24px rgba(0,0,0,.75)}
+.inscripcion{margin:0 0 8%;max-width:17ch;font:500 1.06rem/1.45 var(--serif);color:var(--ceniza)}
+.inscripcion span{display:block;margin-bottom:.45rem;font:700 .78rem/1.2 var(--sc);letter-spacing:.2em;text-transform:lowercase;color:var(--cuero)}
+.inscripcion.izq{justify-self:end;text-align:right}
+.inscripcion.der{justify-self:start}
+.rotulo{margin:clamp(14px,2.2vh,26px) 0 0;display:flex;flex-direction:column;align-items:center;text-align:center;font-weight:400;line-height:1}
+.rotulo .r1{margin-right:-.34em;font:700 clamp(.95rem,1.6vw,1.3rem)/1 var(--sc);letter-spacing:.34em;text-transform:lowercase}
+.rotulo .r2{margin:.1em 0 .12em;font:800 clamp(3rem,8.6vw,7rem)/.92 var(--serif);letter-spacing:.015em;text-transform:uppercase}
+.rotulo .r3{margin-right:-.52em;font:700 clamp(.85rem,1.3vw,1.08rem)/1 var(--sc);letter-spacing:.52em;text-transform:lowercase;color:var(--cuero)}
+.portada-acc{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:clamp(18px,3.2vh,36px)}
+
+/* ---------- la casa ---------- */
+.casa-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(36px,6vw,96px);align-items:center}
+.columnas{columns:2 17rem;column-gap:2.4rem;color:var(--cal-2)}
+.columnas p{margin:0 0 1rem}
+.capitular::first-letter{float:left;margin:.06em .1em 0 0;font:800 4.4em/.8 var(--serif);color:var(--cuero)}
+.marco{position:relative;overflow:hidden;border-radius:999px 999px 4px 4px;box-shadow:0 0 0 1px var(--linea),0 0 0 11px var(--carbon),0 0 0 12px var(--linea)}
+.marco img{width:100%;height:100%;object-fit:cover}
+.arco-foto{margin:0 12px}
+.arco-foto .marco{aspect-ratio:4/5}
+figcaption{margin-top:1.3rem;font:500 .98rem/1.4 var(--sans);color:var(--ceniza)}
+.datos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(60px,8vw,104px);border-top:1px solid var(--linea)}
+.dato{padding:1.6rem 1.4rem 0 0}
+.dato + .dato{padding-left:1.4rem;border-left:1px solid var(--linea)}
+.dato strong{display:block;font:800 clamp(2.4rem,4.4vw,3.5rem)/1 var(--serif);color:var(--cuero-2)}
+.dato span{display:block;max-width:19ch;margin-top:.55rem;font:500 1rem/1.35 var(--sans);color:var(--ceniza)}
+
+/* ---------- del horno ---------- */
+.horno{background:var(--tizon)}
+.sec-cab{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1rem 4rem;align-items:end;margin-bottom:clamp(40px,6vw,72px)}
+.sec-cab .titular{margin:0}
+.sec-cab .entrada{justify-self:end}
+.piezas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,32px)}
+.pieza{position:relative;overflow:hidden;padding:14px 14px 28px;border:1px solid var(--linea);border-radius:999px 999px 6px 6px;background:var(--hollin);transition:border-color .5s}
+.ascua{--mx:50%;--my:30%}
+.ascua::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(260px circle at var(--mx) var(--my),rgba(224,122,51,.22),transparent 66%);opacity:0;transition:opacity .5s}
+.ascua:hover::before{opacity:1}
+.ascua > *{position:relative;z-index:1}
+.pieza:hover{border-color:rgba(224,122,51,.55)}
+.pieza-foto{margin:0;overflow:hidden;aspect-ratio:4/4.4;border-radius:999px 999px 4px 4px}
+.pieza-foto img{width:100%;height:100%;object-fit:cover;transition:filter .7s}
+.pieza:hover .pieza-foto img{filter:saturate(1.15) brightness(1.07) sepia(.1)}
+.pieza h3{margin:1.3rem 12px .45rem;font:800 1.65rem/1.1 var(--serif);transition:color .35s}
+.pieza:hover h3{color:var(--cuero-2)}
+.pieza p{margin:0 12px;font-size:1.03rem;color:var(--ceniza)}
+
+/* ---------- salones: se funden uno en otro ----------
+   Cada foto existe una sola vez, dentro de su salón. En móvil va encima del
+   texto; en escritorio se coloca sobre el marco de la derecha y se funde
+   con :has() al pasar por la lista. */
+.salones-grid{--g:clamp(36px,6vw,96px);position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--g);align-items:center}
+.salones ol{margin:2.2rem 0 0;padding:0;list-style:none;border-top:1px solid var(--linea)}
+.salon{display:grid;grid-template-columns:3.2rem minmax(0,1fr);gap:0 1rem;padding:1.5rem 0;border-bottom:1px solid var(--linea);outline:none}
+.salon:focus-visible{outline:2px solid var(--brasa);outline-offset:4px}
+.salon-n{font:700 1rem/2.1 var(--sc);letter-spacing:.14em;text-transform:lowercase;color:var(--cuero)}
+.salon h3{margin:0 0 .3rem;font:800 clamp(1.7rem,2.8vw,2.3rem)/1.1 var(--serif);transition:color .4s,text-shadow .6s}
+.salon p{margin:0;color:var(--ceniza)}
+.salon-cap{display:inline-block;margin-top:.7rem;font:700 .8rem/1 var(--sc);letter-spacing:.16em;text-transform:lowercase;color:var(--cuero)}
+.salon:is(:hover,:focus) h3{color:var(--cuero-2);text-shadow:0 0 30px rgba(224,122,51,.42)}
+.salon-mini{grid-column:1/-1;margin:0 0 1.2rem;overflow:hidden;aspect-ratio:16/10;border-radius:999px 999px 4px 4px}
+.salon-mini img{width:100%;height:100%;object-fit:cover}
+.salon-mini figcaption{display:none}
+.salones-ventana{position:relative;margin:0 12px;aspect-ratio:4/5}
+.salones-ventana .marco{position:absolute;inset:0}
+@media (min-width:901px){
+  .salon-mini{position:absolute;z-index:2;top:50%;left:calc(50% + var(--g) / 2 + 12px);width:calc(50% - var(--g) / 2 - 24px);aspect-ratio:4/5;margin:0;transform:translateY(-50%);opacity:0;transition:opacity .6s ease;pointer-events:none}
+  .salon-mini figcaption{display:block;position:absolute;left:0;right:0;bottom:0;margin:0;padding:3rem 1.4rem 1.1rem;background:linear-gradient(transparent,rgba(10,7,5,.85));font:700 .82rem/1 var(--sc);letter-spacing:.18em;text-transform:lowercase;color:var(--cal)}
+  .s2 .salon-mini{opacity:1}
+  .salones-grid:has(.s1:is(:hover,:focus)) .salon-mini,.salones-grid:has(.s3:is(:hover,:focus)) .salon-mini{opacity:0}
+  .salones-grid:has(.s1:is(:hover,:focus)) .s1 .salon-mini,.salones-grid:has(.s3:is(:hover,:focus)) .s3 .salon-mini{opacity:1}
+}
+
+/* ---------- carta: columnas de periódico ---------- */
+.carta{background:var(--nogal)}
+.carta-cols{columns:3 17rem;column-gap:clamp(28px,4vw,56px);column-rule:1px solid var(--linea)}
+.grupo{break-inside:avoid;margin:0 0 2.4rem}
+.grupo h3{margin:0 0 .9rem;padding-bottom:.7rem;border-bottom:1px solid var(--linea);font:700 1.05rem/1.3 var(--sc);letter-spacing:.12em;text-transform:lowercase;color:var(--cuero-2)}
+.grupo ul{margin:0;padding:0;list-style:none}
+.grupo li{padding:.42rem 0;line-height:1.38;color:var(--cal-2);transition:color .3s,text-shadow .5s}
+.grupo li:hover{color:var(--cuero-2);text-shadow:0 0 24px rgba(224,122,51,.38)}
+.grupo small{margin-left:.35em;font:700 .74rem/1 var(--sc);letter-spacing:.1em;text-transform:lowercase;white-space:nowrap;color:var(--cuero)}
+.carta-foto{break-inside:avoid;margin:.6rem 12px 2.6rem}
+.carta-foto .marco{aspect-ratio:1/1.05}
+.bodega{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.6rem 2rem;align-items:baseline;margin-top:.6rem;padding-top:1.8rem;border-top:1px solid var(--linea);color:var(--ceniza)}
+.bodega .ceja{margin:0}
+.bodega p{margin:0}
+
+/* ---------- menús y pliego ---------- */
+.menus-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(40px,6vw,96px);align-items:start}
+.menu-bloque{padding:1.7rem 0;border-top:1px solid var(--linea)}
+.menu-bloque h3{margin:0 0 .25rem;font:800 1.9rem/1.1 var(--serif)}
+.cuando{margin:0 0 .8rem;font:700 .84rem/1.2 var(--sc);letter-spacing:.16em;text-transform:lowercase;color:var(--cuero)}
+.menu-bloque p{margin:0 0 1.1rem;color:var(--ceniza)}
+.pliego{position:relative;padding:clamp(56px,7vw,80px) clamp(22px,5vw,64px) clamp(40px,6vw,64px);border-radius:3px;background:var(--papel);color:var(--tinta);text-align:center;box-shadow:0 44px 80px -40px #000,0 0 0 1px rgba(0,0,0,.25);transform:rotate(.7deg);transition:transform .8s var(--suave),box-shadow .8s}
+.pliego:hover{transform:rotate(0deg);box-shadow:0 44px 90px -36px #000,0 0 60px -20px rgba(224,122,51,.35)}
+.esquina{position:absolute;top:16px;width:clamp(40px,6vw,58px);height:auto;color:#b7a080}
+.esquina.izq{left:16px}
+.esquina.der{right:16px}
+.pliego-casa{margin:0 0 .7rem;font:700 .82rem/1 var(--sc);letter-spacing:.24em;text-transform:lowercase;color:#7a6148}
+.pliego h3{margin:0;font:800 clamp(2rem,3.6vw,2.8rem)/1.05 var(--serif)}
+.pliego-min{margin:.45rem 0 1.6rem;font:italic 400 1.02rem/1.4 var(--serif);color:#6d5a47}
+.pliego h4{margin:1.7rem 0 .7rem;font:700 .95rem/1.3 var(--sc);letter-spacing:.14em;text-transform:lowercase;color:var(--almagre)}
+.pliego ul{margin:0 auto;padding:0;list-style:none;max-width:34rem}
+.pliego li{padding:.45rem 0;line-height:1.38}
+.pliego li + li{border-top:1px dotted rgba(43,30,21,.3)}
+.pliego li em{display:block;font:italic 500 .95rem/1.3 var(--serif);color:var(--almagre)}
+.pliego-inc{margin:2rem 0 .8rem;font-style:italic;color:#5d4b3b}
+.pliego-precio{margin:0;font:500 1rem/1.3 var(--sans);color:#5d4b3b}
+.pliego-precio strong{display:block;margin-bottom:.25rem;font:800 clamp(2.6rem,5vw,3.6rem)/1 var(--serif);color:var(--tinta)}
+
+/* ---------- celebraciones ---------- */
+.celebra{background:var(--tizon)}
+.celebra-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(40px,6vw,96px);align-items:start}
+.celebra-foto{position:sticky;top:48px;margin:0 12px}
+.celebra-foto .marco{aspect-ratio:3/4}
+.celebra-txt > p{color:var(--cal-2)}
+.cita{margin:2.2rem 0;padding:.3rem 0 .3rem 1.6rem;border-left:2px solid var(--cuero);font:italic 400 1.24rem/1.5 var(--serif);color:var(--cal)}
+.cita p{margin:0}
+.cita cite,.op cite{display:block;margin-top:.9rem;font:700 .8rem/1 var(--sc);font-style:normal;letter-spacing:.16em;text-transform:lowercase;color:var(--cuero)}
+.evento{margin-top:2.6rem;padding:clamp(22px,3.5vw,40px);border:1px solid var(--linea);border-radius:4px;background:var(--hollin)}
+.evento h3{margin:0 0 1.3rem;font:800 1.7rem/1.1 var(--serif)}
+.tipos{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 1.5rem;padding:0;border:0}
+.tipos legend{margin-bottom:.8rem;padding:0;font:700 .8rem/1 var(--sc);letter-spacing:.16em;text-transform:lowercase;color:var(--cuero)}
+.tipos label{position:relative;cursor:pointer}
+.tipos input{position:absolute;inset:0;margin:0;opacity:0;cursor:pointer}
+.tipos span{display:inline-block;padding:.6em 1.15em .62em;border:1px solid var(--linea);border-radius:var(--arco);font:500 1.02rem/1 var(--sans);color:var(--cal);transition:background-color .3s,color .3s,border-color .3s,box-shadow .5s}
+.tipos label:hover span{border-color:var(--brasa);box-shadow:0 0 22px -8px rgba(224,122,51,.6)}
+.tipos input:checked + span{background:var(--cuero);border-color:var(--cuero);color:var(--carbon)}
+.tipos input:focus-visible + span{outline:2px solid var(--brasa);outline-offset:2px}
+.campos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.1rem 1.2rem}
+.campos label{display:flex;flex-direction:column;gap:.45rem;font:700 .8rem/1 var(--sc);letter-spacing:.14em;text-transform:lowercase;color:var(--cuero)}
+.campos .ancho{grid-column:1/-1}
+.campos input,.campos select,.campos textarea{width:100%;padding:.75em .85em;border:1px solid var(--linea);border-radius:3px;background:var(--carbon);color:var(--cal);font:400 1.05rem/1.3 var(--sans);letter-spacing:0;text-transform:none;color-scheme:dark;transition:border-color .3s,box-shadow .3s}
+.campos textarea{resize:vertical}
+.campos input:focus,.campos select:focus,.campos textarea:focus{outline:none;border-color:var(--brasa);box-shadow:0 0 0 3px rgba(224,122,51,.2)}
+.evento-pie{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;margin-top:1.5rem}
+.evento-pie p{margin:0;font:500 1rem/1.4 var(--sans);color:var(--ceniza)}
+.evento-pie a{color:var(--cal)}
+.solo-js{display:none}
+.js .solo-js{display:block}
+
+/* ---------- opiniones ---------- */
+.opiniones{text-align:center}
+.nota{display:inline-flex;flex-direction:column;align-items:center;margin-bottom:2.6rem}
+.nota strong{font:800 clamp(4.2rem,9vw,7rem)/.9 var(--serif);color:var(--cuero-2)}
+.nota span{margin-top:.9rem;font:700 .86rem/1 var(--sc);letter-spacing:.2em;text-transform:lowercase;color:var(--ceniza)}
+.op{margin:0 auto}
+.op p{margin:0}
+.op-grande{max-width:31ch;font:italic 400 clamp(1.45rem,2.9vw,2.2rem)/1.36 var(--serif);text-wrap:balance}
+.op-peq{max-width:50ch;margin-top:3rem;font:italic 400 1.18rem/1.5 var(--serif);color:var(--cal-2)}
+
+/* ---------- reservas ---------- */
+.reservar{background:var(--nogal)}
+.res-grid{display:grid;grid-template-columns:1.15fr 1fr 1.2fr;margin-top:2.6rem;border-top:1px solid var(--linea)}
+.res-bloque{padding:2rem 2rem 0 0}
+.res-bloque + .res-bloque{padding-left:2rem;border-left:1px solid var(--linea)}
+.res-bloque h3{margin:0 0 1.1rem;font:700 .86rem/1 var(--sc);letter-spacing:.2em;text-transform:lowercase;color:var(--cuero)}
+.res-bloque p{margin:1.2rem 0 0;color:var(--ceniza)}
+.res-bloque p a{color:var(--cal)}
+.res-num{display:block;margin-bottom:1.2rem;font:800 clamp(2.3rem,4vw,3.2rem)/1 var(--serif);color:var(--cal);text-decoration:none;transition:color .35s,text-shadow .6s}
+.res-num:hover{color:var(--cuero-2);text-shadow:0 0 32px rgba(224,122,51,.5)}
+.horario{width:100%;border-collapse:collapse}
+.horario th,.horario td{padding:.75rem 0;border-bottom:1px solid var(--linea);text-align:left;font-weight:400}
+.horario td{text-align:right;white-space:nowrap;font:700 1.08rem/1.2 var(--sans)}
+address{font-style:normal;font-size:1.22rem;line-height:1.45}
+.llegar{margin:1.1rem 0 1.6rem;padding:0;list-style:none;color:var(--ceniza)}
+.llegar li{position:relative;padding:.3rem 0 .3rem 1.45rem}
+.llegar li::before{content:"";position:absolute;left:0;top:.82em;width:10px;height:6px;border:1.5px solid var(--cuero);border-bottom:0;border-radius:6px 6px 0 0}
+
+/* ---------- pie ---------- */
+.pie{padding:72px var(--pad) 120px;text-align:center;color:var(--ceniza);font:500 1rem/1.7 var(--sans)}
+.pie img{width:96px;margin:0 auto 1.3rem}
+.pie p{margin:0}
+.pie a{text-decoration:none}
+.pie a:hover{color:var(--cuero-2)}
+.pie small{display:block;margin-top:1.2rem;font-size:.9rem;opacity:.75}
+
+/* ---------- animaciones (solo con la clase js) ---------- */
+@keyframes dovela{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes fuego{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes sube{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes latido{from{opacity:.62}to{opacity:1}}
+.js .dovelas .dv{animation:dovela .55s var(--suave) both;animation-delay:calc(var(--d) * 45ms + 60ms)}
+.js .hueco img{animation:fuego 1.1s var(--curva) .45s both}
+.js .boca::before{animation:latido 3.4s ease-in-out 1.6s infinite alternate}
+.js .rotulo > span,.js .portada-acc,.js .inscripcion,.js .sello{animation:sube .8s var(--suave) both}
+.js .rotulo .r1{animation-delay:.8s}
+.js .rotulo .r2{animation-delay:.9s}
+.js .rotulo .r3{animation-delay:1.02s}
+.js .portada-acc{animation-delay:1.12s}
+.js .inscripcion,.js .sello{animation-delay:1.25s}
+/* Nada se esconde de entrada: el guion solo marca con «pre» lo que todavía
+   queda por debajo de la pantalla, y se lo quita al llegar. Así, aunque la
+   página baje despacio, lo que ya se ve nunca está en negro */
+.js .rev{transition:opacity .7s ease,transform .7s var(--suave)}
+.js .rev.pre{opacity:0;transform:translateY(16px)}
+/* la foto se abre de abajo arriba solo cuando ya ha llegado: hasta entonces
+   el marco enseña su marcador borroso */
+.js .rev-arco .marco img{transition:clip-path .95s var(--curva)}
+.js .rev-arco.pre .marco img{clip-path:inset(100% 0 0 0)}
+
+/* ---------- pantallas medianas y móviles ---------- */
+@media (max-width:1000px){
+  .portada-grid{grid-template-columns:1fr;justify-items:center}
+  .inscripcion{display:none}
+}
+@media (max-width:900px){
+  .casa-grid,.salones-grid,.menus-grid,.celebra-grid,.sec-cab{grid-template-columns:minmax(0,1fr)}
+  .sec-cab .entrada{justify-self:start}
+  .arco-foto{max-width:440px}
+  .datos{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dato{padding-bottom:1.4rem}
+  .dato:nth-child(3){padding-left:0;border-left:0}
+  .dato:nth-child(n+3){border-top:1px solid var(--linea)}
+  .piezas{grid-template-columns:minmax(0,1fr);max-width:460px;margin-inline:auto}
+  .pieza-foto{aspect-ratio:4/3.6}
+  .salones-ventana{display:none}
+  .celebra-foto{position:static;max-width:420px}
+  .res-grid{grid-template-columns:minmax(0,1fr)}
+  .res-bloque,.res-bloque + .res-bloque{padding:1.8rem 0;border-left:0;border-bottom:1px solid var(--linea)}
+  .bodega{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:640px){
+  body{font-size:1.08rem}
+  .indice ol{grid-template-columns:minmax(0,1fr)}
+  .indice-pie{flex-direction:column;align-items:flex-start}
+  .portada{padding-top:84px}
+  .portada-acc{flex-direction:column;align-items:stretch;width:100%;max-width:340px}
+  .campos{grid-template-columns:minmax(0,1fr)}
+  .rf-n{display:none}
+  .rf-k{font-size:.95rem;letter-spacing:.12em}
+  .rf-tel{padding:0 22px}
+  .pliego{transform:none}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rev.pre{opacity:1;transform:none}
+  .js .rev-arco.pre .marco img{clip-path:none}
+}
+</style>
+</head>
+<body>
+<a class="saltar" href="#casa">Saltar al contenido</a>
+
+<!-- El arco del logo, para reutilizarlo como adorno -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="arco" viewBox="0 0 1000 1000">
+    <g fill="currentColor">
+      <path d="M60.0 480.0A440 440 0 0 1 70.0 386.6L177.5 409.9A330 330 0 0 0 170.0 480.0Z"/>
+      <path d="M73.0 373.7A440 440 0 0 1 105.3 285.5L204.0 334.1A330 330 0 0 0 179.8 400.3Z"/>
+      <path d="M111.3 273.7A440 440 0 0 1 164.0 195.9L248.0 266.9A330 330 0 0 0 208.5 325.3Z"/>
+      <path d="M172.7 186.0A440 440 0 0 1 242.6 123.2L306.9 212.4A330 330 0 0 0 254.5 259.5Z"/>
+      <path d="M253.4 115.6A440 440 0 0 1 336.4 71.5L377.3 173.7A330 330 0 0 0 315.1 206.7Z"/>
+      <path d="M348.7 66.8A440 440 0 0 1 439.9 44.1L454.9 153.1A330 330 0 0 0 386.5 170.1Z"/>
+      <path d="M450.2 16.7A466 466 0 0 1 549.8 16.7L535.2 151.9A330 330 0 0 0 464.8 151.9Z"/>
+      <path d="M560.1 44.1A440 440 0 0 1 651.3 66.8L613.5 170.1A330 330 0 0 0 545.1 153.1Z"/>
+      <path d="M663.6 71.5A440 440 0 0 1 746.6 115.6L684.9 206.7A330 330 0 0 0 622.7 173.7Z"/>
+      <path d="M757.4 123.2A440 440 0 0 1 827.3 186.0L745.5 259.5A330 330 0 0 0 693.1 212.4Z"/>
+      <path d="M836.0 195.9A440 440 0 0 1 888.7 273.7L791.5 325.3A330 330 0 0 0 752.0 266.9Z"/>
+      <path d="M894.7 285.5A440 440 0 0 1 927.0 373.7L820.2 400.3A330 330 0 0 0 796.0 334.1Z"/>
+      <path d="M930.0 386.6A440 440 0 0 1 940.0 480.0L830.0 480.0A330 330 0 0 0 822.5 409.9Z"/>
+      <rect x="60" y="486" width="110" height="68.3"/><rect x="78" y="562.3" width="92" height="68.3"/><rect x="60" y="638.7" width="110" height="68.3"/>
+      <rect x="830" y="486" width="110" height="68.3"/><rect x="830" y="562.3" width="92" height="68.3"/><rect x="830" y="638.7" width="110" height="68.3"/>
+      <path d="M455 600c-40-30-18-78 12-104 0 34 22 44 30 30 10-20-4-46 20-76 6 44 52 64 44 116-4 28-26 44-54 46-22 2-40-4-52-12z"/>
+    </g>
+  </symbol>
+</svg>
+
+<a class="menu-btn" href="#indice" aria-controls="indice" aria-expanded="false">
+  <span class="menu-arco" aria-hidden="true"></span><span class="menu-txt">menú</span>
+</a>
+
+<nav class="indice" id="indice" aria-label="Secciones">
+  <div class="indice-dentro">
+    <div class="indice-cab">
+      <img src="assets/img/logo-blanco.png" alt="" width="217" height="222">
+      <a class="indice-cerrar" href="#cerrar">Cerrar</a>
+    </div>
+    <ol>
+      <li><a href="#casa"><span>i</span>La casa</a></li>
+      <li><a href="#horno"><span>ii</span>Del horno</a></li>
+      <li><a href="#salones"><span>iii</span>Los salones</a></li>
+      <li><a href="#carta"><span>iv</span>La carta</a></li>
+      <li><a href="#menus"><span>v</span>Menús</a></li>
+      <li><a href="#celebraciones"><span>vi</span>Celebraciones</a></li>
+      <li><a href="#opiniones"><span>vii</span>Opiniones</a></li>
+      <li><a href="#reservar"><span>viii</span>Reservar</a></li>
+    </ol>
+    <div class="indice-pie">
+      <span>Avenida de los Pinos, 2 · Leganés</span>
+      <span>Reservas <a href="tel:+34669909237">669 90 92 37</a> · Eventos <a href="tel:+34916933708">91 693 37 08</a></span>
+    </div>
+  </div>
+</nav>
+
+<div class="reserva-fija">
+  <a class="rf-tel" href="tel:+34669909237"><span class="rf-k">Reservar mesa</span><span class="rf-n">669 90 92 37</span></a>
+  <a class="rf-wa" href="https://wa.me/34669909237?text=Hola%2C%20quer%C3%ADa%20reservar%20mesa%20en%20el%20Asador%20de%20Salamanca" aria-label="Reservar por WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.2A9.8 9.8 0 0 0 3.6 17l-1.3 4.8 4.9-1.3A9.8 9.8 0 1 0 12 2.2zm0 1.8a8 8 0 1 1-4.1 14.9l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 0 1 12 4zm-3.1 3.9c-.2 0-.5.1-.7.3-.3.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.9 4.5 3.9 2.2.9 2.7.7 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3l-1.7-.8c-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.3-.1-1.1-.4-2-1.2-.8-.7-1.3-1.5-1.4-1.8-.2-.3 0-.4.1-.5l.4-.4.2-.4v-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5z"/></svg>
+  </a>
+</div>
+
+<header class="portada" id="inicio">
+  <a class="sello" href="#inicio" aria-label="El Asador de Salamanca, inicio"><img src="assets/img/logo-blanco.png" alt="" width="217" height="222"></a>
+  <div class="portada-grid">
+    <p class="inscripcion izq"><span>Desde el horno de leña</span>Cochinillo, lechazo y cordero lechal</p>
+    <div class="boca">
+      <svg class="dovelas" viewBox="0 0 1000 1000" aria-hidden="true" focusable="false">
+        <defs>
+          <radialGradient id="calor" gradientUnits="userSpaceOnUse" cx="500" cy="500" r="480">
+            <stop offset=".62" stop-color="#a0663a"/>
+            <stop offset=".8" stop-color="#5e3d27"/>
+            <stop offset="1" stop-color="#33231a"/>
+          </radialGradient>
+        </defs>
+        <g fill="url(#calor)">
+          <rect class="dv" style="--d:5" x="60" y="486" width="110" height="68.3"/>
+          <rect class="dv" style="--d:4" x="78" y="562.3" width="92" height="68.3"/>
+          <rect class="dv" style="--d:3" x="60" y="638.7" width="110" height="68.3"/>
+          <rect class="dv" style="--d:2" x="78" y="715" width="92" height="68.3"/>
+          <rect class="dv" style="--d:1" x="60" y="791.3" width="110" height="68.3"/>
+          <rect class="dv" style="--d:0" x="78" y="867.7" width="92" height="68.3"/>
+          <rect class="dv" style="--d:5" x="830" y="486" width="110" height="68.3"/>
+          <rect class="dv" style="--d:4" x="830" y="562.3" width="92" height="68.3"/>
+          <rect class="dv" style="--d:3" x="830" y="638.7" width="110" height="68.3"/>
+          <rect class="dv" style="--d:2" x="830" y="715" width="92" height="68.3"/>
+          <rect class="dv" style="--d:1" x="830" y="791.3" width="110" height="68.3"/>
+          <rect class="dv" style="--d:0" x="830" y="867.7" width="92" height="68.3"/>
+          <path class="dv" style="--d:6" d="M60.0 480.0A440 440 0 0 1 70.0 386.6L177.5 409.9A330 330 0 0 0 170.0 480.0Z"/>
+          <path class="dv" style="--d:7" d="M73.0 373.7A440 440 0 0 1 105.3 285.5L204.0 334.1A330 330 0 0 0 179.8 400.3Z"/>
+          <path class="dv" style="--d:8" d="M111.3 273.7A440 440 0 0 1 164.0 195.9L248.0 266.9A330 330 0 0 0 208.5 325.3Z"/>
+          <path class="dv" style="--d:9" d="M172.7 186.0A440 440 0 0 1 242.6 123.2L306.9 212.4A330 330 0 0 0 254.5 259.5Z"/>
+          <path class="dv" style="--d:10" d="M253.4 115.6A440 440 0 0 1 336.4 71.5L377.3 173.7A330 330 0 0 0 315.1 206.7Z"/>
+          <path class="dv" style="--d:11" d="M348.7 66.8A440 440 0 0 1 439.9 44.1L454.9 153.1A330 330 0 0 0 386.5 170.1Z"/>
+          <path class="dv" style="--d:12" d="M450.2 16.7A466 466 0 0 1 549.8 16.7L535.2 151.9A330 330 0 0 0 464.8 151.9Z"/>
+          <path class="dv" style="--d:11" d="M560.1 44.1A440 440 0 0 1 651.3 66.8L613.5 170.1A330 330 0 0 0 545.1 153.1Z"/>
+          <path class="dv" style="--d:10" d="M663.6 71.5A440 440 0 0 1 746.6 115.6L684.9 206.7A330 330 0 0 0 622.7 173.7Z"/>
+          <path class="dv" style="--d:9" d="M757.4 123.2A440 440 0 0 1 827.3 186.0L745.5 259.5A330 330 0 0 0 693.1 212.4Z"/>
+          <path class="dv" style="--d:8" d="M836.0 195.9A440 440 0 0 1 888.7 273.7L791.5 325.3A330 330 0 0 0 752.0 266.9Z"/>
+          <path class="dv" style="--d:7" d="M894.7 285.5A440 440 0 0 1 927.0 373.7L820.2 400.3A330 330 0 0 0 796.0 334.1Z"/>
+          <path class="dv" style="--d:6" d="M930.0 386.6A440 440 0 0 1 940.0 480.0L830.0 480.0A330 330 0 0 0 822.5 409.9Z"/>
+        </g>
+        <rect class="dv solera" style="--d:0" x="24" y="944" width="952" height="24" rx="2"/>
+      </svg>
+      <figure class="hueco ph ph-brasa-chuleton"><img class="carga" src="assets/img/brasa-chuleton.webp" alt="Chuletón sobre la parrilla, con las llamas del fuego detrás" width="1280" height="853" fetchpriority="high" decoding="async"></figure>
+    </div>
+    <p class="inscripcion der"><span>Avenida de los Pinos, 2</span>Leganés, junto al Hospital Severo Ochoa</p>
+  </div>
+  <h1 class="rotulo"><span class="r1">El Asador de</span> <span class="r2">Salamanca</span> <span class="r3">Horno de leña</span></h1>
+  <div class="portada-acc">
+    <a class="btn btn-brasa" href="tel:+34669909237">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+      Reservar · 669 90 92 37</a>
+    <a class="btn btn-linea" href="#celebraciones">Bodas y celebraciones</a>
+  </div>
+</header>
+
+<main>
+
+<section class="casa seccion" id="casa" aria-labelledby="t-casa">
+  <div class="envoltura">
+    <div class="casa-grid">
+      <div class="rev">
+        <p class="ceja">La casa</p>
+        <h2 class="titular" id="t-casa">Lo clásico, a fuego de leña</h2>
+        <div class="columnas">
+          <p class="capitular">En el Asador de Salamanca combinamos lo clásico con lo moderno. En cada uno de nuestros tres salones encontrarás un ambiente distinto: un salón-terraza para comer cualquier día de la semana, nuestro famoso Salón Castellano y un salón medieval para celebraciones con capacidad para 170 personas.</p>
+          <p>La cocina está pensada para todo tipo de público: desde el cochinillo y el cordero asados en horno de leña hasta los platos de autor, pasando, cómo no, por las carnes rojas a la brasa. Y para terminar, nuestros postres caseros.</p>
+        </div>
+      </div>
+      <figure class="arco-foto rev-arco">
+        <div class="marco ph ph-cuarto-asado"><img src="assets/img/cuarto-asado.webp" alt="Asado de horno de leña servido con patatas panaderas en la vajilla de la casa" width="900" height="593" loading="lazy" decoding="async"></div>
+        <figcaption>Asado de horno, con patatas panaderas, en la vajilla de la casa</figcaption>
+      </figure>
+    </div>
+    <div class="datos rev">
+      <div class="dato"><strong>4,2</strong><span>en Google, con 1.188 opiniones</span></div>
+      <div class="dato"><strong>3</strong><span>salones: terraza, castellano y medieval</span></div>
+      <div class="dato"><strong>170</strong><span>invitados en el salón de celebraciones</span></div>
+      <div class="dato"><strong>+20</strong><span>años sirviendo banquetes de boda</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="horno seccion" id="horno" aria-labelledby="t-horno">
+  <div class="envoltura">
+    <header class="sec-cab rev">
+      <div>
+        <p class="ceja">Del horno de leña</p>
+        <h2 class="titular" id="t-horno">Lo que sale de la boca del horno</h2>
+      </div>
+      <p class="entrada">Cochinillo y cordero lechal asados en horno de leña, y carnes rojas a la brasa. Todo con patatas panaderas.</p>
+    </header>
+    <div class="piezas">
+      <article class="pieza ascua rev">
+        <figure class="pieza-foto ph ph-cochinillo"><img class="carga" src="assets/img/cochinillo.webp" alt="Cochinillo asado con la piel dorada, patatas panaderas y tomate cherry" width="1100" height="619" loading="lazy" decoding="async"></figure>
+        <h3>Cochinillo asado</h3>
+        <p>En horno de leña, con la piel crujiente y patatas panaderas.</p>
+      </article>
+      <article class="pieza ascua rev">
+        <figure class="pieza-foto ph ph-cordero-barro"><img class="carga" src="assets/img/cordero-barro.webp" alt="Cordero lechal asado en fuentes de barro sobre el mantel" width="1000" height="668" loading="lazy" decoding="async"></figure>
+        <h3>Cordero lechal</h3>
+        <p>Pierna, paletilla o cuarto de lechazo para dos, en fuente de barro.</p>
+      </article>
+      <article class="pieza ascua rev">
+        <figure class="pieza-foto ph ph-chuleton-panaderas"><img class="carga" src="assets/img/chuleton-panaderas.webp" alt="Chuletón a la brasa con patatas panaderas" width="700" height="781" loading="lazy" decoding="async"></figure>
+        <h3>Chuletón a la piedra</h3>
+        <p>Para dos. Y a la brasa, solomillo, entrecot y chuletillas de lechal con pimientos de Guernica.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="salones seccion" id="salones" aria-labelledby="t-salones">
+  <div class="envoltura">
+    <div class="salones-grid">
+      <div class="salones-texto">
+        <div class="rev">
+          <p class="ceja">Los salones</p>
+          <h2 class="titular" id="t-salones">Tres salones, tres maneras de sentarse a la mesa</h2>
+        </div>
+        <ol>
+          <li class="salon s1" tabindex="0">
+            <figure class="salon-mini ph ph-salon-terraza"><img class="carga" src="assets/img/salon-terraza.webp" alt="Salón-terraza acristalado con mesas de madera oscura" width="807" height="785" loading="lazy" decoding="async"><figcaption>Salón-terraza</figcaption></figure>
+            <span class="salon-n" aria-hidden="true">i</span>
+            <div class="rev">
+              <h3>Salón-terraza</h3>
+              <p>Acristalado y con luz de día, para comer cualquier día de la semana.</p>
+            </div>
+          </li>
+          <li class="salon s2" tabindex="0">
+            <figure class="salon-mini ph ph-salon-castellano"><img class="carga" src="assets/img/salon-castellano.webp" alt="Salón Castellano con chimenea de piedra, paredes de ladrillo, sillas de madera y manteles de damasco rojo" width="1000" height="750" loading="lazy" decoding="async"><figcaption>Salón Castellano</figcaption></figure>
+            <span class="salon-n" aria-hidden="true">ii</span>
+            <div class="rev">
+              <h3>Salón Castellano</h3>
+              <p>El más conocido de la casa: chimenea de piedra, ladrillo visto, techo de madera y mantel de damasco.</p>
+            </div>
+          </li>
+          <li class="salon s3" tabindex="0">
+            <figure class="salon-mini ph ph-salon-celebraciones"><img class="carga" src="assets/img/salon-celebraciones.webp" alt="Salón de celebraciones con mesas redondas vestidas de blanco y lámparas de araña" width="900" height="628" loading="lazy" decoding="async"><figcaption>Salón medieval</figcaption></figure>
+            <span class="salon-n" aria-hidden="true">iii</span>
+            <div class="rev">
+              <h3>Salón medieval</h3>
+              <p>El de las celebraciones, con tizonas colgadas en las paredes.</p>
+              <span class="salon-cap">Hasta 170 invitados</span>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <div class="salones-ventana" aria-hidden="true">
+        <div class="marco ph ph-salon-castellano"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="carta seccion" id="carta" aria-labelledby="t-carta">
+  <div class="envoltura">
+    <header class="sec-cab rev">
+      <div>
+        <p class="ceja">La carta</p>
+        <h2 class="titular" id="t-carta">De la tierra, de la mar y de la casa</h2>
+      </div>
+      <p class="entrada">Asados de horno de leña, carnes a la brasa, ibéricos, pescados y postres caseros.</p>
+    </header>
+    <div class="carta-cols">
+      <section class="grupo">
+        <h3>Entrantes, ibéricos y ensaladas</h3>
+        <ul>
+          <li>Jamón ibérico de bellota</li>
+          <li>Surtido de ibéricos</li>
+          <li>Croquetas de jamón ibérico con salsa romesco</li>
+          <li>Ensalada de gambón con tartar de tomate y aguacate</li>
+          <li>Ensalada de pimientos asados en horno de leña con ventresca de atún</li>
+          <li>Tomate kumato, mozzarella de búfala, orégano y lascas de jamón ibérico</li>
+          <li>Milhojas de verdura con queso de cabra y frutos del bosque</li>
+          <li>Espárragos trigueros a la sal <small>en temporada</small></li>
+          <li>Salmorejo con huevo y jamón ibérico</li>
+          <li>Verbena de ahumados: salmón, trucha, palometa y anchoa</li>
+          <li>Anchoas de Santoña con tomate</li>
+          <li>Gambas a la plancha</li>
+          <li>Revuelto de patata y morcilla</li>
+          <li>Huevos rotos con lascas de jamón ibérico</li>
+          <li>Sopa de pescado y marisco</li>
+        </ul>
+      </section>
+      <figure class="carta-foto rev-arco">
+        <div class="marco ph ph-croquetas-romesco"><img src="assets/img/croquetas-romesco.webp" alt="Croquetas de jamón ibérico sobre pizarra con salsa romesco" width="640" height="387" loading="lazy" decoding="async"></div>
+        <figcaption>Croquetas de jamón ibérico con salsa romesco</figcaption>
+      </figure>
+      <section class="grupo">
+        <h3>De la mar, los mejores productos</h3>
+        <ul>
+          <li>Merluza de pincho pochada con setas en su jugo</li>
+          <li>Milhojas de bacalao con verdura asada y patatas rejilla</li>
+          <li>Chipirones a la plancha con emulsión de tomate</li>
+          <li>Atún a la plancha con tomate casero y patata baby</li>
+        </ul>
+      </section>
+      <section class="grupo">
+        <h3>De la tierra, algo suculento</h3>
+        <ul>
+          <li>Cochinillo asado en horno de leña</li>
+          <li>Cuarto de lechazo asado en horno de leña <small>para dos</small></li>
+          <li>Paletilla de cordero lechal</li>
+          <li>Pierna de cordero lechal</li>
+          <li>Chuletón a la piedra <small>para dos</small></li>
+          <li>Solomillo de ternera a la brasa con patata panadera</li>
+          <li>Entrecot de ternera a la parrilla con patata panadera</li>
+          <li>Presa ibérica a la parrilla con patata panadera y jugo de Módena</li>
+          <li>Chuletillas de lechal a la parrilla con pimientos de Guernica</li>
+        </ul>
+      </section>
+      <figure class="carta-foto rev-arco">
+        <div class="marco ph ph-solomillo"><img src="assets/img/solomillo.webp" alt="Solomillo a la brasa con espárragos, tomate asado y salsa" width="900" height="600" loading="lazy" decoding="async"></div>
+        <figcaption>Solomillo de ternera a la brasa</figcaption>
+      </figure>
+      <section class="grupo">
+        <h3>Para terminar, los postres de la casa</h3>
+        <ul>
+          <li>Torrija de brioche con crema tostada y helado</li>
+          <li>Tarta de queso con arándanos y helado de vainilla</li>
+          <li>Pastel caliente de chocolate con cáscara de naranja confitada <small>10 minutos</small></li>
+          <li>Coulant de chocolate con helado de vainilla</li>
+          <li>Tiramisú casero</li>
+          <li>Tarta de whisky</li>
+          <li>Flan, cuajada, natillas, arroz con leche y pudin caseros</li>
+        </ul>
+      </section>
+      <figure class="carta-foto rev-arco">
+        <div class="marco ph ph-tarta-queso"><img src="assets/img/tarta-queso.webp" alt="Tarta de queso con arándanos y nata en plato de la casa" width="640" height="640" loading="lazy" decoding="async"></div>
+        <figcaption>Tarta de queso con arándanos</figcaption>
+      </figure>
+    </div>
+    <div class="bodega rev">
+      <p class="ceja">Bodega</p>
+      <p>Rioja y Ribera del Duero: Muga, Viña Ardanza, Viña Pomal, Cune, Pesquera, Protos, Matarromera, Pago de Carraovejas y Hacienda Monasterio. Blancos de Rueda y Rías Baixas, y cavas y champagnes para brindar.</p>
+    </div>
+  </div>
+</section>
+
+<section class="menus seccion" id="menus" aria-labelledby="t-menus">
+  <div class="envoltura">
+    <div class="menus-grid">
+      <div class="rev">
+        <p class="ceja">Menús</p>
+        <h2 class="titular" id="t-menus">Del menú del día al de fin de semana</h2>
+        <article class="menu-bloque">
+          <h3>Menú del día</h3>
+          <p class="cuando">De lunes a viernes</p>
+          <p>Primero y segundo a elegir, postre casero, pan, bebida y café. Cambia cada día.</p>
+          <a class="btn btn-linea" href="https://wa.me/34669909237?text=Hola%2C%20%C2%BFqu%C3%A9%20ten%C3%A9is%20hoy%20de%20men%C3%BA%20del%20d%C3%ADa%3F">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.2A9.8 9.8 0 0 0 3.6 17l-1.3 4.8 4.9-1.3A9.8 9.8 0 1 0 12 2.2zm0 1.8a8 8 0 1 1-4.1 14.9l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 0 1 12 4z"/></svg>
+            Preguntar el de hoy</a>
+        </article>
+        <article class="menu-bloque">
+          <h3>Grupos y bautizos</h3>
+          <p class="cuando">Con reserva</p>
+          <p>Cinco menús para grupos y cinco para bautizos. Los entrantes van al centro, uno por cada cuatro comensales, y el segundo se elige.</p>
+          <a class="btn btn-linea" href="https://wa.me/34669909237?text=Hola%2C%20%C2%BFme%20pod%C3%A9is%20mandar%20los%20men%C3%BAs%20para%20grupos%3F">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.2A9.8 9.8 0 0 0 3.6 17l-1.3 4.8 4.9-1.3A9.8 9.8 0 1 0 12 2.2zm0 1.8a8 8 0 1 1-4.1 14.9l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 0 1 12 4z"/></svg>
+            Pedir los menús</a>
+        </article>
+      </div>
+      <article class="pliego rev" aria-labelledby="t-finde">
+        <svg class="esquina izq" viewBox="0 0 1000 1000" aria-hidden="true" focusable="false"><use href="#arco"/></svg>
+        <svg class="esquina der" viewBox="0 0 1000 1000" aria-hidden="true" focusable="false"><use href="#arco"/></svg>
+        <p class="pliego-casa">Asador de Salamanca</p>
+        <h3 id="t-finde">Menú fin de semana</h3>
+        <p class="pliego-min">Mínimo dos personas</p>
+        <h4>Primeros, al centro para compartir</h4>
+        <ul>
+          <li>Ibéricos: jamón, chorizo, salchichón y queso</li>
+          <li>Ensalada de queso ricotta, jamón, melón, pasas, picatostes y vinagreta de Módena</li>
+          <li>Rollitos rellenos de marisco con salsa de boletus</li>
+        </ul>
+        <h4>Segundo a elegir</h4>
+        <ul>
+          <li>Entrecot de ternera a la parrilla con patatas panaderas</li>
+          <li>Pierna de cordero lechal asada en horno de leña con panaderas</li>
+          <li>Cochinillo asado en horno de leña con patatas panaderas <em>suplemento de 8,50 €</em></li>
+          <li>Corvina a la brasa con salsa agridulce y bacon, con patata panadera</li>
+          <li>Bacalao blanco gratinado al horno</li>
+        </ul>
+        <p class="pliego-inc">Incluye una bebida por persona, postre y café</p>
+        <p class="pliego-precio"><strong>42,50 €</strong>por persona, IVA incluido</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="celebra seccion" id="celebraciones" aria-labelledby="t-celebra">
+  <div class="envoltura">
+    <div class="celebra-grid">
+      <figure class="celebra-foto rev-arco">
+        <div class="marco ph ph-mesa-boda"><img src="assets/img/mesa-boda.webp" alt="Mesa de banquete con copas, velas y centro de flores blancas y rosas" width="1000" height="793" loading="lazy" decoding="async"></div>
+      </figure>
+      <div class="celebra-txt">
+        <div class="rev">
+          <p class="ceja">Bodas, bautizos y comuniones</p>
+          <h2 class="titular" id="t-celebra">¿Boda a la vista? Enhorabuena</h2>
+        </div>
+        <p class="rev">Llevamos más de veinte años sirviendo banquetes de boda y, para nosotros, cada uno es tan especial como lo es para ti. Tenemos salones privados, proponemos distintos menús y cuidamos cada detalle para que todos tus invitados se vayan con buen sabor de boca, de los más clásicos a los más exigentes.</p>
+        <p class="rev">También celebramos bautizos, comuniones, comidas de empresa y reuniones familiares.</p>
+        <blockquote class="cita rev">
+          <p>“Estuve para una boda. El local cumplió perfectamente con las expectativas. […] Y la atención de todo el personal fue excelente, muy atentos durante todo el evento.”</p>
+          <cite>Ivan Gamo, en Google</cite>
+        </blockquote>
+
+        <form class="evento rev" id="form-evento" action="mailto:asadorsalamancaleganes@gmail.com" method="post" enctype="text/plain">
+          <h3>Cuéntanos tu celebración</h3>
+          <fieldset class="tipos">
+            <legend>¿Qué celebráis?</legend>
+            <label><input type="radio" name="Celebración" value="Boda" checked><span>Boda</span></label>
+            <label><input type="radio" name="Celebración" value="Bautizo"><span>Bautizo</span></label>
+            <label><input type="radio" name="Celebración" value="Comunión"><span>Comunión</span></label>
+            <label><input type="radio" name="Celebración" value="Comida de empresa"><span>Empresa</span></label>
+            <label><input type="radio" name="Celebración" value="Otra celebración"><span>Otra</span></label>
+          </fieldset>
+          <div class="campos">
+            <label>Fecha aproximada<input type="date" name="Fecha"></label>
+            <label>Invitados
+              <select name="Invitados">
+                <option>Menos de 50</option>
+                <option>De 50 a 100</option>
+                <option>De 101 a 200</option>
+                <option>Más de 200</option>
+              </select>
+            </label>
+            <label>Nombre<input type="text" name="Nombre" autocomplete="name" required></label>
+            <label>Teléfono<input type="tel" name="Teléfono" autocomplete="tel" required></label>
+            <label class="ancho">Algo más que debamos saber<textarea name="Mensaje" rows="3"></textarea></label>
+          </div>
+          <div class="evento-pie">
+            <button class="btn btn-brasa" type="submit">Pedir información</button>
+            <p>O llámanos al <a href="tel:+34916933708">91 693 37 08</a></p>
+          </div>
+          <p class="evento-pie solo-js"><small>Se abre WhatsApp con tus datos ya escritos, listo para enviar.</small></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="opiniones seccion" id="opiniones" aria-labelledby="t-opiniones">
+  <div class="envoltura">
+    <h2 class="sr" id="t-opiniones">Opiniones</h2>
+    <p class="nota rev"><strong>4,2</strong><span>1.188 opiniones en Google</span></p>
+    <blockquote class="op op-grande rev">
+      <p>“La comida, buenísima: cada plato fue un deleite, especialmente las carnes al horno, como el cochinillo y el cordero, que estaban excelentes, con un sabor y textura que solo ese tipo de cocción puede ofrecer.”</p>
+      <cite>Daniel GM</cite>
+    </blockquote>
+    <blockquote class="op op-peq rev">
+      <p>“Restaurante que lleva mucho tiempo dando servicio en Leganés […] sigue dando buena calidad a un precio razonable. Tiene menú diario y otro especial para fines de semana y festivos.”</p>
+      <cite>Salvador Mataix</cite>
+    </blockquote>
+  </div>
+</section>
+
+<section class="reservar seccion" id="reservar" aria-labelledby="t-reservar">
+  <div class="envoltura">
+    <div class="rev">
+      <p class="ceja">Reservas</p>
+      <h2 class="titular" id="t-reservar">Llama y te guardamos la mesa</h2>
+    </div>
+    <div class="res-grid rev">
+      <div class="res-bloque">
+        <h3>Mesa</h3>
+        <a class="res-num" href="tel:+34669909237">669 90 92 37</a>
+        <a class="btn btn-brasa" href="https://wa.me/34669909237?text=Hola%2C%20quer%C3%ADa%20reservar%20mesa%20en%20el%20Asador%20de%20Salamanca">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.2A9.8 9.8 0 0 0 3.6 17l-1.3 4.8 4.9-1.3A9.8 9.8 0 1 0 12 2.2zm0 1.8a8 8 0 1 1-4.1 14.9l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 0 1 12 4z"/></svg>
+          Reservar por WhatsApp</a>
+        <p>Grupos de más de diez y celebraciones: <a href="tel:+34916933708">91 693 37 08</a></p>
+        <p><a href="mailto:asadorsalamancaleganes@gmail.com">asadorsalamancaleganes@gmail.com</a></p>
+      </div>
+      <div class="res-bloque">
+        <h3>Horario</h3>
+        <table class="horario">
+          <tr><th scope="row">Lunes a viernes</th><td>9:00 – 17:30</td></tr>
+          <tr><th scope="row">Sábados y domingos</th><td>12:30 – 18:00</td></tr>
+        </table>
+      </div>
+      <div class="res-bloque">
+        <h3>Cómo llegar</h3>
+        <address>Avenida de los Pinos, 2<br>28914 Leganés, Madrid</address>
+        <ul class="llegar">
+          <li>Aparcamiento público junto al restaurante</li>
+          <li>Metrosur, línea 12: Hospital Severo Ochoa</li>
+          <li>Autobuses 432 y 485</li>
+          <li>Con el parque enfrente</li>
+        </ul>
+        <a class="btn btn-linea" href="https://www.google.com/maps/search/?api=1&amp;query=Asador+de+Salamanca%2C+Avenida+de+los+Pinos+2%2C+Legan%C3%A9s">Abrir en Google Maps</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <img src="assets/img/logo-blanco.png" alt="El Asador de Salamanca, horno de leña" width="217" height="222" loading="lazy">
+  <p>Avenida de los Pinos, 2 · 28914 Leganés</p>
+  <p><a href="tel:+34669909237">669 90 92 37</a> · <a href="tel:+34916933708">91 693 37 08</a> · <a href="mailto:asadorsalamancaleganes@gmail.com">asadorsalamancaleganes@gmail.com</a></p>
+  <small>© 2026 El Asador de Salamanca</small>
+</footer>
+
+<script>
+(function () {
+  var html = document.documentElement;
+
+  /* Índice a pantalla completa. Sin JavaScript funciona con :target */
+  var btn = document.querySelector('.menu-btn');
+  var indice = document.getElementById('indice');
+  var etiqueta = btn.querySelector('.menu-txt');
+  function abrir(si) {
+    indice.classList.toggle('abierta', si);
+    btn.setAttribute('aria-expanded', si ? 'true' : 'false');
+    etiqueta.textContent = si ? 'cerrar' : 'menú';
+    document.body.style.overflow = si ? 'hidden' : '';
+  }
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    abrir(!indice.classList.contains('abierta'));
+  });
+  indice.addEventListener('click', function (e) {
+    var a = e.target.closest('a');
+    if (!a) return;
+    var destino = a.getAttribute('href') || '';
+    if (destino === '#cerrar') e.preventDefault();
+    if (destino.charAt(0) === '#') abrir(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && indice.classList.contains('abierta')) { abrir(false); btn.focus(); }
+  });
+
+  /* Ascua que sigue al cursor en las fichas del horno */
+  [].forEach.call(document.querySelectorAll('.ascua'), function (el) {
+    el.addEventListener('pointermove', function (ev) {
+      var r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', (ev.clientX - r.left) + 'px');
+      el.style.setProperty('--my', (ev.clientY - r.top) + 'px');
+    });
+  });
+
+  /* Una foto está lista cuando ha llegado y está descodificada: así la
+     animación no se estrena sobre un hueco ni se atasca a medias */
+  function lista(img) {
+    var llegada = (!img || (img.complete && img.naturalWidth)) ? Promise.resolve() : new Promise(function (r) {
+      img.addEventListener('load', r, { once: true });
+      img.addEventListener('error', r, { once: true });
+    });
+    return llegada.then(function () { return img && img.decode ? img.decode().catch(function () {}) : null; });
+  }
+  /* Las fotos que aún no han llegado se apartan para dejar ver su marcador,
+     y entran fundiéndose en cuanto están */
+  [].forEach.call(document.querySelectorAll('img.carga'), function (img) {
+    if (img.complete && img.naturalWidth) return;
+    img.classList.add('espera');
+    lista(img).then(function () { img.classList.remove('espera'); });
+  });
+
+  /* Apariciones al bajar: el texto sube y las fotos se abren como el horno,
+     pero cada foto espera a haber llegado; mientras, se ve su marcador.
+     Solo se prepara lo que todavía está por debajo de la pantalla */
+  var reveles = [].slice.call(document.querySelectorAll('.rev, .rev-arco'));
+  var reserva = document.querySelector('.reserva-fija');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target;
+        io.unobserve(el);
+        if (el.classList.contains('rev-arco')) {
+          lista(el.querySelector('img')).then(function () { el.classList.remove('pre'); });
+        } else {
+          el.classList.remove('pre');
+        }
+      });
+    }, { rootMargin: '0px 0px -4% 0px', threshold: 0.08 });
+    var suelo = window.innerHeight * 0.96;
+    reveles.forEach(function (el) {
+      if (el.getBoundingClientRect().top < suelo) return;
+      el.classList.add('pre');
+      io.observe(el);
+    });
+
+    /* Las fotos se piden pantalla y media antes de llegar a ellas, también
+       en los navegadores que esperan demasiado con loading="lazy" */
+    var antes = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (e.isIntersecting) { e.target.loading = 'eager'; antes.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px 150% 0px' });
+    [].forEach.call(document.querySelectorAll('img[loading="lazy"]'), function (img) { antes.observe(img); });
+
+    /* La reserva flotante se retira mientras se ve la portada o el bloque de reservas */
+    var portada = document.getElementById('inicio');
+    var bloque = document.getElementById('reservar');
+    var visto = {};
+    var io2 = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        visto[e.target.id] = e.target === portada ? e.intersectionRatio > 0.4 : e.isIntersecting;
+      });
+      reserva.classList.toggle('visible', !visto.inicio && !visto.reservar);
+    }, { threshold: [0, 0.4, 0.6] });
+    io2.observe(portada);
+    io2.observe(bloque);
+  } else {
+    reserva.classList.add('visible');
+  }
+
+  /* Formulario de celebraciones: sale por WhatsApp con todo escrito */
+  var form = document.getElementById('form-evento');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var d = new FormData(form);
+    var fecha = d.get('Fecha');
+    if (fecha) { var p = fecha.split('-'); fecha = p[2] + '/' + p[1] + '/' + p[0]; }
+    var lineas = [
+      'Hola, quería pedir información para una celebración en el Asador de Salamanca.',
+      '',
+      'Celebración: ' + d.get('Celebración'),
+      'Fecha aproximada: ' + (fecha || 'por decidir'),
+      'Invitados: ' + d.get('Invitados'),
+      'Nombre: ' + d.get('Nombre'),
+      'Teléfono: ' + d.get('Teléfono')
+    ];
+    var extra = (d.get('Mensaje') || '').trim();
+    if (extra) lineas.push('', extra);
+    window.open('https://wa.me/34669909237?text=' + encodeURIComponent(lineas.join('\n')), '_blank', 'noopener');
+  });
+
+  window.__animOk = true;
+})();
+</script>
+</body>
+</html>
