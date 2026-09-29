@@ -122,8 +122,8 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
 .btn svg{width:18px;height:18px;flex:none}
 .oscura .btn-lleno{background:var(--pergamino);color:var(--noche)}
 .oscura .btn-lleno:hover{background:#fff4df}
-.papel .btn-lleno,.menu .btn-lleno{background:var(--bosque);color:var(--pergamino-2)}
-.papel .btn-lleno:hover,.menu .btn-lleno:hover{background:var(--bosque-2)}
+.papel .btn-lleno,.menu .btn-lleno,.panel .btn-lleno{background:var(--bosque);color:var(--pergamino-2)}
+.papel .btn-lleno:hover,.menu .btn-lleno:hover,.panel .btn-lleno:hover{background:var(--bosque-2)}
 .btn-linea{box-shadow:inset 0 0 0 1.5px currentColor}
 .oscura .btn-linea:hover{background:rgba(232,211,180,.08)} .papel .btn-linea:hover{background:rgba(47,90,60,.07)}
 .senda{text-decoration:none;background:radial-gradient(circle,currentColor 1.1px,transparent 1.6px) 0 100%/7px 3px repeat-x;padding-bottom:4px}
@@ -180,6 +180,39 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
 .rotulo-cita{background:var(--bosque);color:var(--pergamino-2)}
 .rotulo > a.rotulo-cita:hover{background:var(--bosque-2)}
 .rotulo-cita svg{width:15px;height:15px;flex:none}
+/* sello de «Muestra»: siempre a la vista, quieto; al tocarlo explica qué es */
+.rotulo > .rotulo-muestra{padding:0 10px}
+.rotulo-muestra span{display:inline-block;padding:4px 7px 3px;border:1.5px solid #8a3e45;color:#8a3e45;font:700 11px/1 var(--f-cond);letter-spacing:.18em;box-shadow:inset 0 0 0 2px var(--pergamino-2),inset 0 0 0 3px rgba(138,62,69,.45)}
+.rotulo > .rotulo-muestra:hover{background:rgba(138,62,69,.08)}
+
+/* fichas que se abren encima: cita, temario y aviso de muestra */
+.velo{position:fixed;inset:0;z-index:80;background:rgba(20,8,14,.55);opacity:0;visibility:hidden;transition:opacity .4s,visibility 0s linear .4s}
+.con-panel .velo{opacity:1;visibility:visible;transition:opacity .4s}
+.panel{position:fixed;z-index:90;left:50%;top:50%;width:min(440px,calc(100vw - 28px));max-height:calc(100vh - 40px);max-height:calc(100svh - 40px);overflow:auto;overscroll-behavior:contain;
+  background:var(--pergamino-2) var(--grano);color:var(--tinta);padding:22px 24px 22px;box-shadow:0 40px 80px -30px rgba(10,3,7,.8),0 0 0 1px rgba(40,20,31,.35);
+  transform:translate(-50%,-46%);opacity:0;visibility:hidden;transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .35s,visibility 0s linear .5s}
+.panel::after{content:"";position:absolute;inset:6px;border:1px dashed rgba(40,20,31,.28);pointer-events:none}
+.panel.abierto{transform:translate(-50%,-50%);opacity:1;visibility:visible;transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .35s}
+.panel-ancho{width:min(760px,calc(100vw - 28px))}
+.panel-cab{display:flex;justify-content:space-between;align-items:center;margin:0 0 6px;position:relative;z-index:1}
+.panel-cab .etiqueta{color:var(--bosque)}
+.panel-cerrar{font:500 1.8rem/1 var(--f-serif);padding:0 6px}
+.panel-tel{font:400 clamp(2.6rem,9vw,3.4rem)/1 var(--f-serif);color:var(--berenjena);margin:6px 0 12px;letter-spacing:.01em}
+.panel-titulo{font:400 clamp(2rem,6vw,2.6rem)/1.05 var(--f-serif);margin:4px 0 14px}
+.panel-titulo em{color:var(--bosque-2)}
+.panel-texto{font-size:16px;line-height:1.5;color:var(--tinta-2)}
+.panel-acciones{margin:16px 0 4px;position:relative;z-index:1}
+.panel-acciones .btn{width:100%;justify-content:center}
+.panel-datos{margin:16px 0 0;border-top:1.5px solid var(--tinta)}
+.panel-datos div{display:grid;grid-template-columns:78px 1fr;gap:10px;padding:10px 0;border-bottom:1px solid rgba(40,20,31,.14)}
+.panel-datos dt{font:600 11.5px/1.5 var(--f-cond);letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-3)}
+.panel-datos dd{margin:0;font-size:15.5px;display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}
+.mini{font:600 11.5px/1 var(--f-cond);letter-spacing:.14em;text-transform:uppercase;color:var(--bosque);padding:4px 0;border-bottom:1.5px dotted currentColor;position:relative;z-index:1}
+.copiar.hecho{color:var(--bosque-2)}
+[data-llamar],[data-escribir]{cursor:pointer}
+.temario{columns:2 250px;column-gap:34px;counter-reset:t;margin:6px 0 10px}
+.temario li{counter-increment:t;break-inside:avoid;display:grid;grid-template-columns:28px 1fr;font-size:14.5px;line-height:1.4;padding:4px 0}
+.temario li::before{content:counter(t);font:600 12.5px/1.5 var(--f-cond);color:var(--bosque)}
 
 /* el menú: índice de láminas en papel que se despliega bajo el rótulo */
 .menu{position:fixed;z-index:65;top:calc(max(12px,env(safe-area-inset-top)) + 52px);left:12px;width:min(390px,calc(100vw - 24px));
@@ -339,11 +372,31 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
 .direccion a{color:var(--liquen)}
 .local .foto{aspect-ratio:900/1200}
 .local{transform:rotate(2deg);max-width:calc(39vh + 18px);justify-self:end}
-.firma{display:flex;align-items:center;gap:16px;margin-top:22px}
+.direccion .senda{font:inherit;color:var(--liquen)}
+
+/* ---------- 9 · cómo llegar ---------- */
+.llegar-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:center}
+.llegar .h2{margin-bottom:14px}
+.direccion-grande{font:400 clamp(1.4rem,2.2vw,1.75rem)/1.25 var(--f-serif);margin:0 0 18px}
+.rutas li{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:baseline;padding:11px 0;border-top:1px solid rgba(40,20,31,.14)}
+.rutas li:last-child{border-bottom:1px solid rgba(40,20,31,.14)}
+.modo{font:700 12px/1.3 var(--f-cond);letter-spacing:.18em;text-transform:uppercase;color:var(--bosque)}
+.rutas p{margin:0;font-size:15.5px;line-height:1.45;color:var(--tinta-2)}
+.rutas b{font-weight:500;color:var(--tinta)}
+.llegar .acciones{margin:22px 0 0}
+.mapa{transform:rotate(1.2deg)}
+.mapa-foto{position:relative;aspect-ratio:4/3;background:var(--kraft) var(--grano)}
+/* el mapa es más grande que su marco: así quedan fuera el zoom (que aquí no sirve, el mapa
+   no se mueve para no atrapar el scroll) y la barra de créditos, que va en el pie de foto */
+.mapa-foto iframe{position:absolute;left:0;top:0;width:calc(100% + 60px);height:calc(100% + 44px);border:0;pointer-events:none;filter:grayscale(.85) sepia(.3) contrast(.95) brightness(1.03)}
+.mapa-pin{position:absolute;left:calc(50% + 30px);top:calc(50% + 22px);transform:translate(-50%,-100%);margin-top:-12px;background:var(--berenjena);color:var(--pergamino-2);
+  font:700 12px/1 var(--f-cond);letter-spacing:.14em;text-transform:uppercase;padding:8px 10px;white-space:nowrap;box-shadow:0 8px 18px -8px rgba(0,0,0,.6)}
+.mapa-pin::after{content:"";position:absolute;left:50%;top:100%;width:2px;height:12px;margin-left:-1px;background:var(--berenjena)}
+.mapa figcaption{font:500 11px/1.3 var(--f-sans);color:var(--tinta-3)}
+.firma{display:flex;align-items:center;gap:16px;margin-top:26px}
 .firma .logo{width:84px;height:auto;flex:none}
-.firma p{margin:0;font-size:12.5px;line-height:1.45;color:rgba(232,211,180,.5);max-width:46ch}
-.firma p b{display:block;font:400 italic 1.25rem/1.2 var(--f-serif);color:var(--pergamino);margin-bottom:3px}
-.cita .hoja-fija{padding-bottom:clamp(56px,8vh,80px)}
+.firma p{margin:0;font-size:12.5px;line-height:1.45;color:var(--tinta-3);max-width:46ch}
+.firma p b{display:block;font:400 italic 1.25rem/1.2 var(--f-serif);color:var(--tinta);margin-bottom:3px}
 
 /* ---------- móvil ---------- */
 @media (max-width:760px){
@@ -359,7 +412,12 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
   .acciones .btn{flex:1 1 auto;justify-content:center}
   .nota-google b{font-size:1.9rem}
   .h2{font-size:10.4vw}
-  .antes-grid,.pelu-grid,.spa-grid,.gatos-grid,.huellas-grid,.cita-grid{grid-template-columns:1fr;gap:22px}
+  .antes-grid,.pelu-grid,.spa-grid,.gatos-grid,.huellas-grid,.cita-grid,.llegar-grid{grid-template-columns:1fr;gap:22px}
+  .rutas li{grid-template-columns:82px 1fr;gap:10px;padding:9px 0}
+  .rutas p{font-size:14.5px}
+  .mapa{transform:none}
+  .panel{padding:20px 18px}
+  .panel-datos div{grid-template-columns:66px 1fr}
   .antes-foto{display:none}
   .todavia-movil{display:block!important;position:static;width:auto;transform:rotate(-1.2deg);margin-top:18px}
   .mantos li{grid-template-columns:1fr;gap:3px;padding:11px 0}
@@ -396,6 +454,12 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
   .hito .etiqueta{display:none}
 }
 .todavia-movil{display:none}
+/* móviles estrechos: el rótulo deja solo el número de la lámina */
+@media (max-width:380px){
+  .rotulo-tit{display:none}
+  .rotulo > a,.rotulo > span,.rotulo > button{padding:0 9px}
+  .rotulo-muestra span{padding:4px 5px 3px;letter-spacing:.12em}
+}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}
@@ -453,6 +517,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
   <span class="rotulo-pagina" aria-hidden="true"><span class="rotulo-num">—</span><span class="rotulo-tit">Portada</span></span>
   <button type="button" class="rotulo-menu" data-ir="menu" aria-controls="menu" aria-expanded="false"><span class="rayas" aria-hidden="true"><i></i></span>Menú</button>
   <a class="rotulo-cita" href="tel:+34636766197" aria-label="Pedir cita: llamar al 636 766 197"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span>Cita</span></a>
+  <button type="button" class="rotulo-muestra" data-panel="aviso" aria-controls="panel-aviso" aria-label="Esto es una muestra: ver qué significa"><span>Muestra</span></button>
 </header>
 
 <nav id="menu" class="menu" aria-label="Índice de láminas">
@@ -467,12 +532,87 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
     <li style="--i:6"><button type="button" data-ir="escuela"><span class="m-num">VI</span><span class="m-tit">Escuela</span><span class="m-guia"></span><svg class="m-pata" viewBox="0 0 24 24" aria-hidden="true"><use href="#huella"/></svg></button></li>
     <li style="--i:7"><button type="button" data-ir="huellas"><span class="m-num">VII</span><span class="m-tit">Opiniones</span><span class="m-guia"></span><svg class="m-pata" viewBox="0 0 24 24" aria-hidden="true"><use href="#huella"/></svg></button></li>
     <li style="--i:8"><button type="button" data-ir="cita"><span class="m-num">VIII</span><span class="m-tit">Pide cita</span><span class="m-guia"></span><svg class="m-pata" viewBox="0 0 24 24" aria-hidden="true"><use href="#huella"/></svg></button></li>
+    <li style="--i:9"><button type="button" data-ir="llegar"><span class="m-num">IX</span><span class="m-tit">Cómo llegar</span><span class="m-guia"></span><svg class="m-pata" viewBox="0 0 24 24" aria-hidden="true"><use href="#huella"/></svg></button></li>
   </ol>
   <div class="menu-pie">
     <a class="btn btn-lleno" href="tel:+34636766197">Llamar al 636 766 197</a>
     <p>Calle de Teresa Claramunt, 11 · Leganés<br>Lunes a jueves de 9:00 a 18:30 · viernes de 10:00 a 14:00</p>
   </div>
 </nav>
+
+<!-- Fichas que se abren encima de la página (solo con JavaScript; sin él, todo esto ya está en las láminas) -->
+<div class="velo" aria-hidden="true"></div>
+
+<section id="panel-cita" class="panel" role="dialog" aria-modal="true" aria-labelledby="pc-tit">
+  <p class="panel-cab"><span class="etiqueta">Pide cita</span><button type="button" class="panel-cerrar" aria-label="Cerrar">×</button></p>
+  <h2 id="pc-tit" class="panel-tel">636 766 197</h2>
+  <p class="panel-texto">Llámanos en horario de tienda. Cuéntanos raza, tipo de manto y si tiene la piel sensible: la cita y la tarifa van según el tiempo que necesite.</p>
+  <p class="panel-acciones"><button type="button" class="btn btn-lleno copiar" data-copiar="636766197" data-hecho="Número copiado">Copiar el número</button></p>
+  <dl class="panel-datos">
+    <div><dt>Correo</dt><dd><span>info@jadogmadrid.com</span><button type="button" class="mini copiar" data-copiar="info@jadogmadrid.com" data-hecho="copiado">copiar</button></dd></div>
+    <div><dt>Horario</dt><dd>Lunes a jueves de 9:00 a 18:30 · viernes de 10:00 a 14:00</dd></div>
+    <div><dt>Dónde</dt><dd><span>Calle de Teresa Claramunt, 11 · Leganés</span><button type="button" class="mini" data-ir="llegar">cómo llegar</button></dd></div>
+  </dl>
+</section>
+
+<section id="panel-temario" class="panel panel-ancho" role="dialog" aria-modal="true" aria-labelledby="pt-tit">
+  <p class="panel-cab"><span class="etiqueta">Escuela · curso básico, 350 h</span><button type="button" class="panel-cerrar" aria-label="Cerrar">×</button></p>
+  <h2 id="pt-tit" class="panel-titulo">Temario <em>completo</em></h2>
+  <ol class="temario">
+    <li>Morfología del perro aplicada a la peluquería canina</li>
+    <li>Morfología del gato aplicada a la peluquería</li>
+    <li>Estructura y funcionamiento de la piel y el pelo</li>
+    <li>Dermatología básica</li>
+    <li>Recepción correcta del animal</li>
+    <li>Presentación de las instalaciones al perro o al gato</li>
+    <li>Manipulación de perros y gatos</li>
+    <li>Manipulación de animales con problemas de comportamiento</li>
+    <li>Manipulación de animales con problemas físicos</li>
+    <li>Señales según el estado de ánimo del animal</li>
+    <li>Reconocimiento del tipo de manto</li>
+    <li>Valoración del estado del manto</li>
+    <li>Valoración del estado de la piel</li>
+    <li>Corte de uñas</li>
+    <li>Preparación del manto para el baño</li>
+    <li>Técnica correcta de baño según el animal</li>
+    <li>Cosmética adecuada al manto y a la piel</li>
+    <li>Limpieza de oídos</li>
+    <li>Uso de ozono</li>
+    <li>Principios básicos de aromaterapia</li>
+    <li>Principios básicos de dermocosmética</li>
+    <li>Técnicas de secado del manto</li>
+    <li>Corte a tijera</li>
+    <li>Corte recalce y tijera</li>
+    <li>Corte a máquina</li>
+    <li>Stripping: cuchilla, dedos, piedra</li>
+    <li>Trabajo manual en mantos rizados</li>
+    <li>Deslanado</li>
+    <li>Desenredado</li>
+    <li>Principales razas caninas y felinas</li>
+    <li>Interpretación del estándar de cada raza</li>
+    <li>Adaptación del corte de raza a cada individuo</li>
+    <li>Higiene corporal correcta</li>
+    <li>Identificación de las herramientas</li>
+    <li>Mantenimiento de las herramientas</li>
+    <li>Primeros auxilios</li>
+    <li>Gestión de una peluquería canina</li>
+    <li>Psicología del propietario</li>
+    <li>Asesoramiento al propietario</li>
+    <li>Identificación de los conflictos</li>
+    <li>Técnicas de venta en la peluquería</li>
+    <li>¿Cómo ser autónomo?</li>
+    <li>Voy a tener un contrato, ¿ahora qué?</li>
+  </ol>
+  <p class="panel-acciones"><a class="btn btn-lleno" href="tel:+34636766197">Reserva una clase gratis</a></p>
+</section>
+
+<section id="panel-aviso" class="panel" role="dialog" aria-modal="true" aria-labelledby="pa-tit">
+  <p class="panel-cab"><span class="etiqueta">Aviso</span><button type="button" class="panel-cerrar" aria-label="Cerrar">×</button></p>
+  <h2 id="pa-tit" class="panel-titulo">Esto es <em>una muestra</em></h2>
+  <p class="panel-texto">Es una propuesta de rediseño hecha sin encargo, con los textos, las fotos y los datos que J'a Dog publica en su web, en su Facebook y en su ficha de Google.</p>
+  <p class="panel-texto">No es la web oficial de la peluquería. Para pedir cita, el teléfono de siempre: 636 766 197.</p>
+  <p class="panel-acciones"><button type="button" class="btn btn-lleno panel-cerrar-btn">Seguir viendo la muestra</button></p>
+</section>
 
 <main>
 
@@ -684,7 +824,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
     </div>
     <div class="acciones" data-p="deriva" data-f="120">
       <a class="btn btn-lleno" href="tel:+34636766197">Reserva una clase gratis</a>
-      <a class="btn btn-linea ancho" href="mailto:info@jadogmadrid.com?subject=Cursos%20de%20peluquer%C3%ADa">Pedir el temario</a>
+      <button class="btn btn-linea" type="button" data-panel="temario" aria-controls="panel-temario">Ver el temario</button>
     </div>
   </div>
   <p class="hito"><span class="sello">VI</span><span class="etiqueta">Lámina VI · Escuela</span></p>
@@ -722,7 +862,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
 </section>
 
 <!-- ============ VIII · PIDE CITA ============ -->
-<section id="cita" class="hoja oscura cita" data-num="VIII" data-titulo="Pide cita">
+<section id="cita" class="hoja reposo oscura cita" data-num="VIII" data-titulo="Pide cita">
   <div class="hoja-fija">
   <svg class="topo" viewBox="0 0 1240 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#topo-a" x="300" y="-60"/></svg>
   <div class="hoja-cuerpo cita-grid">
@@ -736,8 +876,46 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
         <div><dt>Viernes</dt><dd>10:00 – 14:00</dd></div>
         <div><dt>Sábado y domingo</dt><dd>Cerrado</dd></div>
       </dl>
-      <p class="direccion" data-p="deriva" data-f="130">Calle de Teresa Claramunt, 11 · 28919 Leganés · <a class="senda" href="https://www.google.com/maps/search/?api=1&amp;query=J%27a+Dog+Pet+Care+Teresa+Claramunt+11+Legan%C3%A9s" target="_blank" rel="noopener">abrir en el mapa</a> · <a class="senda" href="mailto:info@jadogmadrid.com">info@jadogmadrid.com</a></p>
-      <div class="firma" data-p="deriva" data-f="150">
+      <p class="direccion" data-p="deriva" data-f="130">Calle de Teresa Claramunt, 11 · 28919 Leganés · <button type="button" class="senda" data-ir="llegar">cómo llegar</button> · <a class="senda" href="mailto:info@jadogmadrid.com">info@jadogmadrid.com</a></p>
+    </div>
+    <figure class="marco local ancho" data-p="foto">
+      <div class="foto" style="--ph:url(data:image/webp;base64,UklGRs4AAABXRUJQVlA4IMIAAABQCACdASooADUAPrVKnEqnJKKhtVgN+OAWiWUAyjQ6EXzOJ8ey8SrrCU0TtKwkE3IQhdXiHU+ZZUh/ee2qfO8OgTodZk499W2/DgAA+r29q4SIsfoCqY8dS8j9MvujYVCv7otBiGGfXGRynrgqrECJNzEhD2MacHni8qPkfNw9AZGIq/ZN/5idqZOpTr8dzMhqmjrkOExiZyAUg/UZINuezUVB/ezkKqyn0vK/oIEtzim8nk+xygVLa+FaDVhAyxAAAA==)"><img src="assets/img/local.webp" width="900" height="1200" loading="lazy" alt="Interior del local: pared morada, zócalo de rayas blancas y negras y una balda con figuras de gatos"></div>
+      <figcaption>El local, por dentro</figcaption>
+    </figure>
+  </div>
+  <p class="hito"><span class="sello">VIII</span><span class="etiqueta">Lámina VIII · Pide cita</span></p>
+  <div class="tramo" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- ============ IX · CÓMO LLEGAR ============ -->
+<section id="llegar" class="hoja papel llegar" data-num="IX" data-titulo="Cómo llegar">
+  <div class="hoja-fija">
+  <svg class="topo" viewBox="0 0 1240 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#topo-b" x="-220" y="160"/></svg>
+  <div class="hoja-cuerpo llegar-grid">
+    <div>
+      <p class="antetitulo" data-p="deriva" data-f="40">Leganés Norte</p>
+      <h2 class="h2" data-p="palabras">Cómo <em>llegar</em></h2>
+      <p class="direccion-grande" data-p="deriva" data-f="60">Calle de Teresa Claramunt, 11<br>28919 Leganés (Madrid)</p>
+      <ul class="rutas" data-p="filas">
+        <li><span class="modo">Autobús</span><p>Parada <b>Av. Carmen Martín Gaite – Teresa Claramunt</b>, a un minuto andando: líneas <b>480</b> y <b>485</b>. La urbana <b>L1</b> para en la avenida Reina Sofía.</p></li>
+        <li><span class="modo">Cercanías</span><p>Estación de <b>Zarzaquemada</b> (C-5), a menos de 10 minutos andando.</p></li>
+        <li><span class="modo">Metro</span><p><b>Julián Besteiro</b> (Metrosur), a un cuarto de hora largo andando.</p></li>
+        <li><span class="modo">Coche</span><p>Aparcamiento en las calles de alrededor, a cinco minutos del centro comercial Plaza Nueva.</p></li>
+      </ul>
+      <div class="acciones" data-p="deriva" data-f="110">
+        <a class="btn btn-lleno" href="https://www.google.com/maps/dir/?api=1&amp;destination=J%27a+Dog+Pet+Care%2C+Calle+de+Teresa+Claramunt+11%2C+28919+Legan%C3%A9s" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Cómo llegar en Google Maps</a>
+      </div>
+    </div>
+    <div class="llegar-der">
+      <figure class="marco mapa" data-p="foto">
+        <div class="foto mapa-foto">
+          <iframe title="Mapa de la zona: J'a Dog está en la calle de Teresa Claramunt, 11, en Leganés Norte" src="https://www.openstreetmap.org/export/embed.html?bbox=-3.7582%2C40.3413%2C-3.7458%2C40.3484&amp;layer=mapnik&amp;marker=40.34485%2C-3.75197" loading="lazy" tabindex="-1" referrerpolicy="no-referrer"></iframe>
+          <span class="mapa-pin" aria-hidden="true">J'a Dog</span>
+        </div>
+        <figcaption>Mapa: © colaboradores de OpenStreetMap</figcaption>
+      </figure>
+      <div class="firma" data-p="deriva" data-f="90">
 <svg class="logo logo-pie" viewBox="0 0 100 100" role="img" aria-label="J'a Dog Pet Care">
 <defs><linearGradient id="lg-b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f8a60"/><stop offset=".42" stop-color="#2f6a4a"/><stop offset=".62" stop-color="#1f2a22"/><stop offset="1" stop-color="#171a17"/></linearGradient></defs>
 <path class="logo-fondo" d="M49.97 0.47L99.47 49.97 49.97 99.47 0.47 49.97Z" fill="#f4e9d3"/>
@@ -752,11 +930,8 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
         <p><b>Naturalmente diferentes</b>Muestra de rediseño sin encargo. Textos, fotos y datos tomados de la web, el Facebook y la ficha de Google de J'a Dog. No es la web oficial de la peluquería.</p>
       </div>
     </div>
-    <figure class="marco local ancho" data-p="foto">
-      <div class="foto" style="--ph:url(data:image/webp;base64,UklGRs4AAABXRUJQVlA4IMIAAABQCACdASooADUAPrVKnEqnJKKhtVgN+OAWiWUAyjQ6EXzOJ8ey8SrrCU0TtKwkE3IQhdXiHU+ZZUh/ee2qfO8OgTodZk499W2/DgAA+r29q4SIsfoCqY8dS8j9MvujYVCv7otBiGGfXGRynrgqrECJNzEhD2MacHni8qPkfNw9AZGIq/ZN/5idqZOpTr8dzMhqmjrkOExiZyAUg/UZINuezUVB/ezkKqyn0vK/oIEtzim8nk+xygVLa+FaDVhAyxAAAA==)"><img src="assets/img/local.webp" width="900" height="1200" loading="lazy" alt="Interior del local: pared morada, zócalo de rayas blancas y negras y una balda con figuras de gatos"></div>
-      <figcaption>El local, por dentro</figcaption>
-    </figure>
   </div>
+  <p class="hito"><span class="sello">IX</span><span class="etiqueta">Lámina IX · Cómo llegar</span></p>
   </div>
 </section>
 
@@ -800,12 +975,75 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
     if (si) { var b = menu.querySelector('ol button[aria-current="true"]') || menu.querySelector('ol button'); setTimeout(function () { b.focus({ preventScroll: true }); }, 60); }
   }
   boton.addEventListener('click', function () { abrir(!menu.classList.contains('abierto')); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && menu.classList.contains('abierto')) { abrir(false); boton.focus(); } });
+
+  /* ---------- Fichas que se abren encima: cita, temario y aviso de muestra ---------- */
+  var velo = document.querySelector('.velo');
+  var panelAbierto = null, volverA = null;
+  function abrirPanel(nombre, desde) {
+    var p = document.getElementById('panel-' + nombre); if (!p) return;
+    if (menu.classList.contains('abierto')) abrir(false);
+    cerrarPanel(true);
+    panelAbierto = p; volverA = desde || null;
+    p.scrollTop = 0;
+    p.classList.add('abierto'); doc.classList.add('con-panel');
+    setTimeout(function () { var f = p.querySelector('.panel-cerrar'); if (f) f.focus({ preventScroll: true }); }, 60);
+  }
+  function cerrarPanel(sinFoco) {
+    if (!panelAbierto) return;
+    panelAbierto.classList.remove('abierto'); doc.classList.remove('con-panel');
+    panelAbierto = null;
+    if (!sinFoco && volverA && volverA.focus) volverA.focus({ preventScroll: true });
+  }
+  velo.addEventListener('click', function () { cerrarPanel(); });
+  function copiar(b) {
+    var texto = b.getAttribute('data-copiar'), antes = b.textContent;
+    function hecho() {
+      b.textContent = b.getAttribute('data-hecho') || 'Copiado'; b.classList.add('hecho');
+      setTimeout(function () { b.textContent = antes; b.classList.remove('hecho'); }, 1800);
+    }
+    function aMano() {
+      var t = document.createElement('textarea');
+      t.value = texto; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.top = '0'; t.style.opacity = '0';
+      document.body.appendChild(t); t.select();
+      var ok = false; try { ok = document.execCommand('copy'); } catch (err) {}
+      document.body.removeChild(t);
+      if (ok) hecho(); else b.textContent = texto;          /* si no se puede copiar, al menos se ve entero */
+    }
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(texto).then(hecho, aMano); else aMano();
+  }
+  /* En el móvil, llamar llama y escribir abre el correo. En un ordenador (o una tablet) eso no
+     hace nada, así que esos botones abren la ficha de cita con el número, el correo y el horario. */
+  var esTelefono = /Android.*Mobile|iPhone|iPod|Windows Phone/i.test(navigator.userAgent);
+  if (!esTelefono) {
+    [].forEach.call(document.querySelectorAll('a[href^="tel:"], a[href^="mailto:"]'), function (a) {
+      var h = a.getAttribute('href');
+      a.setAttribute(h.indexOf('tel:') === 0 ? 'data-llamar' : 'data-escribir', h);
+      a.removeAttribute('href');
+      a.setAttribute('role', 'button'); a.setAttribute('tabindex', '0');
+    });
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      if (panelAbierto) { cerrarPanel(); return; }
+      if (menu.classList.contains('abierto')) { abrir(false); boton.focus(); }
+      return;
+    }
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('[data-llamar],[data-escribir]')) {
+      e.preventDefault(); abrirPanel('cita', e.target);
+    }
+  });
   document.addEventListener('click', function (e) {
     var b = e.target.closest && e.target.closest('button');
+    if (b && (b.classList.contains('panel-cerrar') || b.classList.contains('panel-cerrar-btn'))) { cerrarPanel(); return; }
+    if (b && b.hasAttribute('data-panel')) { abrirPanel(b.getAttribute('data-panel'), b); return; }
+    if (b && b.classList.contains('copiar')) { copiar(b); return; }
+    var sinTel = e.target.closest && e.target.closest('[data-llamar],[data-escribir]');
+    if (sinTel) { e.preventDefault(); abrirPanel('cita', sinTel); return; }
     if (b && b.classList.contains('menu-cerrar')) { abrir(false); boton.focus(); return; }
     if (b && b.hasAttribute('data-ir') && b !== boton) {
       if (menu.contains(b)) abrir(false);
+      if (panelAbierto && panelAbierto.contains(b)) cerrarPanel(true);
       ir(b.getAttribute('data-ir'));
       return;
     }
