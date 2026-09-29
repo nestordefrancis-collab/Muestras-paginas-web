@@ -373,6 +373,15 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
 .local .foto{aspect-ratio:900/1200}
 .local{transform:rotate(2deg);max-width:calc(39vh + 18px);justify-self:end}
 .direccion .senda{font:inherit;color:var(--liquen)}
+/* redes sociales: Instagram y Facebook */
+.redes{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
+.red{display:inline-flex;align-items:center;gap:8px;padding:9px 12px;text-decoration:none;box-shadow:inset 0 0 0 1.5px currentColor;
+  font:600 12.5px/1 var(--f-cond);letter-spacing:.14em;text-transform:uppercase;transition:background-color .25s}
+.red svg{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.oscura .red{color:var(--liquen)} .oscura .red:hover{background:rgba(179,191,147,.12)}
+.menu .red,.panel .red{color:var(--bosque)} .menu .red:hover,.panel .red:hover{background:rgba(47,90,60,.08)}
+.panel-datos dd.redes{margin:0}
+.panel .red{padding:7px 10px}
 
 /* ---------- 9 · cómo llegar ---------- */
 .llegar-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:center}
@@ -537,6 +546,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
   <div class="menu-pie">
     <a class="btn btn-lleno" href="tel:+34636766197">Llamar al 636 766 197</a>
     <p>Calle de Teresa Claramunt, 11 · Leganés<br>Lunes a jueves de 9:00 a 18:30 · viernes de 10:00 a 14:00</p>
+    <p class="redes"><a class="red" href="https://www.instagram.com/jadog.andrealonso/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r=".9"/></svg>Instagram</a><a class="red" href="https://www.facebook.com/jadogmadrid/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 21v-7h3l.6-3.5H14V8.6c0-1 .5-1.6 1.7-1.6h2V3.9c-.6-.1-1.6-.2-2.7-.2-2.8 0-4.5 1.7-4.5 4.7v2.1H7.4V14h3.1v7"/></svg>Facebook</a></p>
   </div>
 </nav>
 
@@ -552,6 +562,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
     <div><dt>Correo</dt><dd><span>info@jadogmadrid.com</span><button type="button" class="mini copiar" data-copiar="info@jadogmadrid.com" data-hecho="copiado">copiar</button></dd></div>
     <div><dt>Horario</dt><dd>Lunes a jueves de 9:00 a 18:30 · viernes de 10:00 a 14:00</dd></div>
     <div><dt>Dónde</dt><dd><span>Calle de Teresa Claramunt, 11 · Leganés</span><button type="button" class="mini" data-ir="llegar">cómo llegar</button></dd></div>
+    <div><dt>Redes</dt><dd class="redes"><a class="red" href="https://www.instagram.com/jadog.andrealonso/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r=".9"/></svg>Instagram</a><a class="red" href="https://www.facebook.com/jadogmadrid/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 21v-7h3l.6-3.5H14V8.6c0-1 .5-1.6 1.7-1.6h2V3.9c-.6-.1-1.6-.2-2.7-.2-2.8 0-4.5 1.7-4.5 4.7v2.1H7.4V14h3.1v7"/></svg>Facebook</a></dd></div>
   </dl>
 </section>
 
@@ -877,6 +888,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
         <div><dt>Sábado y domingo</dt><dd>Cerrado</dd></div>
       </dl>
       <p class="direccion" data-p="deriva" data-f="130">Calle de Teresa Claramunt, 11 · 28919 Leganés · <button type="button" class="senda" data-ir="llegar">cómo llegar</button> · <a class="senda" href="mailto:info@jadogmadrid.com">info@jadogmadrid.com</a></p>
+      <p class="redes" data-p="deriva" data-f="150"><a class="red" href="https://www.instagram.com/jadog.andrealonso/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r=".9"/></svg>Instagram</a><a class="red" href="https://www.facebook.com/jadogmadrid/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 21v-7h3l.6-3.5H14V8.6c0-1 .5-1.6 1.7-1.6h2V3.9c-.6-.1-1.6-.2-2.7-.2-2.8 0-4.5 1.7-4.5 4.7v2.1H7.4V14h3.1v7"/></svg>Facebook</a></p>
     </div>
     <figure class="marco local ancho" data-p="foto">
       <div class="foto" style="--ph:url(data:image/webp;base64,UklGRs4AAABXRUJQVlA4IMIAAABQCACdASooADUAPrVKnEqnJKKhtVgN+OAWiWUAyjQ6EXzOJ8ey8SrrCU0TtKwkE3IQhdXiHU+ZZUh/ee2qfO8OgTodZk499W2/DgAA+r29q4SIsfoCqY8dS8j9MvujYVCv7otBiGGfXGRynrgqrECJNzEhD2MacHni8qPkfNw9AZGIq/ZN/5idqZOpTr8dzMhqmjrkOExiZyAUg/UZINuezUVB/ezkKqyn0vK/oIEtzim8nk+xygVLa+FaDVhAyxAAAA==)"><img src="assets/img/local.webp" width="900" height="1200" loading="lazy" alt="Interior del local: pared morada, zócalo de rayas blancas y negras y una balda con figuras de gatos"></div>
