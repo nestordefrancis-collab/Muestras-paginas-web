@@ -34,8 +34,8 @@
    palabra al subir, las fotos se desenrollan dentro de su marco y luego
    van un poco más despacio que el texto, las notas de papel se asientan,
    las cifras cuentan y el fondo de curvas de nivel va a otra velocidad.
-   Al pie de cada lámina se dibuja un tramo de sendero y el lobo del logo
-   lo recorre mientras bajas.
+   Al pie de cada lámina, solo su sello con el número (el sendero con el
+   lobo caminando se quitó: al bajar daba sensación de lentitud).
    Navegación: rótulo de papel arriba a la izquierda con la lámina en la
    que estás, un «Menú» que despliega el índice de láminas y un botón de
    cita fijo.
@@ -146,16 +146,6 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
 .oscura .hito{color:var(--liquen)} .papel .hito{color:var(--bosque)}
 .oscura .sello{background:var(--noche)} .papel .sello{background:var(--papel)}
 .hito .etiqueta{transform:translateY(-15px)}
-.tramo{display:none;position:absolute;left:0;right:0;bottom:0;height:var(--banda);pointer-events:none}
-.js .tramo{display:block}
-.tramo svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.tr-camino{fill:none;stroke-width:2.2;stroke-linecap:round;stroke-dasharray:.1 9}
-.oscura .tr-camino{stroke:var(--liquen)} .papel .tr-camino{stroke:var(--salvia)}
-.tr-mascara{fill:none;stroke:#fff;stroke-width:18;stroke-linecap:round}
-.tr-huella{opacity:0;transform-box:fill-box;transform-origin:center;transform:scale(1.6);transition:opacity .3s,transform .4s cubic-bezier(.2,1.4,.4,1)}
-.tr-huella.pisada{opacity:.6;transform:none}
-.oscura .tr-huella,.oscura .tr-lobo{fill:var(--liquen)} .papel .tr-huella,.papel .tr-lobo{fill:var(--bosque)}
-.tr-lobo{transition:opacity .3s}
 
 /* ---------- rótulo con menú y cita ---------- */
 .rotulo{position:fixed;z-index:70;top:max(12px,env(safe-area-inset-top));left:12px;display:flex;align-items:stretch;
@@ -486,7 +476,6 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
     <ellipse cx="14.6" cy="6.4" rx="2.2" ry="2.8" transform="rotate(6 14.6 6.4)"/>
     <ellipse cx="18.8" cy="10.4" rx="2.1" ry="2.7" transform="rotate(20 18.8 10.4)"/>
   </symbol>
-  <symbol id="lobo" viewBox="37.72 58.99 24.47 22.47"><g transform="matrix(-1 0 0 1 99.91 0)"><path d="M39.49 59.59 39.36 59.75 39.06 60.7 39.12 61.1 39.42 61.77 39.41 61.97 39.16 62.1 38.56 61.87 38.39 61.97 38.32 62.17 38.43 62.5 39.12 63.56 39.38 64.23 39.32 64.63 39.05 65.16 38.72 66.29 38.98 66.89 38.92 67.75 39.34 68.35 39.45 69.28 39.85 69.81 39.98 70.35 40.31 70.88 40.56 71.61 41.16 72.12 41.49 72.66 41.62 72.72 42.09 72.69 42.35 72.94 42.21 73.74 42.63 75.07 42.67 75.73 42.92 76.93 42.9 78.59 42.57 79.59 42.29 79.92 41.49 80.29 41.32 80.52 41.29 80.72 41.49 80.79 41.89 80.57 42.29 80.61 43.48 80.43 43.82 80.27 44.28 80.6 44.68 80.53 45.08 80.6 45.6 80.39 45.81 79.82 46.28 79.26 46.26 77.93 46.79 75.73 47.16 74.67 47.34 74.49 47.94 74.23 48.87 74.11 49.73 74.15 50.16 75.47 50.45 76 52.13 77.13 52.59 77.57 52.8 77.93 52.87 78.59 52.56 79.59 52.23 79.99 51.52 80.32 51.32 80.59 51.33 80.79 51.53 80.83 52.93 80.59 53.39 80.64 53.67 80.32 54.7 77.59 54.65 77.33 54.18 76.86 53.85 76.33 53.76 75.8 53.92 75.59 56.25 76.99 56.67 77.33 57.06 77.79 57.45 78.72 57.61 79.79 57.56 80.05 57.19 80.52 57.18 80.68 58.18 80.7 58.84 80.86 59.04 80.78 59.06 80.19 58.63 78.19 58.52 77.13 57.71 76.2 57.53 75.73 57.65 75.63 58.24 75.88 59.51 75.9 60.31 75.68 60.62 75.4 60.74 74.87 61.19 74.53 61.5 74.14 61.59 73.87 61.52 73.67 61.3 73.6 60.77 73.72 59.71 73.67 58.38 72.95 57.58 72.13 56.72 70.74 55.98 69.79 54.85 68.93 54.26 68.6 53.39 68.26 51.86 67.89 51 67.83 48.94 67.45 47.67 66.89 46.94 66.34 46.65 65.82 45.94 65.4 45.8 65.23 45.83 64.96 46.4 64.43 46.33 64.1 45.48 63.75 44.28 62.92 43.77 62.37 43.15 61.89 42.62 61.63 42.02 61.5 41.63 61.3 39.83 59.68 39.49 59.59ZM44.61 74.28 44.6 74.8 44.71 75.27 44.61 75.6 44.47 77.26 44.55 77.68 44.68 77.49 44.84 76.4 44.77 75.27 44.82 74.6 44.75 74.36 44.61 74.28Z" fill-rule="evenodd"/></g></symbol>
   <symbol id="topo-a" viewBox="0 0 1240 760" style="overflow:visible">
 <path d="M676.3 380C676.4 382.7 676.1 385.5 675.3 388.1C674.4 390.8 672.9 393.4 671.1 395.7C669.3 398.1 666.8 400.3 664.3 402.3C661.8 404.3 659 406.1 656.1 407.7C653.1 409.4 650 410.9 646.7 412C643.4 413.2 639.9 414.3 636.3 414.8C632.8 415.4 628.9 415.6 625.4 415.4C621.8 415.2 618.2 414.4 614.9 413.6C611.6 412.7 608.7 411.4 605.8 410.2C603 409 600.5 407.7 597.9 406.5C595.3 405.3 592.8 404.2 590.2 402.9C587.6 401.7 584.8 400.5 582.3 398.9C579.8 397.4 577.2 395.7 575.2 393.8C573.2 391.9 571.4 389.6 570.2 387.3C569 385 568.4 382.5 568.1 380C567.8 377.5 568 374.9 568.6 372.4C569.1 369.9 570.1 367.4 571.4 365C572.8 362.7 574.6 360.3 576.8 358.3C579 356.3 581.8 354.4 584.7 352.9C587.7 351.4 591.1 350.3 594.5 349.4C597.8 348.5 601.3 347.9 604.7 347.4C608.1 346.9 611.4 346.5 614.9 346.2C618.3 345.8 621.7 345.4 625.3 345.2C628.9 345.1 632.6 344.9 636.4 345.1C640.1 345.4 644 346 647.5 347C651.1 348 654.5 349.5 657.5 351.2C660.4 352.9 663 355.1 665.2 357.3C667.4 359.5 669.2 361.9 670.7 364.4C672.3 366.8 673.6 369.4 674.5 372C675.5 374.6 676.2 377.3 676.3 380Z" stroke-opacity=".55"/>
 <path d="M724 380C724.2 385 723.8 390.2 722.2 395C720.7 399.9 718 404.8 714.6 409.2C711.3 413.6 706.9 417.7 702.2 421.4C697.6 425.1 692.3 428.4 686.8 431.4C681.4 434.4 675.5 437.1 669.4 439.2C663.3 441.4 656.7 443.2 650.1 444.2C643.5 445.1 636.4 445.4 629.9 445C623.3 444.5 616.6 443 610.7 441.4C604.7 439.7 599.3 437.3 594.2 435.1C589 432.9 584.5 430.5 579.8 428.3C575 426 570.4 424.1 565.6 421.8C560.8 419.5 555.7 417.4 551 414.7C546.4 411.9 541.5 408.9 537.7 405.4C533.9 401.8 530.5 397.7 528.2 393.5C525.9 389.3 524.5 384.6 523.9 380C523.3 375.4 523.6 370.6 524.5 366C525.5 361.3 527.1 356.6 529.6 352.1C532.1 347.7 535.4 343.3 539.5 339.5C543.5 335.7 548.7 332.2 554.1 329.4C559.6 326.6 566 324.4 572.2 322.7C578.4 320.9 585 320 591.3 318.9C597.7 317.9 604 317.3 610.4 316.7C616.8 316 623.2 315.3 629.9 315C636.5 314.8 643.6 314.5 650.5 315.1C657.3 315.7 664.6 316.8 671.1 318.7C677.6 320.6 684 323.5 689.3 326.7C694.7 329.9 699.4 334 703.4 338C707.4 342.1 710.7 346.6 713.5 351.2C716.4 355.7 718.8 360.4 720.5 365.2C722.3 370 723.7 375 724 380Z" stroke-opacity=".55"/>
@@ -662,7 +651,6 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
   </div>
   <button type="button" class="bajar" data-ir="antes">Abrir el cuaderno</button>
   <p class="hito"><span class="sello">✦</span><span class="etiqueta">Portada</span></p>
-  <div class="tramo" aria-hidden="true"></div>
   </div>
 </section>
 
@@ -705,7 +693,6 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
     </div>
   </div>
   <p class="hito"><span class="sello">I</span><span class="etiqueta">Lámina I · Mantenimiento</span></p>
-  <div class="tramo" aria-hidden="true"></div>
   </div>
 </section>
 
@@ -733,7 +720,6 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
     </figure>
   </div>
   <p class="hito"><span class="sello">II</span><span class="etiqueta">Lámina II · Peluquería canina</span></p>
-  <div class="tramo" aria-hidden="true"></div>
   </div>
 </section>
 
@@ -756,7 +742,6 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
     </figure>
   </div>
   <p class="hito"><span class="sello">III</span><span class="etiqueta">Lámina III · Spa</span></p>
-  <div class="tramo" aria-hidden="true"></div>
   </div>
 </section>
 
@@ -778,7 +763,6 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
     </div>
   </div>
   <p class="hito"><span class="sello">IV</span><span class="etiqueta">Lámina IV · Gatos</span></p>
-  <div class="tramo" aria-hidden="true"></div>
   </div>
 </section>
 
@@ -816,7 +800,6 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
     </div>
   </div>
   <p class="hito"><span class="sello">V</span><span class="etiqueta">Lámina V · Quién te atiende</span></p>
-  <div class="tramo" aria-hidden="true"></div>
   </div>
 </section>
 
@@ -839,7 +822,6 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
     </div>
   </div>
   <p class="hito"><span class="sello">VI</span><span class="etiqueta">Lámina VI · Escuela</span></p>
-  <div class="tramo" aria-hidden="true"></div>
   </div>
 </section>
 
@@ -868,7 +850,6 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
     </div>
   </div>
   <p class="hito"><span class="sello">VII</span><span class="etiqueta">Lámina VII · Opiniones</span></p>
-  <div class="tramo" aria-hidden="true"></div>
   </div>
 </section>
 
@@ -896,7 +877,6 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
     </figure>
   </div>
   <p class="hito"><span class="sello">VIII</span><span class="etiqueta">Lámina VIII · Pide cita</span></p>
-  <div class="tramo" aria-hidden="true"></div>
   </div>
 </section>
 
@@ -1198,89 +1178,12 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
       else if (p.tipo === 'topo') p.el.style.transform = 'translateY(' + (c * Hv * 0.2).toFixed(1) + 'px)';
       else p.el.style.transform = 'translateY(' + (c * -22).toFixed(1) + 'px)';
     }
-    pintarTramos(y);
-  }
-
-  /* ---------- Sendero al pie de cada lámina, con el lobo recorriéndolo ---------- */
-  var NS = 'http://www.w3.org/2000/svg';
-  var tramos = [];
-  function construirTramos() {
-    tramos = [];
-    var y = window.scrollY;
-    hojas.forEach(function (h, k) {
-      var el = h.querySelector('.tramo');
-      if (!el) return;
-      var w = el.clientWidth, hb = el.clientHeight;
-      if (!w || !hb) return;
-      var sello = h.querySelector('.hito .sello').getBoundingClientRect();
-      var rt = el.getBoundingClientRect();
-      var sx = sello.left + sello.width / 2 - rt.left, yb = sello.top + sello.height / 2 - rt.top;
-      var am = Math.min(16, hb * 0.18) * (k % 2 ? 1 : -1);
-      var d = 'M0 ' + yb + 'L' + sx + ' ' + yb +
-              'C' + (sx + w * 0.14) + ' ' + (yb + am) + ' ' + (sx + w * 0.26) + ' ' + (yb - am) + ' ' + (w * 0.5) + ' ' + yb +
-              'S' + (w * 0.8) + ' ' + (yb + am) + ' ' + w + ' ' + yb;
-      var id = 'tm' + k;
-      el.innerHTML = '<svg viewBox="0 0 ' + w + ' ' + hb + '"><defs><mask id="' + id + '" maskUnits="userSpaceOnUse" x="-20" y="-40" width="' + (w + 40) + '" height="' + (hb + 80) + '">' +
-        '<path class="tr-mascara" d="' + d + '"/></mask></defs><path class="tr-camino" d="' + d + '" mask="url(#' + id + ')"/><g></g>' +
-        '<svg class="tr-lobo" width="46" height="40" viewBox="0 0 46 40" overflow="visible"><use href="#lobo" width="46" height="40"/></svg></svg>';
-      var guia = el.querySelector('.tr-mascara'), L = guia.getTotalLength();
-      guia.style.strokeDasharray = L + ' ' + L;
-      guia.style.strokeDashoffset = L;
-      var tabla = [];
-      for (var s = 0; s <= L; s += 6) { var pt = guia.getPointAtLength(s); tabla.push([pt.x, s, pt.y]); }
-      var fin = guia.getPointAtLength(L); tabla.push([fin.x, L, fin.y]);
-      var g = el.querySelector('svg > g'), huellas = [];
-      for (var s2 = sx + 40, j = 0; s2 < L - 14; s2 += 44, j++) {
-        var a = guia.getPointAtLength(s2), b = guia.getPointAtLength(Math.min(L, s2 + 2));
-        var ang = Math.atan2(b.y - a.y, b.x - a.x), lado = j % 2 ? 6.5 : -6.5;
-        var grp = document.createElementNS(NS, 'g');
-        grp.setAttribute('transform', 'translate(' + (a.x - Math.sin(ang) * lado).toFixed(1) + ' ' + (a.y + Math.cos(ang) * lado).toFixed(1) + ') rotate(' + (ang * 180 / Math.PI + 90).toFixed(1) + ')');
-        var u = document.createElementNS(NS, 'use');
-        u.setAttribute('href', '#huella'); u.setAttribute('x', '-5.5'); u.setAttribute('y', '-5.5');
-        u.setAttribute('width', '11'); u.setAttribute('height', '11'); u.setAttribute('class', 'tr-huella');
-        grp.appendChild(u); g.appendChild(grp);
-        huellas.push({ el: u, x: a.x, on: false });
-      }
-      /* el lobo sale justo después del rótulo de la lámina, no encima */
-      var eti = h.querySelector('.hito .etiqueta'), re = eti ? eti.getBoundingClientRect() : null;
-      var inicio = (re && re.width) ? re.right - rt.left + 34 : sx + 48;
-      tramos.push({ guia: guia, L: L, tabla: tabla, huellas: huellas, lobo: el.querySelector('.tr-lobo'), inicio: inicio, w: w, h: h, ult: -1 });
-    });
-  }
-  function enTabla(t, lx, col) {
-    var tb = t.tabla, lo = 0, hi = tb.length - 1;
-    if (lx <= tb[0][0]) return tb[0][col];
-    if (lx >= tb[hi][0]) return tb[hi][col];
-    while (hi - lo > 1) { var m = (lo + hi) >> 1; if (tb[m][0] < lx) lo = m; else hi = m; }
-    var f = (lx - tb[lo][0]) / ((tb[hi][0] - tb[lo][0]) || 1);
-    return tb[lo][col] + f * (tb[hi][col] - tb[lo][col]);
-  }
-  function pintarTramos(y) {
-    tramos.forEach(function (t) {
-      var h = t.h;
-      if (y + Hv < h._top || y > h._top + h._alto) return;
-      /* en las láminas con reposo, el lobo recorre el sendero mientras la lámina está fija;
-         en las demás, mientras el pie de la lámina sube por la pantalla */
-      var p = h._descanso > 0
-        ? (y - (h._inicio - Hv * 0.3)) / (h._descanso + Hv * 0.3)
-        : (y - (h._top + h._alto - Hv) + Hv * 0.1) / (Hv * 0.6);
-      p = Math.min(1, Math.max(0, p));
-      var lx = t.inicio + p * (t.w * 0.9 - t.inicio);
-      if (Math.abs(lx - t.ult) < 0.5) return;
-      t.ult = lx;
-      t.guia.style.strokeDashoffset = (t.L - enTabla(t, lx, 1)).toFixed(1);
-      t.huellas.forEach(function (hu) { var on = hu.x <= lx; if (on !== hu.on) { hu.on = on; hu.el.classList.toggle('pisada', on); } });
-      var ly = enTabla(t, lx, 2), paso = Math.abs(Math.sin(lx / 24)) * 3;
-      t.lobo.setAttribute('x', (lx - 23).toFixed(1));
-      t.lobo.setAttribute('y', (ly - 40 + 2 - paso).toFixed(1));
-      t.lobo.style.opacity = p > 0.02 ? '1' : '0';
-    });
   }
 
   /* ---------- Un solo manejador de scroll ---------- */
   var pedido = false;
   function pedir() { if (!pedido) { pedido = true; requestAnimationFrame(function () { pedido = false; pintar(); }); } }
-  function rehacer() { medirHojas(); construirTramos(); pintar(); }
+  function rehacer() { medirHojas(); pintar(); }
   medirHojas();
   if (!quieto) {
     window.addEventListener('scroll', pedir, { passive: true });
