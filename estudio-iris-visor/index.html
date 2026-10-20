@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Maribel García · Estudio Fotográfico Iris · Fotografía de recién nacido, infancia y familia en Leganés</title>
-<meta name="description" content="Estudio Fotográfico Iris, de Maribel García, en Leganés: sesiones de embarazo, recién nacido, smash cake, infantil, comunión y Navidad. Cita por WhatsApp en el 695 91 95 87 o en el 916 80 94 32.">
+<meta name="description" content="Estudio Fotográfico Iris, de Maribel García, en Leganés: sesiones de embarazo, recién nacido, smash cake, infantil y comunión. Cita por WhatsApp en el 695 91 95 87 o en el 916 80 94 32.">
 <!-- Muestra de rediseño: fuera de los buscadores para que no compita con
      la web real del negocio ni se confunda con ella. -->
 <meta name="robots" content="noindex, nofollow">
@@ -208,15 +208,27 @@ h2 em,h1 em{font-style:italic;font-weight:300;color:var(--magenta)}
 .acciones{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center}
 .es-portada .sola .c-principal{width:min(100cqw, calc(90cqh * var(--ar)))}
 
-/* ---------- Navidad: los packs ---------- */
-.packs{display:grid;gap:0;margin:20px 0 24px;border-top:1px solid rgba(243,234,226,.2)}
-.pack{display:grid;grid-template-columns:auto 1fr auto;gap:3px 18px;align-items:baseline;padding:10px 0;border-bottom:1px solid rgba(243,234,226,.2)}
-.pack-n{font:italic 400 15px/1 var(--serif);color:#ff5cb4}
-.pack h3{font:500 15px/1.3 var(--sans);color:var(--crema)}
-.pack-p{font:400 26px/1 var(--serif);color:var(--crema)}
-.pack p{grid-column:2/3;font-size:13.5px;line-height:1.5;color:rgba(243,234,226,.7)}
-.packs-nota{font-size:12px;letter-spacing:.06em;color:rgba(243,234,226,.55);margin-top:-12px;margin-bottom:26px}
-.es-navidad .btn-linea{box-shadow:inset 0 0 0 1px rgba(243,234,226,.35);color:var(--crema)}
+/* ---------- Cómo llegar: transporte y mapa ---------- */
+.rutas{display:grid;margin:22px 0 14px;border-top:1px solid var(--linea)}
+.rutas li{display:grid;grid-template-columns:5.6rem 1fr auto;gap:4px 16px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--linea)}
+.r-tipo{font:500 11.5px/1.4 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--tinta-2)}
+.r-dato{font-size:14.5px;line-height:1.45}
+.r-dato b{font-weight:600;color:var(--magenta);margin-right:8px}
+.r-m{font:italic 400 17px/1 var(--serif);color:var(--tinta);white-space:nowrap}
+.rutas-nota{font-size:12.5px;color:var(--tinta-2);margin-bottom:24px}
+.enlace{text-decoration:none;border-bottom:1px solid var(--linea);transition:color .3s, border-color .3s}
+.enlace:hover{color:var(--magenta);border-color:var(--magenta)}
+.mapa{--ar:1.3333;display:block;text-decoration:none}
+.mapa .foto{display:block}
+/* el mapa integrado se recorta por los cuatro lados (mismo centro): fuera los botones de
+   zoom y su pie, que en el móvil tapaban medio mapa; el crédito lo pongo yo */
+.mapa iframe{position:absolute;left:-46px;top:-46px;width:calc(100% + 92px);height:calc(100% + 92px);display:block;border:0;pointer-events:none;filter:grayscale(.55) sepia(.14) contrast(.95) brightness(1.03)}
+.mapa-credito{position:absolute;right:0;bottom:0;z-index:2;background:rgba(255,255,255,.88);font:400 10px/1.2 var(--sans);color:var(--tinta-2);padding:4px 7px}
+.mapa .foto::before{display:none}
+.pin{position:absolute;left:50%;top:50%;z-index:2;width:0;height:0}
+.pin i{position:absolute;left:-9px;top:-9px;width:18px;height:18px;border-radius:50%;background:var(--magenta);box-shadow:0 0 0 4px #fff,0 6px 16px rgba(42,36,39,.35)}
+.pin b{position:absolute;left:18px;top:-13px;white-space:nowrap;background:#fff;color:var(--tinta);font:600 11px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:7px 10px 6px;box-shadow:0 6px 16px -8px rgba(42,36,39,.45)}
+.m-foto i.m-mapa{background:#efe7df radial-gradient(circle at 50% 50%, var(--magenta) 0 5px, #fff 5.5px 8.5px, rgba(255,255,255,0) 9px)}
 
 /* ---------- Familias: cifras y reseñas ---------- */
 .cifras{display:flex;gap:clamp(20px,3vw,48px);margin:8px 0 28px}
@@ -307,6 +319,13 @@ h2 em,h1 em{font-style:italic;font-weight:300;color:var(--magenta)}
 .js.escenario .escena.saliendo .copia{opacity:1;transition:none}
 .js.escenario .escena.saliendo .copia.lista .foto img{opacity:1;transform:none;filter:blur(5px);transition:filter .7s ease}
 
+/* El mapa aparece despacio y la chincheta cae al final */
+.js.escenario .escena .mapa iframe{opacity:0;transition:opacity .3s ease}
+.js.escenario .escena.activa .mapa.lista iframe{opacity:1;transition:opacity 1.2s ease .45s}
+.js.escenario .escena .pin{opacity:0;transform:translateY(-10px);transition:opacity .3s ease, transform .3s ease}
+.js.escenario .escena.activa .pin{opacity:1;transform:none;transition:opacity .6s ease 1.2s, transform .9s cubic-bezier(.2,1.4,.4,1) 1.2s}
+.js.escenario .escena.saliendo .mapa iframe,.js.escenario .escena.saliendo .pin{opacity:1;transform:none;transition:none}
+
 /* La firma de la esquina se retira en la portada, donde está el logo grande */
 .js.escenario.en-portada .v-marca{opacity:0;transform:translateY(-6px);pointer-events:none}
 
@@ -348,15 +367,19 @@ h2 em,h1 em{font-style:italic;font-weight:300;color:var(--magenta)}
   .valoracion{justify-content:center;margin:0}
   .acciones{justify-content:center}
   .es-portada .acciones .btn-texto{display:none}
-  /* Navidad */
-  .es-navidad .fotos{height:27vh;height:27svh}
-  .packs{margin:12px 0 16px}
-  .pack{padding:9px 0;gap:2px 14px}
-  .pack p{display:none}
-  .pack-p{font-size:21px}
-  .packs-nota{margin:-6px 0 14px}
-  .es-navidad .lede{display:none}
-  .es-navidad .vertical .c-dos{display:none}
+  /* Cómo llegar: mapa apaisado a todo el ancho */
+  .es-llegar .fotos{height:30vh;height:30svh}
+  .es-llegar .mapa{--ar:1.9}
+  .pin b{font-size:10px;padding:6px 8px 5px}
+  .mapa-credito{font-size:9px;padding:3px 5px}
+  .mapa-credito .largo{display:none}
+  .es-llegar .lede{display:none}
+  .rutas{margin:4px 0 10px}
+  .rutas li{grid-template-columns:4.6rem 1fr auto;padding:8px 0;gap:2px 12px}
+  .r-dato{font-size:13px}
+  .r-tipo{font-size:10.5px}
+  .rutas-nota{margin-bottom:14px;font-size:12px}
+  .es-llegar .pie{display:none}
   /* Familias: sin foto, una reseña */
   .es-familias .fotos,.es-visita .fotos{display:none}
   .cifras{margin:4px 0 18px;gap:18px}
@@ -375,6 +398,8 @@ h2 em,h1 em{font-style:italic;font-weight:300;color:var(--magenta)}
 }
 @media (max-width:759px) and (max-height:700px){
   .detalles{display:none}
+  .rutas .r-lejos{display:none}
+  .es-llegar .fotos{height:26vh;height:26svh}
   .fotos{height:34vh;height:34svh}
   .cifra span{font-size:11.5px}
 }
@@ -382,7 +407,10 @@ h2 em,h1 em{font-style:italic;font-weight:300;color:var(--magenta)}
   .es-portada .fotos{height:25svh}
   .logo-grande{width:min(70%,270px)}
   .fotos{height:30svh}
-  .es-navidad .fotos{height:22svh}
+  .es-llegar .fotos{height:27svh}
+  .rutas .r-urbano{display:none}
+  .rutas-nota{display:none}
+  .rutas{margin-bottom:16px}
   h2{font-size:27px}
   .lede{font-size:14.5px}
   .cita-propia{font-size:15.5px}
@@ -393,14 +421,12 @@ h2 em,h1 em{font-style:italic;font-weight:300;color:var(--magenta)}
 }
 @media (min-width:760px) and (max-height:880px){
   .resena:nth-child(3){display:none}
-  .es-navidad h2{margin-bottom:12px}
 }
 @media (min-width:760px) and (max-height:720px){
   :root{--pt:74px;--pb:74px}
   h2{font-size:clamp(30px,3.6vw,52px)}
   .detalles{margin:16px 0 22px}
-  .pack p{font-size:12.5px}
-  .es-navidad .lede{display:none}
+  .es-llegar .lede{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   *{transition:none!important}
@@ -461,9 +487,9 @@ h2 em,h1 em{font-style:italic;font-weight:300;color:var(--magenta)}
     <li><button type="button" data-ir="primer-ano"><span class="m-foto"><i data-de="primer-ano"></i></span><span><span class="m-pie"><span class="m-num">04</span><span class="m-tit">El primer año</span></span><span class="m-sub">Smash cake</span></span></button></li>
     <li><button type="button" data-ir="infancia"><span class="m-foto"><i data-de="infancia"></i></span><span><span class="m-pie"><span class="m-num">05</span><span class="m-tit">Mientras crecen</span></span><span class="m-sub">Infantil</span></span></button></li>
     <li><button type="button" data-ir="comunion"><span class="m-foto"><i data-de="comunion"></i></span><span><span class="m-pie"><span class="m-num">06</span><span class="m-tit">La comunión</span></span><span class="m-sub">Iglesia, estudio y exterior</span></span></button></li>
-    <li><button type="button" data-ir="navidad"><span class="m-foto"><i data-de="navidad"></i></span><span><span class="m-pie"><span class="m-num">07</span><span class="m-tit">Cada Navidad</span></span><span class="m-sub">Packs de Navidad</span></span></button></li>
-    <li><button type="button" data-ir="familias"><span class="m-foto"><i data-de="familias"></i></span><span><span class="m-pie"><span class="m-num">08</span><span class="m-tit">Las familias</span></span><span class="m-sub">Opiniones</span></span></button></li>
-    <li><button type="button" data-ir="visita"><span class="m-foto"><i data-de="visita"></i></span><span><span class="m-pie"><span class="m-num">09</span><span class="m-tit">El estudio</span></span><span class="m-sub">Dónde y cuándo</span></span></button></li>
+    <li><button type="button" data-ir="familias"><span class="m-foto"><i data-de="familias"></i></span><span><span class="m-pie"><span class="m-num">07</span><span class="m-tit">Las familias</span></span><span class="m-sub">Opiniones</span></span></button></li>
+    <li><button type="button" data-ir="visita"><span class="m-foto"><i data-de="visita"></i></span><span><span class="m-pie"><span class="m-num">08</span><span class="m-tit">El estudio</span></span><span class="m-sub">Horario y cita</span></span></button></li>
+    <li><button type="button" data-ir="llegar"><span class="m-foto"><i class="m-mapa" data-de="llegar"></i></span><span><span class="m-pie"><span class="m-num">09</span><span class="m-tit">Cómo llegar</span></span><span class="m-sub">Mapa y transporte</span></span></button></li>
   </ol>
 </nav>
 
@@ -580,31 +606,8 @@ h2 em,h1 em{font-style:italic;font-weight:300;color:var(--magenta)}
   </div>
 </section>
 
-<!-- 07 · Navidad -->
-<section class="escena es-navidad lado-izq" id="navidad" data-tono="oscuro" data-num="07" data-titulo="Cada Navidad" data-sesion="de Navidad" aria-labelledby="t-navidad">
-  <div class="cuadro">
-    <div class="texto">
-      <p class="edad e"><b>Cada Navidad</b> Nieve en Navidad</p>
-      <h2 id="t-navidad" class="revela">Para ver cuánto han <em>crecido</em></h2>
-      <p class="lede e" style="--d:.55s">Nieve, farolillos y abrigos rojos. Una sesión cada invierno y, de un año a otro, la diferencia salta a la vista.</p>
-      <ul class="packs e" style="--d:.7s">
-        <li class="pack"><span class="pack-n">Pack 1</span><h3>Sobre de algodón</h3><span class="pack-p">75 €</span><p>5 fotos en formato digital e impresas en 15×20.</p></li>
-        <li class="pack"><span class="pack-n">Pack 2</span><h3>Caja personalizada</h3><span class="pack-p">130 €</span><p>6 fotos en digital e impresas en 15×20, calendario de sobremesa 15×20 y una bola de madera.</p></li>
-        <li class="pack"><span class="pack-n">Pack 3</span><h3>Bolsa de arpillera con álbum</h3><span class="pack-p">185 €</span><p>Álbum 20×20 con 10 fotos y otra en la portada, las 11 en digital, calendario 15×20 con peana de madera y una bola de madera.</p></li>
-      </ul>
-      <p class="packs-nota e" style="--d:.8s">Packs de su campaña «Nieve en Navidad»</p>
-      <button type="button" class="btn btn-linea e" style="--d:.9s" data-panel="cita" data-sesion="de Navidad">Reservar la sesión de Navidad</button>
-    </div>
-    <div class="fotos vertical">
-      <figure class="copia c-principal" style="--ar:0.7500"><div class="foto" style="--ph:url(data:image/webp;base64,UklGRswAAABXRUJQVlA4IMAAAABQBQCdASoVABwAPtFUokuoJKMhsAgBABoJagCdABuMxaTrQuS9/N/27kNMoyxM8KSenmAA/vQyqAxWwH4xIR1wql4p3kd2FIU2YFS2Bl4/oNoI4ioAG2Z6baL14kl/CsucF6uuQLx7ACyerqNWdJUvPzY88Jg5LINTUXDHxHvMXRlL4yZZOnDkSK6etHbRJhcewdL0ZFzSN2+7+XOr7ItdfoCBRr0F7/TeVKRrTbgLblFEIprcfD3Iw5L9npWAAAA=)"><img src="assets/img/navidad.webp" width="945" height="1260" alt="Una niña con capa roja y un osito, bajo la nieve, junto a una maleta antigua y un reloj" loading="lazy" decoding="async"></div></figure>
-      <figure class="copia c-dos" style="--ar:0.7500"><div class="foto" style="--ph:url(data:image/webp;base64,UklGRtYAAABXRUJQVlA4IMoAAABwBQCdASoVABwAPtFWpk0oJCOiMBgIAQAaCUAU4oEGMM2dBhPgWlwp2+M25hwqDc5NAbgAAP7vSlZWK6yJNAGqEDTzqrr/KBPnvd/NUwK4NHeoqw60utujetFjTOcmVbLlt8R370f9IGN3s01fUm3oUtmt8+k5CHgoO4Np2wT1kOyK0Ngfbqxaz6SlG8sXIQuG44qF5sVVL+jCAtyA07KTIFkZmbr8A1V6P+49vkVz+TKhiFnHmc7nYWI4BcS0kiT0bT5XhWOIDAAA)"><img src="assets/img/navidad-beso.webp" width="615" height="820" alt="Un niño da un beso en la mejilla a una niña con abrigo rojo, entre copos de nieve" loading="lazy" decoding="async"></div></figure>
-      <figure class="copia c-tres" style="--ar:0.7500"><div class="foto" style="--ph:url(data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAACwBACdASoVABwAPtFYpEuoJSOhsAgBABoJQBfnBCn0davSSMrepXtiIUBCE9AAAP7yqf2CRQmQHtod8f9SFDNIdrz5gkaYr5XslUBsk9YlobSud0S/p4TN1nhbYBkHEgjDfOyThJiPF2Ga4zNyi/vH5uEVoruCDjTAcP2Po/a2TNvk7aC8M5a5LmOeNb3I05FfAvL0j8sPODAxoz+yBAAA)"><img src="assets/img/navidad-farol.webp" width="615" height="820" alt="Una niña con abrigo rojo sostiene un farolillo encendido sobre la nieve" loading="lazy" decoding="async"></div></figure>
-    </div>
-  </div>
-</section>
-
-<!-- 08 · Familias -->
-<section class="escena es-familias lado-der" id="familias" data-num="08" data-titulo="Las familias" aria-labelledby="t-familias">
+<!-- 07 · Familias -->
+<section class="escena es-familias lado-izq" id="familias" data-num="07" data-titulo="Las familias" aria-labelledby="t-familias">
   <div class="cuadro">
     <div class="texto">
       <p class="edad e"><b>Las familias</b> Opiniones</p>
@@ -626,25 +629,51 @@ h2 em,h1 em{font-style:italic;font-weight:300;color:var(--magenta)}
   </div>
 </section>
 
-<!-- 09 · Visita -->
-<section class="escena es-visita tono-2 lado-izq" id="visita" data-num="09" data-titulo="El estudio" aria-labelledby="t-visita">
+<!-- 08 · Visita -->
+<section class="escena es-visita tono-2 lado-der" id="visita" data-num="08" data-titulo="El estudio" aria-labelledby="t-visita">
   <div class="cuadro">
     <div class="texto">
       <p class="edad e"><b>El estudio</b> Leganés Norte</p>
       <h2 id="t-visita" class="revela">Ven a <em>conocerlo</em></h2>
       <dl class="ficha e" style="--d:.55s">
-        <dt>Dónde</dt><dd>Calle Isadora Duncan, 6<br>28919 Leganés · <a href="https://www.google.com/maps/search/?api=1&amp;query=Estudio+Fotogr%C3%A1fico+Iris+Calle+Isadora+Duncan+6+Legan%C3%A9s" target="_blank" rel="noopener">cómo llegar</a></dd>
+        <dt>Dónde</dt><dd>Calle Isadora Duncan, 6<br>28919 Leganés · <button type="button" class="enlace" data-ir="llegar">ver el mapa</button></dd>
         <dt>Horario</dt><dd class="horas"><span>L, M, J y V</span><span>10:00–13:30 · 17:00–19:00</span><span>Miércoles</span><span>10:00–13:30</span><span>S y D</span><span>Cerrado</span></dd>
         <dt>Cita</dt><dd><a href="https://wa.me/34695919587" target="_blank" rel="noopener">WhatsApp 695 91 95 87</a> · <a href="tel:+34916809432">916 80 94 32</a><br><a href="mailto:info@estudioiris.es">info@estudioiris.es</a></dd>
       </dl>
       <div class="acciones e" style="--d:.75s">
         <button type="button" class="btn btn-lleno" data-panel="cita">Pedir cita</button>
-        <a class="btn btn-texto" href="https://www.estudioiris.es/booking/" target="_blank" rel="noopener">Reserva en línea <span class="flecha" aria-hidden="true"></span></a>
+        <button type="button" class="btn btn-texto" data-ir="llegar">Cómo llegar <span class="flecha" aria-hidden="true"></span></button>
       </div>
-      <p class="pie e" style="--d:.9s"><b>Maribel García · Estudio Fotográfico Iris</b> · <a href="https://www.facebook.com/estudiofotograficoiris" target="_blank" rel="noopener">Facebook</a> · Propuesta de diseño</p>
     </div>
     <div class="fotos sola">
       <figure class="copia c-principal" style="--ar:1.5000"><div class="foto" style="--ph:url(data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAADwBACdASocABMAPsVUoUunpSMhsAwA8BiJZQCkgBYz1T3N+7yWcaqdyMoNymtlmPAA/FyKxt3hzh5l3TyVvqLaWtHWyU3C39KdFSY8z7oHKA1fRagn52skuYEGh3V7l8G8nOXhReuYNIT6TrgodVN54hdDPQRVyuq+zQutbrjVFNMpE4AAAA==)"><img src="assets/img/estudio.webp" width="1200" height="800" alt="Un recién nacido dormido sobre mantas de punto crema, con una diadema" loading="lazy" decoding="async"></div></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 09 · Cómo llegar (transporte sacado de OpenStreetMap; distancias en línea recta) -->
+<section class="escena es-llegar lado-izq" id="llegar" data-num="09" data-titulo="Cómo llegar" aria-labelledby="t-llegar">
+  <div class="cuadro">
+    <div class="texto">
+      <p class="edad e"><b>Cómo llegar</b> Leganés Norte</p>
+      <h2 id="t-llegar" class="revela">Calle Isadora Duncan, <em>6</em></h2>
+      <p class="lede e" style="--d:.55s">28919 Leganés, junto a la avenida de Carmen Martín Gaite.</p>
+      <ul class="rutas e" style="--d:.7s">
+        <li><span class="r-tipo">Autobús</span><span class="r-dato"><b>480 · 485</b> Av. Carmen Martín Gaite – Teresa Claramunt</span><span class="r-m">150 m</span></li>
+        <li class="r-urbano"><span class="r-tipo">Urbano</span><span class="r-dato"><b>L1</b> Av. Reina Sofía – Teresa Claramunt</span><span class="r-m">240 m</span></li>
+        <li><span class="r-tipo">Cercanías</span><span class="r-dato"><b>C-5</b> Zarzaquemada</span><span class="r-m">490 m</span></li>
+        <li class="r-lejos"><span class="r-tipo">Metro</span><span class="r-dato"><b>L12</b> Julián Besteiro</span><span class="r-m">1,2 km</span></li>
+      </ul>
+      <p class="rutas-nota e" style="--d:.8s">Distancias en línea recta. En coche, aparcamiento en las calles de alrededor.</p>
+      <div class="acciones e" style="--d:.9s">
+        <a class="btn btn-lleno" href="https://www.google.com/maps/dir/?api=1&amp;destination=Estudio+Fotogr%C3%A1fico+Iris%2C+Calle+Isadora+Duncan+6%2C+28919+Legan%C3%A9s" target="_blank" rel="noopener">Abrir la ruta en Google Maps</a>
+      </div>
+      <p class="pie e" style="--d:1s"><b>Maribel García · Estudio Fotográfico Iris</b> · <a href="https://www.facebook.com/estudiofotograficoiris" target="_blank" rel="noopener">Facebook</a> · Propuesta de diseño</p>
+    </div>
+    <div class="fotos sola">
+      <a class="copia c-principal mapa" href="https://www.google.com/maps/dir/?api=1&amp;destination=Estudio+Fotogr%C3%A1fico+Iris%2C+Calle+Isadora+Duncan+6%2C+28919+Legan%C3%A9s" target="_blank" rel="noopener" aria-label="Abrir la ruta al estudio en Google Maps">
+        <span class="foto"><iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-3.7565256%2C40.3419306%2C-3.7445256%2C40.3479306&amp;layer=mapnik" title="Mapa de la zona del estudio, en Leganés Norte" loading="lazy" tabindex="-1"></iframe><span class="pin" aria-hidden="true"><i></i><b>Estudio Iris</b></span><span class="mapa-credito"><span class="largo">Mapa </span>© <span class="largo">colaboradores de </span>OpenStreetMap</span></span>
+      </a>
     </div>
   </div>
 </section>
@@ -660,7 +689,6 @@ h2 em,h1 em{font-style:italic;font-weight:300;color:var(--magenta)}
     <ul class="canales">
       <li><a class="canal" id="pc-wa" href="https://wa.me/34695919587" target="_blank" rel="noopener"><span class="c-tipo">WhatsApp</span><span class="c-dato">695 91 95 87<small>Te escribe el mensaje hecho</small></span></a></li>
       <li><a class="canal" href="tel:+34916809432"><span class="c-tipo">Teléfono del estudio</span><span class="c-dato">916 80 94 32</span></a></li>
-      <li><a class="canal" href="https://www.estudioiris.es/booking/" target="_blank" rel="noopener"><span class="c-tipo">Reserva en línea</span><span class="c-dato">Elige día y hora<small>En su web actual</small></span></a></li>
       <li><a class="canal" href="mailto:info@estudioiris.es"><span class="c-tipo">Correo</span><span class="c-dato">info@estudioiris.es</span></a></li>
     </ul>
     <p class="panel-horario">Lunes, martes, jueves y viernes de 10:00 a 13:30 y de 17:00 a 19:00. Miércoles de 10:00 a 13:30.</p>
@@ -701,6 +729,7 @@ h2 em,h1 em{font-style:italic;font-weight:300;color:var(--magenta)}
     s._fotos = true;
     [].forEach.call(s.querySelectorAll('.copia'), function (c) {
       var img = c.querySelector('img');
+      if (!img) { c.classList.add('lista'); return; }          /* el mapa: carga solo */
       if (img.loading === 'lazy') img.loading = 'eager';
       lista(img).then(function () { c.classList.add('lista'); });
     });
