@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Comunicación Global Gráfica · Imprenta y gran formato en Madrid</title>
+<meta name="description" content="Impresión digital y offset, gran formato, señalética, stands de feria y grabado láser en Madrid. Desde una sola unidad.">
+<meta name="theme-color" content="#F5F3EE">
+<script>
+  /* Todo se ve sin JavaScript. El guion del final solo esconde lo que está por
+     debajo de la pantalla (clase «pre») para enseñarlo al llegar. Si no llega a
+     marcar window.__animOk, se quita «js» y la página queda entera y quieta. */
+  document.documentElement.classList.add('js');
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!window.__animOk) document.documentElement.classList.remove('js');
+  });
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --papel:#F5F3EE;
+  --blanco:#FBFAF7;
+  --tinta:#191919;
+  --gris:#6B6A66;
+  --filete:#D9D5CC;
+  --azul:#00609C;           /* el del logo, único color */
+  --oscuro:#161616;
+  --cab:64px;
+  --serif:'Instrument Serif', 'Times New Roman', Georgia, serif;
+  --sans:'Inter Tight', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --suave:cubic-bezier(.25,.6,.3,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--papel);color:var(--tinta);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+a{color:inherit}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.salto{position:fixed;left:12px;top:-60px;z-index:60;background:var(--tinta);color:#fff;padding:10px 14px}
+.salto:focus{top:12px}
+
+/* ---------- cabecera: sin barra, solo el logo y dos palabras ---------- */
+.cab{position:fixed;inset:0 0 auto 0;height:var(--cab);z-index:40;display:flex;align-items:center;justify-content:space-between;
+  padding:0 max(32px,env(safe-area-inset-right)) 0 max(32px,env(safe-area-inset-left));pointer-events:none;
+  transition:color .5s, background .5s}
+.cab>*{pointer-events:auto}
+.cab .logo{display:flex;color:var(--azul);transition:color .5s}
+.cab .logo svg{display:block;height:26px;width:auto;fill:currentColor}
+.cab .logo .marca{display:none;height:20px}
+.cab .der{display:flex;align-items:center;gap:28px;font:500 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase}
+.cab .der button{position:relative;padding:8px 0}
+.cab .der button::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .45s var(--suave)}
+.cab .der button:hover::after,.cab .der button:focus-visible::after{transform:scaleX(1);transform-origin:left}
+.cab .der .indice{display:flex;align-items:center;gap:10px}
+.cab .der .indice i{display:block;width:18px;height:1px;background:currentColor;box-shadow:0 5px 0 currentColor}
+.cab.sobre-oscuro{color:#fff}
+.cab.sobre-oscuro .logo{color:#fff}
+/* número de sección, discreto, abajo a la izquierda */
+.folio{position:fixed;left:50%;top:0;height:var(--cab);display:flex;align-items:center;transform:translateX(-50%);z-index:41;pointer-events:none;font:400 13px/1 var(--sans);letter-spacing:.12em;color:var(--gris);transition:color .5s}
+.folio b{font-weight:500;color:var(--tinta);transition:color .5s}
+.folio.sobre-oscuro,.folio.sobre-oscuro b{color:rgba(255,255,255,.75)}
+
+/* ---------- secciones: una pantalla cada una, seguidas ---------- */
+.sec{position:relative;min-height:100svh;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);
+  align-items:center;padding:calc(var(--cab) + 24px) max(32px,4vw) 64px}
+.sec.claro{background:var(--blanco)}
+.sec.oscuro{background:var(--oscuro);color:#EDEBE6}
+.etq{font:500 11.5px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--gris);margin:0 0 22px;display:flex;gap:14px;align-items:center}
+.etq::before{content:"";width:28px;height:1px;background:currentColor}
+.oscuro .etq{color:rgba(237,235,230,.6)}
+h1,h2{font-family:var(--serif);font-weight:400;margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(56px,8.4vw,148px);line-height:.95}
+h2{font-size:clamp(40px,4.6vw,76px);line-height:1}
+h1 em,h2 em{font-style:italic;color:var(--azul)}
+.oscuro h2 em{color:#7FB6DA}
+.entradilla{font:300 clamp(17px,1.35vw,20px)/1.55 var(--sans);max-width:30em;margin:26px 0 0;color:#3A3936}
+.oscuro .entradilla{color:rgba(237,235,230,.8)}
+
+/* catálogo de servicios con filetes */
+.catalogo{list-style:none;margin:30px 0 0;padding:0;border-top:1px solid var(--filete);max-width:34em}
+.catalogo li{display:grid;grid-template-columns:2.2em 1fr;gap:4px 12px;padding:14px 0;border-bottom:1px solid var(--filete)}
+.catalogo .num{font:400 13px/1.5 var(--sans);color:var(--gris);letter-spacing:.06em;padding-top:3px}
+.catalogo h3{margin:0;font:500 16px/1.4 var(--sans)}
+.catalogo p{grid-column:2;margin:0;font:300 14.5px/1.5 var(--sans);color:#4A4945}
+
+.btn{display:inline-flex;align-items:center;gap:14px;font:500 12.5px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;
+  padding:17px 26px;border:1px solid var(--tinta);color:var(--tinta);background:transparent;transition:background .35s var(--suave), color .35s var(--suave)}
+.btn:hover,.btn:focus-visible{background:var(--tinta);color:var(--papel)}
+.btn.lleno{background:var(--tinta);color:var(--papel)}
+.btn.lleno:hover,.btn.lleno:focus-visible{background:var(--azul);border-color:var(--azul)}
+.btn .linea{display:block;width:22px;height:1px;background:currentColor;transition:width .35s var(--suave)}
+.btn:hover .linea{width:34px}
+
+/* láminas: fotos con pie de catálogo */
+.lamina{margin:0;min-width:0;display:flex;flex-direction:column}
+.lamina .marco{position:relative;overflow:hidden;background:#E8E5DE var(--ph) center/cover no-repeat}
+.lamina img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.82);
+  transition:opacity 1.3s var(--suave), transform 1.6s var(--suave), filter .6s}
+.lamina:hover img{filter:saturate(1)}
+.lamina .marco.contiene{background:var(--blanco)}
+.lamina .marco.contiene img{object-fit:contain;filter:none}
+.lamina figcaption{display:flex;justify-content:space-between;gap:16px;padding-top:10px;font:400 12.5px/1.4 var(--sans);color:var(--gris)}
+.lamina figcaption i{font-family:var(--serif);font-size:15px;color:var(--tinta)}
+.js .marco.espera img{opacity:0;transform:scale(1.03)}
+
+/* entradas: aparecen despacio, sin más */
+.ap{transition:opacity 1.1s var(--suave), transform 1.1s var(--suave)}
+.js .pre .ap{opacity:0;transform:translateY(10px);transition:none}
+
+/* ---------- 1 · portada ---------- */
+.portada .txt{grid-column:1/8}
+.portada .lamina{grid-column:9/13;align-self:center}
+.portada .lamina .marco{aspect-ratio:4/5}
+.portada .botones{display:flex;flex-wrap:wrap;gap:14px;margin-top:38px}
+.portada .datos{grid-column:1/13;align-self:end;display:flex;justify-content:space-between;gap:24px;padding-top:18px;border-top:1px solid var(--filete);
+  font:400 13px/1.4 var(--sans);color:var(--gris);letter-spacing:.02em;margin-top:24px}
+.portada .datos b{font-weight:500;color:var(--tinta)}
+.portada{grid-template-rows:1fr auto;padding-bottom:28px}
+
+/* ---------- 2 · impresión y diseño ---------- */
+.s-imp .txt{grid-column:1/6}
+.s-imp .lam1{grid-column:7/13}
+.s-imp .lam1 .marco{aspect-ratio:16/9.5}
+.s-imp .pila{grid-column:7/13;display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,28px)}
+.s-imp .pila .marco{aspect-ratio:3/2}
+.s-imp .derecha{grid-column:7/13;display:flex;flex-direction:column;gap:clamp(16px,2.4vh,28px)}
+
+/* ---------- 3 · gran formato ---------- */
+.s-gran .lam1{grid-column:1/7;grid-row:1}
+.s-gran .lam1 .marco{aspect-ratio:4/3.1}
+.s-gran .lam2{grid-column:7/9;grid-row:1;align-self:end}
+.s-gran .lam2 .marco{aspect-ratio:3/4.4}
+.s-gran .txt{grid-column:9/13;grid-row:1}
+.s-gran h2{font-size:clamp(36px,3.8vw,64px)}
+
+/* ---------- 4 · ferias y especiales ---------- */
+.s-fer .txt{grid-column:1/6}
+.s-fer .mosaico{grid-column:7/13;display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:auto auto;gap:clamp(16px,2vw,28px)}
+.s-fer .mosaico .a .marco{aspect-ratio:1/1.05}
+.s-fer .mosaico .b .marco{aspect-ratio:4/3}
+.s-fer .mosaico .c .marco{aspect-ratio:4/3}
+.s-fer .mosaico .a{grid-row:1/3}
+
+/* ---------- 5 · contacto ---------- */
+.s-con .txt{grid-column:1/6}
+.s-con .mapa-caja{grid-column:7/13;display:flex;flex-direction:column;gap:18px}
+.tel{display:block;text-decoration:none;font:400 clamp(44px,5vw,84px)/1 var(--serif);margin-top:34px;width:max-content;max-width:100%}
+.tel span{background:linear-gradient(currentColor,currentColor) no-repeat 0 100%/0 1px;transition:background-size .6s var(--suave)}
+.tel:hover span{background-size:100% 1px}
+.mail{display:inline-block;margin-top:12px;font:300 clamp(16px,1.4vw,20px)/1.4 var(--sans);text-decoration:none;border-bottom:1px solid rgba(237,235,230,.35);overflow-wrap:anywhere;transition:border-color .4s}
+.mail:hover{border-color:#EDEBE6}
+.pedir{margin:30px 0 0;max-width:30em;font:300 14.5px/1.6 var(--sans);color:rgba(237,235,230,.65)}
+.mapa{position:relative;display:block;aspect-ratio:16/10;overflow:hidden;background:#222;text-decoration:none}
+.mapa iframe{position:absolute;left:-46px;top:-46px;width:calc(100% + 92px);height:calc(100% + 92px);border:0;pointer-events:none;filter:grayscale(1) invert(.92) contrast(.9) brightness(.95)}
+.mapa .pin{position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#7FB6DA;box-shadow:0 0 0 6px rgba(127,182,218,.25)}
+.mapa .credito{position:absolute;right:0;bottom:0;background:rgba(0,0,0,.6);font:400 10px/1 var(--sans);padding:4px 6px;color:#bbb}
+.mapa .ruta{position:absolute;left:14px;bottom:14px;font:500 11.5px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;background:#EDEBE6;color:var(--oscuro);padding:12px 16px}
+.llegar{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;font:300 14.5px/1.5 var(--sans);color:rgba(237,235,230,.82)}
+.llegar dt{font-weight:500;color:#EDEBE6;letter-spacing:.04em}
+.llegar dd{margin:0}
+.pie{grid-column:1/13;align-self:end;margin:40px 0 0;padding-top:16px;border-top:1px solid rgba(237,235,230,.15);display:flex;justify-content:space-between;gap:20px;
+  font:400 12px/1.4 var(--sans);color:rgba(237,235,230,.5);letter-spacing:.04em}
+.s-con{grid-template-rows:1fr auto;padding-bottom:28px}
+
+/* ---------- índice (menú) ---------- */
+.indice-p{position:fixed;inset:0;z-index:50;background:var(--oscuro);color:#EDEBE6;display:flex;flex-direction:column;justify-content:center;
+  padding:calc(var(--cab) + 20px) max(32px,6vw) 40px;visibility:hidden;opacity:0;transition:opacity .5s var(--suave), visibility 0s linear .5s;overflow:auto}
+.indice-p.abierto{visibility:visible;opacity:1;transition:opacity .5s var(--suave)}
+.indice-p ol{list-style:none;margin:0;padding:0;border-top:1px solid rgba(237,235,230,.15);max-width:1100px}
+.indice-p li{border-bottom:1px solid rgba(237,235,230,.15);opacity:0;transform:translateY(8px);transition:opacity .6s var(--suave), transform .6s var(--suave)}
+.indice-p.abierto li{opacity:1;transform:none}
+.indice-p li button{display:grid;grid-template-columns:3.2em 1fr auto;align-items:baseline;width:100%;text-align:left;padding:clamp(12px,2.2vh,22px) 0;gap:12px}
+.indice-p .n{font:400 13px/1 var(--sans);letter-spacing:.12em;color:rgba(237,235,230,.5)}
+.indice-p .t{font:400 clamp(30px,4.4vw,64px)/1 var(--serif);transition:transform .5s var(--suave), color .4s}
+.indice-p .d{font:300 13px/1.4 var(--sans);color:rgba(237,235,230,.5)}
+.indice-p li button:hover .t,.indice-p li button:focus-visible .t{transform:translateX(14px);color:#7FB6DA}
+.indice-p li.actual .t{font-style:italic}
+.indice-p .cerrar{position:absolute;top:22px;right:max(32px,6vw);font:500 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:8px 0}
+
+/* ---------- ficha de contacto (ordenador) ---------- */
+.ficha{position:fixed;inset:0;z-index:55;display:grid;place-items:center;padding:20px;background:rgba(10,10,10,.5);visibility:hidden;opacity:0;transition:opacity .35s, visibility 0s linear .35s}
+.ficha.abierta{visibility:visible;opacity:1;transition:opacity .35s}
+.ficha .caja{width:min(460px,100%);background:var(--blanco);padding:32px;position:relative}
+.ficha h3{margin:0 0 8px;font:400 34px/1.05 var(--serif)}
+.ficha p{margin:0 0 20px;color:var(--gris);font-size:15px;font-weight:300}
+.ficha .fila{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--filete)}
+.ficha .fila strong{font:500 18px/1.3 var(--sans);overflow-wrap:anywhere}
+.ficha .fila small{display:block;font:500 11px/1 var(--sans);text-transform:uppercase;letter-spacing:.14em;color:var(--gris);margin-bottom:6px}
+.ficha .copiar{font:500 11px/1 var(--sans);text-transform:uppercase;letter-spacing:.14em;padding:10px 12px;border:1px solid var(--tinta);flex:none;transition:background .3s,color .3s}
+.ficha .copiar:hover{background:var(--tinta);color:#fff}
+.ficha .copiar.hecho{background:var(--azul);border-color:var(--azul);color:#fff}
+.ficha .x{position:absolute;top:14px;right:16px;font:500 11px var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:6px}
+
+/* ---------- pantallas bajas de ordenador ---------- */
+@media (min-width:901px) and (max-height:780px){
+  h1{font-size:clamp(52px,7vw,118px)}
+  h2{font-size:clamp(36px,3.8vw,60px)}
+  .entradilla{margin-top:18px;font-size:17px}
+  .catalogo{margin-top:20px}
+  .catalogo li{padding:10px 0}
+  .portada .lamina .marco{aspect-ratio:4/4.4}
+  .s-imp .lam1 .marco{aspect-ratio:16/8.5}
+  .s-imp .pila .marco{aspect-ratio:16/9.5}
+  .catalogo p{font-size:13.5px}
+  .tel{margin-top:24px}
+}
+/* ---------- móvil y tableta ---------- */
+@media (max-width:900px){
+  :root{--cab:56px}
+  .cab{padding:0 18px;background:rgba(245,243,238,.94);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+  .cab.sobre-oscuro{background:rgba(22,22,22,.94)}
+  .cab .logo .completo{display:none}
+  .cab .logo .marca{display:block}
+  .cab .der{gap:18px;font-size:11px}
+  .folio{display:none}
+  .sec{display:flex;flex-direction:column;align-items:stretch;justify-content:center;gap:18px;padding:calc(var(--cab) + 18px) 20px 22px}
+  .sec>*{flex:none}
+  .etq{margin-bottom:12px;font-size:10.5px}
+  h1{font-size:clamp(46px,13.5vw,72px)}
+  h2{font-size:clamp(34px,9.6vw,46px)}
+  .entradilla{margin-top:14px;font-size:15.5px}
+  .catalogo{margin-top:16px}
+  .catalogo li{padding:9px 0}
+  .catalogo p{display:none}
+  .catalogo h3{font-size:15px}
+  .portada{justify-content:space-between}
+  .portada .lamina{display:none}
+  .portada .botones{margin-top:26px}
+  .portada .datos{flex-direction:column;gap:4px;font-size:12.5px;margin-top:0}
+  .s-imp .derecha{gap:12px}
+  .s-imp .pila{display:none}
+  .s-imp .lam1 .marco{aspect-ratio:16/10}
+  .s-gran .lam2{display:none}
+  .s-gran .lam1{order:2}
+  .s-gran .lam1 .marco{aspect-ratio:16/10.5}
+  .s-fer .mosaico{grid-template-columns:1fr 1fr;grid-template-rows:auto;gap:12px}
+  .s-fer .mosaico .a{grid-row:auto}
+  .s-fer .mosaico .a .marco,.s-fer .mosaico .b .marco{aspect-ratio:1/1}
+  .s-fer .mosaico .c{display:none}
+  .lamina figcaption{font-size:11.5px;padding-top:7px}
+  .tel{margin-top:22px;font-size:clamp(42px,12vw,60px)}
+  .pedir{display:none}
+  .mapa{aspect-ratio:16/9}
+  .llegar{font-size:13.5px;gap:4px 14px}
+  .pie{margin-top:6px;font-size:11px}
+  .pie .largo{display:none}
+  .indice-p li button{grid-template-columns:2.6em 1fr}
+  .indice-p .d{display:none}
+}
+@media (max-width:900px) and (max-height:700px){
+  .entradilla.corta,.s-gran .entradilla{display:none}
+  .catalogo li:nth-child(n+4){display:none}
+  .lamina figcaption{display:none}
+  .s-con .llegar dt:nth-of-type(n+2),.s-con .llegar dd:nth-of-type(n+2){display:none}
+  .mapa{aspect-ratio:16/7}
+  .sec{gap:12px;padding-top:calc(var(--cab) + 12px);padding-bottom:16px}
+  h2{font-size:clamp(30px,8.6vw,40px)}
+  .catalogo{margin-top:10px}
+  .catalogo li{padding:7px 0}
+  .s-imp .lam1 .marco,.s-gran .lam1 .marco{aspect-ratio:16/9}
+  .s-fer .mosaico .a .marco,.s-fer .mosaico .b .marco{aspect-ratio:4/3.4}
+  .tel{margin-top:14px;font-size:clamp(38px,11vw,52px)}
+  .mail{margin-top:6px}
+  .pie{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none !important;animation:none !important}
+}
+.ph-impresion-folleto{--ph:url(data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAAAQBwCdASo4ACwAPtFapkyoJSOiLVzJIQAaCWcAzjgWbXhCCPr44i5rhadCUgrpscqSjx/5IVZkSIpeMPL3JeBWgAD+9gmrhGaFcp61W/iC33RJAIJ2sJ5cRy0oUSV0twKQ0Uy0fKFJiTFGmMHRcl78Cb4USCKGUscgAAAA)}
+.ph-impresion-calendario{--ph:url(data:image/webp;base64,UklGRrgAAABXRUJQVlA4IKwAAADwCACdASo4ACgAPq1OnEumJSMhurzMAMAViWcA0YNT2j+2+Toc7ueSFblThHSXxlK64vfE2g/Z9/2vWjgnEE2ctAC+q9p20PPWrYDZdl7IAAD++LNabgoiSbXSdvlT7FMRBbxZPip0fZGSBBP8D9MC/ACeNTK/gDW0Pp0lwvG7avdjZYFDMNPeC42RsmMN1NfdgAYVL+OS8+ULb+/JO1AFIqodBc2OkKHIAAAA)}
+.ph-impresion-tarjeta{--ph:url(data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAAAQBgCdASo4ACQAPtFapUyoJSOiKrgM+QAaCWkAAB9IBXVk6Y44PARJcjiKAIskcQpUxSmTqfcINQAA/vYAPn9ImS5RXaPud9rhIBZ29lgOPSqf/08mj7TlcJqPkGrpXFrsGfdUgezSmqSGgAA=)}
+.ph-gran-mural{--ph:url(data:image/webp;base64,UklGRrQAAABXRUJQVlA4IKgAAAAQCACdASo4ACoAPrlSnEuuJaKhtV39+cAXCWcAy6dT2LLl2xOWXcE0w/S3akeCaevvBNSEaiRFRFUg9pO2Ahp12XhSq6Ju+z4gAOwhVojTDkOCJRKs3qroYWsYNcQd5MYrIcPiDogYIGvuz4XK19+QGWhYRE7+Ur2ZpG0x/5Nt5XBUzVBW7NTtYcsih8SG/n0/FREES+Uyf82Tk3L+YmWGyaIxx43UYAA=)}
+.ph-gran-coche{--ph:url(data:image/webp;base64,UklGRsQAAABXRUJQVlA4ILgAAADwCQCdASo4ACoAPsFOnEunpCKht/jqqPAYCWUAwZNT2UEegYEfzIbT34NkD9cKwAruqnD0Y17exBK9eCW+ZJGhRsr54ElySrvHIPmXW4855UfGMKbFByAAAP1l7w33H9KQ9lqZQ7Z1wytjxrON1EZwJCQXdNwQqqWfUCrJfT8Fhrc0CTfacO42QJPvyujVzvVihbSuy17CnLrNYVGKnByyec89mHUUlVU9nAfnGc6baBmC9DkUwAAA)}
+.ph-gran-vinilo{--ph:url(data:image/webp;base64,UklGRuYAAABXRUJQVlA4INoAAADQCACdASo4ACoAPtFgo00wJiMiKrgM+gAaCWIApLNyDRgh9h2uJR1E6sg+DHM5vj8ZrgQYMMyRwh+08Wbx6VCbb4/ESE2k48FyXajLndAAAN84bW0VqJn0ZM/Bg0SdrzuKFf29gpz7DoWJNgDI6bn8ZUjUJVeASejFvF6Ht5ygPsX32W3m7uhgwpwmK/dzTkKEh78pBEM+oSdVXBj3xnp5bYbP3hIInXUNnih6IpCDvWAUQsyF1zEUCsYFhfY5qjwuJHsuV/31z1HCxiF0+xaZUeGZcQlr4AAAAA==)}
+.ph-senal-barajas{--ph:url(data:image/webp;base64,UklGRuIAAABXRUJQVlA4INYAAADQCACdASo4ACoAPr1SnkunLKKhtVgN+ZAXiWNok01VyAN+UWfrJA4YhagCD0RQD45PsBHcP+hngxM5XmMENxd4CltWXN8H10cf9HrYG6IAAP7uVsKfdl8JJqbJBM/ATaN6aiCGa+iwIU6uzt7iD/xby7gxSv1NcGzSaeqEvEzAfsMsQhV6XcZhS7zWxOMVIQg+0rNCqa8XRcEDkoRDhae9J/qG9XL7h91TitSd6k5Hi27qwry0PeC/NVPU1joJpJ4KmzDoYBOgnJzqkdqdeOu5X0UyLgAA)}
+.ph-senal-suelo{--ph:url(data:image/webp;base64,UklGRvAAAABXRUJQVlA4IOQAAADwCACdASoqADgAPtFipk6oJiOmKBVbiQAaCWIAs4NT2nGxUh6KJQcdjSpkIZBC6S/qTWBDGKa58RUT51pDcqkNkaokbDAChMRk5zReK/KW+AD8qh8cB6VV5sKtVfn2o91QDcBBQLFlWqRHY3VuPKAf4XcZPCqjdMJxIl9xAADIQ6fclvRHn9O8kE8fdH79plMsw8zJK04P1NHO/tIHCDARYfsTuoeIsvYCvCyLxqjTIrdHnKFQxhueUauDlE6NkcwHCn5MDvYyV9IL5dYHG8JMqEZuLUpG4b3QodBljIFLJ61wAAA=)}
+.ph-senal-directorio{--ph:url(data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAAAQBwCdASomADgAPtFWpU2qqSMsKrv7AYAaCWcAzuwQsMCeO1Jti1D8OY/bCume70h/BFnBwuBe1F/ZODPFYQQAAAD8UkeO9EVaAD1seQtqUIlmGvemYgsIpAF7eWi2La7yHBOBUqRMb0/LCD3hyH9BE81dSq2TXyEXfCzs5C4AAA==)}
+.ph-ferias-checkin{--ph:url(data:image/webp;base64,UklGRuwAAABXRUJQVlA4IOAAAABwCQCdASo4ACoAPtFYpE2oJKMiLVM8kQAaCWMAyU9SwXyZWSN1Zi6A4WUH8d5FEtWqSNNVuMb5qG0uxUzZyZ85SPujKvwM7pBSu9ydwiNdpvCzHYAA/udBOzRdOb8q5B1PTD8E/SQZuC+5vfE9Sebs4beWrJQ6e4HodtvHLgqyqnOvbF30LV0f46PIh7GnVxhohY0T8gKlWBy9ZS+Fuoti2XanMMiHeXU0w5ULVnEL2km8GS6FUBFxcwMs8e2PaoUSYNoVjhbQP2v2f0oYESf9wd/JyWcgYarvS6+KjAAAAA==)}
+.ph-ferias-stand{--ph:url(data:image/webp;base64,UklGRuwAAABXRUJQVlA4IOAAAACQCgCdASo4ADAAPrFEm0unI6KhurzMAOAWCWUAxGNT3TXAipK0M/9AbeSNWEVwfVgrlMS+REctmmJ+uh9nN7Zip82X6uczmN1u0tuKARA8uahQm2NzgkXJ3Dw3GtAA/vbXljrgUvVd3tMSgB3C/JE8YaHkt1tex5ZfFrZrI4mLLcUmGa2mb5egCLCVc6B1Rt5PxH7JgB/CDEJfoUc66VeNnfPpd+hRgnAufXaursdfiNyDEcEwdjEIwH0HYY5b6kZ/zVbR99lkshwXl2KUqH6YloOVkI9MulLRHp07jAAAAA==)}
+.ph-ferias-rollup{--ph:url(data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAACwBgCdASoYADgAPrVKnUunJKMhu/koAOAWiWcAwf/3QvV+08SMTgst8BR4EEz1fx5ngMEy5H/fl3qD229+AADvKmb9tC6VNLwnlmUKTVpAoBjMihdI00lUG6bfUVoh8WUtqqECbFaMaPH/uqCjA+1NUvNaIEhblxC4DOjqVN96tozWUw0YvwAA)}
+.ph-ferias-expo{--ph:url(data:image/webp;base64,UklGRuIAAABXRUJQVlA4INYAAADwCACdASo4ACoAPrlInEunJCKhurgMAOAXCWMAsSAKkXygFndWMfu97v157T2JU7G9KPWTVJVvRIWthyLM7pb1sa0x9tm8voeWc5a1DCK6AAD+7/Wb0E9GOL1SWmcWYcoZXNmmsMP+L0lxqGLyCbTQU1pYvyBnt3sSPqv3oEK5Xb2UVaRZwyPwtODAGwDkmn8C6mzrMkFee0AkDZ3okP822tc5xAl2qfLqNd0hgg02gtKLYWK4ZKbYWmKf8342IRWjNO9NOU9cCkjPXMRL2IxccD6ouMAA)}
+.ph-especial-laser{--ph:url(data:image/webp;base64,UklGRt4AAABXRUJQVlA4INIAAADwCACdASo4ACoAPtFSpUyoJCOiMBK9UQAaCWMAxvdT2EoNX0ZAMjd8bgpcTplJ1HKInWLh+9VyiCngwEmXQaPS1dUIFM0FYKxQi10NME3rWAD+7toE5gWx06nc19ESbflRG818hXjXo10VS/uKeGDR/dcluFtSMHUJIJk8yc8bq2pzIK57t/b5jjZ/mz6EWJSLZGlUmH4g/Pko2nZfgbm9OzVQi3tFv9WfpI+t/VCxNvSbaI44e5s7eeIlgq8is6Ng6j+5y7SRjXp8e4+zPCoAAAA=)}
+.ph-especial-frascos{--ph:url(data:image/webp;base64,UklGRuQAAABXRUJQVlA4INgAAABQCACdASo4ACoAPtFip1CoJSMioquhABoJZWmIWktt8B6A63GFUEK4yg2age70JJzHklJtxfQr1E0nf3Xmq7QlgAZs7P94gchMEwAA/rH1ZXIRrRlgrNVMmD90n6n+irbEKTt98mLbmXSXW+z7GArNagPHQwKbNOgO2CZcG+EIJoFtO+xaj+rUtiVyySW5HQGY9EjaB2nejHSB/H0QW5nUyzvnobYS6Fs1M+xdt7zL4c5amhr9zspIlNrrovxkgI3lISrmZb1tGyA2rkd0SeIa9/GrgVqAAAA=)}
+.ph-especial-avda{--ph:url(data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAACwBgCdASo4ABoAPqlImUumJKKhu/24AMAVCWkACG+kqEizbTOsnx10IK8iQPxJnGYsIDkb1Qq9a0X85lpIgAD++fWYgCT7wCO3MDOUquuHCCUbsl27SnoaEv5MHbDKXCdWOIyOJFlTzN41V2bPZOClMx1Jbb6kI3nHvRr1HRmlgTZC9bkH2fEqTxwm61FLQLAAAAAA)}
+.ph-especial-sellos{--ph:url(data:image/webp;base64,UklGRswAAABXRUJQVlA4IMAAAADwCACdASo4ACgAPqlCmUumJCKhvV0YAMAVCWUAygB0fWbaId2JeYh/4SjFNFHLVPuZn5HFR9qhxqTCYGlEYgM/zhQlzE35DJmUAUBUUfVYcAD+/HcfBAcpONDwMJULXQ2nwHeJGNIruf5XbhMZ5EvCvE0n30H/gehuVG2AaEY23m9lvypl1Igy9JC5nKvM9rGLwFvrthF4VwzVRoFFzs0qAePkqZYmkv7c05Pd55/vDe2IYDZFDlOJj0zzWBU4AAA=)}
+.ph-especial-clece{--ph:url(data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAACQBwCdASo4ACoAPr1Mn0unJCMhurgIAOAXiWMAxkXiwVeTMDyFiRe8cyXTe10S8XZi8jsB5+pWsx00uXDtyKqifXdJcBAA/sNT0Sc5c70Bzyruq3VTM/MVs4VRgiG393YdFj0CqiPZmtnOJ5uOvN4ptIhciJdVz/uKwOxYsXd3Nm8AnCnN7AkVO6YnPkiWAysK60WTBV/TIYrzJeC8lEA9jx0AAA==)}
+</style>
+</head>
+<body>
+<button type="button" class="salto" data-ir="imprimir">Saltar al contenido</button>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="marca" viewBox="0 0 52.567 35.594"><path d="M0,0L0.266,0C2.615,0 4.776,0.985 6.747,2.957C8.719,4.928 9.704,7.613 9.704,11.012L9.704,24.582C9.704,27.981 8.719,30.666 6.747,32.637C4.776,34.608 2.615,35.594 0.266,35.594L0,35.594L0,32.354C2.147,32.101 3.222,31.021 3.222,29.111L3.241,6.482C3.241,4.562 2.16,3.48 0,3.24Z" fill-rule="evenodd"/><path d="M52.567,35.594L52.301,35.594C49.952,35.594 47.791,34.609 45.82,32.637C43.848,30.666 42.863,27.982 42.863,24.582L42.863,11.012C42.863,7.614 43.848,4.928 45.82,2.957C47.791,0.986 49.952,0 52.301,0L52.567,0L52.567,3.24C50.407,3.494 49.326,4.574 49.326,6.483L49.326,29.112C49.326,31.033 50.407,32.114 52.567,32.354Z" fill-rule="evenodd"/><path d="M23.468,12.922L23.468,2.811L29.1,2.811L29.1,12.922L37.862,7.883L40.661,12.725L31.9,17.797L40.661,22.869L37.862,27.711L29.068,22.672L29.068,32.783L23.468,32.783L23.468,22.672L14.706,27.711L11.906,22.869L20.668,17.797L11.906,12.725L14.706,7.883Z" fill-rule="evenodd"/></symbol>
+  <symbol id="logo" viewBox="0 0 231.589 38.413"><path d="M0,0L0.266,0C2.615,0 4.776,0.985 6.747,2.957C8.719,4.928 9.704,7.613 9.704,11.012L9.704,24.582C9.704,27.981 8.719,30.666 6.747,32.637C4.776,34.608 2.615,35.594 0.266,35.594L0,35.594L0,32.354C2.147,32.101 3.222,31.021 3.222,29.111L3.241,6.482C3.241,4.562 2.16,3.48 0,3.24Z" fill-rule="evenodd"/><path d="M52.567,35.594L52.301,35.594C49.952,35.594 47.791,34.609 45.82,32.637C43.848,30.666 42.863,27.982 42.863,24.582L42.863,11.012C42.863,7.614 43.848,4.928 45.82,2.957C47.791,0.986 49.952,0 52.301,0L52.567,0L52.567,3.24C50.407,3.494 49.326,4.574 49.326,6.483L49.326,29.112C49.326,31.033 50.407,32.114 52.567,32.354Z" fill-rule="evenodd"/><path d="M23.468,12.922L23.468,2.811L29.1,2.811L29.1,12.922L37.862,7.883L40.661,12.725L31.9,17.797L40.661,22.869L37.862,27.711L29.068,22.672L29.068,32.783L23.468,32.783L23.468,22.672L14.706,27.711L11.906,22.869L20.668,17.797L11.906,12.725L14.706,7.883Z" fill-rule="evenodd"/><g transform="matrix(1 0 0 -1 -195.068 193.229)"><path d="M272.9545247070312 179.45133852539064Q271.66354072265625 178.8628017089844 270.11625844726564 178.8628017089844Q267.7810962402344 178.8628017089844 266.3904406982422 180.2819348388672Q264.99978515624997 181.70106796875 264.99978515624997 184.055215234375Q264.99978515624997 186.40936250000001 266.399933227539 187.8284956298828Q267.8000812988281 189.24762875976563 270.0782883300781 189.24762875976563Q271.5686154296875 189.24762875976563 272.9165545898437 188.7255396484375L272.52736088867186 187.50100336914062Q271.1794217285156 187.9661373046875 270.09727338867185 187.9661373046875Q268.4645583496094 187.9661373046875 267.5105591552734 186.91246655273437Q266.5565599609375 185.85879580078125 266.5565599609375 184.055215234375Q266.5565599609375 182.40351513671877 267.5437830078125 181.27865041503907Q268.5310060546875 180.15378569335937 270.11625844726564 180.15378569335937Q271.3692723144531 180.15378569335937 272.6982264160156 180.6379046875ZM280.82383149414056 189.24762875976563Q282.8647252929687 189.24762875976563 284.07027651367184 187.8237493652344Q285.27582773437496 186.39986997070312 285.27582773437496 184.07420029296875Q285.27582773437496 181.72954555664063 284.07027651367184 180.2961736328125Q282.8647252929687 178.8628017089844 280.82383149414056 178.8628017089844Q278.77344516601556 178.8628017089844 277.5726402099609 180.29142736816408Q276.3718352539062 181.72005302734377 276.3718352539062 184.07420029296875Q276.3718352539062 186.40936250000001 277.57738647460934 187.8284956298828Q278.78293769531246 189.24762875976563 280.82383149414056 189.24762875976563ZM280.82383149414056 180.15378569335937Q282.17177065429684 180.15378569335937 282.9501580566406 181.29288920898438Q283.72854545898434 182.4319927246094 283.72854545898434 184.055215234375Q283.72854545898434 185.7638705078125 282.9596505859374 186.86500390625Q282.19075571289056 187.9661373046875 280.82383149414056 187.9661373046875Q279.4474147460937 187.9661373046875 278.6880124023437 186.8792427001953Q277.92861005859373 185.79234809570312 277.92861005859373 184.055215234375Q277.92861005859373 182.40351513671877 278.6975049316406 181.27865041503907Q279.46639980468746 180.15378569335937 280.82383149414056 180.15378569335937ZM297.1035192382812 179.1191H295.62268466796866V185.6119900390625Q295.62268466796866 187.9661373046875 294.7493719726562 187.9661373046875Q294.30322309570306 187.9661373046875 293.76689519042964 187.1545260498047Q293.2305672851562 186.34291479492188 293.2305672851562 186.25748203125V179.1191H291.75922524414057V185.6119900390625Q291.75922524414057 187.9661373046875 290.87642001953117 187.9661373046875Q290.4397636718749 187.9661373046875 289.9034357666015 187.1545260498047Q289.36710786132807 186.34291479492188 289.36710786132807 186.25748203125V179.1191H287.8862732910156V189.01031552734375H289.3101526855468V187.51998842773438Q289.7278239746093 188.307868359375 290.30212199707023 188.7777485595703Q290.87642001953117 189.24762875976563 291.4459717773437 189.24762875976563Q292.0440011230468 189.24762875976563 292.5186275878906 188.7777485595703Q292.9932540527343 188.307868359375 293.1736121093749 187.51998842773438Q293.59128339843744 188.307868359375 294.1703276855468 188.7777485595703Q294.7493719726562 189.24762875976563 295.30943120117183 189.24762875976563Q297.1035192382812 189.24762875976563 297.1035192382812 186.03915385742187ZM307.97246528320306 179.1191H306.4916307128905V180.58094951171876Q304.89688579101556 178.88178676757812 303.13127534179677 178.88178676757812Q300.3499642578124 178.88178676757812 300.3499642578124 182.25163466796874V189.01031552734375H301.8307988281249V182.67879848632813Q301.8307988281249 181.41629208984375 302.2294850585937 180.79453142089844Q302.62817128906244 180.17277075195312 303.5774242187499 180.17277075195312Q304.934855908203 180.17277075195312 306.4916307128905 181.86244096679687V189.01031552734375H307.97246528320306ZM319.65776884765614 179.1191H318.17693427734366V185.4601095703125Q318.17693427734366 186.77957114257813 317.7545167236327 187.37285422363283Q317.3320991699218 187.9661373046875 316.43030888671865 187.9661373046875Q315.0728771972655 187.9661373046875 313.51610239257803 186.27646708984375V179.1191H312.0352678222655V189.01031552734375H313.51610239257803V187.5579585449219Q315.110847314453 189.24762875976563 316.87645776367174 189.24762875976563Q319.65776884765614 189.24762875976563 319.65776884765614 185.88727338867187ZM328.1345975097655 192.7503720703125Q328.552268798828 192.7503720703125 328.84653720703113 192.45135739746092Q329.1408056152342 192.15234272460938 329.1408056152342 191.7346714355469Q329.1408056152342 191.29801508789063 328.85128347167955 191.0037466796875Q328.5617613281249 190.7094782714844 328.1345975097655 190.7094782714844Q327.7454038085936 190.7094782714844 327.44638913574204 191.01798547363282Q327.14737446289047 191.32649267578125 327.14737446289047 191.7346714355469Q327.14737446289047 192.1428501953125 327.44638913574204 192.4466111328125Q327.7454038085936 192.7503720703125 328.1345975097655 192.7503720703125ZM328.85602973632797 179.1191H327.3751951660155V187.72882407226564H324.4609886718749V189.01031552734375H328.85602973632797ZM342.95243574218733 179.45133852539064Q341.66145175781236 178.8628017089844 340.11416948242174 178.8628017089844Q337.7790072753905 178.8628017089844 336.3883517333983 180.2819348388672Q334.9976961914061 181.70106796875 334.9976961914061 184.055215234375Q334.9976961914061 186.40936250000001 336.3978442626951 187.8284956298828Q337.7979923339842 189.24762875976563 340.07619936523423 189.24762875976563Q341.5665264648436 189.24762875976563 342.9144656249998 188.7255396484375L342.525271923828 187.50100336914062Q341.1773327636717 187.9661373046875 340.09518442382796 187.9661373046875Q338.4624693847655 187.9661373046875 337.50847019042953 186.91246655273437Q336.5544709960936 185.85879580078125 336.5544709960936 184.055215234375Q336.5544709960936 182.40351513671877 337.54169404296863 181.27865041503907Q338.5289170898436 180.15378569335937 340.11416948242174 180.15378569335937Q341.3671833496092 180.15378569335937 342.6961374511717 180.6379046875ZM354.90353012695294 179.1191H353.4321880859373Q353.2518300292967 179.7171293457031 353.2518300292967 180.713844921875Q351.98932363281233 178.8628017089844 349.81553442382796 178.8628017089844Q348.71440102539043 178.8628017089844 347.874312182617 179.6459353759766Q347.03422333984355 180.42906904296876 347.03422333984355 181.6630978515625Q347.03422333984355 182.39402260742187 347.32849174804664 182.9540818359375Q347.6227601562498 183.51414106445313 348.1923119140623 183.8985885009766Q348.76186367187483 184.28303593750002 349.5782211914061 184.50611037597656Q350.3945787109373 184.72918481445313 351.51469716796856 184.814617578125L353.1758897949217 184.94751298828126V185.422139453125Q353.1758897949217 187.9661373046875 350.80275747070294 187.9661373046875Q350.2426982421873 187.9661373046875 349.3836243408201 187.7240778076172Q348.5245504394529 187.4820183105469 347.90753603515606 187.14977978515626L347.5183423339842 188.21294306640624Q349.5402510742186 189.24762875976563 351.2773839355467 189.24762875976563Q354.6567243652342 189.24762875976563 354.6567243652342 185.66894521484375V181.41629208984375Q354.6567243652342 180.12530810546875 354.90353012695294 179.1191ZM353.1758897949217 182.05229155273437V183.84637958984376Q351.17296611328106 183.66602153320312 350.42780256347635 183.50939479980468Q349.6826390136717 183.35276806640624 349.1368185791014 182.92560424804685Q348.59099814453106 182.4984404296875 348.59099814453106 181.76751567382811Q348.59099814453106 181.10303862304687 349.05613208007793 180.69485986328124Q349.5212660156248 180.28668110351563 350.2426982421873 180.28668110351563Q351.03057817382796 180.28668110351563 351.8089655761717 180.75656130371095Q352.58735297851547 181.22644150390624 353.1758897949217 182.05229155273437ZM366.28507275390604 179.45133852539064Q364.99408876953106 178.8628017089844 363.44680649414045 178.8628017089844Q361.1116442871092 178.8628017089844 359.720988745117 180.2819348388672Q358.3303332031248 181.70106796875 358.3303332031248 184.055215234375Q358.3303332031248 186.40936250000001 359.7304812744138 187.8284956298828Q361.1306293457029 189.24762875976563 363.40883637695293 189.24762875976563Q364.8991634765623 189.24762875976563 366.2471026367185 188.7255396484375L365.8579089355467 187.50100336914062Q364.5099697753904 187.9661373046875 363.42782143554666 187.9661373046875Q361.7951063964842 187.9661373046875 360.84110720214824 186.91246655273437Q359.8871080078123 185.85879580078125 359.8871080078123 184.055215234375Q359.8871080078123 182.40351513671877 360.87433105468733 181.27865041503907Q361.8615541015623 180.15378569335937 363.44680649414045 180.15378569335937Q364.6998203613279 180.15378569335937 366.0287744628904 180.6379046875ZM374.7998715332029 192.7503720703125Q375.2175428222654 192.7503720703125 375.51181123046854 192.45135739746092Q375.80607963867163 192.15234272460938 375.80607963867163 191.7346714355469Q375.80607963867163 191.29801508789063 375.51655749511696 191.0037466796875Q375.2270353515623 190.7094782714844 374.7998715332029 190.7094782714844Q374.410677832031 190.7094782714844 374.11166315917944 191.01798547363282Q373.8126484863279 191.32649267578125 373.8126484863279 191.7346714355469Q373.8126484863279 192.1428501953125 374.11166315917944 192.4466111328125Q374.410677832031 192.7503720703125 374.7998715332029 192.7503720703125ZM375.5213037597654 179.1191H374.0404691894529V187.72882407226564H371.1262626953123V189.01031552734375H375.5213037597654ZM385.8206980468747 189.24762875976563Q387.8615918457029 189.24762875976563 389.067143066406 187.8237493652344Q390.2726942871091 186.39986997070312 390.2726942871091 184.07420029296875Q390.2726942871091 181.72954555664063 389.067143066406 180.2961736328125Q387.8615918457029 178.8628017089844 385.8206980468747 178.8628017089844Q383.7703117187497 178.8628017089844 382.569506762695 180.29142736816408Q381.3687018066404 181.72005302734377 381.3687018066404 184.07420029296875Q381.3687018066404 186.40936250000001 382.5742530273435 187.8284956298828Q383.7798042480466 189.24762875976563 385.8206980468747 189.24762875976563ZM385.8206980468747 180.15378569335937Q387.168637207031 180.15378569335937 387.94702460937475 181.29288920898438Q388.7254120117185 182.4319927246094 388.7254120117185 184.055215234375Q388.7254120117185 185.7638705078125 387.95651713867164 186.86500390625Q387.1876222656247 187.9661373046875 385.8206980468747 187.9661373046875Q384.4442812988279 187.9661373046875 383.6848789550779 186.8792427001953Q382.9254766113279 185.79234809570312 382.9254766113279 184.055215234375Q382.9254766113279 182.40351513671877 383.69437148437476 181.27865041503907Q384.4632663574216 180.15378569335937 385.8206980468747 180.15378569335937ZM388.46911372070286 193.03514794921875 385.50744458007784 190.17789663085938H384.4442812988279L386.3238020996091 193.03514794921875ZM401.3219983886716 179.1191H399.8411638183591V185.4601095703125Q399.8411638183591 186.77957114257813 399.4187462646482 187.37285422363283Q398.99632871093723 187.9661373046875 398.0945384277341 187.9661373046875Q396.737106738281 187.9661373046875 395.1803319335935 186.27646708984375V179.1191H393.69949736328095V189.01031552734375H395.1803319335935V187.5579585449219Q396.77507685546846 189.24762875976563 398.5406873046872 189.24762875976563Q401.3219983886716 189.24762875976563 401.3219983886716 185.88727338867187ZM268.113334765625 163.40686401367188Q266.72742548828126 162.73289443359374 266.72742548828126 162.2202978515625Q266.72742548828126 161.94501450195312 267.04542521972655 161.75516391601562Q267.36342495117185 161.5653133300781 267.9139916503906 161.5653133300781L271.2458694335937 161.66023862304687Q272.4324355957031 161.66023862304687 273.0921663818359 161.08119433593748Q273.7518971679687 160.50215004882813 273.7518971679687 159.43898676757811Q273.7518971679687 157.75880908203123 272.2520775390625 156.76209350585935Q270.75225791015623 155.7653779296875 268.74933422851564 155.7653779296875Q267.1071266601562 155.7653779296875 266.0629484375 156.45358630371095Q265.01877021484376 157.14179467773437 265.01877021484376 158.233435546875Q265.01877021484376 159.4200017089844 266.6325001953125 160.23635922851562Q265.2940535644531 160.86286616210938 265.2940535644531 161.77414897460937Q265.2940535644531 162.81832719726563 267.02169389648435 163.72011748046876Q266.22432143554687 164.20423647460936 265.7971576171875 164.97313134765625Q265.3699937988281 165.7420262207031 265.3699937988281 166.59635385742186Q265.3699937988281 167.9917556640625 266.3192467285156 168.8887996826172Q267.2684996582031 169.78584370117187 268.69237905273434 169.78584370117187Q269.71757221679684 169.78584370117187 270.543422265625 169.3586798828125L273.47661381835934 169.80482875976563V168.36196430664063H271.5876004882812Q272.0147643066406 167.6120544921875 272.0147643066406 166.59635385742186Q272.0147643066406 165.24841469726562 271.07500390625 164.31814682617187Q270.13524350585936 163.38787895507812 268.69237905273434 163.38787895507812Q268.38861811523435 163.38787895507812 268.113334765625 163.40686401367188ZM268.69237905273434 164.536475Q269.5087365722656 164.536475 270.0260794189453 165.10128049316404Q270.543422265625 165.6660859863281 270.543422265625 166.57736879882813Q270.543422265625 167.5361142578125 270.0403182128906 168.07718842773437Q269.5372141601562 168.61826259765624 268.69237905273434 168.61826259765624Q267.90449912109375 168.61826259765624 267.3681712158203 168.05345710449217Q266.83184331054684 167.48865161132812 266.83184331054684 166.57736879882813Q266.83184331054684 165.68507104492187 267.3681712158203 165.11077302246093Q267.90449912109375 164.536475 268.69237905273434 164.536475ZM268.74933422851564 156.91397397460938Q270.21118374023433 156.91397397460938 271.24112316894525 157.5642122314453Q272.2710625976562 158.21445048828124 272.2710625976562 159.1731959472656Q272.2710625976562 160.16041899414063 270.8092130859375 160.16041899414063Q270.32509409179687 160.16041899414063 269.1385279296875 160.10346381835936Q268.38861811523435 160.06549370117187 267.961454296875 160.06549370117187Q267.75261865234376 160.06549370117187 267.3112160400391 159.72376264648437Q266.86981342773436 159.38203159179687 266.6372464599609 159.03555427246096Q266.4046794921875 158.689076953125 266.4046794921875 158.31886831054686Q266.4046794921875 157.7398240234375 267.05017148437497 157.32689899902346Q267.69566347656246 156.91397397460938 268.74933422851564 156.91397397460938ZM283.9373811035156 159.6763H279.8935636230468V171.7887673828125H277.3115956542968V173.07025883789063H281.37439819335935V160.9577914550781H283.9373811035156ZM292.4901499999999 169.80482875976563Q294.5310437988281 169.80482875976563 295.7365950195312 168.38094936523436Q296.9421462402343 166.95706997070312 296.9421462402343 164.63140029296875Q296.9421462402343 162.28674555664062 295.7365950195312 160.85337363281252Q294.5310437988281 159.4200017089844 292.4901499999999 159.4200017089844Q290.4397636718749 159.4200017089844 289.2389587158202 160.84862736816407Q288.0381537597656 162.27725302734376 288.0381537597656 164.63140029296875Q288.0381537597656 166.9665625 289.2437049804687 168.38569562988283Q290.4492562011718 169.80482875976563 292.4901499999999 169.80482875976563ZM292.4901499999999 160.71098569335936Q293.8380891601562 160.71098569335936 294.61647656249994 161.85008920898437Q295.3948639648437 162.98919272460938 295.3948639648437 164.612415234375Q295.3948639648437 166.3210705078125 294.62596909179683 167.42220390625Q293.8570742187499 168.5233373046875 292.4901499999999 168.5233373046875Q291.1137332519531 168.5233373046875 290.3543309082031 167.4364427001953Q289.5949285644531 166.3495480957031 289.5949285644531 164.612415234375Q289.5949285644531 162.96071513671876 290.36382343749995 161.83585041503906Q291.1327183105468 160.71098569335936 292.4901499999999 160.71098569335936ZM301.8497838867187 168.28602407226563Q302.3433954101562 168.96948618164063 303.1834842529296 169.38715747070313Q304.02357309570306 169.80482875976563 304.9538409667968 169.80482875976563Q306.68148129882803 169.80482875976563 307.6449730224608 168.41891948242187Q308.60846474609366 167.0330102050781 308.60846474609366 164.77378823242188Q308.60846474609366 162.486088671875 307.58327158203116 160.9530451904297Q306.55807841796866 159.4200017089844 304.83993061523427 159.4200017089844Q303.9191552734374 159.4200017089844 303.1170365478515 159.8803893798828Q302.31491782226556 160.34077705078124 301.8497838867187 161.10017939453124V159.6763H300.36894931640614V173.07025883789063H301.8497838867187ZM301.8497838867187 166.81468203125V162.70441684570312Q302.26745517578115 161.86907426757813 302.9793948730468 161.3090150390625Q303.6913345703124 160.74895581054687 304.4507369140624 160.74895581054687Q305.64679560546864 160.74895581054687 306.35398903808584 161.88805932617186Q307.06118247070305 163.02716284179687 307.06118247070305 164.68835546875Q307.06118247070305 166.3970107421875 306.38721289062494 167.4601740234375Q305.7132433105468 168.5233373046875 304.50769208984366 168.5233373046875Q302.94142475585926 168.5233373046875 301.8497838867187 166.81468203125ZM319.9045746093749 159.6763H318.43323256835924Q318.25287451171863 160.2743293457031 318.25287451171863 161.271044921875Q316.9903681152343 159.4200017089844 314.8165789062499 159.4200017089844Q313.7154455078124 159.4200017089844 312.8753566650389 160.20313537597656Q312.0352678222655 160.98626904296876 312.0352678222655 162.2202978515625Q312.0352678222655 162.95122260742187 312.32953623046865 163.5112818359375Q312.62380463867174 164.07134106445312 313.19335639648426 164.45578850097655Q313.7629081542968 164.84023593749998 314.579265673828 165.06331037597656Q315.39562319335926 165.28638481445313 316.5157416503905 165.371817578125L318.17693427734366 165.50471298828126V165.979339453125Q318.17693427734366 168.5233373046875 315.8038019531249 168.5233373046875Q315.24374272460926 168.5233373046875 314.38466882324207 168.2812778076172Q313.52559492187487 168.03921831054686 312.908580517578 167.70697978515625L312.51938681640615 168.77014306640623Q314.54129555664053 169.80482875976563 316.27842841796866 169.80482875976563Q319.65776884765614 169.80482875976563 319.65776884765614 166.22614521484374V161.97349208984375Q319.65776884765614 160.68250810546874 319.9045746093749 159.6763ZM318.17693427734366 162.60949155273437V164.40357958984376Q316.174010595703 164.22322153320312 315.42884704589835 164.06659479980468Q314.68368349609364 163.90996806640624 314.1378630615233 163.48280424804688Q313.592042626953 163.0556404296875 313.592042626953 162.3247156738281Q313.592042626953 161.66023862304687 314.0571765624999 161.25205986328126Q314.52231049804675 160.84388110351563 315.24374272460926 160.84388110351563Q316.0316226562499 160.84388110351563 316.81001005859366 161.31376130371092Q317.5883974609374 161.78364150390624 318.17693427734366 162.60949155273437ZM330.602655126953 159.6763H326.5588376464842V171.7887673828125H323.9768696777342V173.07025883789063H328.03967221679676V160.9577914550781H330.602655126953ZM349.77756430664044 163.40686401367188Q348.3916550292967 162.73289443359374 348.3916550292967 162.2202978515625Q348.3916550292967 161.94501450195312 348.709654760742 161.75516391601562Q349.0276544921873 161.5653133300781 349.57822119140604 161.5653133300781L352.9100989746092 161.66023862304687Q354.09666513671857 161.66023862304687 354.75639592285137 161.08119433593748Q355.41612670898417 160.50215004882813 355.41612670898417 159.43898676757811Q355.41612670898417 157.75880908203123 353.9163070800779 156.76209350585935Q352.4164874511717 155.7653779296875 350.41356376953104 155.7653779296875Q348.77135620117167 155.7653779296875 347.72717797851544 156.45358630371095Q346.6829997558592 157.14179467773437 346.6829997558592 158.233435546875Q346.6829997558592 159.4200017089844 348.29672973632796 160.23635922851562Q346.9582831054686 160.86286616210938 346.9582831054686 161.77414897460937Q346.9582831054686 162.81832719726563 348.6859234374998 163.72011748046876Q347.8885509765623 164.20423647460936 347.4613871582029 164.97313134765625Q347.03422333984355 165.7420262207031 347.03422333984355 166.59635385742186Q347.03422333984355 167.9917556640625 347.983476269531 168.8887996826172Q348.93272919921856 169.78584370117187 350.3566085937498 169.78584370117187Q351.3818017578123 169.78584370117187 352.20765180664046 169.3586798828125L355.1408433593748 169.80482875976563V168.36196430664063H353.2518300292967Q353.67899384765605 167.6120544921875 353.67899384765605 166.59635385742186Q353.67899384765605 165.24841469726562 352.7392334472654 164.31814682617187Q351.7994730468748 163.38787895507812 350.3566085937498 163.38787895507812Q350.0528476562498 163.38787895507812 349.77756430664044 163.40686401367188ZM350.3566085937498 164.536475Q351.17296611328106 164.536475 351.69030895996076 165.10128049316404Q352.20765180664046 165.6660859863281 352.20765180664046 166.57736879882813Q352.20765180664046 167.5361142578125 351.70454775390607 168.07718842773437Q351.2014437011717 168.61826259765624 350.3566085937498 168.61826259765624Q349.5687286621092 168.61826259765624 349.0324007568357 168.05345710449217Q348.4960728515623 167.48865161132812 348.4960728515623 166.57736879882813Q348.4960728515623 165.68507104492187 349.0324007568357 165.11077302246093Q349.5687286621092 164.536475 350.3566085937498 164.536475ZM350.41356376953104 156.91397397460938Q351.8754132812498 156.91397397460938 352.90535270996077 157.5642122314453Q353.9352921386717 158.21445048828124 353.9352921386717 159.1731959472656Q353.9352921386717 160.16041899414063 352.47344262695293 160.16041899414063Q351.98932363281233 160.16041899414063 350.80275747070294 160.10346381835936Q350.0528476562498 160.06549370117187 349.62568383789045 160.06549370117187Q349.4168481933592 160.06549370117187 348.9754455810545 159.72376264648437Q348.5340429687498 159.38203159179687 348.3014760009764 159.03555427246096Q348.06890903320294 158.689076953125 348.06890903320294 158.31886831054686Q348.06890903320294 157.7398240234375 348.71440102539043 157.32689899902346Q349.3598930175779 156.91397397460938 350.41356376953104 156.91397397460938ZM366.47492333984354 169.30172470703124 365.8768939941404 167.8778453125Q364.8991634765623 168.30500913085936 364.1872237792967 168.30500913085936Q363.5322392578123 168.30500913085936 362.90573232421855 167.9300542236328Q362.2792253906248 167.55509931640626 361.7523900146482 166.85739841308595Q361.22555463867167 166.15969750976564 361.22555463867167 166.07426474609375V159.6763H359.754212597656V169.56751552734374H361.22555463867167V167.56459184570312Q362.41212080078105 169.80482875976563 364.30113413085917 169.80482875976563Q365.4212525878904 169.80482875976563 366.47492333984354 169.30172470703124ZM378.23616713867165 159.6763H376.764825097656Q376.5844670410154 160.2743293457031 376.5844670410154 161.271044921875Q375.32196064453103 159.4200017089844 373.14817143554666 159.4200017089844Q372.04703803710913 159.4200017089844 371.2069491943357 160.20313537597656Q370.36686035156225 160.98626904296876 370.36686035156225 162.2202978515625Q370.36686035156225 162.95122260742187 370.66112875976535 163.5112818359375Q370.9553971679685 164.07134106445312 371.524948925781 164.45578850097655Q372.09450068359354 164.84023593749998 372.9108582031248 165.06331037597656Q373.727215722656 165.28638481445313 374.84733417968727 165.371817578125L376.5085268066404 165.50471298828126V165.979339453125Q376.5085268066404 168.5233373046875 374.13539448242165 168.5233373046875Q373.575335253906 168.5233373046875 372.7162613525388 168.2812778076172Q371.8571874511716 168.03921831054686 371.24017304687476 167.70697978515625L370.8509793457029 168.77014306640623Q372.8728880859373 169.80482875976563 374.6100209472654 169.80482875976563Q377.9893613769529 169.80482875976563 377.9893613769529 166.22614521484374V161.97349208984375Q377.9893613769529 160.68250810546874 378.23616713867165 159.6763ZM376.5085268066404 162.60949155273437V164.40357958984376Q374.50560312499977 164.22322153320312 373.76043957519505 164.06659479980468Q373.0152760253904 163.90996806640624 372.4694555908201 163.48280424804688Q371.92363515624976 163.0556404296875 371.92363515624976 162.3247156738281Q371.92363515624976 161.66023862304687 372.38876909179663 161.25205986328126Q372.8539030273435 160.84388110351563 373.575335253906 160.84388110351563Q374.36321518554666 160.84388110351563 375.1416025878904 161.31376130371092Q375.91998999023417 161.78364150390624 376.5085268066404 162.60949155273437ZM377.04010844726537 173.59234794921875 374.07843930664035 170.73509663085937H373.0152760253904L374.8947968261716 173.59234794921875ZM389.750605175781 172.9183783691406 389.3614114746091 171.7128271484375Q388.307740722656 172.01658808593749 387.472398144531 172.01658808593749Q386.6750256835935 172.01658808593749 386.37601101074193 171.56569294433592Q386.07699633789036 171.11479780273436 386.07699633789036 169.74787358398436V169.56751552734374H389.3993815917966V168.28602407226563H386.07699633789036V159.6763H384.5961617675779V168.28602407226563H382.10911909179663V169.56751552734374H384.5961617675779V169.89975405273438Q384.5961617675779 171.7887673828125 385.24165375976537 172.5481697265625Q385.88714575195286 173.3075720703125 387.472398144531 173.3075720703125Q388.4975913085935 173.3075720703125 389.750605175781 172.9183783691406ZM398.1325085449216 173.3075720703125Q398.5501798339841 173.3075720703125 398.84444824218724 173.00855739746095Q399.13871665039034 172.70954272460938 399.13871665039034 172.29187143554688Q399.13871665039034 171.85521508789063 398.84919450683566 171.5609466796875Q398.559672363281 171.26667827148438 398.1325085449216 171.26667827148438Q397.7433148437497 171.26667827148438 397.44430017089815 171.5751854736328Q397.1452854980466 171.88369267578125 397.1452854980466 172.29187143554688Q397.1452854980466 172.70005019531249 397.44430017089815 173.00381113281247Q397.7433148437497 173.3075720703125 398.1325085449216 173.3075720703125ZM398.8539407714841 159.6763H397.3731062011716V168.28602407226563H394.458899707031V169.56751552734374H398.8539407714841ZM412.95034677734344 160.00853852539063Q411.65936279296847 159.4200017089844 410.11208051757785 159.4200017089844Q407.7769183105466 159.4200017089844 406.3862627685544 160.8391348388672Q404.9956072265622 162.25826796875 404.9956072265622 164.612415234375Q404.9956072265622 166.9665625 406.3957552978512 168.38569562988283Q407.7959033691403 169.80482875976563 410.07411040039034 169.80482875976563Q411.5644374999997 169.80482875976563 412.9123766601559 169.28273964843748L412.5231829589841 168.0582033691406Q411.1752437988278 168.5233373046875 410.09309545898407 168.5233373046875Q408.4603804199216 168.5233373046875 407.50638122558564 167.46966655273437Q406.5523820312497 166.41599580078125 406.5523820312497 164.612415234375Q406.5523820312497 162.96071513671876 407.53960507812474 161.83585041503906Q408.5268281249997 160.71098569335936 410.11208051757785 160.71098569335936Q411.3650943847653 160.71098569335936 412.6940484863278 161.1951046875ZM424.90144116210905 159.6763H423.4300991210934Q423.2497410644528 160.2743293457031 423.2497410644528 161.271044921875Q421.98723466796844 159.4200017089844 419.81344545898406 159.4200017089844Q418.71231206054654 159.4200017089844 417.8722232177731 160.20313537597656Q417.03213437499966 160.98626904296876 417.03213437499966 162.2202978515625Q417.03213437499966 162.95122260742187 417.32640278320275 163.5112818359375Q417.6206711914059 164.07134106445312 418.1902229492184 164.45578850097655Q418.75977470703094 164.84023593749998 419.5761322265622 165.06331037597656Q420.3924897460934 165.28638481445313 421.51260820312467 165.371817578125L423.1738008300778 165.50471298828126V165.979339453125Q423.1738008300778 168.5233373046875 420.80066850585905 168.5233373046875Q420.2406092773434 168.5233373046875 419.3815353759762 168.2812778076172Q418.52246147460903 168.03921831054686 417.90544707031216 167.70697978515625L417.5162533691403 168.77014306640623Q419.5381621093747 169.80482875976563 421.2752949707028 169.80482875976563Q424.6546354003903 169.80482875976563 424.6546354003903 166.22614521484374V161.97349208984375Q424.6546354003903 160.68250810546874 424.90144116210905 159.6763ZM423.1738008300778 162.60949155273437V164.40357958984376Q421.17087714843717 164.22322153320312 420.42571359863246 164.06659479980468Q419.6805500488278 163.90996806640624 419.1347296142575 163.48280424804688Q418.58890917968716 163.0556404296875 418.58890917968716 162.3247156738281Q418.58890917968716 161.66023862304687 419.05404311523404 161.25205986328126Q419.5191770507809 160.84388110351563 420.2406092773434 160.84388110351563Q421.02848920898407 160.84388110351563 421.8068766113278 161.31376130371092Q422.5852640136716 161.78364150390624 423.1738008300778 162.60949155273437Z"/></g></symbol>
+</svg>
+
+<header class="cab">
+  <button type="button" class="logo" data-ir="portada" aria-label="Comunicación Global Gráfica, volver al principio">
+    <svg class="completo" viewBox="0 0 231.589 38.413" aria-hidden="true"><use href="#logo"/></svg>
+    <svg class="marca" viewBox="0 0 52.567 35.594" aria-hidden="true"><use href="#marca"/></svg>
+  </button>
+  <nav class="der" aria-label="Accesos">
+    <button type="button" data-ir="contacto">Presupuesto</button>
+    <button type="button" class="indice" aria-expanded="false" aria-controls="indice"><span>Índice</span><i aria-hidden="true"></i></button>
+  </nav>
+</header>
+<div class="folio" aria-hidden="true"><b>01</b> / 05</div>
+
+<main id="contenido">
+
+<!-- 1 · portada -->
+<section class="sec portada" id="portada">
+  <div class="txt">
+    <p class="etq ap">Imprenta · Gran formato · Señalética</p>
+    <h1 class="ap">Todo el color,<br><em>toda la calidad</em></h1>
+    <p class="entradilla ap">Imprimimos, rotulamos y montamos en Madrid, desde una sola unidad hasta la tirada grande. Y somos el taller de confianza de agencias y estudios de diseño.</p>
+    <div class="botones ap">
+      <button type="button" class="btn lleno" data-ir="contacto">Pedir presupuesto <span class="linea"></span></button>
+      <button type="button" class="btn" data-ir="imprimir">Qué hacemos</button>
+    </div>
+  </div>
+  <figure class="lamina ap">
+    <div class="marco ph-gran-mural"><img src="assets/img/gran-mural.webp" width="1400" height="1046" alt="Mural fotográfico de una calle de Madrid cubriendo una pared entera" fetchpriority="high" decoding="async"></div>
+    <figcaption><i>Mural de pared</i><span>Gran formato</span></figcaption>
+  </figure>
+  <div class="datos ap"><span><b>C/ Valentín Beato 11, 1ºA</b> · 28037 Madrid</span><span><b>91 371 76 42</b> · comercial@comunicacion-global.com</span></div>
+</section>
+
+<!-- 2 · impresión y diseño -->
+<section class="sec claro s-imp" id="imprimir">
+  <div class="txt">
+    <p class="etq ap">02 · Impresión y diseño</p>
+    <h2 class="ap">Digital para pocas, <em>offset para muchas</em></h2>
+    <p class="entradilla corta ap">Del boceto al arte final, y de ahí a la máquina.</p>
+    <ol class="catalogo">
+      <li class="ap"><span class="num">I</span><h3>Impresión digital</h3><p>Tiradas cortas que se pueden corregir y personalizar, con acabados muy cercanos al offset.</p></li>
+      <li class="ap"><span class="num">II</span><h3>Impresión offset</h3><p>Para grandes cantidades, en pliego de 35×50 y de 70×100 cm.</p></li>
+      <li class="ap"><span class="num">III</span><h3>Diseño gráfico</h3><p>Imagen corporativa, logotipos, maquetación y artes finales listos para producir.</p></li>
+      <li class="ap"><span class="num">IV</span><h3>Encuadernación y acabados</h3><p>Espiral, wire-o, grapa, plastificado y montaje en cartón pluma.</p></li>
+    </ol>
+  </div>
+  <div class="derecha">
+    <figure class="lamina lam1 ap">
+      <div class="marco contiene ph-impresion-folleto"><img src="assets/img/impresion-folleto.webp" width="673" height="533" alt="Folleto desplegable impreso en color" loading="lazy" decoding="async"></div>
+      <figcaption><i>Folleto desplegable</i><span>Impresión digital</span></figcaption>
+    </figure>
+    <div class="pila">
+      <figure class="lamina ap"><div class="marco contiene ph-impresion-calendario"><img src="assets/img/impresion-calendario.webp" width="450" height="325" alt="Calendarios de sobremesa con espiral" loading="lazy" decoding="async"></div><figcaption><i>Calendarios</i><span>Wire-o</span></figcaption></figure>
+      <figure class="lamina ap"><div class="marco contiene ph-impresion-tarjeta"><img src="assets/img/impresion-tarjeta.webp" width="283" height="177" alt="Tarjeta de visita" loading="lazy" decoding="async"></div><figcaption><i>Tarjetas de visita</i><span>Diseño e impresión</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · gran formato y señalética -->
+<section class="sec s-gran" id="gran-formato">
+  <figure class="lamina lam1 ap">
+    <div class="marco ph-senal-barajas"><img src="assets/img/senal-barajas.webp" width="897" height="673" alt="Mostradores de un aeropuerto con carteles amarillos de información" loading="lazy" decoding="async"></div>
+    <figcaption><i>Señalización colgada</i><span>Aeropuerto</span></figcaption>
+  </figure>
+  <figure class="lamina lam2 ap">
+    <div class="marco ph-senal-suelo"><img src="assets/img/senal-suelo.webp" width="410" height="549" alt="Pasillo de acceso señalizado en el suelo con pictogramas" loading="lazy" decoding="async"></div>
+    <figcaption><i>Suelo</i></figcaption>
+  </figure>
+  <div class="txt">
+    <p class="etq ap">03 · Gran formato y señalética</p>
+    <h2 class="ap">En tamaño, <em>el límite lo pones tú</em></h2>
+    <p class="entradilla ap">Murales, vinilos, lonas y rotulación de vehículos y locales. Y señalética y directorios, del diseño a la instalación.</p>
+    <ol class="catalogo">
+      <li class="ap"><span class="num">I</span><h3>Murales y decoración</h3></li>
+      <li class="ap"><span class="num">II</span><h3>Rotulación de vehículos</h3></li>
+      <li class="ap"><span class="num">III</span><h3>Señalética y directorios</h3></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 4 · ferias y trabajos especiales -->
+<section class="sec claro s-fer" id="ferias">
+  <div class="txt">
+    <p class="etq ap">04 · Ferias y trabajos especiales</p>
+    <h2 class="ap">El detalle <em>marca la diferencia</em></h2>
+    <p class="entradilla corta ap">Stands con montaje y desmontaje, y piezas únicas grabadas con láser.</p>
+    <ol class="catalogo">
+      <li class="ap"><span class="num">I</span><h3>Stands y ferias</h3><p>De cualquier tamaño: diseño, producción, transporte, montaje y desmontaje.</p></li>
+      <li class="ap"><span class="num">II</span><h3>PLV</h3><p>Roll-ups, photocalls, mostradores y expositores.</p></li>
+      <li class="ap"><span class="num">III</span><h3>Grabado láser y metacrilato</h3><p>Madera, vidrio, metacrilato y hasta fruta. También sellos y prototipos.</p></li>
+    </ol>
+  </div>
+  <div class="mosaico">
+    <figure class="lamina a ap"><div class="marco ph-ferias-stand"><img src="assets/img/ferias-stand.webp" width="432" height="374" alt="Stand de feria en rojo y blanco con un coche en exposición" loading="lazy" decoding="async"></div><figcaption><i>Stand</i><span>Feria</span></figcaption></figure>
+    <figure class="lamina b ap"><div class="marco ph-especial-frascos"><img src="assets/img/especial-frascos.webp" width="425" height="317" alt="Frascos de cristal grabados con láser" loading="lazy" decoding="async"></div><figcaption><i>Vidrio</i><span>Láser</span></figcaption></figure>
+    <figure class="lamina c ap"><div class="marco ph-especial-laser"><img src="assets/img/especial-laser.webp" width="475" height="357" alt="Máquina de grabado láser cortando una caja de metacrilato" loading="lazy" decoding="async"></div><figcaption><i>Metacrilato</i><span>Corte</span></figcaption></figure>
+  </div>
+</section>
+
+<!-- 5 · presupuesto y cómo llegar -->
+<section class="sec oscuro s-con" id="contacto">
+  <div class="txt">
+    <p class="etq ap">05 · Presupuesto</p>
+    <h2 class="ap">Cuéntanos <em>qué quieres imprimir</em></h2>
+    <a class="tel ap" href="tel:+34913717642"><span>91 371 76 42</span></a>
+    <a class="mail ap" href="mailto:comercial@comunicacion-global.com">comercial@comunicacion-global.com</a>
+    <p class="pedir ap">Para darte precio nos basta con saber qué pieza es, la medida, cuántas unidades, para cuándo y si ya tienes el diseño.</p>
+  </div>
+  <div class="mapa-caja ap">
+    <a class="mapa" href="https://www.google.com/maps/dir/?api=1&amp;destination=Calle+de+Valent%C3%ADn+Beato+11%2C+28037+Madrid" target="_blank" rel="noopener" aria-label="Abrir la ruta en Google Maps">
+      <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-3.6318676%2C40.4365253%2C-3.6198676%2C40.4425253&amp;layer=mapnik" title="Mapa de la zona de Valentín Beato, en Madrid" loading="lazy" tabindex="-1"></iframe>
+      <span class="pin" aria-hidden="true"></span>
+      <span class="credito">© OpenStreetMap</span>
+      <span class="ruta">Cómo llegar</span>
+    </a>
+    <dl class="llegar">
+      <dt>Dirección</dt><dd>C/ Valentín Beato 11, 1ºA · 28037 Madrid</dd>
+      <dt>Metro</dt><dd>Suanzes (línea 5), a 3 minutos andando</dd>
+      <dt>Autobús</dt><dd>77, 104 y 105 · nocturno N5</dd>
+    </dl>
+  </div>
+  <p class="pie"><span>© Comunicación Global Gráfica, S.L.</span><span class="largo">Madrid</span></p>
+</section>
+</main>
+
+<!-- índice -->
+<div class="indice-p" id="indice" role="dialog" aria-modal="true" aria-label="Índice">
+  <button type="button" class="cerrar">Cerrar</button>
+  <ol>
+    <li><button type="button" data-ir="portada"><span class="n">01</span><span class="t">Portada</span><span class="d">Todo el color, toda la calidad</span></button></li>
+    <li><button type="button" data-ir="imprimir"><span class="n">02</span><span class="t">Impresión y diseño</span><span class="d">Digital, offset y encuadernación</span></button></li>
+    <li><button type="button" data-ir="gran-formato"><span class="n">03</span><span class="t">Gran formato y señalética</span><span class="d">Murales, vinilos y directorios</span></button></li>
+    <li><button type="button" data-ir="ferias"><span class="n">04</span><span class="t">Ferias y trabajos especiales</span><span class="d">Stands, PLV y láser</span></button></li>
+    <li><button type="button" data-ir="contacto"><span class="n">05</span><span class="t">Presupuesto y cómo llegar</span><span class="d">91 371 76 42</span></button></li>
+  </ol>
+</div>
+
+<!-- ficha de contacto, para el ordenador -->
+<div class="ficha" id="ficha" role="dialog" aria-modal="true" aria-labelledby="ficha-t">
+  <div class="caja">
+    <button type="button" class="x">Cerrar</button>
+    <h3 id="ficha-t">Pide tu presupuesto</h3>
+    <p>Llámanos o escríbenos con la pieza, la medida, las unidades y la fecha.</p>
+    <div class="fila"><span><small>Teléfono</small><strong>91 371 76 42</strong></span><button type="button" class="copiar" data-copiar="913717642">Copiar</button></div>
+    <div class="fila"><span><small>Correo</small><strong>comercial@comunicacion-global.com</strong></span><button type="button" class="copiar" data-copiar="comercial@comunicacion-global.com">Copiar</button></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var reducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var secciones = [].slice.call(document.querySelectorAll('.sec'));
+  var entradas = [].slice.call(document.querySelectorAll('#indice li'));
+  var indice = document.getElementById('indice'), bIndice = document.querySelector('.cab .indice');
+  var cab = document.querySelector('.cab'), folio = document.querySelector('.folio');
+  var ficha = document.getElementById('ficha');
+  var esTelefono = /Android.*Mobile|iPhone|iPod|Windows Phone/i.test(navigator.userAgent);
+
+  /* ---- desplazamiento propio (botones, no enlaces #) ---- */
+  var anim = null;
+  function cancelar() { if (anim) { cancelAnimationFrame(anim); anim = null; } }
+  ['wheel', 'touchstart', 'keydown'].forEach(function (ev) { window.addEventListener(ev, cancelar, { passive: true }); });
+  function irA(id) {
+    var el = document.getElementById(id); if (!el) return;
+    var destino = el.getBoundingClientRect().top + window.pageYOffset;
+    var desde = window.pageYOffset, dist = destino - desde;
+    if (reducido || Math.abs(dist) < 2) { window.scrollTo(0, destino); return; }
+    var dur = Math.min(1800, Math.max(900, Math.abs(dist) * 0.32)), t0 = null;
+    cancelar();
+    function paso(t) {
+      if (t0 === null) t0 = t;
+      var p = Math.min(1, (t - t0) / dur);
+      var e = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+      window.scrollTo(0, desde + dist * e);
+      if (p < 1) anim = requestAnimationFrame(paso); else anim = null;
+    }
+    anim = requestAnimationFrame(paso);
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-ir]'); if (!b) return;
+    e.preventDefault();
+    var id = b.getAttribute('data-ir');
+    if (indice.classList.contains('abierto')) { cerrarIndice(); setTimeout(function () { irA(id); }, 300); }
+    else irA(id);
+  });
+
+  /* ---- índice ---- */
+  entradas.forEach(function (li, i) { li.style.transitionDelay = (120 + i * 70) + 'ms'; });
+  function abrirIndice() { indice.classList.add('abierto'); bIndice.setAttribute('aria-expanded', 'true'); setTimeout(function () { var a = indice.querySelector('li.actual button') || indice.querySelector('li button'); a.focus({ preventScroll: true }); }, 80); }
+  function cerrarIndice() { indice.classList.remove('abierto'); bIndice.setAttribute('aria-expanded', 'false'); bIndice.focus({ preventScroll: true }); }
+  bIndice.addEventListener('click', function () { indice.classList.contains('abierto') ? cerrarIndice() : abrirIndice(); });
+  indice.querySelector('.cerrar').addEventListener('click', cerrarIndice);
+
+  /* ---- ficha de contacto en el ordenador (tel: y mailto: no hacen nada ahí) ---- */
+  function abrirFicha() { ficha.classList.add('abierta'); ficha.querySelector('.x').focus({ preventScroll: true }); }
+  function cerrarFicha() { ficha.classList.remove('abierta'); }
+  if (!esTelefono) {
+    [].forEach.call(document.querySelectorAll('a[href^="tel:"], a[href^="mailto:"]'), function (a) {
+      a.removeAttribute('href'); a.setAttribute('role', 'button'); a.setAttribute('tabindex', '0'); a.style.cursor = 'pointer';
+      a.addEventListener('click', abrirFicha);
+      a.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrirFicha(); } });
+    });
+  }
+  ficha.querySelector('.x').addEventListener('click', cerrarFicha);
+  ficha.addEventListener('click', function (e) { if (e.target === ficha) cerrarFicha(); });
+  [].forEach.call(ficha.querySelectorAll('[data-copiar]'), function (b) {
+    b.addEventListener('click', function () {
+      var dato = b.getAttribute('data-copiar');
+      function hecho() { b.textContent = 'Copiado'; b.classList.add('hecho'); setTimeout(function () { b.textContent = 'Copiar'; b.classList.remove('hecho'); }, 1800); }
+      function aMano() {
+        var t = document.createElement('textarea'); t.value = dato; t.setAttribute('readonly', '');
+        t.style.position = 'fixed'; t.style.opacity = '0'; document.body.appendChild(t); t.select();
+        var ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(t); if (ok) hecho();
+      }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(dato).then(hecho, aMano); else aMano();
+    });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    if (ficha.classList.contains('abierta')) cerrarFicha();
+    else if (indice.classList.contains('abierto')) cerrarIndice();
+  });
+
+  /* ---- entradas: solo lo que está por debajo de la pantalla ---- */
+  if (!reducido && 'IntersectionObserver' in window) {
+    var alto = window.innerHeight;
+    secciones.forEach(function (s) {
+      if (s.getBoundingClientRect().top > alto * 0.7) {
+        s.classList.add('pre');
+        [].forEach.call(s.querySelectorAll('.marco'), function (m) { m.classList.add('espera'); });
+      }
+      [].forEach.call(s.querySelectorAll('.ap'), function (el, i) { el.style.transitionDelay = (i * 80) + 'ms'; });
+    });
+    var io = new IntersectionObserver(function (ents) {
+      ents.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var s = en.target; io.unobserve(s);
+        s.classList.remove('pre');
+        [].forEach.call(s.querySelectorAll('.marco.espera'), function (m, i) { revelar(m, 200 + i * 150); });
+        setTimeout(function () { [].forEach.call(s.querySelectorAll('.ap'), function (el) { el.style.transitionDelay = ''; }); }, 2000);
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -25% 0px' });
+    secciones.forEach(function (s) { if (s.classList.contains('pre')) io.observe(s); });
+  }
+  /* una foto aparece solo cuando ya está descodificada; hasta entonces, su marcador */
+  function revelar(m, retraso) {
+    var img = m.querySelector('img');
+    function va() { setTimeout(function () { m.classList.remove('espera'); }, retraso); }
+    function lista() { (img.decode ? img.decode() : Promise.resolve()).then(va, va); }
+    if (img.complete && img.naturalWidth) lista();
+    else { img.loading = 'eager'; img.addEventListener('load', lista, { once: true }); img.addEventListener('error', va, { once: true }); }
+  }
+
+  /* ---- folio, entrada actual del índice y cabecera sobre la sección oscura ---- */
+  var activo = -1, pendiente = false, fb = folio.querySelector('b');
+  function alBajar() {
+    pendiente = false;
+    var h = window.innerHeight, idx = 0, oscura = false;
+    for (var i = 0; i < secciones.length; i++) {
+      var r = secciones[i].getBoundingClientRect();
+      if (r.top <= h * 0.45) idx = i;
+      if (secciones[i].classList.contains('oscuro') && r.top <= 32 && r.bottom > 32) oscura = true;
+    }
+    cab.classList.toggle('sobre-oscuro', oscura);
+    folio.classList.toggle('sobre-oscuro', oscura);
+    if (idx === activo) return;
+    activo = idx;
+    fb.textContent = ('0' + (idx + 1)).slice(-2);
+    entradas.forEach(function (li, i) { li.classList.toggle('actual', i === idx); });
+  }
+  window.addEventListener('scroll', function () { if (!pendiente) { pendiente = true; requestAnimationFrame(alBajar); } }, { passive: true });
+  window.addEventListener('resize', alBajar);
+  alBajar();
+
+  window.__animOk = true;
+})();
+</script>
+</body>
+</html>
