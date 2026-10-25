@@ -1,0 +1,794 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Comunicación Global Gráfica · Imprenta y gran formato en Madrid</title>
+<meta name="description" content="Impresión digital y offset, gran formato, rotulación, señalética, stands de feria y grabado láser en Madrid. Desde una sola unidad.">
+<meta name="theme-color" content="#00609C">
+<script>
+  /* Todo se ve sin JavaScript. El guion del final solo esconde lo que está por
+     debajo de la pantalla (clase «pre») para imprimirlo al llegar. Si no llega a
+     marcar window.__animOk, se quita «js» y la página queda entera y quieta. */
+  document.documentElement.classList.add('js');
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!window.__animOk) document.documentElement.classList.remove('js');
+  });
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;700;800;900&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#00609C;           /* el del logo */
+  --tinta:#16202E;
+  --gris:#5B6573;
+  --papel:#FFFFFF;
+  --mesa:#E9ECEF;
+  --linea:#C9CFD6;
+  /* cuatricromía y la carta de color de su dossier */
+  --c:#00B5EA; --m:#EC2C91; --y:#F7EC36; --k:#16202E;
+  --rojo:#EE2724; --verde:#00B04D; --naranja:#FAB42A; --morado:#742B90; --marino:#221E53; --lima:#BCD63C;
+  --ac:var(--azul);
+  --barra:56px;
+  --sans:'Figtree', 'Avenir Next', Avenir, 'Segoe UI', system-ui, sans-serif;
+  --mono:'Fira Mono', 'Andale Mono', Consolas, ui-monospace, monospace;
+  --suave:cubic-bezier(.2,.7,.1,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--mesa);color:var(--tinta);font:400 17px/1.5 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+a{color:inherit}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.salto{position:fixed;left:12px;top:-60px;z-index:60;background:var(--tinta);color:#fff;padding:10px 14px;font:500 14px var(--mono)}
+.salto:focus{top:12px}
+
+/* ---------- barra: logo · tira de control de color · presupuesto · menú ---------- */
+.barra{position:fixed;inset:0 0 auto 0;height:var(--barra);z-index:40;display:flex;align-items:center;gap:18px;
+  padding:0 max(20px,env(safe-area-inset-right)) 0 max(20px,env(safe-area-inset-left));background:var(--mesa)}
+.barra .logo{display:flex;align-items:center;gap:12px;color:var(--azul);text-decoration:none;flex:none}
+.barra .logo svg{display:block;height:30px;width:auto;fill:currentColor}
+.barra .logo .completo{height:28px}
+.barra .logo .marca{height:24px;display:none}
+.tira{flex:1;display:flex;justify-content:center;align-items:center;gap:4px;min-width:0}
+.tira button{position:relative;width:14px;height:14px;background:var(--sw);opacity:.32;transform:scale(.78);
+  transition:opacity .5s, transform .5s var(--suave), width .5s var(--suave)}
+.tira button.activa{opacity:1;transform:none;width:30px}
+.tira button:hover{opacity:1;transform:none}
+.tira button span{position:absolute;left:50%;top:calc(100% + 8px);transform:translate(-50%,-4px);white-space:nowrap;
+  font:500 11px/1 var(--mono);letter-spacing:.04em;color:var(--tinta);background:var(--papel);padding:6px 8px;
+  opacity:0;pointer-events:none;transition:opacity .3s, transform .3s var(--suave);box-shadow:0 1px 0 var(--linea)}
+.tira button:hover span,.tira button:focus-visible span{opacity:1;transform:translate(-50%,0)}
+.barra .acciones{display:flex;align-items:center;gap:10px;flex:none}
+
+/* botones: al pasar, la tinta «se sale de registro» */
+.btn{display:inline-flex;align-items:center;gap:10px;font:700 15px/1 var(--sans);letter-spacing:.01em;text-decoration:none;
+  padding:13px 18px;background:var(--azul);color:#fff;box-shadow:0 0 0 var(--c),0 0 0 var(--m);
+  transition:box-shadow .35s var(--suave), transform .35s var(--suave)}
+.btn:hover,.btn:focus-visible{box-shadow:-3px -3px 0 var(--c),3px 3px 0 var(--m);transform:translate(0,-1px)}
+.btn.claro{background:var(--papel);color:var(--tinta);box-shadow:inset 0 0 0 1.5px var(--tinta),0 0 0 var(--c),0 0 0 var(--m)}
+.btn.claro:hover,.btn.claro:focus-visible{box-shadow:inset 0 0 0 1.5px var(--tinta),-3px -3px 0 var(--c),3px 3px 0 var(--m)}
+.btn.chico{padding:10px 14px;font-size:14px}
+.btn .flecha{font-family:var(--mono);font-weight:500}
+.b-menu{display:flex;align-items:center;gap:8px;font:500 13px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:10px 4px}
+.b-menu i{display:grid;grid-template-columns:repeat(2,6px);gap:2px}
+.b-menu i b{width:6px;height:6px;background:var(--tinta);transition:background .3s}
+.b-menu:hover i b:nth-child(1){background:var(--c)}
+.b-menu:hover i b:nth-child(2){background:var(--m)}
+.b-menu:hover i b:nth-child(3){background:var(--y)}
+
+/* ---------- pliegos ---------- */
+main{counter-reset:pl}
+.pl{position:relative}
+.pl::after{content:"";display:block;height:55svh}          /* la pausa: lo fijo se queda aquí */
+.pl:last-of-type::after{height:0}
+.hoja{position:sticky;top:0;height:100svh;padding:calc(var(--barra) + 6px) 34px 30px}
+.pliego{position:relative;height:100%;background:var(--papel);box-shadow:0 1px 2px rgba(22,32,46,.06),0 18px 40px -24px rgba(22,32,46,.25);
+  display:flex;flex-direction:column;padding:18px clamp(20px,3.2vw,48px) clamp(20px,3vw,40px)}
+/* marcas de corte fuera del pliego */
+.corte{position:absolute;width:18px;height:18px;pointer-events:none}
+.corte::before,.corte::after{content:"";position:absolute;background:var(--tinta)}
+.corte::before{width:12px;height:1px}
+.corte::after{width:1px;height:12px}
+.corte.si{left:-22px;top:-22px}.corte.si::before{right:4px;bottom:0;left:auto;top:auto}.corte.si::after{right:0;bottom:4px}
+.corte.sd{right:-22px;top:-22px}.corte.sd::before{left:4px;bottom:0}.corte.sd::after{left:0;bottom:4px}
+.corte.ii{left:-22px;bottom:-22px}.corte.ii::before{right:4px;top:0}.corte.ii::after{right:0;top:4px}
+.corte.id{right:-22px;bottom:-22px}.corte.id::before{left:4px;top:0}.corte.id::after{left:0;top:4px}
+
+/* línea de control arriba de cada pliego */
+.control{display:flex;align-items:center;justify-content:space-between;gap:16px;font:500 11px/1 var(--mono);letter-spacing:.06em;
+  text-transform:uppercase;color:var(--gris);padding-bottom:14px;border-bottom:1px solid var(--linea);flex:none}
+.control .n{color:var(--tinta);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.control .n b{display:inline-block;width:9px;height:9px;background:var(--ac);margin-right:8px;vertical-align:-1px}
+.control .tintas{display:flex;gap:3px}
+.control .tintas i{width:9px;height:9px}
+.control .tintas i:nth-child(1){background:var(--c)}
+.control .tintas i:nth-child(2){background:var(--m)}
+.control .tintas i:nth-child(3){background:var(--y)}
+.control .tintas i:nth-child(4){background:var(--k)}
+.control .tintas i:nth-child(5){background:var(--ac);margin-left:6px}
+.registro{width:18px;height:18px;border:1px solid var(--tinta);border-radius:50%;position:relative;flex:none}
+.registro::before,.registro::after{content:"";position:absolute;background:var(--tinta)}
+.registro::before{left:50%;top:-4px;bottom:-4px;width:1px}
+.registro::after{top:50%;left:-4px;right:-4px;height:1px}
+
+.cuerpo{flex:1;min-height:0;display:grid;grid-template-rows:minmax(0,1fr);grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,64px);align-items:center;padding-top:clamp(14px,2.4vh,30px)}
+.cuerpo.al-reves{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+.cuerpo.al-reves .texto{order:2}
+.texto{min-width:0}
+.etiqueta{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ac);margin:0 0 14px}
+.pl[data-oscuro] .etiqueta{color:var(--tinta)}
+h1,h2{font-family:var(--sans);font-weight:900;letter-spacing:-.025em;margin:0;color:var(--tinta)}
+h2{font-size:clamp(30px,3.6vw,56px);line-height:1}
+.texto p{margin:16px 0 0;max-width:34em;color:#2C3644}
+.texto p.corto{font-size:16px}
+.fichas{display:flex;flex-wrap:wrap;gap:6px;margin:20px 0 0;padding:0;list-style:none}
+.fichas li{font:500 12.5px/1 var(--mono);padding:8px 10px;border:1px solid var(--linea);
+  background:linear-gradient(var(--ac),var(--ac)) no-repeat 0 100%/100% 0;transition:background-size .35s var(--suave), color .35s, border-color .35s}
+.fichas li:hover{background-size:100% 100%;color:#fff;border-color:var(--ac)}
+.pl[data-oscuro] .fichas li:hover{color:var(--tinta)}
+
+/* registro: los titulares se imprimen por pasadas (cian, magenta y luego la tinta) */
+.reg{position:relative;display:block}
+.reg::before,.reg::after{content:attr(data-t);position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:0;
+  transition:transform 1.3s var(--suave) var(--d,0s), opacity 1.1s ease calc(var(--d,0s) + .25s)}
+.reg::before{color:var(--c)}
+.reg::after{color:var(--m)}
+.reg>span{display:block;transition:opacity .9s ease calc(var(--d,0s) + .45s)}
+.js .pre .reg::before{opacity:.95;transform:translate(-.07em,.045em);transition:none}
+.js .pre .reg::after{opacity:.95;transform:translate(.06em,-.035em);transition:none}
+.js .pre .reg>span{opacity:0;transition:none}
+
+/* el resto entra subiendo */
+.sube{transition:opacity 1.3s var(--suave), transform 1.3s var(--suave)}
+.js .pre .sube{opacity:0;transform:translateY(18px);transition:none}
+
+/* pruebas de color: fotos con su pie */
+.pruebas{position:relative;min-width:0;height:100%;max-height:640px;display:grid;gap:14px;align-content:center}
+.prueba{margin:0;min-width:0;display:flex;flex-direction:column}
+.marco{position:relative;overflow:hidden;background:var(--mesa) var(--ph) center/cover no-repeat;flex:1;min-height:0}
+.marco img{width:100%;height:100%;object-fit:cover;transform:translateY(var(--py,0px)) scale(1.08);
+  transition:clip-path 1.25s var(--suave)}
+.marco.contiene img{object-fit:contain;background:var(--papel)}
+.marco::after{content:"";position:absolute;top:0;bottom:0;left:0;width:3px;background:var(--ac);opacity:0;transform:translateX(-4px);pointer-events:none}
+.js .marco.espera img{clip-path:inset(0 100% 0 0)}
+.marco.pasa::after{animation:cabezal 1.25s var(--suave) forwards}
+@keyframes cabezal{0%{opacity:1;transform:translateX(-4px)}85%{opacity:1}100%{opacity:0;transform:translateX(var(--anchura,600px))}}
+.prueba figcaption{display:flex;justify-content:space-between;gap:12px;font:500 11px/1.3 var(--mono);letter-spacing:.04em;color:var(--gris);padding-top:8px;text-transform:uppercase}
+.prueba figcaption b{font-weight:500;color:var(--tinta)}
+
+/* rejillas de pruebas, distintas en cada pliego */
+.g-impresion{grid-template-columns:minmax(0,3fr) minmax(0,2fr);grid-template-rows:minmax(0,1fr) minmax(0,1fr)}
+.g-impresion .p1{grid-row:1/3}
+.g-gran{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:minmax(0,2.2fr) minmax(0,1fr)}
+.g-gran .p1{grid-column:1/3}
+.g-senal{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+.g-ferias{grid-template-columns:minmax(0,2fr) minmax(0,1fr);grid-template-rows:minmax(0,1.3fr) minmax(0,1fr)}
+.g-ferias .p1{grid-column:1/2;grid-row:1/2}
+.g-ferias .p2{grid-row:1/3}
+.g-especial{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:minmax(0,1.2fr) minmax(0,1fr)}
+.pruebas>.prueba{height:100%;min-height:0}
+.marco img{position:absolute;inset:0}
+
+/* ---------- portada ---------- */
+.portada .cuerpo{grid-template-columns:minmax(0,1fr) auto;align-items:end}
+.portada h1{font-size:clamp(54px,9.6vw,168px);line-height:.9;letter-spacing:-.04em}
+.portada h1 .l2>span{color:var(--azul)}
+.portada .bajada{max-width:30em;font-size:clamp(17px,1.4vw,20px);margin:clamp(18px,3vh,32px) 0 0;color:#2C3644}
+.portada .botones{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(18px,3vh,30px)}
+.carta{display:grid;grid-template-columns:repeat(3,clamp(30px,3.6vw,54px));gap:6px;align-self:center}
+.carta i{aspect-ratio:1;background:var(--sw);transition:transform .9s var(--suave), opacity .9s}
+.js .pre .carta i{transform:scale(.2);opacity:0;transition:none}
+.portada .pie-portada{display:flex;justify-content:space-between;gap:20px;align-items:end;font:500 12px/1.4 var(--mono);color:var(--gris);
+  text-transform:uppercase;letter-spacing:.05em;padding-top:16px;border-top:1px solid var(--linea);margin-top:clamp(16px,3vh,28px);flex:none}
+.portada .pie-portada strong{color:var(--tinta);font-weight:500}
+
+/* ---------- diseño (solo tipografía y la marca) ---------- */
+.diseno .cuerpo{grid-template-columns:minmax(0,6fr) minmax(0,5fr)}
+.diseno .grande{position:relative;align-self:stretch;display:flex;align-items:center;justify-content:center;min-height:0}
+.diseno .grande svg{width:100%;max-height:100%;height:auto;fill:none;stroke:var(--ac);stroke-width:.35;overflow:visible}
+.diseno .grande svg path{stroke-dasharray:var(--l,200);stroke-dashoffset:0;transition:stroke-dashoffset 2.4s var(--suave)}
+.js .pre .grande svg path{stroke-dashoffset:var(--l,200);transition:none}
+.socios{margin-top:22px;padding-top:16px;border-top:1px solid var(--linea);font:500 13px/1.5 var(--mono);color:var(--gris)}
+.socios b{color:var(--tinta);font-weight:500}
+
+/* ---------- presupuesto: orden de trabajo ---------- */
+.orden{border:1.5px solid var(--tinta);background:var(--papel);font-family:var(--mono);min-width:0}
+.orden .cab{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--tinta);color:#fff;font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.orden .cab i{display:flex;gap:3px}.orden .cab i b{width:9px;height:9px}
+.orden ol{list-style:none;margin:0;padding:0;counter-reset:o}
+.orden li{display:grid;grid-template-columns:34px 1fr;gap:6px;padding:13px 16px;border-top:1px solid var(--linea);font-size:14px;line-height:1.35}
+.orden li:first-child{border-top:0}
+.orden li::before{counter-increment:o;content:counter(o,decimal-leading-zero);color:var(--ac)}
+.orden li small{display:block;color:var(--gris);font-size:12.5px}
+.contacto{display:grid;gap:10px;margin-top:22px}
+.dato{display:flex;flex-direction:column;gap:2px;text-decoration:none;width:max-content;max-width:100%}
+.dato small{font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--gris)}
+.dato strong{font:800 clamp(24px,2.6vw,38px)/1.1 var(--sans);letter-spacing:-.02em;background:linear-gradient(var(--ac),var(--ac)) no-repeat 0 100%/0 3px;
+  transition:background-size .45s var(--suave);padding-bottom:3px;overflow-wrap:anywhere}
+.dato.mail strong{font-size:clamp(17px,1.6vw,23px);font-weight:700}
+a.dato:hover strong,button.dato:hover strong{background-size:100% 3px}
+button.dato{text-align:left}
+
+/* ---------- cómo llegar ---------- */
+.mapa-caja{height:100%;min-height:0}
+.mapa{position:relative;display:block;height:100%;min-height:0;overflow:hidden;background:var(--mesa);text-decoration:none}
+.mapa iframe{position:absolute;left:-46px;top:-46px;width:calc(100% + 92px);height:calc(100% + 92px);border:0;pointer-events:none;filter:grayscale(1) contrast(1.05)}
+.mapa .pin{position:absolute;left:50%;top:50%;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center;pointer-events:none}
+.mapa .pin b{font:700 13px/1 var(--sans);background:var(--azul);color:#fff;padding:8px 10px;white-space:nowrap}
+.mapa .pin i{width:2px;height:16px;background:var(--azul)}
+.mapa .pin i::after{content:"";display:block;width:10px;height:10px;background:var(--m);margin:16px 0 0 -4px}
+.mapa .credito{position:absolute;right:0;bottom:0;background:rgba(255,255,255,.9);font:500 10px/1 var(--mono);padding:4px 6px;color:var(--gris)}
+.mapa .ruta{position:absolute;left:12px;bottom:12px}
+.transporte{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:10px;font-size:15px}
+.transporte li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start}
+.linea{display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:26px;padding:0 7px;font:700 13px/1 var(--sans);color:#fff}
+.linea.metro{background:#8EBF42;border-radius:13px}   /* L5 de Metro de Madrid: verde claro */
+.linea.bus{background:var(--azul)}
+.pie{margin-top:18px;font:500 11px/1.5 var(--mono);color:var(--gris);text-transform:uppercase;letter-spacing:.05em}
+
+/* ---------- carta de color (menú) ---------- */
+.menu{position:fixed;inset:0;z-index:50;background:rgba(233,236,239,.97);display:flex;flex-direction:column;
+  padding:calc(var(--barra) + 10px) max(20px,env(safe-area-inset-right)) 24px max(20px,env(safe-area-inset-left));
+  visibility:hidden;opacity:0;transition:opacity .35s, visibility 0s linear .35s;overflow:auto}
+.menu.abierto{visibility:visible;opacity:1;transition:opacity .35s}
+.menu .rejilla{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:980px;width:100%;margin:auto}
+.menu .chip{display:flex;flex-direction:column;background:var(--papel);text-align:left;box-shadow:0 1px 2px rgba(22,32,46,.08);
+  transform:translateY(-24px);opacity:0;transition:transform .55s var(--suave), opacity .55s, box-shadow .3s}
+.menu.abierto .chip{transform:none;opacity:1}
+.menu .chip .tono{height:clamp(54px,11vh,120px);background:var(--sw);transition:height .4s var(--suave)}
+.menu .chip:hover .tono,.menu .chip:focus-visible .tono{height:calc(clamp(54px,11vh,120px) + 10px)}
+.menu .chip .nombre{padding:10px 12px 12px;font:800 clamp(15px,1.5vw,20px)/1.1 var(--sans);letter-spacing:-.01em}
+.menu .chip .nombre small{display:block;font:500 11px/1 var(--mono);letter-spacing:.06em;color:var(--gris);margin-bottom:6px;text-transform:uppercase}
+.menu .chip.actual{box-shadow:0 0 0 2px var(--tinta)}
+.menu .cerrar{position:absolute;top:10px;right:max(20px,env(safe-area-inset-right))}
+
+/* ---------- ficha de contacto (ordenador) ---------- */
+.ficha{position:fixed;inset:0;z-index:55;display:grid;place-items:center;padding:20px;background:rgba(22,32,46,.45);visibility:hidden;opacity:0;transition:opacity .3s, visibility 0s linear .3s}
+.ficha.abierta{visibility:visible;opacity:1;transition:opacity .3s}
+.ficha .caja{width:min(440px,100%);background:var(--papel);border-top:6px solid var(--ac);padding:24px;position:relative}
+.ficha h3{margin:0 0 6px;font:900 26px/1.1 var(--sans);letter-spacing:-.02em}
+.ficha p{margin:0 0 18px;color:var(--gris);font-size:15px}
+.ficha .fila{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid var(--linea)}
+.ficha .fila strong{font:800 20px/1.2 var(--sans);overflow-wrap:anywhere}
+.ficha .fila small{display:block;font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--gris);margin-bottom:4px}
+.ficha .copiar{font:500 12px/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:9px 10px;border:1px solid var(--tinta);flex:none}
+.ficha .copiar.hecho{background:var(--verde);border-color:var(--verde);color:#fff}
+.ficha .x{position:absolute;top:10px;right:12px;font:500 13px var(--mono);padding:6px}
+
+/* ---------- pantallas medianas y móvil ---------- */
+@media (max-width:1100px){
+  .barra .logo .completo{display:none}
+  .barra .logo .marca{display:block}
+}
+@media (max-width:860px){
+  :root{--barra:52px}
+  body{font-size:16px}
+  .barra{gap:10px;padding:0 14px}
+  .barra .logo .marca{height:20px}
+  .tira{gap:3px}
+  .tira button{width:10px;height:10px}
+  .tira button.activa{width:20px}
+  .tira button span{display:none}
+  .b-menu .txt{display:none}
+  .b-menu{padding:10px 2px}
+  .hoja{padding:calc(var(--barra) + 2px) 14px 14px}
+  .pl::after{height:45svh}
+  .pliego{padding:12px 16px 16px}
+  .corte{display:none}
+  .control{padding-bottom:10px;font-size:10px}
+  .control .registro,.control .tintas i:nth-child(-n+4){display:none}
+  .cuerpo,.cuerpo.al-reves,.diseno .cuerpo{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:14px;padding-top:12px}
+  .cuerpo.al-reves .texto{order:0}
+  .texto{flex:none}
+  h2{font-size:clamp(26px,7.6vw,34px)}
+  .texto p{margin-top:10px;font-size:15px;line-height:1.45}
+  .etiqueta{margin-bottom:8px;font-size:11px}
+  .fichas{margin-top:12px;gap:5px}
+  .fichas li{font-size:11px;padding:6px 7px}
+  .fichas li.extra{display:none}
+  .pruebas{flex:1;min-height:0;max-height:none;gap:8px}
+  .prueba figcaption{font-size:10px;padding-top:5px}
+  .g-impresion,.g-gran,.g-ferias,.g-especial{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+  .g-senal{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr)}
+  .g-impresion .p1,.g-gran .p1,.g-ferias .p1,.g-ferias .p2{grid-row:auto;grid-column:auto}
+  .pruebas .p3,.pruebas .p4{display:none}
+  .g-senal .p3{display:flex}
+  .portada .cuerpo{flex-direction:column;justify-content:center}
+  .portada h1{font-size:clamp(46px,15vw,76px)}
+  .carta{grid-template-columns:repeat(9,1fr);width:100%;gap:4px;order:-1}
+  .carta i:nth-child(n+10){display:none}
+  .portada .pie-portada{font-size:10px}
+  .portada .pie-portada .largo{display:none}
+  .diseno .grande{flex:1;min-height:90px}
+  .orden li{padding:9px 12px;font-size:13px}
+  .orden li small{display:none}
+  .contacto{margin-top:14px;gap:8px}
+  .presupuesto .cuerpo{gap:16px}
+  .mapa-caja{flex:1;height:auto;min-height:150px}
+  .transporte{margin-top:12px;gap:7px;font-size:14px}
+  .menu .rejilla{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .menu .chip .tono{height:clamp(30px,7vh,60px)}
+  .menu .chip .nombre{padding:8px 10px 10px}
+}
+@media (max-width:860px) and (max-height:700px){
+  .texto p.corto,.socios{display:none}
+  .fichas li.media{display:none}
+  .orden li:nth-child(n+4){display:none}
+  .portada h1{font-size:clamp(40px,12vw,56px)}
+  .portada .bajada{font-size:15px;margin-top:12px}
+  .portada .botones{margin-top:14px}
+  .portada .btn.claro{display:none}
+  .carta{gap:3px}
+  .portada .pie-portada{margin-top:12px;padding-top:10px}
+}
+@media (max-width:420px){
+  .barra .btn.chico{padding:9px 10px;font-size:13px}
+}
+@media (min-width:861px) and (max-height:760px){
+  h2{font-size:clamp(28px,3vw,44px)}
+  .texto p{font-size:16px;margin-top:12px}
+  .fichas{margin-top:14px}
+  .portada h1{font-size:clamp(54px,8vw,130px)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none !important;animation:none !important}
+  .marco img{transform:none !important}
+}
+.ph-impresion-folleto{--ph:url(data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAAAQBwCdASo4ACwAPtFapkyoJSOiLVzJIQAaCWcAzjgWbXhCCPr44i5rhadCUgrpscqSjx/5IVZkSIpeMPL3JeBWgAD+9gmrhGaFcp61W/iC33RJAIJ2sJ5cRy0oUSV0twKQ0Uy0fKFJiTFGmMHRcl78Cb4USCKGUscgAAAA)}
+.ph-impresion-calendario{--ph:url(data:image/webp;base64,UklGRrgAAABXRUJQVlA4IKwAAADwCACdASo4ACgAPq1OnEumJSMhurzMAMAViWcA0YNT2j+2+Toc7ueSFblThHSXxlK64vfE2g/Z9/2vWjgnEE2ctAC+q9p20PPWrYDZdl7IAAD++LNabgoiSbXSdvlT7FMRBbxZPip0fZGSBBP8D9MC/ACeNTK/gDW0Pp0lwvG7avdjZYFDMNPeC42RsmMN1NfdgAYVL+OS8+ULb+/JO1AFIqodBc2OkKHIAAAA)}
+.ph-impresion-tarjeta{--ph:url(data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAAAQBgCdASo4ACQAPtFapUyoJSOiKrgM+QAaCWkAAB9IBXVk6Y44PARJcjiKAIskcQpUxSmTqfcINQAA/vYAPn9ImS5RXaPud9rhIBZ29lgOPSqf/08mj7TlcJqPkGrpXFrsGfdUgezSmqSGgAA=)}
+.ph-gran-mural{--ph:url(data:image/webp;base64,UklGRrQAAABXRUJQVlA4IKgAAAAQCACdASo4ACoAPrlSnEuuJaKhtV39+cAXCWcAy6dT2LLl2xOWXcE0w/S3akeCaevvBNSEaiRFRFUg9pO2Ahp12XhSq6Ju+z4gAOwhVojTDkOCJRKs3qroYWsYNcQd5MYrIcPiDogYIGvuz4XK19+QGWhYRE7+Ur2ZpG0x/5Nt5XBUzVBW7NTtYcsih8SG/n0/FREES+Uyf82Tk3L+YmWGyaIxx43UYAA=)}
+.ph-gran-coche{--ph:url(data:image/webp;base64,UklGRsQAAABXRUJQVlA4ILgAAADwCQCdASo4ACoAPsFOnEunpCKht/jqqPAYCWUAwZNT2UEegYEfzIbT34NkD9cKwAruqnD0Y17exBK9eCW+ZJGhRsr54ElySrvHIPmXW4855UfGMKbFByAAAP1l7w33H9KQ9lqZQ7Z1wytjxrON1EZwJCQXdNwQqqWfUCrJfT8Fhrc0CTfacO42QJPvyujVzvVihbSuy17CnLrNYVGKnByyec89mHUUlVU9nAfnGc6baBmC9DkUwAAA)}
+.ph-gran-vinilo{--ph:url(data:image/webp;base64,UklGRuYAAABXRUJQVlA4INoAAADQCACdASo4ACoAPtFgo00wJiMiKrgM+gAaCWIApLNyDRgh9h2uJR1E6sg+DHM5vj8ZrgQYMMyRwh+08Wbx6VCbb4/ESE2k48FyXajLndAAAN84bW0VqJn0ZM/Bg0SdrzuKFf29gpz7DoWJNgDI6bn8ZUjUJVeASejFvF6Ht5ygPsX32W3m7uhgwpwmK/dzTkKEh78pBEM+oSdVXBj3xnp5bYbP3hIInXUNnih6IpCDvWAUQsyF1zEUCsYFhfY5qjwuJHsuV/31z1HCxiF0+xaZUeGZcQlr4AAAAA==)}
+.ph-senal-barajas{--ph:url(data:image/webp;base64,UklGRuIAAABXRUJQVlA4INYAAADQCACdASo4ACoAPr1SnkunLKKhtVgN+ZAXiWNok01VyAN+UWfrJA4YhagCD0RQD45PsBHcP+hngxM5XmMENxd4CltWXN8H10cf9HrYG6IAAP7uVsKfdl8JJqbJBM/ATaN6aiCGa+iwIU6uzt7iD/xby7gxSv1NcGzSaeqEvEzAfsMsQhV6XcZhS7zWxOMVIQg+0rNCqa8XRcEDkoRDhae9J/qG9XL7h91TitSd6k5Hi27qwry0PeC/NVPU1joJpJ4KmzDoYBOgnJzqkdqdeOu5X0UyLgAA)}
+.ph-senal-suelo{--ph:url(data:image/webp;base64,UklGRvAAAABXRUJQVlA4IOQAAADwCACdASoqADgAPtFipk6oJiOmKBVbiQAaCWIAs4NT2nGxUh6KJQcdjSpkIZBC6S/qTWBDGKa58RUT51pDcqkNkaokbDAChMRk5zReK/KW+AD8qh8cB6VV5sKtVfn2o91QDcBBQLFlWqRHY3VuPKAf4XcZPCqjdMJxIl9xAADIQ6fclvRHn9O8kE8fdH79plMsw8zJK04P1NHO/tIHCDARYfsTuoeIsvYCvCyLxqjTIrdHnKFQxhueUauDlE6NkcwHCn5MDvYyV9IL5dYHG8JMqEZuLUpG4b3QodBljIFLJ61wAAA=)}
+.ph-senal-directorio{--ph:url(data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAAAQBwCdASomADgAPtFWpU2qqSMsKrv7AYAaCWcAzuwQsMCeO1Jti1D8OY/bCume70h/BFnBwuBe1F/ZODPFYQQAAAD8UkeO9EVaAD1seQtqUIlmGvemYgsIpAF7eWi2La7yHBOBUqRMb0/LCD3hyH9BE81dSq2TXyEXfCzs5C4AAA==)}
+.ph-ferias-checkin{--ph:url(data:image/webp;base64,UklGRuwAAABXRUJQVlA4IOAAAABwCQCdASo4ACoAPtFYpE2oJKMiLVM8kQAaCWMAyU9SwXyZWSN1Zi6A4WUH8d5FEtWqSNNVuMb5qG0uxUzZyZ85SPujKvwM7pBSu9ydwiNdpvCzHYAA/udBOzRdOb8q5B1PTD8E/SQZuC+5vfE9Sebs4beWrJQ6e4HodtvHLgqyqnOvbF30LV0f46PIh7GnVxhohY0T8gKlWBy9ZS+Fuoti2XanMMiHeXU0w5ULVnEL2km8GS6FUBFxcwMs8e2PaoUSYNoVjhbQP2v2f0oYESf9wd/JyWcgYarvS6+KjAAAAA==)}
+.ph-ferias-stand{--ph:url(data:image/webp;base64,UklGRuwAAABXRUJQVlA4IOAAAACQCgCdASo4ADAAPrFEm0unI6KhurzMAOAWCWUAxGNT3TXAipK0M/9AbeSNWEVwfVgrlMS+REctmmJ+uh9nN7Zip82X6uczmN1u0tuKARA8uahQm2NzgkXJ3Dw3GtAA/vbXljrgUvVd3tMSgB3C/JE8YaHkt1tex5ZfFrZrI4mLLcUmGa2mb5egCLCVc6B1Rt5PxH7JgB/CDEJfoUc66VeNnfPpd+hRgnAufXaursdfiNyDEcEwdjEIwH0HYY5b6kZ/zVbR99lkshwXl2KUqH6YloOVkI9MulLRHp07jAAAAA==)}
+.ph-ferias-rollup{--ph:url(data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAACwBgCdASoYADgAPrVKnUunJKMhu/koAOAWiWcAwf/3QvV+08SMTgst8BR4EEz1fx5ngMEy5H/fl3qD229+AADvKmb9tC6VNLwnlmUKTVpAoBjMihdI00lUG6bfUVoh8WUtqqECbFaMaPH/uqCjA+1NUvNaIEhblxC4DOjqVN96tozWUw0YvwAA)}
+.ph-ferias-expo{--ph:url(data:image/webp;base64,UklGRuIAAABXRUJQVlA4INYAAADwCACdASo4ACoAPrlInEunJCKhurgMAOAXCWMAsSAKkXygFndWMfu97v157T2JU7G9KPWTVJVvRIWthyLM7pb1sa0x9tm8voeWc5a1DCK6AAD+7/Wb0E9GOL1SWmcWYcoZXNmmsMP+L0lxqGLyCbTQU1pYvyBnt3sSPqv3oEK5Xb2UVaRZwyPwtODAGwDkmn8C6mzrMkFee0AkDZ3okP822tc5xAl2qfLqNd0hgg02gtKLYWK4ZKbYWmKf8342IRWjNO9NOU9cCkjPXMRL2IxccD6ouMAA)}
+.ph-especial-laser{--ph:url(data:image/webp;base64,UklGRt4AAABXRUJQVlA4INIAAADwCACdASo4ACoAPtFSpUyoJCOiMBK9UQAaCWMAxvdT2EoNX0ZAMjd8bgpcTplJ1HKInWLh+9VyiCngwEmXQaPS1dUIFM0FYKxQi10NME3rWAD+7toE5gWx06nc19ESbflRG818hXjXo10VS/uKeGDR/dcluFtSMHUJIJk8yc8bq2pzIK57t/b5jjZ/mz6EWJSLZGlUmH4g/Pko2nZfgbm9OzVQi3tFv9WfpI+t/VCxNvSbaI44e5s7eeIlgq8is6Ng6j+5y7SRjXp8e4+zPCoAAAA=)}
+.ph-especial-frascos{--ph:url(data:image/webp;base64,UklGRuQAAABXRUJQVlA4INgAAABQCACdASo4ACoAPtFip1CoJSMioquhABoJZWmIWktt8B6A63GFUEK4yg2age70JJzHklJtxfQr1E0nf3Xmq7QlgAZs7P94gchMEwAA/rH1ZXIRrRlgrNVMmD90n6n+irbEKTt98mLbmXSXW+z7GArNagPHQwKbNOgO2CZcG+EIJoFtO+xaj+rUtiVyySW5HQGY9EjaB2nejHSB/H0QW5nUyzvnobYS6Fs1M+xdt7zL4c5amhr9zspIlNrrovxkgI3lISrmZb1tGyA2rkd0SeIa9/GrgVqAAAA=)}
+.ph-especial-avda{--ph:url(data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAACwBgCdASo4ABoAPqlImUumJKKhu/24AMAVCWkACG+kqEizbTOsnx10IK8iQPxJnGYsIDkb1Qq9a0X85lpIgAD++fWYgCT7wCO3MDOUquuHCCUbsl27SnoaEv5MHbDKXCdWOIyOJFlTzN41V2bPZOClMx1Jbb6kI3nHvRr1HRmlgTZC9bkH2fEqTxwm61FLQLAAAAAA)}
+.ph-especial-sellos{--ph:url(data:image/webp;base64,UklGRswAAABXRUJQVlA4IMAAAADwCACdASo4ACgAPqlCmUumJCKhvV0YAMAVCWUAygB0fWbaId2JeYh/4SjFNFHLVPuZn5HFR9qhxqTCYGlEYgM/zhQlzE35DJmUAUBUUfVYcAD+/HcfBAcpONDwMJULXQ2nwHeJGNIruf5XbhMZ5EvCvE0n30H/gehuVG2AaEY23m9lvypl1Igy9JC5nKvM9rGLwFvrthF4VwzVRoFFzs0qAePkqZYmkv7c05Pd55/vDe2IYDZFDlOJj0zzWBU4AAA=)}
+.ph-especial-clece{--ph:url(data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAACQBwCdASo4ACoAPr1Mn0unJCMhurgIAOAXiWMAxkXiwVeTMDyFiRe8cyXTe10S8XZi8jsB5+pWsx00uXDtyKqifXdJcBAA/sNT0Sc5c70Bzyruq3VTM/MVs4VRgiG393YdFj0CqiPZmtnOJ5uOvN4ptIhciJdVz/uKwOxYsXd3Nm8AnCnN7AkVO6YnPkiWAysK60WTBV/TIYrzJeC8lEA9jx0AAA==)}
+</style>
+</head>
+<body>
+<button type="button" class="salto" data-ir="impresion">Saltar al contenido</button>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="marca" viewBox="0 0 52.567 35.594"><path d="M0,0L0.266,0C2.615,0 4.776,0.985 6.747,2.957C8.719,4.928 9.704,7.613 9.704,11.012L9.704,24.582C9.704,27.981 8.719,30.666 6.747,32.637C4.776,34.608 2.615,35.594 0.266,35.594L0,35.594L0,32.354C2.147,32.101 3.222,31.021 3.222,29.111L3.241,6.482C3.241,4.562 2.16,3.48 0,3.24Z" fill-rule="evenodd"/><path d="M52.567,35.594L52.301,35.594C49.952,35.594 47.791,34.609 45.82,32.637C43.848,30.666 42.863,27.982 42.863,24.582L42.863,11.012C42.863,7.614 43.848,4.928 45.82,2.957C47.791,0.986 49.952,0 52.301,0L52.567,0L52.567,3.24C50.407,3.494 49.326,4.574 49.326,6.483L49.326,29.112C49.326,31.033 50.407,32.114 52.567,32.354Z" fill-rule="evenodd"/><path d="M23.468,12.922L23.468,2.811L29.1,2.811L29.1,12.922L37.862,7.883L40.661,12.725L31.9,17.797L40.661,22.869L37.862,27.711L29.068,22.672L29.068,32.783L23.468,32.783L23.468,22.672L14.706,27.711L11.906,22.869L20.668,17.797L11.906,12.725L14.706,7.883Z" fill-rule="evenodd"/></symbol>
+  <symbol id="logo" viewBox="0 0 231.589 38.413"><path d="M0,0L0.266,0C2.615,0 4.776,0.985 6.747,2.957C8.719,4.928 9.704,7.613 9.704,11.012L9.704,24.582C9.704,27.981 8.719,30.666 6.747,32.637C4.776,34.608 2.615,35.594 0.266,35.594L0,35.594L0,32.354C2.147,32.101 3.222,31.021 3.222,29.111L3.241,6.482C3.241,4.562 2.16,3.48 0,3.24Z" fill-rule="evenodd"/><path d="M52.567,35.594L52.301,35.594C49.952,35.594 47.791,34.609 45.82,32.637C43.848,30.666 42.863,27.982 42.863,24.582L42.863,11.012C42.863,7.614 43.848,4.928 45.82,2.957C47.791,0.986 49.952,0 52.301,0L52.567,0L52.567,3.24C50.407,3.494 49.326,4.574 49.326,6.483L49.326,29.112C49.326,31.033 50.407,32.114 52.567,32.354Z" fill-rule="evenodd"/><path d="M23.468,12.922L23.468,2.811L29.1,2.811L29.1,12.922L37.862,7.883L40.661,12.725L31.9,17.797L40.661,22.869L37.862,27.711L29.068,22.672L29.068,32.783L23.468,32.783L23.468,22.672L14.706,27.711L11.906,22.869L20.668,17.797L11.906,12.725L14.706,7.883Z" fill-rule="evenodd"/><g transform="matrix(1 0 0 -1 -195.068 193.229)"><path d="M272.9545247070312 179.45133852539064Q271.66354072265625 178.8628017089844 270.11625844726564 178.8628017089844Q267.7810962402344 178.8628017089844 266.3904406982422 180.2819348388672Q264.99978515624997 181.70106796875 264.99978515624997 184.055215234375Q264.99978515624997 186.40936250000001 266.399933227539 187.8284956298828Q267.8000812988281 189.24762875976563 270.0782883300781 189.24762875976563Q271.5686154296875 189.24762875976563 272.9165545898437 188.7255396484375L272.52736088867186 187.50100336914062Q271.1794217285156 187.9661373046875 270.09727338867185 187.9661373046875Q268.4645583496094 187.9661373046875 267.5105591552734 186.91246655273437Q266.5565599609375 185.85879580078125 266.5565599609375 184.055215234375Q266.5565599609375 182.40351513671877 267.5437830078125 181.27865041503907Q268.5310060546875 180.15378569335937 270.11625844726564 180.15378569335937Q271.3692723144531 180.15378569335937 272.6982264160156 180.6379046875ZM280.82383149414056 189.24762875976563Q282.8647252929687 189.24762875976563 284.07027651367184 187.8237493652344Q285.27582773437496 186.39986997070312 285.27582773437496 184.07420029296875Q285.27582773437496 181.72954555664063 284.07027651367184 180.2961736328125Q282.8647252929687 178.8628017089844 280.82383149414056 178.8628017089844Q278.77344516601556 178.8628017089844 277.5726402099609 180.29142736816408Q276.3718352539062 181.72005302734377 276.3718352539062 184.07420029296875Q276.3718352539062 186.40936250000001 277.57738647460934 187.8284956298828Q278.78293769531246 189.24762875976563 280.82383149414056 189.24762875976563ZM280.82383149414056 180.15378569335937Q282.17177065429684 180.15378569335937 282.9501580566406 181.29288920898438Q283.72854545898434 182.4319927246094 283.72854545898434 184.055215234375Q283.72854545898434 185.7638705078125 282.9596505859374 186.86500390625Q282.19075571289056 187.9661373046875 280.82383149414056 187.9661373046875Q279.4474147460937 187.9661373046875 278.6880124023437 186.8792427001953Q277.92861005859373 185.79234809570312 277.92861005859373 184.055215234375Q277.92861005859373 182.40351513671877 278.6975049316406 181.27865041503907Q279.46639980468746 180.15378569335937 280.82383149414056 180.15378569335937ZM297.1035192382812 179.1191H295.62268466796866V185.6119900390625Q295.62268466796866 187.9661373046875 294.7493719726562 187.9661373046875Q294.30322309570306 187.9661373046875 293.76689519042964 187.1545260498047Q293.2305672851562 186.34291479492188 293.2305672851562 186.25748203125V179.1191H291.75922524414057V185.6119900390625Q291.75922524414057 187.9661373046875 290.87642001953117 187.9661373046875Q290.4397636718749 187.9661373046875 289.9034357666015 187.1545260498047Q289.36710786132807 186.34291479492188 289.36710786132807 186.25748203125V179.1191H287.8862732910156V189.01031552734375H289.3101526855468V187.51998842773438Q289.7278239746093 188.307868359375 290.30212199707023 188.7777485595703Q290.87642001953117 189.24762875976563 291.4459717773437 189.24762875976563Q292.0440011230468 189.24762875976563 292.5186275878906 188.7777485595703Q292.9932540527343 188.307868359375 293.1736121093749 187.51998842773438Q293.59128339843744 188.307868359375 294.1703276855468 188.7777485595703Q294.7493719726562 189.24762875976563 295.30943120117183 189.24762875976563Q297.1035192382812 189.24762875976563 297.1035192382812 186.03915385742187ZM307.97246528320306 179.1191H306.4916307128905V180.58094951171876Q304.89688579101556 178.88178676757812 303.13127534179677 178.88178676757812Q300.3499642578124 178.88178676757812 300.3499642578124 182.25163466796874V189.01031552734375H301.8307988281249V182.67879848632813Q301.8307988281249 181.41629208984375 302.2294850585937 180.79453142089844Q302.62817128906244 180.17277075195312 303.5774242187499 180.17277075195312Q304.934855908203 180.17277075195312 306.4916307128905 181.86244096679687V189.01031552734375H307.97246528320306ZM319.65776884765614 179.1191H318.17693427734366V185.4601095703125Q318.17693427734366 186.77957114257813 317.7545167236327 187.37285422363283Q317.3320991699218 187.9661373046875 316.43030888671865 187.9661373046875Q315.0728771972655 187.9661373046875 313.51610239257803 186.27646708984375V179.1191H312.0352678222655V189.01031552734375H313.51610239257803V187.5579585449219Q315.110847314453 189.24762875976563 316.87645776367174 189.24762875976563Q319.65776884765614 189.24762875976563 319.65776884765614 185.88727338867187ZM328.1345975097655 192.7503720703125Q328.552268798828 192.7503720703125 328.84653720703113 192.45135739746092Q329.1408056152342 192.15234272460938 329.1408056152342 191.7346714355469Q329.1408056152342 191.29801508789063 328.85128347167955 191.0037466796875Q328.5617613281249 190.7094782714844 328.1345975097655 190.7094782714844Q327.7454038085936 190.7094782714844 327.44638913574204 191.01798547363282Q327.14737446289047 191.32649267578125 327.14737446289047 191.7346714355469Q327.14737446289047 192.1428501953125 327.44638913574204 192.4466111328125Q327.7454038085936 192.7503720703125 328.1345975097655 192.7503720703125ZM328.85602973632797 179.1191H327.3751951660155V187.72882407226564H324.4609886718749V189.01031552734375H328.85602973632797ZM342.95243574218733 179.45133852539064Q341.66145175781236 178.8628017089844 340.11416948242174 178.8628017089844Q337.7790072753905 178.8628017089844 336.3883517333983 180.2819348388672Q334.9976961914061 181.70106796875 334.9976961914061 184.055215234375Q334.9976961914061 186.40936250000001 336.3978442626951 187.8284956298828Q337.7979923339842 189.24762875976563 340.07619936523423 189.24762875976563Q341.5665264648436 189.24762875976563 342.9144656249998 188.7255396484375L342.525271923828 187.50100336914062Q341.1773327636717 187.9661373046875 340.09518442382796 187.9661373046875Q338.4624693847655 187.9661373046875 337.50847019042953 186.91246655273437Q336.5544709960936 185.85879580078125 336.5544709960936 184.055215234375Q336.5544709960936 182.40351513671877 337.54169404296863 181.27865041503907Q338.5289170898436 180.15378569335937 340.11416948242174 180.15378569335937Q341.3671833496092 180.15378569335937 342.6961374511717 180.6379046875ZM354.90353012695294 179.1191H353.4321880859373Q353.2518300292967 179.7171293457031 353.2518300292967 180.713844921875Q351.98932363281233 178.8628017089844 349.81553442382796 178.8628017089844Q348.71440102539043 178.8628017089844 347.874312182617 179.6459353759766Q347.03422333984355 180.42906904296876 347.03422333984355 181.6630978515625Q347.03422333984355 182.39402260742187 347.32849174804664 182.9540818359375Q347.6227601562498 183.51414106445313 348.1923119140623 183.8985885009766Q348.76186367187483 184.28303593750002 349.5782211914061 184.50611037597656Q350.3945787109373 184.72918481445313 351.51469716796856 184.814617578125L353.1758897949217 184.94751298828126V185.422139453125Q353.1758897949217 187.9661373046875 350.80275747070294 187.9661373046875Q350.2426982421873 187.9661373046875 349.3836243408201 187.7240778076172Q348.5245504394529 187.4820183105469 347.90753603515606 187.14977978515626L347.5183423339842 188.21294306640624Q349.5402510742186 189.24762875976563 351.2773839355467 189.24762875976563Q354.6567243652342 189.24762875976563 354.6567243652342 185.66894521484375V181.41629208984375Q354.6567243652342 180.12530810546875 354.90353012695294 179.1191ZM353.1758897949217 182.05229155273437V183.84637958984376Q351.17296611328106 183.66602153320312 350.42780256347635 183.50939479980468Q349.6826390136717 183.35276806640624 349.1368185791014 182.92560424804685Q348.59099814453106 182.4984404296875 348.59099814453106 181.76751567382811Q348.59099814453106 181.10303862304687 349.05613208007793 180.69485986328124Q349.5212660156248 180.28668110351563 350.2426982421873 180.28668110351563Q351.03057817382796 180.28668110351563 351.8089655761717 180.75656130371095Q352.58735297851547 181.22644150390624 353.1758897949217 182.05229155273437ZM366.28507275390604 179.45133852539064Q364.99408876953106 178.8628017089844 363.44680649414045 178.8628017089844Q361.1116442871092 178.8628017089844 359.720988745117 180.2819348388672Q358.3303332031248 181.70106796875 358.3303332031248 184.055215234375Q358.3303332031248 186.40936250000001 359.7304812744138 187.8284956298828Q361.1306293457029 189.24762875976563 363.40883637695293 189.24762875976563Q364.8991634765623 189.24762875976563 366.2471026367185 188.7255396484375L365.8579089355467 187.50100336914062Q364.5099697753904 187.9661373046875 363.42782143554666 187.9661373046875Q361.7951063964842 187.9661373046875 360.84110720214824 186.91246655273437Q359.8871080078123 185.85879580078125 359.8871080078123 184.055215234375Q359.8871080078123 182.40351513671877 360.87433105468733 181.27865041503907Q361.8615541015623 180.15378569335937 363.44680649414045 180.15378569335937Q364.6998203613279 180.15378569335937 366.0287744628904 180.6379046875ZM374.7998715332029 192.7503720703125Q375.2175428222654 192.7503720703125 375.51181123046854 192.45135739746092Q375.80607963867163 192.15234272460938 375.80607963867163 191.7346714355469Q375.80607963867163 191.29801508789063 375.51655749511696 191.0037466796875Q375.2270353515623 190.7094782714844 374.7998715332029 190.7094782714844Q374.410677832031 190.7094782714844 374.11166315917944 191.01798547363282Q373.8126484863279 191.32649267578125 373.8126484863279 191.7346714355469Q373.8126484863279 192.1428501953125 374.11166315917944 192.4466111328125Q374.410677832031 192.7503720703125 374.7998715332029 192.7503720703125ZM375.5213037597654 179.1191H374.0404691894529V187.72882407226564H371.1262626953123V189.01031552734375H375.5213037597654ZM385.8206980468747 189.24762875976563Q387.8615918457029 189.24762875976563 389.067143066406 187.8237493652344Q390.2726942871091 186.39986997070312 390.2726942871091 184.07420029296875Q390.2726942871091 181.72954555664063 389.067143066406 180.2961736328125Q387.8615918457029 178.8628017089844 385.8206980468747 178.8628017089844Q383.7703117187497 178.8628017089844 382.569506762695 180.29142736816408Q381.3687018066404 181.72005302734377 381.3687018066404 184.07420029296875Q381.3687018066404 186.40936250000001 382.5742530273435 187.8284956298828Q383.7798042480466 189.24762875976563 385.8206980468747 189.24762875976563ZM385.8206980468747 180.15378569335937Q387.168637207031 180.15378569335937 387.94702460937475 181.29288920898438Q388.7254120117185 182.4319927246094 388.7254120117185 184.055215234375Q388.7254120117185 185.7638705078125 387.95651713867164 186.86500390625Q387.1876222656247 187.9661373046875 385.8206980468747 187.9661373046875Q384.4442812988279 187.9661373046875 383.6848789550779 186.8792427001953Q382.9254766113279 185.79234809570312 382.9254766113279 184.055215234375Q382.9254766113279 182.40351513671877 383.69437148437476 181.27865041503907Q384.4632663574216 180.15378569335937 385.8206980468747 180.15378569335937ZM388.46911372070286 193.03514794921875 385.50744458007784 190.17789663085938H384.4442812988279L386.3238020996091 193.03514794921875ZM401.3219983886716 179.1191H399.8411638183591V185.4601095703125Q399.8411638183591 186.77957114257813 399.4187462646482 187.37285422363283Q398.99632871093723 187.9661373046875 398.0945384277341 187.9661373046875Q396.737106738281 187.9661373046875 395.1803319335935 186.27646708984375V179.1191H393.69949736328095V189.01031552734375H395.1803319335935V187.5579585449219Q396.77507685546846 189.24762875976563 398.5406873046872 189.24762875976563Q401.3219983886716 189.24762875976563 401.3219983886716 185.88727338867187ZM268.113334765625 163.40686401367188Q266.72742548828126 162.73289443359374 266.72742548828126 162.2202978515625Q266.72742548828126 161.94501450195312 267.04542521972655 161.75516391601562Q267.36342495117185 161.5653133300781 267.9139916503906 161.5653133300781L271.2458694335937 161.66023862304687Q272.4324355957031 161.66023862304687 273.0921663818359 161.08119433593748Q273.7518971679687 160.50215004882813 273.7518971679687 159.43898676757811Q273.7518971679687 157.75880908203123 272.2520775390625 156.76209350585935Q270.75225791015623 155.7653779296875 268.74933422851564 155.7653779296875Q267.1071266601562 155.7653779296875 266.0629484375 156.45358630371095Q265.01877021484376 157.14179467773437 265.01877021484376 158.233435546875Q265.01877021484376 159.4200017089844 266.6325001953125 160.23635922851562Q265.2940535644531 160.86286616210938 265.2940535644531 161.77414897460937Q265.2940535644531 162.81832719726563 267.02169389648435 163.72011748046876Q266.22432143554687 164.20423647460936 265.7971576171875 164.97313134765625Q265.3699937988281 165.7420262207031 265.3699937988281 166.59635385742186Q265.3699937988281 167.9917556640625 266.3192467285156 168.8887996826172Q267.2684996582031 169.78584370117187 268.69237905273434 169.78584370117187Q269.71757221679684 169.78584370117187 270.543422265625 169.3586798828125L273.47661381835934 169.80482875976563V168.36196430664063H271.5876004882812Q272.0147643066406 167.6120544921875 272.0147643066406 166.59635385742186Q272.0147643066406 165.24841469726562 271.07500390625 164.31814682617187Q270.13524350585936 163.38787895507812 268.69237905273434 163.38787895507812Q268.38861811523435 163.38787895507812 268.113334765625 163.40686401367188ZM268.69237905273434 164.536475Q269.5087365722656 164.536475 270.0260794189453 165.10128049316404Q270.543422265625 165.6660859863281 270.543422265625 166.57736879882813Q270.543422265625 167.5361142578125 270.0403182128906 168.07718842773437Q269.5372141601562 168.61826259765624 268.69237905273434 168.61826259765624Q267.90449912109375 168.61826259765624 267.3681712158203 168.05345710449217Q266.83184331054684 167.48865161132812 266.83184331054684 166.57736879882813Q266.83184331054684 165.68507104492187 267.3681712158203 165.11077302246093Q267.90449912109375 164.536475 268.69237905273434 164.536475ZM268.74933422851564 156.91397397460938Q270.21118374023433 156.91397397460938 271.24112316894525 157.5642122314453Q272.2710625976562 158.21445048828124 272.2710625976562 159.1731959472656Q272.2710625976562 160.16041899414063 270.8092130859375 160.16041899414063Q270.32509409179687 160.16041899414063 269.1385279296875 160.10346381835936Q268.38861811523435 160.06549370117187 267.961454296875 160.06549370117187Q267.75261865234376 160.06549370117187 267.3112160400391 159.72376264648437Q266.86981342773436 159.38203159179687 266.6372464599609 159.03555427246096Q266.4046794921875 158.689076953125 266.4046794921875 158.31886831054686Q266.4046794921875 157.7398240234375 267.05017148437497 157.32689899902346Q267.69566347656246 156.91397397460938 268.74933422851564 156.91397397460938ZM283.9373811035156 159.6763H279.8935636230468V171.7887673828125H277.3115956542968V173.07025883789063H281.37439819335935V160.9577914550781H283.9373811035156ZM292.4901499999999 169.80482875976563Q294.5310437988281 169.80482875976563 295.7365950195312 168.38094936523436Q296.9421462402343 166.95706997070312 296.9421462402343 164.63140029296875Q296.9421462402343 162.28674555664062 295.7365950195312 160.85337363281252Q294.5310437988281 159.4200017089844 292.4901499999999 159.4200017089844Q290.4397636718749 159.4200017089844 289.2389587158202 160.84862736816407Q288.0381537597656 162.27725302734376 288.0381537597656 164.63140029296875Q288.0381537597656 166.9665625 289.2437049804687 168.38569562988283Q290.4492562011718 169.80482875976563 292.4901499999999 169.80482875976563ZM292.4901499999999 160.71098569335936Q293.8380891601562 160.71098569335936 294.61647656249994 161.85008920898437Q295.3948639648437 162.98919272460938 295.3948639648437 164.612415234375Q295.3948639648437 166.3210705078125 294.62596909179683 167.42220390625Q293.8570742187499 168.5233373046875 292.4901499999999 168.5233373046875Q291.1137332519531 168.5233373046875 290.3543309082031 167.4364427001953Q289.5949285644531 166.3495480957031 289.5949285644531 164.612415234375Q289.5949285644531 162.96071513671876 290.36382343749995 161.83585041503906Q291.1327183105468 160.71098569335936 292.4901499999999 160.71098569335936ZM301.8497838867187 168.28602407226563Q302.3433954101562 168.96948618164063 303.1834842529296 169.38715747070313Q304.02357309570306 169.80482875976563 304.9538409667968 169.80482875976563Q306.68148129882803 169.80482875976563 307.6449730224608 168.41891948242187Q308.60846474609366 167.0330102050781 308.60846474609366 164.77378823242188Q308.60846474609366 162.486088671875 307.58327158203116 160.9530451904297Q306.55807841796866 159.4200017089844 304.83993061523427 159.4200017089844Q303.9191552734374 159.4200017089844 303.1170365478515 159.8803893798828Q302.31491782226556 160.34077705078124 301.8497838867187 161.10017939453124V159.6763H300.36894931640614V173.07025883789063H301.8497838867187ZM301.8497838867187 166.81468203125V162.70441684570312Q302.26745517578115 161.86907426757813 302.9793948730468 161.3090150390625Q303.6913345703124 160.74895581054687 304.4507369140624 160.74895581054687Q305.64679560546864 160.74895581054687 306.35398903808584 161.88805932617186Q307.06118247070305 163.02716284179687 307.06118247070305 164.68835546875Q307.06118247070305 166.3970107421875 306.38721289062494 167.4601740234375Q305.7132433105468 168.5233373046875 304.50769208984366 168.5233373046875Q302.94142475585926 168.5233373046875 301.8497838867187 166.81468203125ZM319.9045746093749 159.6763H318.43323256835924Q318.25287451171863 160.2743293457031 318.25287451171863 161.271044921875Q316.9903681152343 159.4200017089844 314.8165789062499 159.4200017089844Q313.7154455078124 159.4200017089844 312.8753566650389 160.20313537597656Q312.0352678222655 160.98626904296876 312.0352678222655 162.2202978515625Q312.0352678222655 162.95122260742187 312.32953623046865 163.5112818359375Q312.62380463867174 164.07134106445312 313.19335639648426 164.45578850097655Q313.7629081542968 164.84023593749998 314.579265673828 165.06331037597656Q315.39562319335926 165.28638481445313 316.5157416503905 165.371817578125L318.17693427734366 165.50471298828126V165.979339453125Q318.17693427734366 168.5233373046875 315.8038019531249 168.5233373046875Q315.24374272460926 168.5233373046875 314.38466882324207 168.2812778076172Q313.52559492187487 168.03921831054686 312.908580517578 167.70697978515625L312.51938681640615 168.77014306640623Q314.54129555664053 169.80482875976563 316.27842841796866 169.80482875976563Q319.65776884765614 169.80482875976563 319.65776884765614 166.22614521484374V161.97349208984375Q319.65776884765614 160.68250810546874 319.9045746093749 159.6763ZM318.17693427734366 162.60949155273437V164.40357958984376Q316.174010595703 164.22322153320312 315.42884704589835 164.06659479980468Q314.68368349609364 163.90996806640624 314.1378630615233 163.48280424804688Q313.592042626953 163.0556404296875 313.592042626953 162.3247156738281Q313.592042626953 161.66023862304687 314.0571765624999 161.25205986328126Q314.52231049804675 160.84388110351563 315.24374272460926 160.84388110351563Q316.0316226562499 160.84388110351563 316.81001005859366 161.31376130371092Q317.5883974609374 161.78364150390624 318.17693427734366 162.60949155273437ZM330.602655126953 159.6763H326.5588376464842V171.7887673828125H323.9768696777342V173.07025883789063H328.03967221679676V160.9577914550781H330.602655126953ZM349.77756430664044 163.40686401367188Q348.3916550292967 162.73289443359374 348.3916550292967 162.2202978515625Q348.3916550292967 161.94501450195312 348.709654760742 161.75516391601562Q349.0276544921873 161.5653133300781 349.57822119140604 161.5653133300781L352.9100989746092 161.66023862304687Q354.09666513671857 161.66023862304687 354.75639592285137 161.08119433593748Q355.41612670898417 160.50215004882813 355.41612670898417 159.43898676757811Q355.41612670898417 157.75880908203123 353.9163070800779 156.76209350585935Q352.4164874511717 155.7653779296875 350.41356376953104 155.7653779296875Q348.77135620117167 155.7653779296875 347.72717797851544 156.45358630371095Q346.6829997558592 157.14179467773437 346.6829997558592 158.233435546875Q346.6829997558592 159.4200017089844 348.29672973632796 160.23635922851562Q346.9582831054686 160.86286616210938 346.9582831054686 161.77414897460937Q346.9582831054686 162.81832719726563 348.6859234374998 163.72011748046876Q347.8885509765623 164.20423647460936 347.4613871582029 164.97313134765625Q347.03422333984355 165.7420262207031 347.03422333984355 166.59635385742186Q347.03422333984355 167.9917556640625 347.983476269531 168.8887996826172Q348.93272919921856 169.78584370117187 350.3566085937498 169.78584370117187Q351.3818017578123 169.78584370117187 352.20765180664046 169.3586798828125L355.1408433593748 169.80482875976563V168.36196430664063H353.2518300292967Q353.67899384765605 167.6120544921875 353.67899384765605 166.59635385742186Q353.67899384765605 165.24841469726562 352.7392334472654 164.31814682617187Q351.7994730468748 163.38787895507812 350.3566085937498 163.38787895507812Q350.0528476562498 163.38787895507812 349.77756430664044 163.40686401367188ZM350.3566085937498 164.536475Q351.17296611328106 164.536475 351.69030895996076 165.10128049316404Q352.20765180664046 165.6660859863281 352.20765180664046 166.57736879882813Q352.20765180664046 167.5361142578125 351.70454775390607 168.07718842773437Q351.2014437011717 168.61826259765624 350.3566085937498 168.61826259765624Q349.5687286621092 168.61826259765624 349.0324007568357 168.05345710449217Q348.4960728515623 167.48865161132812 348.4960728515623 166.57736879882813Q348.4960728515623 165.68507104492187 349.0324007568357 165.11077302246093Q349.5687286621092 164.536475 350.3566085937498 164.536475ZM350.41356376953104 156.91397397460938Q351.8754132812498 156.91397397460938 352.90535270996077 157.5642122314453Q353.9352921386717 158.21445048828124 353.9352921386717 159.1731959472656Q353.9352921386717 160.16041899414063 352.47344262695293 160.16041899414063Q351.98932363281233 160.16041899414063 350.80275747070294 160.10346381835936Q350.0528476562498 160.06549370117187 349.62568383789045 160.06549370117187Q349.4168481933592 160.06549370117187 348.9754455810545 159.72376264648437Q348.5340429687498 159.38203159179687 348.3014760009764 159.03555427246096Q348.06890903320294 158.689076953125 348.06890903320294 158.31886831054686Q348.06890903320294 157.7398240234375 348.71440102539043 157.32689899902346Q349.3598930175779 156.91397397460938 350.41356376953104 156.91397397460938ZM366.47492333984354 169.30172470703124 365.8768939941404 167.8778453125Q364.8991634765623 168.30500913085936 364.1872237792967 168.30500913085936Q363.5322392578123 168.30500913085936 362.90573232421855 167.9300542236328Q362.2792253906248 167.55509931640626 361.7523900146482 166.85739841308595Q361.22555463867167 166.15969750976564 361.22555463867167 166.07426474609375V159.6763H359.754212597656V169.56751552734374H361.22555463867167V167.56459184570312Q362.41212080078105 169.80482875976563 364.30113413085917 169.80482875976563Q365.4212525878904 169.80482875976563 366.47492333984354 169.30172470703124ZM378.23616713867165 159.6763H376.764825097656Q376.5844670410154 160.2743293457031 376.5844670410154 161.271044921875Q375.32196064453103 159.4200017089844 373.14817143554666 159.4200017089844Q372.04703803710913 159.4200017089844 371.2069491943357 160.20313537597656Q370.36686035156225 160.98626904296876 370.36686035156225 162.2202978515625Q370.36686035156225 162.95122260742187 370.66112875976535 163.5112818359375Q370.9553971679685 164.07134106445312 371.524948925781 164.45578850097655Q372.09450068359354 164.84023593749998 372.9108582031248 165.06331037597656Q373.727215722656 165.28638481445313 374.84733417968727 165.371817578125L376.5085268066404 165.50471298828126V165.979339453125Q376.5085268066404 168.5233373046875 374.13539448242165 168.5233373046875Q373.575335253906 168.5233373046875 372.7162613525388 168.2812778076172Q371.8571874511716 168.03921831054686 371.24017304687476 167.70697978515625L370.8509793457029 168.77014306640623Q372.8728880859373 169.80482875976563 374.6100209472654 169.80482875976563Q377.9893613769529 169.80482875976563 377.9893613769529 166.22614521484374V161.97349208984375Q377.9893613769529 160.68250810546874 378.23616713867165 159.6763ZM376.5085268066404 162.60949155273437V164.40357958984376Q374.50560312499977 164.22322153320312 373.76043957519505 164.06659479980468Q373.0152760253904 163.90996806640624 372.4694555908201 163.48280424804688Q371.92363515624976 163.0556404296875 371.92363515624976 162.3247156738281Q371.92363515624976 161.66023862304687 372.38876909179663 161.25205986328126Q372.8539030273435 160.84388110351563 373.575335253906 160.84388110351563Q374.36321518554666 160.84388110351563 375.1416025878904 161.31376130371092Q375.91998999023417 161.78364150390624 376.5085268066404 162.60949155273437ZM377.04010844726537 173.59234794921875 374.07843930664035 170.73509663085937H373.0152760253904L374.8947968261716 173.59234794921875ZM389.750605175781 172.9183783691406 389.3614114746091 171.7128271484375Q388.307740722656 172.01658808593749 387.472398144531 172.01658808593749Q386.6750256835935 172.01658808593749 386.37601101074193 171.56569294433592Q386.07699633789036 171.11479780273436 386.07699633789036 169.74787358398436V169.56751552734374H389.3993815917966V168.28602407226563H386.07699633789036V159.6763H384.5961617675779V168.28602407226563H382.10911909179663V169.56751552734374H384.5961617675779V169.89975405273438Q384.5961617675779 171.7887673828125 385.24165375976537 172.5481697265625Q385.88714575195286 173.3075720703125 387.472398144531 173.3075720703125Q388.4975913085935 173.3075720703125 389.750605175781 172.9183783691406ZM398.1325085449216 173.3075720703125Q398.5501798339841 173.3075720703125 398.84444824218724 173.00855739746095Q399.13871665039034 172.70954272460938 399.13871665039034 172.29187143554688Q399.13871665039034 171.85521508789063 398.84919450683566 171.5609466796875Q398.559672363281 171.26667827148438 398.1325085449216 171.26667827148438Q397.7433148437497 171.26667827148438 397.44430017089815 171.5751854736328Q397.1452854980466 171.88369267578125 397.1452854980466 172.29187143554688Q397.1452854980466 172.70005019531249 397.44430017089815 173.00381113281247Q397.7433148437497 173.3075720703125 398.1325085449216 173.3075720703125ZM398.8539407714841 159.6763H397.3731062011716V168.28602407226563H394.458899707031V169.56751552734374H398.8539407714841ZM412.95034677734344 160.00853852539063Q411.65936279296847 159.4200017089844 410.11208051757785 159.4200017089844Q407.7769183105466 159.4200017089844 406.3862627685544 160.8391348388672Q404.9956072265622 162.25826796875 404.9956072265622 164.612415234375Q404.9956072265622 166.9665625 406.3957552978512 168.38569562988283Q407.7959033691403 169.80482875976563 410.07411040039034 169.80482875976563Q411.5644374999997 169.80482875976563 412.9123766601559 169.28273964843748L412.5231829589841 168.0582033691406Q411.1752437988278 168.5233373046875 410.09309545898407 168.5233373046875Q408.4603804199216 168.5233373046875 407.50638122558564 167.46966655273437Q406.5523820312497 166.41599580078125 406.5523820312497 164.612415234375Q406.5523820312497 162.96071513671876 407.53960507812474 161.83585041503906Q408.5268281249997 160.71098569335936 410.11208051757785 160.71098569335936Q411.3650943847653 160.71098569335936 412.6940484863278 161.1951046875ZM424.90144116210905 159.6763H423.4300991210934Q423.2497410644528 160.2743293457031 423.2497410644528 161.271044921875Q421.98723466796844 159.4200017089844 419.81344545898406 159.4200017089844Q418.71231206054654 159.4200017089844 417.8722232177731 160.20313537597656Q417.03213437499966 160.98626904296876 417.03213437499966 162.2202978515625Q417.03213437499966 162.95122260742187 417.32640278320275 163.5112818359375Q417.6206711914059 164.07134106445312 418.1902229492184 164.45578850097655Q418.75977470703094 164.84023593749998 419.5761322265622 165.06331037597656Q420.3924897460934 165.28638481445313 421.51260820312467 165.371817578125L423.1738008300778 165.50471298828126V165.979339453125Q423.1738008300778 168.5233373046875 420.80066850585905 168.5233373046875Q420.2406092773434 168.5233373046875 419.3815353759762 168.2812778076172Q418.52246147460903 168.03921831054686 417.90544707031216 167.70697978515625L417.5162533691403 168.77014306640623Q419.5381621093747 169.80482875976563 421.2752949707028 169.80482875976563Q424.6546354003903 169.80482875976563 424.6546354003903 166.22614521484374V161.97349208984375Q424.6546354003903 160.68250810546874 424.90144116210905 159.6763ZM423.1738008300778 162.60949155273437V164.40357958984376Q421.17087714843717 164.22322153320312 420.42571359863246 164.06659479980468Q419.6805500488278 163.90996806640624 419.1347296142575 163.48280424804688Q418.58890917968716 163.0556404296875 418.58890917968716 162.3247156738281Q418.58890917968716 161.66023862304687 419.05404311523404 161.25205986328126Q419.5191770507809 160.84388110351563 420.2406092773434 160.84388110351563Q421.02848920898407 160.84388110351563 421.8068766113278 161.31376130371092Q422.5852640136716 161.78364150390624 423.1738008300778 162.60949155273437Z"/></g></symbol>
+</svg>
+
+<header class="barra">
+  <button type="button" class="logo" data-ir="portada" aria-label="Comunicación Global Gráfica, volver al principio">
+    <svg class="completo" viewBox="0 0 231.589 38.413" aria-hidden="true"><use href="#logo"/></svg>
+    <svg class="marca" viewBox="0 0 52.567 35.594" aria-hidden="true"><use href="#marca"/></svg>
+  </button>
+  <nav class="tira" aria-label="Secciones">
+    <button type="button" data-ir="portada" style="--sw:var(--azul)"><span>01 Portada</span><b class="sr">Portada</b></button>
+    <button type="button" data-ir="impresion" style="--sw:var(--c)"><span>02 Impresión</span><b class="sr">Impresión</b></button>
+    <button type="button" data-ir="gran-formato" style="--sw:var(--m)"><span>03 Gran formato</span><b class="sr">Gran formato</b></button>
+    <button type="button" data-ir="senaletica" style="--sw:var(--y)"><span>04 Señalética</span><b class="sr">Señalética</b></button>
+    <button type="button" data-ir="ferias" style="--sw:var(--verde)"><span>05 Ferias y PLV</span><b class="sr">Ferias y PLV</b></button>
+    <button type="button" data-ir="especiales" style="--sw:var(--naranja)"><span>06 Trabajos especiales</span><b class="sr">Trabajos especiales</b></button>
+    <button type="button" data-ir="diseno" style="--sw:var(--morado)"><span>07 Diseño</span><b class="sr">Diseño</b></button>
+    <button type="button" data-ir="presupuesto" style="--sw:var(--rojo)"><span>08 Presupuesto</span><b class="sr">Presupuesto</b></button>
+    <button type="button" data-ir="como-llegar" style="--sw:var(--marino)"><span>09 Cómo llegar</span><b class="sr">Cómo llegar</b></button>
+  </nav>
+  <div class="acciones">
+    <button type="button" class="btn chico" data-ir="presupuesto">Presupuesto</button>
+    <button type="button" class="b-menu" aria-expanded="false" aria-controls="menu"><i><b></b><b></b><b></b><b></b></i><span class="txt">Menú</span><span class="sr">Abrir el menú</span></button>
+  </div>
+</header>
+
+<main id="contenido">
+
+<!-- 01 · portada -->
+<section class="pl portada" id="portada" style="--ac:var(--azul)">
+  <div class="hoja"><div class="pliego">
+    <i class="corte si"></i><i class="corte sd"></i><i class="corte ii"></i><i class="corte id"></i>
+    <div class="control"><span class="n"><b></b>Pliego 01/09 · Comunicación Global Gráfica</span><span class="tintas"><i></i><i></i><i></i><i></i><i></i></span><span class="registro" aria-hidden="true"></span></div>
+    <div class="cuerpo">
+      <div class="texto">
+        <h1><span class="reg l1" data-t="Todo el color,"><span>Todo el color,</span></span><span class="reg l2" data-t="toda la calidad"><span>toda la calidad</span></span></h1>
+        <p class="bajada sube">Imprenta digital y offset, gran formato, rotulación, stands y grabado láser en Madrid. Desde una sola unidad hasta la tirada grande.</p>
+        <div class="botones sube">
+          <button type="button" class="btn" data-ir="presupuesto">Pedir presupuesto <span class="flecha">→</span></button>
+          <button type="button" class="btn claro" data-ir="impresion">Ver lo que hacemos</button>
+        </div>
+      </div>
+      <div class="carta" aria-hidden="true">
+        <i style="--sw:#BCD63C"></i><i style="--sw:#68BD45"></i><i style="--sw:#00B04D"></i>
+        <i style="--sw:#9ACBD9"></i><i style="--sw:#00B8C3"></i><i style="--sw:#00A7BD"></i>
+        <i style="--sw:#F7EC36"></i><i style="--sw:#FDCF82"></i><i style="--sw:#FAB42A"></i>
+        <i style="--sw:#EE2724"></i><i style="--sw:#F26E6A"></i><i style="--sw:#F0A8CA"></i>
+        <i style="--sw:#EC2C91"></i><i style="--sw:#742B90"></i><i style="--sw:#221E53"></i>
+        <i style="--sw:#00B5EA"></i><i style="--sw:#99B4DE"></i><i style="--sw:#00609C"></i>
+      </div>
+    </div>
+    <div class="pie-portada sube"><span><strong>C/ Valentín Beato 11</strong><span class="largo"> · 28037 Madrid · Metro Suanzes</span></span><span><strong>91 371 76 42</strong></span></div>
+  </div></div>
+</section>
+
+<!-- 02 · impresión -->
+<section class="pl" id="impresion" style="--ac:var(--c)">
+  <div class="hoja"><div class="pliego">
+    <i class="corte si"></i><i class="corte sd"></i><i class="corte ii"></i><i class="corte id"></i>
+    <div class="control"><span class="n"><b></b>Pliego 02/09 · Impresión</span><span class="tintas"><i></i><i></i><i></i><i></i><i></i></span><span class="registro" aria-hidden="true"></span></div>
+    <div class="cuerpo">
+      <div class="texto">
+        <p class="etiqueta sube">Digital y offset</p>
+        <h2><span class="reg" data-t="Digital para pocas, offset para muchas"><span>Digital para pocas, offset para muchas</span></span></h2>
+        <p class="sube">Con la digital hacemos tiradas muy cortas sin perder calidad, y cada ejemplar se puede corregir o personalizar. Para buzoneo y grandes cantidades, offset en pliego pequeño (35×50 cm) y grande (70×100 cm).</p>
+        <p class="corto sube">Encuadernamos en espiral, wire-o o grapa, y plastificamos, encapsulamos y montamos en cartón pluma.</p>
+        <ul class="fichas sube">
+          <li>Tarjetas de visita</li><li>Folletos</li><li>Catálogos</li><li>Flyers</li><li class="media">Invitaciones</li><li class="media">Papelería corporativa</li><li class="extra">Sobres</li><li class="extra">Carpetas</li><li class="extra">Adhesivo troquelado</li><li class="extra">Datos variables</li><li class="extra">Libros</li>
+        </ul>
+      </div>
+      <div class="pruebas g-impresion">
+        <figure class="prueba p1"><div class="marco contiene ph-impresion-folleto"><img src="assets/img/impresion-folleto.webp" width="673" height="533" alt="Folleto desplegable impreso en color" loading="lazy" decoding="async"></div><figcaption><b>Folleto</b><span>Digital</span></figcaption></figure>
+        <figure class="prueba p2"><div class="marco contiene ph-impresion-calendario"><img src="assets/img/impresion-calendario.webp" width="450" height="325" alt="Calendarios de sobremesa con espiral" loading="lazy" decoding="async"></div><figcaption><b>Calendarios</b><span>Wire-o</span></figcaption></figure>
+        <figure class="prueba p3"><div class="marco contiene ph-impresion-tarjeta"><img src="assets/img/impresion-tarjeta.webp" width="283" height="177" alt="Tarjeta de visita" loading="lazy" decoding="async"></div><figcaption><b>Tarjetas</b><span>Papelería</span></figcaption></figure>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 03 · gran formato -->
+<section class="pl" id="gran-formato" style="--ac:var(--m)">
+  <div class="hoja"><div class="pliego">
+    <i class="corte si"></i><i class="corte sd"></i><i class="corte ii"></i><i class="corte id"></i>
+    <div class="control"><span class="n"><b></b>Pliego 03/09 · Gran formato y rotulación</span><span class="tintas"><i></i><i></i><i></i><i></i><i></i></span><span class="registro" aria-hidden="true"></span></div>
+    <div class="cuerpo al-reves">
+      <div class="texto">
+        <p class="etiqueta sube">Gran formato y rotulación</p>
+        <h2><span class="reg" data-t="En tamaño, el límite lo pones tú"><span>En tamaño, el límite lo pones tú</span></span></h2>
+        <p class="sube">La rotulación de una furgoneta, la decoración de un restaurante, el escaparate de una tienda o un mural que recorra el hall de un hotel. Vinilos, lonas, cartelería y letras corpóreas, con acabados que aguantan.</p>
+        <ul class="fichas sube">
+          <li>Murales</li><li>Vinilos</li><li>Lonas</li><li>Vehículos</li><li class="media">Escaparates</li><li class="media">Cartelería</li><li class="extra">Decoración</li><li class="extra">Letras corpóreas</li>
+        </ul>
+      </div>
+      <div class="pruebas g-gran">
+        <figure class="prueba p1"><div class="marco ph-gran-mural"><img src="assets/img/gran-mural.webp" width="1400" height="1046" alt="Mural fotográfico de una calle de Madrid cubriendo una pared entera" loading="lazy" decoding="async"></div><figcaption><b>Mural de pared</b><span>Gran formato</span></figcaption></figure>
+        <figure class="prueba p2"><div class="marco ph-gran-coche"><img src="assets/img/gran-coche.webp" width="537" height="401" alt="Furgoneta blanca rotulada con el logotipo de una empresa" loading="lazy" decoding="async"></div><figcaption><b>Vehículo</b><span>Vinilo</span></figcaption></figure>
+        <figure class="prueba p3"><div class="marco ph-gran-vinilo"><img src="assets/img/gran-vinilo.webp" width="406" height="304" alt="Cristalera decorada con vinilo de colores" loading="lazy" decoding="async"></div><figcaption><b>Cristalera</b><span>Decoración</span></figcaption></figure>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 04 · señalética -->
+<section class="pl" id="senaletica" style="--ac:var(--y)" data-oscuro>
+  <div class="hoja"><div class="pliego">
+    <i class="corte si"></i><i class="corte sd"></i><i class="corte ii"></i><i class="corte id"></i>
+    <div class="control"><span class="n"><b></b>Pliego 04/09 · Señalética</span><span class="tintas"><i></i><i></i><i></i><i></i><i></i></span><span class="registro" aria-hidden="true"></span></div>
+    <div class="cuerpo">
+      <div class="texto">
+        <p class="etiqueta sube">Señalética y directorios</p>
+        <h2><span class="reg" data-t="Para que nadie se pierda"><span>Para que nadie se pierda</span></span></h2>
+        <p class="sube">Somos especialistas en señalética y directorios: rótulos de planta, señalización de suelo, placas y directorios de edificio, del diseño a la instalación.</p>
+        <ul class="fichas sube">
+          <li>Directorios</li><li>Señalización de suelo</li><li>Placas</li><li class="media">Rótulos de planta</li><li class="extra">Metacrilato</li><li class="extra">Instalación</li>
+        </ul>
+      </div>
+      <div class="pruebas g-senal">
+        <figure class="prueba p1"><div class="marco ph-senal-barajas"><img src="assets/img/senal-barajas.webp" width="897" height="673" alt="Mostradores de un aeropuerto con carteles amarillos de información colgados del techo" loading="lazy" decoding="async"></div><figcaption><b>Señales colgadas</b><span>Aeropuerto</span></figcaption></figure>
+        <figure class="prueba p2"><div class="marco ph-senal-suelo"><img src="assets/img/senal-suelo.webp" width="410" height="549" alt="Pasillo amarillo de acceso exclusivo pintado en el suelo con pictogramas" loading="lazy" decoding="async"></div><figcaption><b>Suelo</b><span>Vinilo</span></figcaption></figure>
+        <figure class="prueba p3"><div class="marco ph-senal-directorio"><img src="assets/img/senal-directorio.webp" width="376" height="556" alt="Directorio de empresas por plantas en placas metálicas" loading="lazy" decoding="async"></div><figcaption><b>Directorio</b><span>Placas</span></figcaption></figure>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 05 · ferias y PLV -->
+<section class="pl" id="ferias" style="--ac:var(--verde)">
+  <div class="hoja"><div class="pliego">
+    <i class="corte si"></i><i class="corte sd"></i><i class="corte ii"></i><i class="corte id"></i>
+    <div class="control"><span class="n"><b></b>Pliego 05/09 · Ferias, eventos y PLV</span><span class="tintas"><i></i><i></i><i></i><i></i><i></i></span><span class="registro" aria-hidden="true"></span></div>
+    <div class="cuerpo al-reves">
+      <div class="texto">
+        <p class="etiqueta sube">Ferias, eventos y PLV</p>
+        <h2><span class="reg" data-t="Mostrar y vender sin necesidad de hablar"><span>Mostrar y vender sin necesidad de hablar</span></span></h2>
+        <p class="sube">Diseñamos y construimos stands de cualquier tamaño, y nos encargamos de la producción, el transporte, el montaje y el desmontaje. Y todo lo que vende en el punto de venta: roll-ups, photocalls, mostradores y expositores.</p>
+        <ul class="fichas sube">
+          <li>Stands</li><li>Roll-up</li><li>Photocall</li><li class="media">Mostradores</li><li class="extra">Congresos</li><li class="extra">Exposiciones</li><li class="extra">Montaje</li>
+        </ul>
+      </div>
+      <div class="pruebas g-ferias">
+        <figure class="prueba p1"><div class="marco ph-ferias-checkin"><img src="assets/img/ferias-checkin.webp" width="842" height="630" alt="Banderolas impresas colgadas en el pasillo de una feria" loading="lazy" decoding="async"></div><figcaption><b>Banderolas</b><span>Feria</span></figcaption></figure>
+        <figure class="prueba p2"><div class="marco ph-ferias-rollup"><img src="assets/img/ferias-rollup.webp" width="215" height="497" alt="Roll-up de la Semana Gótica de Madrid" loading="lazy" decoding="async"></div><figcaption><b>Roll-up</b></figcaption></figure>
+        <figure class="prueba p3"><div class="marco ph-ferias-stand"><img src="assets/img/ferias-stand.webp" width="432" height="374" alt="Stand de feria en rojo y blanco con un coche en exposición" loading="lazy" decoding="async"></div><figcaption><b>Stand</b><span>Feria</span></figcaption></figure>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 06 · trabajos especiales -->
+<section class="pl" id="especiales" style="--ac:var(--naranja)">
+  <div class="hoja"><div class="pliego">
+    <i class="corte si"></i><i class="corte sd"></i><i class="corte ii"></i><i class="corte id"></i>
+    <div class="control"><span class="n"><b></b>Pliego 06/09 · Trabajos especiales</span><span class="tintas"><i></i><i></i><i></i><i></i><i></i></span><span class="registro" aria-hidden="true"></span></div>
+    <div class="cuerpo">
+      <div class="texto">
+        <p class="etiqueta sube">Láser, metacrilato y prototipos</p>
+        <h2><span class="reg" data-t="El detalle marca la diferencia"><span>El detalle marca la diferencia</span></span></h2>
+        <p class="sube">Grabamos con láser madera, cartón, vidrio y metacrilato, incluso piezas de fruta. Cortamos y plegamos metacrilato, hacemos sellos y letras corpóreas y, si vas a hacer una tirada grande, te construimos antes un prototipo lo más real posible.</p>
+        <ul class="fichas sube">
+          <li>Grabado láser</li><li>Metacrilato</li><li>Prototipos</li><li class="media">Sellos</li><li class="extra">Serigrafía</li><li class="extra">Merchandising</li>
+        </ul>
+      </div>
+      <div class="pruebas g-especial">
+        <figure class="prueba p1"><div class="marco ph-especial-laser"><img src="assets/img/especial-laser.webp" width="475" height="357" alt="Máquina de grabado láser cortando una caja de metacrilato" loading="lazy" decoding="async"></div><figcaption><b>Láser</b><span>Metacrilato</span></figcaption></figure>
+        <figure class="prueba p2"><div class="marco ph-especial-frascos"><img src="assets/img/especial-frascos.webp" width="425" height="317" alt="Frascos de cristal grabados con láser" loading="lazy" decoding="async"></div><figcaption><b>Vidrio</b><span>Grabado</span></figcaption></figure>
+        <figure class="prueba p3"><div class="marco contiene ph-especial-avda"><img src="assets/img/especial-avda.webp" width="332" height="155" alt="Letras corpóreas metálicas" loading="lazy" decoding="async"></div><figcaption><b>Letras corpóreas</b></figcaption></figure>
+        <figure class="prueba p4"><div class="marco contiene ph-especial-sellos"><img src="assets/img/especial-sellos.webp" width="470" height="342" alt="Sellos de madera y automáticos" loading="lazy" decoding="async"></div><figcaption><b>Sellos</b></figcaption></figure>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 07 · diseño -->
+<section class="pl diseno" id="diseno" style="--ac:var(--morado)">
+  <div class="hoja"><div class="pliego">
+    <i class="corte si"></i><i class="corte sd"></i><i class="corte ii"></i><i class="corte id"></i>
+    <div class="control"><span class="n"><b></b>Pliego 07/09 · Diseño gráfico</span><span class="tintas"><i></i><i></i><i></i><i></i><i></i></span><span class="registro" aria-hidden="true"></span></div>
+    <div class="cuerpo">
+      <div class="texto">
+        <p class="etiqueta sube">Diseño gráfico</p>
+        <h2><span class="reg" data-t="Del boceto al arte final"><span>Del boceto al arte final</span></span></h2>
+        <p class="sube">Un buen resultado empieza por un diseño bien planteado. Boceteamos, maquetamos folletos, papelería, libros y carteles, y preparamos los artes finales para que salgan bien de máquina. También diseñamos piezas grandes: stands, mostradores y señalética.</p>
+        <ul class="fichas sube">
+          <li>Imagen corporativa</li><li>Logotipos</li><li>Maquetación</li><li class="media">Ilustración</li><li class="extra">Artes finales</li>
+        </ul>
+        <p class="socios sube"><b>Para agencias y estudios.</b> Somos el apoyo de producción de agencias de publicidad, estudios de diseño, decoración y arquitectura. Trabajamos codo con codo con ellos.</p>
+      </div>
+      <div class="grande" aria-hidden="true">
+        <svg viewBox="-1 -1 54.567 37.594"><path d="M0,0L0.266,0C2.615,0 4.776,0.985 6.747,2.957C8.719,4.928 9.704,7.613 9.704,11.012L9.704,24.582C9.704,27.981 8.719,30.666 6.747,32.637C4.776,34.608 2.615,35.594 0.266,35.594L0,35.594L0,32.354C2.147,32.101 3.222,31.021 3.222,29.111L3.241,6.482C3.241,4.562 2.16,3.48 0,3.24Z"/><path d="M52.567,35.594L52.301,35.594C49.952,35.594 47.791,34.609 45.82,32.637C43.848,30.666 42.863,27.982 42.863,24.582L42.863,11.012C42.863,7.614 43.848,4.928 45.82,2.957C47.791,0.986 49.952,0 52.301,0L52.567,0L52.567,3.24C50.407,3.494 49.326,4.574 49.326,6.483L49.326,29.112C49.326,31.033 50.407,32.114 52.567,32.354Z"/><path d="M23.468,12.922L23.468,2.811L29.1,2.811L29.1,12.922L37.862,7.883L40.661,12.725L31.9,17.797L40.661,22.869L37.862,27.711L29.068,22.672L29.068,32.783L23.468,32.783L23.468,22.672L14.706,27.711L11.906,22.869L20.668,17.797L11.906,12.725L14.706,7.883Z"/></svg>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 08 · presupuesto -->
+<section class="pl presupuesto" id="presupuesto" style="--ac:var(--rojo)">
+  <div class="hoja"><div class="pliego">
+    <i class="corte si"></i><i class="corte sd"></i><i class="corte ii"></i><i class="corte id"></i>
+    <div class="control"><span class="n"><b></b>Pliego 08/09 · Presupuesto</span><span class="tintas"><i></i><i></i><i></i><i></i><i></i></span><span class="registro" aria-hidden="true"></span></div>
+    <div class="cuerpo">
+      <div class="texto">
+        <p class="etiqueta sube">Presupuesto sin compromiso</p>
+        <h2><span class="reg" data-t="Cuéntanos qué quieres imprimir"><span>Cuéntanos qué quieres imprimir</span></span></h2>
+        <p class="sube">Te asesoramos y te damos precio. Llámanos o escríbenos.</p>
+        <div class="contacto sube">
+          <a class="dato tel" href="tel:+34913717642" data-tel="91 371 76 42"><small>Teléfono</small><strong>91 371 76 42</strong></a>
+          <a class="dato mail" href="mailto:comercial@comunicacion-global.com" data-mail="comercial@comunicacion-global.com"><small>Correo</small><strong>comercial@comunicacion-global.com</strong></a>
+        </div>
+      </div>
+      <div class="orden sube">
+        <div class="cab"><span>Orden de trabajo</span><i><b style="background:var(--c)"></b><b style="background:var(--m)"></b><b style="background:var(--y)"></b><b style="background:#fff"></b></i></div>
+        <ol>
+          <li><span>Qué pieza es<small>Folleto, lona, vinilo, stand, placa…</small></span></li>
+          <li><span>Medida y material<small>Si no lo sabes, te aconsejamos</small></span></li>
+          <li><span>Cuántas unidades<small>Desde una sola</small></span></li>
+          <li><span>Para cuándo<small>Fecha de entrega o de montaje</small></span></li>
+          <li><span>Si tienes ya el diseño<small>O si lo hacemos nosotros</small></span></li>
+        </ol>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 09 · cómo llegar -->
+<section class="pl llegar" id="como-llegar" style="--ac:var(--marino)">
+  <div class="hoja"><div class="pliego">
+    <i class="corte si"></i><i class="corte sd"></i><i class="corte ii"></i><i class="corte id"></i>
+    <div class="control"><span class="n"><b></b>Pliego 09/09 · Cómo llegar</span><span class="tintas"><i></i><i></i><i></i><i></i><i></i></span><span class="registro" aria-hidden="true"></span></div>
+    <div class="cuerpo al-reves">
+      <div class="texto">
+        <p class="etiqueta sube">Cómo llegar</p>
+        <h2><span class="reg" data-t="Valentín Beato 11, 1ºA"><span>Valentín Beato 11, 1ºA</span></span></h2>
+        <p class="sube">28037 Madrid, en el polígono de Julián Camarillo (Simancas), a tres minutos andando del metro.</p>
+        <ul class="transporte sube">
+          <li><span class="linea metro">5</span><span><b>Suanzes</b>, a 3 minutos. Torre Arias, a 10.</span></li>
+          <li><span class="linea bus">77</span><span>Autobuses <b>77, 104 y 105</b>, desde Ciudad Lineal. Nocturno N5.</span></li>
+        </ul>
+        <p class="pie sube">© Comunicación Global Gráfica, S.L. · Madrid</p>
+      </div>
+      <div class="mapa-caja">
+        <a class="mapa" href="https://www.google.com/maps/dir/?api=1&amp;destination=Calle+de+Valent%C3%ADn+Beato+11%2C+28037+Madrid" target="_blank" rel="noopener" aria-label="Abrir la ruta en Google Maps">
+          <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-3.6318676%2C40.4365253%2C-3.6198676%2C40.4425253&amp;layer=mapnik" title="Mapa de la zona de Valentín Beato, en Madrid" loading="lazy" tabindex="-1"></iframe>
+          <span class="pin" aria-hidden="true"><b>CGG</b><i></i></span>
+          <span class="credito">© OpenStreetMap</span>
+          <span class="btn chico ruta">Cómo llegar <span class="flecha">→</span></span>
+        </a>
+      </div>
+    </div>
+  </div></div>
+</section>
+</main>
+
+<!-- carta de color: el menú -->
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menú">
+  <button type="button" class="b-menu cerrar"><span>Cerrar ✕</span></button>
+  <div class="rejilla">
+    <button type="button" class="chip" data-ir="portada" style="--sw:var(--azul)"><span class="tono"></span><span class="nombre"><small>CGG 01</small>Portada</span></button>
+    <button type="button" class="chip" data-ir="impresion" style="--sw:var(--c)"><span class="tono"></span><span class="nombre"><small>CGG 02</small>Impresión</span></button>
+    <button type="button" class="chip" data-ir="gran-formato" style="--sw:var(--m)"><span class="tono"></span><span class="nombre"><small>CGG 03</small>Gran formato</span></button>
+    <button type="button" class="chip" data-ir="senaletica" style="--sw:var(--y)"><span class="tono"></span><span class="nombre"><small>CGG 04</small>Señalética</span></button>
+    <button type="button" class="chip" data-ir="ferias" style="--sw:var(--verde)"><span class="tono"></span><span class="nombre"><small>CGG 05</small>Ferias y PLV</span></button>
+    <button type="button" class="chip" data-ir="especiales" style="--sw:var(--naranja)"><span class="tono"></span><span class="nombre"><small>CGG 06</small>Trabajos especiales</span></button>
+    <button type="button" class="chip" data-ir="diseno" style="--sw:var(--morado)"><span class="tono"></span><span class="nombre"><small>CGG 07</small>Diseño gráfico</span></button>
+    <button type="button" class="chip" data-ir="presupuesto" style="--sw:var(--rojo)"><span class="tono"></span><span class="nombre"><small>CGG 08</small>Presupuesto</span></button>
+    <button type="button" class="chip" data-ir="como-llegar" style="--sw:var(--marino)"><span class="tono"></span><span class="nombre"><small>CGG 09</small>Cómo llegar</span></button>
+  </div>
+</div>
+
+<!-- ficha de contacto, para el ordenador -->
+<div class="ficha" id="ficha" role="dialog" aria-modal="true" aria-labelledby="ficha-t" style="--ac:var(--rojo)">
+  <div class="caja">
+    <button type="button" class="x">Cerrar ✕</button>
+    <h3 id="ficha-t">Pide tu presupuesto</h3>
+    <p>Llámanos o escríbenos con la pieza, la medida, las unidades y la fecha.</p>
+    <div class="fila"><span><small>Teléfono</small><strong>91 371 76 42</strong></span><button type="button" class="copiar" data-copiar="913717642">Copiar</button></div>
+    <div class="fila"><span><small>Correo</small><strong>comercial@comunicacion-global.com</strong></span><button type="button" class="copiar" data-copiar="comercial@comunicacion-global.com">Copiar</button></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var reducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var secciones = [].slice.call(document.querySelectorAll('.pl'));
+  var tira = [].slice.call(document.querySelectorAll('.tira button'));
+  var chips = [].slice.call(document.querySelectorAll('.menu .chip'));
+  var menu = document.getElementById('menu'), bMenu = document.querySelector('.barra .b-menu');
+  var ficha = document.getElementById('ficha');
+  var esTelefono = /Android.*Mobile|iPhone|iPod|Windows Phone/i.test(navigator.userAgent);
+
+  /* ---- desplazamiento propio (botones, no enlaces #) ---- */
+  var anim = null;
+  function cancelar() { if (anim) { cancelAnimationFrame(anim); anim = null; } }
+  ['wheel', 'touchstart', 'keydown'].forEach(function (ev) { window.addEventListener(ev, cancelar, { passive: true }); });
+  function irA(id) {
+    var el = document.getElementById(id); if (!el) return;
+    var destino = el.getBoundingClientRect().top + window.pageYOffset;
+    var desde = window.pageYOffset, dist = destino - desde;
+    if (reducido || Math.abs(dist) < 2) { window.scrollTo(0, destino); return; }
+    var dur = Math.min(2000, Math.max(900, Math.abs(dist) * 0.35)), t0 = null;
+    cancelar();
+    function paso(t) {
+      if (t0 === null) t0 = t;
+      var p = Math.min(1, (t - t0) / dur);
+      var e = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+      window.scrollTo(0, desde + dist * e);
+      if (p < 1) anim = requestAnimationFrame(paso); else anim = null;
+    }
+    anim = requestAnimationFrame(paso);
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-ir]'); if (!b) return;
+    e.preventDefault();
+    var id = b.getAttribute('data-ir');
+    if (menu.classList.contains('abierto')) { cerrarMenu(); setTimeout(function () { irA(id); }, 260); }
+    else irA(id);
+  });
+
+  /* ---- menú: carta de color ---- */
+  chips.forEach(function (c, i) { c.style.transitionDelay = (i * 45) + 'ms'; });
+  function abrirMenu() { menu.classList.add('abierto'); bMenu.setAttribute('aria-expanded', 'true'); setTimeout(function () { var a = menu.querySelector('.chip.actual') || chips[0]; a.focus({ preventScroll: true }); }, 60); }
+  function cerrarMenu() { menu.classList.remove('abierto'); bMenu.setAttribute('aria-expanded', 'false'); bMenu.focus({ preventScroll: true }); }
+  bMenu.addEventListener('click', function () { menu.classList.contains('abierto') ? cerrarMenu() : abrirMenu(); });
+  menu.querySelector('.cerrar').addEventListener('click', cerrarMenu);
+  menu.addEventListener('click', function (e) { if (e.target === menu) cerrarMenu(); });
+
+  /* ---- ficha de contacto en el ordenador (tel: y mailto: no hacen nada ahí) ---- */
+  function abrirFicha() { ficha.classList.add('abierta'); ficha.querySelector('.x').focus({ preventScroll: true }); }
+  function cerrarFicha() { ficha.classList.remove('abierta'); }
+  if (!esTelefono) {
+    [].forEach.call(document.querySelectorAll('a[href^="tel:"], a[href^="mailto:"]'), function (a) {
+      a.removeAttribute('href'); a.setAttribute('role', 'button'); a.setAttribute('tabindex', '0'); a.style.cursor = 'pointer';
+      a.addEventListener('click', abrirFicha);
+      a.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrirFicha(); } });
+    });
+  }
+  ficha.querySelector('.x').addEventListener('click', cerrarFicha);
+  ficha.addEventListener('click', function (e) { if (e.target === ficha) cerrarFicha(); });
+  [].forEach.call(ficha.querySelectorAll('[data-copiar]'), function (b) {
+    b.addEventListener('click', function () {
+      var dato = b.getAttribute('data-copiar');
+      function hecho() { b.textContent = 'Copiado'; b.classList.add('hecho'); setTimeout(function () { b.textContent = 'Copiar'; b.classList.remove('hecho'); }, 1800); }
+      function aMano() {
+        var t = document.createElement('textarea'); t.value = dato; t.setAttribute('readonly', '');
+        t.style.position = 'fixed'; t.style.opacity = '0'; document.body.appendChild(t); t.select();
+        var ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(t); if (ok) hecho();
+      }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(dato).then(hecho, aMano); else aMano();
+    });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    if (ficha.classList.contains('abierta')) cerrarFicha();
+    else if (menu.classList.contains('abierto')) cerrarMenu();
+  });
+
+  /* ---- trazo de la marca grande (diseño) ---- */
+  [].forEach.call(document.querySelectorAll('.grande path'), function (p) {
+    try { p.style.setProperty('--l', Math.ceil(p.getTotalLength()) + 1); } catch (e) {}
+  });
+
+  /* ---- entradas: solo lo que está por debajo de la pantalla ---- */
+  var marcos = [].slice.call(document.querySelectorAll('.marco'));
+  if (!reducido && 'IntersectionObserver' in window) {
+    var alto = window.innerHeight;
+    secciones.forEach(function (s) {
+      if (s.getBoundingClientRect().top > alto * 0.6) {
+        s.classList.add('pre');
+        [].forEach.call(s.querySelectorAll('.marco'), function (m) { m.classList.add('espera'); });
+      }
+      /* escalones de 120 ms dentro de cada pliego */
+      [].forEach.call(s.querySelectorAll('.sube, .reg'), function (el, i) {
+        var d = (i * 120) + 'ms';
+        if (el.classList.contains('reg')) el.style.setProperty('--d', d);
+        else el.style.transitionDelay = d;
+      });
+      [].forEach.call(s.querySelectorAll('.carta i'), function (el, i) { el.style.transitionDelay = (300 + i * 40) + 'ms'; });
+    });
+    var io = new IntersectionObserver(function (ents) {
+      ents.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var s = en.target; io.unobserve(s);
+        s.classList.remove('pre');
+        [].forEach.call(s.querySelectorAll('.marco.espera'), function (m, i) { revelar(m, 250 + i * 160); });
+        setTimeout(function () { [].forEach.call(s.querySelectorAll('.sube,.reg'), function (el) { el.style.transitionDelay = ''; el.style.removeProperty('--d'); }); }, 2500);
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -30% 0px' });
+    secciones.forEach(function (s) { if (s.classList.contains('pre')) io.observe(s); });
+  }
+  /* una foto se «imprime» solo cuando ya está descodificada; hasta entonces, su marcador */
+  function revelar(m, retraso) {
+    var img = m.querySelector('img');
+    function va() {
+      setTimeout(function () {
+        m.style.setProperty('--anchura', (m.clientWidth + 8) + 'px');
+        m.classList.add('pasa'); m.classList.remove('espera');
+      }, retraso);
+    }
+    if (img.complete && img.naturalWidth) { (img.decode ? img.decode() : Promise.resolve()).then(va, va); }
+    else { img.loading = 'eager'; img.addEventListener('load', function () { (img.decode ? img.decode() : Promise.resolve()).then(va, va); }, { once: true }); img.addEventListener('error', va, { once: true }); }
+  }
+
+  /* ---- al bajar: pliego activo en la tira y paralaje suave de las fotos ---- */
+  var activo = -1, pendiente = false;
+  function alBajar() {
+    pendiente = false;
+    var h = window.innerHeight, idx = 0;
+    for (var i = 0; i < secciones.length; i++) { if (secciones[i].getBoundingClientRect().top <= h * 0.45) idx = i; }
+    if (idx !== activo) {
+      activo = idx;
+      tira.forEach(function (b, i) { b.classList.toggle('activa', i === idx); if (i === idx) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current'); });
+      chips.forEach(function (c, i) { c.classList.toggle('actual', i === idx); });
+    }
+    if (reducido) return;
+    for (var k = 0; k < marcos.length; k++) {
+      var r = marcos[k].getBoundingClientRect();
+      if (r.bottom < -50 || r.top > h + 50) continue;
+      var c = (r.top + r.height / 2 - h / 2) / h;
+      marcos[k].firstElementChild.style.setProperty('--py', (c * -22).toFixed(1) + 'px');
+    }
+  }
+  window.addEventListener('scroll', function () { if (!pendiente) { pendiente = true; requestAnimationFrame(alBajar); } }, { passive: true });
+  window.addEventListener('resize', alBajar);
+  alBajar();
+
+  window.__animOk = true;
+})();
+</script>
+</body>
+</html>
