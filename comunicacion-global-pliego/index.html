@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#00609C">
 <script>
   /* Todo se ve sin JavaScript. El guion del final solo esconde lo que está por
-     debajo de la pantalla (clase «pre») para imprimirlo al llegar. Si no llega a
+     debajo de la pantalla (clase «pre») para enseñarlo al llegar. Si no llega a
      marcar window.__animOk, se quita «js» y la página queda entera y quieta. */
   document.documentElement.classList.add('js');
   document.addEventListener('DOMContentLoaded', function () {
@@ -24,20 +24,20 @@
   --tinta:#16202E;
   --gris:#5B6573;
   --papel:#FFFFFF;
-  --mesa:#E9ECEF;
-  --linea:#C9CFD6;
+  --mesa:#F1F3F5;
+  --linea:#D3D8DE;
   /* cuatricromía y la carta de color de su dossier */
   --c:#00B5EA; --m:#EC2C91; --y:#F7EC36; --k:#16202E;
-  --rojo:#EE2724; --verde:#00B04D; --naranja:#FAB42A; --morado:#742B90; --marino:#221E53; --lima:#BCD63C;
+  --rojo:#EE2724; --verde:#00B04D; --naranja:#FAB42A; --morado:#742B90; --marino:#221E53;
   --ac:var(--azul);
-  --barra:56px;
+  --barra:58px;
   --sans:'Figtree', 'Avenir Next', Avenir, 'Segoe UI', system-ui, sans-serif;
   --mono:'Fira Mono', 'Andale Mono', Consolas, ui-monospace, monospace;
-  --suave:cubic-bezier(.2,.7,.1,1);
+  --suave:cubic-bezier(.22,.61,.36,1);
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--mesa);color:var(--tinta);font:400 17px/1.5 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{margin:0;background:var(--papel);color:var(--tinta);font:400 17px/1.5 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%}
 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
 a{color:inherit}
@@ -47,208 +47,153 @@ a{color:inherit}
 
 /* ---------- barra: logo · tira de control de color · presupuesto · menú ---------- */
 .barra{position:fixed;inset:0 0 auto 0;height:var(--barra);z-index:40;display:flex;align-items:center;gap:18px;
-  padding:0 max(20px,env(safe-area-inset-right)) 0 max(20px,env(safe-area-inset-left));background:var(--mesa)}
-.barra .logo{display:flex;align-items:center;gap:12px;color:var(--azul);text-decoration:none;flex:none}
-.barra .logo svg{display:block;height:30px;width:auto;fill:currentColor}
+  padding:0 max(24px,env(safe-area-inset-right)) 0 max(24px,env(safe-area-inset-left));background:rgba(255,255,255,.94);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--linea)}
+.barra .logo{display:flex;align-items:center;color:var(--azul);flex:none}
+.barra .logo svg{display:block;width:auto;fill:currentColor}
 .barra .logo .completo{height:28px}
-.barra .logo .marca{height:24px;display:none}
-.tira{flex:1;display:flex;justify-content:center;align-items:center;gap:4px;min-width:0}
-.tira button{position:relative;width:14px;height:14px;background:var(--sw);opacity:.32;transform:scale(.78);
-  transition:opacity .5s, transform .5s var(--suave), width .5s var(--suave)}
-.tira button.activa{opacity:1;transform:none;width:30px}
-.tira button:hover{opacity:1;transform:none}
-.tira button span{position:absolute;left:50%;top:calc(100% + 8px);transform:translate(-50%,-4px);white-space:nowrap;
+.barra .logo .marca{height:22px;display:none}
+.tira{flex:1;display:flex;justify-content:center;align-items:center;gap:5px;min-width:0}
+.tira button{position:relative;width:16px;height:16px;background:var(--sw);opacity:.3;transition:opacity .4s, width .4s var(--suave)}
+.tira button.activa{opacity:1;width:34px}
+.tira button:hover{opacity:1}
+.tira button span{position:absolute;left:50%;top:calc(100% + 10px);transform:translateX(-50%);white-space:nowrap;
   font:500 11px/1 var(--mono);letter-spacing:.04em;color:var(--tinta);background:var(--papel);padding:6px 8px;
-  opacity:0;pointer-events:none;transition:opacity .3s, transform .3s var(--suave);box-shadow:0 1px 0 var(--linea)}
-.tira button:hover span,.tira button:focus-visible span{opacity:1;transform:translate(-50%,0)}
-.barra .acciones{display:flex;align-items:center;gap:10px;flex:none}
+  border:1px solid var(--linea);opacity:0;pointer-events:none;transition:opacity .25s}
+.tira button:hover span,.tira button:focus-visible span{opacity:1}
+.barra .acciones{display:flex;align-items:center;gap:12px;flex:none}
 
-/* botones: al pasar, la tinta «se sale de registro» */
-.btn{display:inline-flex;align-items:center;gap:10px;font:700 15px/1 var(--sans);letter-spacing:.01em;text-decoration:none;
-  padding:13px 18px;background:var(--azul);color:#fff;box-shadow:0 0 0 var(--c),0 0 0 var(--m);
-  transition:box-shadow .35s var(--suave), transform .35s var(--suave)}
-.btn:hover,.btn:focus-visible{box-shadow:-3px -3px 0 var(--c),3px 3px 0 var(--m);transform:translate(0,-1px)}
-.btn.claro{background:var(--papel);color:var(--tinta);box-shadow:inset 0 0 0 1.5px var(--tinta),0 0 0 var(--c),0 0 0 var(--m)}
-.btn.claro:hover,.btn.claro:focus-visible{box-shadow:inset 0 0 0 1.5px var(--tinta),-3px -3px 0 var(--c),3px 3px 0 var(--m)}
+.btn{display:inline-flex;align-items:center;gap:10px;font:700 15px/1 var(--sans);text-decoration:none;
+  padding:13px 18px;background:var(--azul);color:#fff;transition:background .25s, color .25s, box-shadow .25s}
+.btn:hover,.btn:focus-visible{background:var(--tinta)}
+.btn.claro{background:var(--papel);color:var(--tinta);box-shadow:inset 0 0 0 1.5px var(--tinta)}
+.btn.claro:hover,.btn.claro:focus-visible{background:var(--tinta);color:#fff}
 .btn.chico{padding:10px 14px;font-size:14px}
-.btn .flecha{font-family:var(--mono);font-weight:500}
+.btn .flecha{font-family:var(--mono);font-weight:500;transition:transform .25s var(--suave)}
+.btn:hover .flecha{transform:translateX(3px)}
 .b-menu{display:flex;align-items:center;gap:8px;font:500 13px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:10px 4px}
 .b-menu i{display:grid;grid-template-columns:repeat(2,6px);gap:2px}
-.b-menu i b{width:6px;height:6px;background:var(--tinta);transition:background .3s}
-.b-menu:hover i b:nth-child(1){background:var(--c)}
-.b-menu:hover i b:nth-child(2){background:var(--m)}
-.b-menu:hover i b:nth-child(3){background:var(--y)}
+.b-menu i b{width:6px;height:6px;background:var(--tinta)}
 
-/* ---------- pliegos ---------- */
-main{counter-reset:pl}
-.pl{position:relative}
-.pl::after{content:"";display:block;height:55svh}          /* la pausa: lo fijo se queda aquí */
-.pl:last-of-type::after{height:0}
-.hoja{position:sticky;top:0;height:100svh;padding:calc(var(--barra) + 6px) 34px 30px}
-.pliego{position:relative;height:100%;background:var(--papel);box-shadow:0 1px 2px rgba(22,32,46,.06),0 18px 40px -24px rgba(22,32,46,.25);
-  display:flex;flex-direction:column;padding:18px clamp(20px,3.2vw,48px) clamp(20px,3vw,40px)}
-/* marcas de corte fuera del pliego */
-.corte{position:absolute;width:18px;height:18px;pointer-events:none}
-.corte::before,.corte::after{content:"";position:absolute;background:var(--tinta)}
-.corte::before{width:12px;height:1px}
-.corte::after{width:1px;height:12px}
-.corte.si{left:-22px;top:-22px}.corte.si::before{right:4px;bottom:0;left:auto;top:auto}.corte.si::after{right:0;bottom:4px}
-.corte.sd{right:-22px;top:-22px}.corte.sd::before{left:4px;bottom:0}.corte.sd::after{left:0;bottom:4px}
-.corte.ii{left:-22px;bottom:-22px}.corte.ii::before{right:4px;top:0}.corte.ii::after{right:0;top:4px}
-.corte.id{right:-22px;bottom:-22px}.corte.id::before{left:4px;top:0}.corte.id::after{left:0;top:4px}
-
-/* línea de control arriba de cada pliego */
+/* ---------- secciones: una pantalla cada una, seguidas ---------- */
+.pl{position:relative;min-height:100svh;display:flex;flex-direction:column;
+  padding:calc(var(--barra) + 22px) clamp(24px,4vw,64px) clamp(24px,4vh,44px);border-top:1px solid var(--linea)}
+.pl:first-of-type{border-top:0}
+.pl.gris{background:var(--mesa)}
+/* línea de control arriba de cada sección */
 .control{display:flex;align-items:center;justify-content:space-between;gap:16px;font:500 11px/1 var(--mono);letter-spacing:.06em;
-  text-transform:uppercase;color:var(--gris);padding-bottom:14px;border-bottom:1px solid var(--linea);flex:none}
+  text-transform:uppercase;color:var(--gris);flex:none}
 .control .n{color:var(--tinta);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .control .n b{display:inline-block;width:9px;height:9px;background:var(--ac);margin-right:8px;vertical-align:-1px}
-.control .tintas{display:flex;gap:3px}
+.control .tintas{display:flex;gap:3px;flex:none}
 .control .tintas i{width:9px;height:9px}
 .control .tintas i:nth-child(1){background:var(--c)}
 .control .tintas i:nth-child(2){background:var(--m)}
 .control .tintas i:nth-child(3){background:var(--y)}
 .control .tintas i:nth-child(4){background:var(--k)}
-.control .tintas i:nth-child(5){background:var(--ac);margin-left:6px}
-.registro{width:18px;height:18px;border:1px solid var(--tinta);border-radius:50%;position:relative;flex:none}
-.registro::before,.registro::after{content:"";position:absolute;background:var(--tinta)}
-.registro::before{left:50%;top:-4px;bottom:-4px;width:1px}
-.registro::after{top:50%;left:-4px;right:-4px;height:1px}
 
-.cuerpo{flex:1;min-height:0;display:grid;grid-template-rows:minmax(0,1fr);grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,64px);align-items:center;padding-top:clamp(14px,2.4vh,30px)}
+.cuerpo{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,72px);align-items:center;padding-top:clamp(16px,3vh,36px)}
 .cuerpo.al-reves{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
 .cuerpo.al-reves .texto{order:2}
 .texto{min-width:0}
 .etiqueta{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ac);margin:0 0 14px}
-.pl[data-oscuro] .etiqueta{color:var(--tinta)}
 h1,h2{font-family:var(--sans);font-weight:900;letter-spacing:-.025em;margin:0;color:var(--tinta)}
-h2{font-size:clamp(30px,3.6vw,56px);line-height:1}
-.texto p{margin:16px 0 0;max-width:34em;color:#2C3644}
-.texto p.corto{font-size:16px}
-.fichas{display:flex;flex-wrap:wrap;gap:6px;margin:20px 0 0;padding:0;list-style:none}
-.fichas li{font:500 12.5px/1 var(--mono);padding:8px 10px;border:1px solid var(--linea);
-  background:linear-gradient(var(--ac),var(--ac)) no-repeat 0 100%/100% 0;transition:background-size .35s var(--suave), color .35s, border-color .35s}
-.fichas li:hover{background-size:100% 100%;color:#fff;border-color:var(--ac)}
-.pl[data-oscuro] .fichas li:hover{color:var(--tinta)}
+h2{font-size:clamp(32px,3.6vw,56px);line-height:1}
+.texto>p{margin:16px 0 0;max-width:34em;color:#2C3644}
 
-/* registro: los titulares se imprimen por pasadas (cian, magenta y luego la tinta) */
-.reg{position:relative;display:block}
-.reg::before,.reg::after{content:attr(data-t);position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:0;
-  transition:transform 1.3s var(--suave) var(--d,0s), opacity 1.1s ease calc(var(--d,0s) + .25s)}
-.reg::before{color:var(--c)}
-.reg::after{color:var(--m)}
-.reg>span{display:block;transition:opacity .9s ease calc(var(--d,0s) + .45s)}
-.js .pre .reg::before{opacity:.95;transform:translate(-.07em,.045em);transition:none}
-.js .pre .reg::after{opacity:.95;transform:translate(.06em,-.035em);transition:none}
-.js .pre .reg>span{opacity:0;transition:none}
+/* dos servicios por sección, cada uno con su cuadro de color */
+.servicios{display:grid;grid-template-columns:1fr 1fr;gap:18px 28px;margin:24px 0 0}
+.servicio h3{display:flex;align-items:center;gap:9px;margin:0 0 6px;font:800 18px/1.15 var(--sans);letter-spacing:-.01em}
+.servicio h3::before{content:"";width:11px;height:11px;flex:none;background:var(--sw,var(--ac))}
+.servicio p{margin:0;font-size:15px;line-height:1.45;color:#2C3644}
+.servicio ul{list-style:none;margin:8px 0 0;padding:0;font:500 12px/1.6 var(--mono);color:var(--gris)}
+.servicio li{display:inline}
+.servicio li+li::before{content:" · "}
 
-/* el resto entra subiendo */
-.sube{transition:opacity 1.3s var(--suave), transform 1.3s var(--suave)}
-.js .pre .sube{opacity:0;transform:translateY(18px);transition:none}
+/* entradas suaves: suben un poco y aparecen */
+.sube{transition:opacity .9s var(--suave), transform .9s var(--suave)}
+.js .pre .sube{opacity:0;transform:translateY(14px);transition:none}
 
-/* pruebas de color: fotos con su pie */
-.pruebas{position:relative;min-width:0;height:100%;max-height:640px;display:grid;gap:14px;align-content:center}
-.prueba{margin:0;min-width:0;display:flex;flex-direction:column}
+/* fotos */
+.fotos{min-width:0;height:100%;max-height:660px;display:grid;gap:12px}
+.foto{margin:0;min-width:0;min-height:0;display:flex;flex-direction:column}
 .marco{position:relative;overflow:hidden;background:var(--mesa) var(--ph) center/cover no-repeat;flex:1;min-height:0}
-.marco img{width:100%;height:100%;object-fit:cover;transform:translateY(var(--py,0px)) scale(1.08);
-  transition:clip-path 1.25s var(--suave)}
+.marco img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 1s var(--suave), transform 1.4s var(--suave)}
+.marco.contiene{background:var(--papel)}
 .marco.contiene img{object-fit:contain;background:var(--papel)}
-.marco::after{content:"";position:absolute;top:0;bottom:0;left:0;width:3px;background:var(--ac);opacity:0;transform:translateX(-4px);pointer-events:none}
-.js .marco.espera img{clip-path:inset(0 100% 0 0)}
-.marco.pasa::after{animation:cabezal 1.25s var(--suave) forwards}
-@keyframes cabezal{0%{opacity:1;transform:translateX(-4px)}85%{opacity:1}100%{opacity:0;transform:translateX(var(--anchura,600px))}}
-.prueba figcaption{display:flex;justify-content:space-between;gap:12px;font:500 11px/1.3 var(--mono);letter-spacing:.04em;color:var(--gris);padding-top:8px;text-transform:uppercase}
-.prueba figcaption b{font-weight:500;color:var(--tinta)}
+.js .marco.espera img{opacity:0;transform:scale(1.04)}
+.foto figcaption{display:flex;justify-content:space-between;gap:12px;font:500 11px/1.3 var(--mono);letter-spacing:.04em;color:var(--gris);padding-top:7px;text-transform:uppercase}
+.foto figcaption b{font-weight:500;color:var(--tinta)}
+.foto:hover .marco img{transform:scale(1.03)}
 
-/* rejillas de pruebas, distintas en cada pliego */
-.g-impresion{grid-template-columns:minmax(0,3fr) minmax(0,2fr);grid-template-rows:minmax(0,1fr) minmax(0,1fr)}
-.g-impresion .p1{grid-row:1/3}
-.g-gran{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:minmax(0,2.2fr) minmax(0,1fr)}
-.g-gran .p1{grid-column:1/3}
-.g-senal{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
-.g-ferias{grid-template-columns:minmax(0,2fr) minmax(0,1fr);grid-template-rows:minmax(0,1.3fr) minmax(0,1fr)}
-.g-ferias .p1{grid-column:1/2;grid-row:1/2}
-.g-ferias .p2{grid-row:1/3}
-.g-especial{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:minmax(0,1.2fr) minmax(0,1fr)}
-.pruebas>.prueba{height:100%;min-height:0}
-.marco img{position:absolute;inset:0}
+.g-1{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:minmax(0,1.4fr) minmax(0,1fr)}
+.g-1 .f1{grid-column:1/3}
+.g-2{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);grid-template-rows:minmax(0,1.5fr) minmax(0,1fr)}
+.g-2 .f1{grid-column:1/3;grid-row:1}
+.g-2 .f2{grid-column:3;grid-row:1/3}
+.g-2 .f3{grid-column:1;grid-row:2}
+.g-2 .f4{grid-column:2;grid-row:2}
+.g-3{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:minmax(0,1.2fr) minmax(0,1fr)}
 
 /* ---------- portada ---------- */
-.portada .cuerpo{grid-template-columns:minmax(0,1fr) auto;align-items:end}
-.portada h1{font-size:clamp(54px,9.6vw,168px);line-height:.9;letter-spacing:-.04em}
-.portada h1 .l2>span{color:var(--azul)}
+.portada .cuerpo{grid-template-columns:minmax(0,1fr) auto;align-items:center}
+.portada h1{font-size:clamp(54px,9.4vw,164px);line-height:.92;letter-spacing:-.04em}
+.portada h1 span{display:block}
+.portada h1 .l2{color:var(--azul)}
 .portada .bajada{max-width:30em;font-size:clamp(17px,1.4vw,20px);margin:clamp(18px,3vh,32px) 0 0;color:#2C3644}
 .portada .botones{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(18px,3vh,30px)}
-.carta{display:grid;grid-template-columns:repeat(3,clamp(30px,3.6vw,54px));gap:6px;align-self:center}
-.carta i{aspect-ratio:1;background:var(--sw);transition:transform .9s var(--suave), opacity .9s}
-.js .pre .carta i{transform:scale(.2);opacity:0;transition:none}
+.carta{display:grid;grid-template-columns:repeat(3,clamp(30px,3.6vw,54px));gap:6px}
+.carta i{aspect-ratio:1;background:var(--sw);transition:opacity .7s var(--suave), transform .7s var(--suave)}
+.js .pre .carta i{opacity:0;transform:translateY(8px);transition:none}
 .portada .pie-portada{display:flex;justify-content:space-between;gap:20px;align-items:end;font:500 12px/1.4 var(--mono);color:var(--gris);
   text-transform:uppercase;letter-spacing:.05em;padding-top:16px;border-top:1px solid var(--linea);margin-top:clamp(16px,3vh,28px);flex:none}
 .portada .pie-portada strong{color:var(--tinta);font-weight:500}
 
-/* ---------- diseño (solo tipografía y la marca) ---------- */
-.diseno .cuerpo{grid-template-columns:minmax(0,6fr) minmax(0,5fr)}
-.diseno .grande{position:relative;align-self:stretch;display:flex;align-items:center;justify-content:center;min-height:0}
-.diseno .grande svg{width:100%;max-height:100%;height:auto;fill:none;stroke:var(--ac);stroke-width:.35;overflow:visible}
-.diseno .grande svg path{stroke-dasharray:var(--l,200);stroke-dashoffset:0;transition:stroke-dashoffset 2.4s var(--suave)}
-.js .pre .grande svg path{stroke-dashoffset:var(--l,200);transition:none}
-.socios{margin-top:22px;padding-top:16px;border-top:1px solid var(--linea);font:500 13px/1.5 var(--mono);color:var(--gris)}
-.socios b{color:var(--tinta);font-weight:500}
-
-/* ---------- presupuesto: orden de trabajo ---------- */
-.orden{border:1.5px solid var(--tinta);background:var(--papel);font-family:var(--mono);min-width:0}
-.orden .cab{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--tinta);color:#fff;font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase}
-.orden .cab i{display:flex;gap:3px}.orden .cab i b{width:9px;height:9px}
-.orden ol{list-style:none;margin:0;padding:0;counter-reset:o}
-.orden li{display:grid;grid-template-columns:34px 1fr;gap:6px;padding:13px 16px;border-top:1px solid var(--linea);font-size:14px;line-height:1.35}
-.orden li:first-child{border-top:0}
-.orden li::before{counter-increment:o;content:counter(o,decimal-leading-zero);color:var(--ac)}
-.orden li small{display:block;color:var(--gris);font-size:12.5px}
-.contacto{display:grid;gap:10px;margin-top:22px}
+/* ---------- presupuesto y cómo llegar ---------- */
+.contacto{display:grid;gap:12px;margin-top:22px}
 .dato{display:flex;flex-direction:column;gap:2px;text-decoration:none;width:max-content;max-width:100%}
 .dato small{font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--gris)}
-.dato strong{font:800 clamp(24px,2.6vw,38px)/1.1 var(--sans);letter-spacing:-.02em;background:linear-gradient(var(--ac),var(--ac)) no-repeat 0 100%/0 3px;
-  transition:background-size .45s var(--suave);padding-bottom:3px;overflow-wrap:anywhere}
+.dato strong{font:800 clamp(26px,2.8vw,40px)/1.1 var(--sans);letter-spacing:-.02em;background:linear-gradient(var(--ac),var(--ac)) no-repeat 0 100%/0 3px;
+  transition:background-size .4s var(--suave);padding-bottom:3px;overflow-wrap:anywhere}
 .dato.mail strong{font-size:clamp(17px,1.6vw,23px);font-weight:700}
-a.dato:hover strong,button.dato:hover strong{background-size:100% 3px}
-button.dato{text-align:left}
-
-/* ---------- cómo llegar ---------- */
-.mapa-caja{height:100%;min-height:0}
-.mapa{position:relative;display:block;height:100%;min-height:0;overflow:hidden;background:var(--mesa);text-decoration:none}
+.dato:hover strong{background-size:100% 3px}
+.pedir{margin:22px 0 0;padding:14px 0 0;border-top:1px solid var(--linea);font:500 13px/1.6 var(--mono);color:var(--gris)}
+.pedir b{color:var(--tinta);font-weight:500}
+.mapa-caja{height:100%;min-height:0;display:flex;flex-direction:column;gap:12px}
+.mapa{position:relative;display:block;flex:1;min-height:0;overflow:hidden;background:var(--mesa);text-decoration:none}
 .mapa iframe{position:absolute;left:-46px;top:-46px;width:calc(100% + 92px);height:calc(100% + 92px);border:0;pointer-events:none;filter:grayscale(1) contrast(1.05)}
 .mapa .pin{position:absolute;left:50%;top:50%;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center;pointer-events:none}
 .mapa .pin b{font:700 13px/1 var(--sans);background:var(--azul);color:#fff;padding:8px 10px;white-space:nowrap}
-.mapa .pin i{width:2px;height:16px;background:var(--azul)}
-.mapa .pin i::after{content:"";display:block;width:10px;height:10px;background:var(--m);margin:16px 0 0 -4px}
+.mapa .pin i{width:2px;height:14px;background:var(--azul)}
 .mapa .credito{position:absolute;right:0;bottom:0;background:rgba(255,255,255,.9);font:500 10px/1 var(--mono);padding:4px 6px;color:var(--gris)}
 .mapa .ruta{position:absolute;left:12px;bottom:12px}
-.transporte{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:10px;font-size:15px}
-.transporte li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start}
-.linea{display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:26px;padding:0 7px;font:700 13px/1 var(--sans);color:#fff}
-.linea.metro{background:#8EBF42;border-radius:13px}   /* L5 de Metro de Madrid: verde claro */
+.llegar{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;align-items:center;font-size:15px;flex:none}
+.llegar .dir{grid-column:1/3;font-weight:700}
+.linea{display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:24px;padding:0 7px;font:700 13px/1 var(--sans);color:#fff}
+.linea.metro{background:#8EBF42;border-radius:12px}   /* L5 de Metro de Madrid */
 .linea.bus{background:var(--azul)}
-.pie{margin-top:18px;font:500 11px/1.5 var(--mono);color:var(--gris);text-transform:uppercase;letter-spacing:.05em}
+.pie{margin:0;font:500 11px/1.5 var(--mono);color:var(--gris);text-transform:uppercase;letter-spacing:.05em;flex:none;padding-top:18px}
 
 /* ---------- carta de color (menú) ---------- */
-.menu{position:fixed;inset:0;z-index:50;background:rgba(233,236,239,.97);display:flex;flex-direction:column;
+.menu{position:fixed;inset:0;z-index:50;background:rgba(241,243,245,.98);display:flex;flex-direction:column;
   padding:calc(var(--barra) + 10px) max(20px,env(safe-area-inset-right)) 24px max(20px,env(safe-area-inset-left));
-  visibility:hidden;opacity:0;transition:opacity .35s, visibility 0s linear .35s;overflow:auto}
-.menu.abierto{visibility:visible;opacity:1;transition:opacity .35s}
-.menu .rejilla{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:980px;width:100%;margin:auto}
+  visibility:hidden;opacity:0;transition:opacity .3s, visibility 0s linear .3s;overflow:auto}
+.menu.abierto{visibility:visible;opacity:1;transition:opacity .3s}
+.menu .rejilla{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;max-width:1100px;width:100%;margin:auto}
 .menu .chip{display:flex;flex-direction:column;background:var(--papel);text-align:left;box-shadow:0 1px 2px rgba(22,32,46,.08);
-  transform:translateY(-24px);opacity:0;transition:transform .55s var(--suave), opacity .55s, box-shadow .3s}
+  transform:translateY(10px);opacity:0;transition:transform .45s var(--suave), opacity .45s}
 .menu.abierto .chip{transform:none;opacity:1}
-.menu .chip .tono{height:clamp(54px,11vh,120px);background:var(--sw);transition:height .4s var(--suave)}
-.menu .chip:hover .tono,.menu .chip:focus-visible .tono{height:calc(clamp(54px,11vh,120px) + 10px)}
-.menu .chip .nombre{padding:10px 12px 12px;font:800 clamp(15px,1.5vw,20px)/1.1 var(--sans);letter-spacing:-.01em}
+.menu .chip .tono{height:clamp(70px,16vh,150px);background:var(--sw)}
+.menu .chip .nombre{padding:10px 12px 12px;font:800 clamp(15px,1.4vw,19px)/1.15 var(--sans)}
 .menu .chip .nombre small{display:block;font:500 11px/1 var(--mono);letter-spacing:.06em;color:var(--gris);margin-bottom:6px;text-transform:uppercase}
 .menu .chip.actual{box-shadow:0 0 0 2px var(--tinta)}
+.menu .chip:hover .nombre{color:var(--azul)}
 .menu .cerrar{position:absolute;top:10px;right:max(20px,env(safe-area-inset-right))}
 
 /* ---------- ficha de contacto (ordenador) ---------- */
 .ficha{position:fixed;inset:0;z-index:55;display:grid;place-items:center;padding:20px;background:rgba(22,32,46,.45);visibility:hidden;opacity:0;transition:opacity .3s, visibility 0s linear .3s}
 .ficha.abierta{visibility:visible;opacity:1;transition:opacity .3s}
-.ficha .caja{width:min(440px,100%);background:var(--papel);border-top:6px solid var(--ac);padding:24px;position:relative}
+.ficha .caja{width:min(440px,100%);background:var(--papel);border-top:6px solid var(--azul);padding:24px;position:relative}
 .ficha h3{margin:0 0 6px;font:900 26px/1.1 var(--sans);letter-spacing:-.02em}
 .ficha p{margin:0 0 18px;color:var(--gris);font-size:15px}
 .ficha .fila{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid var(--linea)}
@@ -263,79 +208,67 @@ button.dato{text-align:left}
   .barra .logo .completo{display:none}
   .barra .logo .marca{display:block}
 }
+@media (min-width:861px) and (max-height:760px){
+  h2{font-size:clamp(28px,3vw,44px)}
+  .texto>p{font-size:16px;margin-top:12px}
+  .servicios{margin-top:16px;gap:12px 24px}
+  .portada h1{font-size:clamp(54px,8vw,130px)}
+}
 @media (max-width:860px){
   :root{--barra:52px}
   body{font-size:16px}
   .barra{gap:10px;padding:0 14px}
-  .barra .logo .marca{height:20px}
-  .tira{gap:3px}
-  .tira button{width:10px;height:10px}
-  .tira button.activa{width:20px}
+  .tira{gap:4px}
+  .tira button{width:12px;height:12px}
+  .tira button.activa{width:24px}
   .tira button span{display:none}
   .b-menu .txt{display:none}
   .b-menu{padding:10px 2px}
-  .hoja{padding:calc(var(--barra) + 2px) 14px 14px}
-  .pl::after{height:45svh}
-  .pliego{padding:12px 16px 16px}
-  .corte{display:none}
-  .control{padding-bottom:10px;font-size:10px}
-  .control .registro,.control .tintas i:nth-child(-n+4){display:none}
-  .cuerpo,.cuerpo.al-reves,.diseno .cuerpo{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:14px;padding-top:12px}
+  .pl{padding:calc(var(--barra) + 14px) 18px 18px}
+  .control{font-size:10px}
+  .control .tintas{display:none}
+  .cuerpo,.cuerpo.al-reves{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:16px;padding-top:12px}
   .cuerpo.al-reves .texto{order:0}
   .texto{flex:none}
-  h2{font-size:clamp(26px,7.6vw,34px)}
-  .texto p{margin-top:10px;font-size:15px;line-height:1.45}
+  h2{font-size:clamp(27px,7.8vw,34px)}
+  .texto>p{margin-top:10px;font-size:15px;line-height:1.45}
   .etiqueta{margin-bottom:8px;font-size:11px}
-  .fichas{margin-top:12px;gap:5px}
-  .fichas li{font-size:11px;padding:6px 7px}
-  .fichas li.extra{display:none}
-  .pruebas{flex:1;min-height:0;max-height:none;gap:8px}
-  .prueba figcaption{font-size:10px;padding-top:5px}
-  .g-impresion,.g-gran,.g-ferias,.g-especial{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
-  .g-senal{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr)}
-  .g-impresion .p1,.g-gran .p1,.g-ferias .p1,.g-ferias .p2{grid-row:auto;grid-column:auto}
-  .pruebas .p3,.pruebas .p4{display:none}
-  .g-senal .p3{display:flex}
+  .servicios{margin-top:14px;gap:12px 16px}
+  .servicio h3{font-size:15.5px;margin-bottom:4px}
+  .servicio p{font-size:13.5px;line-height:1.4}
+  .servicio ul{display:none}
+  .fotos{flex:1;min-height:170px;max-height:none;gap:8px}
+  .g-1,.g-2,.g-3{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+  .g-1 .f1,.g-2 .f1,.g-2 .f2{grid-row:auto;grid-column:auto}
+  .fotos .f3,.fotos .f4{display:none}
+  .foto figcaption{font-size:10px;padding-top:5px}
   .portada .cuerpo{flex-direction:column;justify-content:center}
-  .portada h1{font-size:clamp(46px,15vw,76px)}
+  .portada h1{font-size:clamp(44px,14vw,74px)}
   .carta{grid-template-columns:repeat(9,1fr);width:100%;gap:4px;order:-1}
   .carta i:nth-child(n+10){display:none}
   .portada .pie-portada{font-size:10px}
   .portada .pie-portada .largo{display:none}
-  .diseno .grande{flex:1;min-height:90px}
-  .orden li{padding:9px 12px;font-size:13px}
-  .orden li small{display:none}
   .contacto{margin-top:14px;gap:8px}
-  .presupuesto .cuerpo{gap:16px}
-  .mapa-caja{flex:1;height:auto;min-height:150px}
-  .transporte{margin-top:12px;gap:7px;font-size:14px}
+  .pedir{display:none}
+  .mapa-caja{flex:1;height:auto;min-height:200px}
+  .llegar{font-size:14px}
   .menu .rejilla{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-  .menu .chip .tono{height:clamp(30px,7vh,60px)}
-  .menu .chip .nombre{padding:8px 10px 10px}
+  .menu .chip .tono{height:clamp(36px,9vh,70px)}
 }
 @media (max-width:860px) and (max-height:700px){
-  .texto p.corto,.socios{display:none}
-  .fichas li.media{display:none}
-  .orden li:nth-child(n+4){display:none}
+  .texto>p.corto{display:none}
+  .servicio p{display:none}
   .portada h1{font-size:clamp(40px,12vw,56px)}
   .portada .bajada{font-size:15px;margin-top:12px}
-  .portada .botones{margin-top:14px}
   .portada .btn.claro{display:none}
-  .carta{gap:3px}
-  .portada .pie-portada{margin-top:12px;padding-top:10px}
+  .fotos{min-height:150px}
 }
 @media (max-width:420px){
   .barra .btn.chico{padding:9px 10px;font-size:13px}
-}
-@media (min-width:861px) and (max-height:760px){
-  h2{font-size:clamp(28px,3vw,44px)}
-  .texto p{font-size:16px;margin-top:12px}
-  .fichas{margin-top:14px}
-  .portada h1{font-size:clamp(54px,8vw,130px)}
+  .servicios{grid-template-columns:1fr 1fr}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition:none !important;animation:none !important}
-  .marco img{transform:none !important}
 }
 .ph-impresion-folleto{--ph:url(data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAAAQBwCdASo4ACwAPtFapkyoJSOiLVzJIQAaCWcAzjgWbXhCCPr44i5rhadCUgrpscqSjx/5IVZkSIpeMPL3JeBWgAD+9gmrhGaFcp61W/iC33RJAIJ2sJ5cRy0oUSV0twKQ0Uy0fKFJiTFGmMHRcl78Cb4USCKGUscgAAAA)}
 .ph-impresion-calendario{--ph:url(data:image/webp;base64,UklGRrgAAABXRUJQVlA4IKwAAADwCACdASo4ACgAPq1OnEumJSMhurzMAMAViWcA0YNT2j+2+Toc7ueSFblThHSXxlK64vfE2g/Z9/2vWjgnEE2ctAC+q9p20PPWrYDZdl7IAAD++LNabgoiSbXSdvlT7FMRBbxZPip0fZGSBBP8D9MC/ACeNTK/gDW0Pp0lwvG7avdjZYFDMNPeC42RsmMN1NfdgAYVL+OS8+ULb+/JO1AFIqodBc2OkKHIAAAA)}
@@ -358,7 +291,7 @@ button.dato{text-align:left}
 </style>
 </head>
 <body>
-<button type="button" class="salto" data-ir="impresion">Saltar al contenido</button>
+<button type="button" class="salto" data-ir="imprimir">Saltar al contenido</button>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="marca" viewBox="0 0 52.567 35.594"><path d="M0,0L0.266,0C2.615,0 4.776,0.985 6.747,2.957C8.719,4.928 9.704,7.613 9.704,11.012L9.704,24.582C9.704,27.981 8.719,30.666 6.747,32.637C4.776,34.608 2.615,35.594 0.266,35.594L0,35.594L0,32.354C2.147,32.101 3.222,31.021 3.222,29.111L3.241,6.482C3.241,4.562 2.16,3.48 0,3.24Z" fill-rule="evenodd"/><path d="M52.567,35.594L52.301,35.594C49.952,35.594 47.791,34.609 45.82,32.637C43.848,30.666 42.863,27.982 42.863,24.582L42.863,11.012C42.863,7.614 43.848,4.928 45.82,2.957C47.791,0.986 49.952,0 52.301,0L52.567,0L52.567,3.24C50.407,3.494 49.326,4.574 49.326,6.483L49.326,29.112C49.326,31.033 50.407,32.114 52.567,32.354Z" fill-rule="evenodd"/><path d="M23.468,12.922L23.468,2.811L29.1,2.811L29.1,12.922L37.862,7.883L40.661,12.725L31.9,17.797L40.661,22.869L37.862,27.711L29.068,22.672L29.068,32.783L23.468,32.783L23.468,22.672L14.706,27.711L11.906,22.869L20.668,17.797L11.906,12.725L14.706,7.883Z" fill-rule="evenodd"/></symbol>
@@ -371,245 +304,161 @@ button.dato{text-align:left}
     <svg class="marca" viewBox="0 0 52.567 35.594" aria-hidden="true"><use href="#marca"/></svg>
   </button>
   <nav class="tira" aria-label="Secciones">
-    <button type="button" data-ir="portada" style="--sw:var(--azul)"><span>01 Portada</span><b class="sr">Portada</b></button>
-    <button type="button" data-ir="impresion" style="--sw:var(--c)"><span>02 Impresión</span><b class="sr">Impresión</b></button>
-    <button type="button" data-ir="gran-formato" style="--sw:var(--m)"><span>03 Gran formato</span><b class="sr">Gran formato</b></button>
-    <button type="button" data-ir="senaletica" style="--sw:var(--y)"><span>04 Señalética</span><b class="sr">Señalética</b></button>
-    <button type="button" data-ir="ferias" style="--sw:var(--verde)"><span>05 Ferias y PLV</span><b class="sr">Ferias y PLV</b></button>
-    <button type="button" data-ir="especiales" style="--sw:var(--naranja)"><span>06 Trabajos especiales</span><b class="sr">Trabajos especiales</b></button>
-    <button type="button" data-ir="diseno" style="--sw:var(--morado)"><span>07 Diseño</span><b class="sr">Diseño</b></button>
-    <button type="button" data-ir="presupuesto" style="--sw:var(--rojo)"><span>08 Presupuesto</span><b class="sr">Presupuesto</b></button>
-    <button type="button" data-ir="como-llegar" style="--sw:var(--marino)"><span>09 Cómo llegar</span><b class="sr">Cómo llegar</b></button>
+    <button type="button" data-ir="portada" style="--sw:var(--azul)"><span>Portada</span><b class="sr">Portada</b></button>
+    <button type="button" data-ir="imprimir" style="--sw:var(--c)"><span>Impresión y diseño</span><b class="sr">Impresión y diseño</b></button>
+    <button type="button" data-ir="gran-formato" style="--sw:var(--m)"><span>Gran formato y señalética</span><b class="sr">Gran formato y señalética</b></button>
+    <button type="button" data-ir="ferias" style="--sw:var(--naranja)"><span>Ferias y trabajos especiales</span><b class="sr">Ferias y trabajos especiales</b></button>
+    <button type="button" data-ir="contacto" style="--sw:var(--rojo)"><span>Presupuesto y cómo llegar</span><b class="sr">Presupuesto y cómo llegar</b></button>
   </nav>
   <div class="acciones">
-    <button type="button" class="btn chico" data-ir="presupuesto">Presupuesto</button>
+    <button type="button" class="btn chico" data-ir="contacto">Presupuesto</button>
     <button type="button" class="b-menu" aria-expanded="false" aria-controls="menu"><i><b></b><b></b><b></b><b></b></i><span class="txt">Menú</span><span class="sr">Abrir el menú</span></button>
   </div>
 </header>
 
 <main id="contenido">
 
-<!-- 01 · portada -->
+<!-- 1 · portada -->
 <section class="pl portada" id="portada" style="--ac:var(--azul)">
-  <div class="hoja"><div class="pliego">
-    <i class="corte si"></i><i class="corte sd"></i><i class="corte ii"></i><i class="corte id"></i>
-    <div class="control"><span class="n"><b></b>Pliego 01/09 · Comunicación Global Gráfica</span><span class="tintas"><i></i><i></i><i></i><i></i><i></i></span><span class="registro" aria-hidden="true"></span></div>
-    <div class="cuerpo">
-      <div class="texto">
-        <h1><span class="reg l1" data-t="Todo el color,"><span>Todo el color,</span></span><span class="reg l2" data-t="toda la calidad"><span>toda la calidad</span></span></h1>
-        <p class="bajada sube">Imprenta digital y offset, gran formato, rotulación, stands y grabado láser en Madrid. Desde una sola unidad hasta la tirada grande.</p>
-        <div class="botones sube">
-          <button type="button" class="btn" data-ir="presupuesto">Pedir presupuesto <span class="flecha">→</span></button>
-          <button type="button" class="btn claro" data-ir="impresion">Ver lo que hacemos</button>
+  <div class="control"><span class="n"><b></b>Comunicación Global Gráfica · Madrid</span><span class="tintas"><i></i><i></i><i></i><i></i></span></div>
+  <div class="cuerpo">
+    <div class="texto">
+      <h1 class="sube"><span>Todo el color,</span><span class="l2">toda la calidad</span></h1>
+      <p class="bajada sube">Imprenta digital y offset, gran formato, rotulación, stands y grabado láser en Madrid. Desde una sola unidad hasta la tirada grande.</p>
+      <div class="botones sube">
+        <button type="button" class="btn" data-ir="contacto">Pedir presupuesto <span class="flecha">→</span></button>
+        <button type="button" class="btn claro" data-ir="imprimir">Ver lo que hacemos</button>
+      </div>
+    </div>
+    <div class="carta" aria-hidden="true">
+      <i style="--sw:#BCD63C"></i><i style="--sw:#68BD45"></i><i style="--sw:#00B04D"></i>
+      <i style="--sw:#9ACBD9"></i><i style="--sw:#00B8C3"></i><i style="--sw:#00A7BD"></i>
+      <i style="--sw:#F7EC36"></i><i style="--sw:#FDCF82"></i><i style="--sw:#FAB42A"></i>
+      <i style="--sw:#EE2724"></i><i style="--sw:#F26E6A"></i><i style="--sw:#F0A8CA"></i>
+      <i style="--sw:#EC2C91"></i><i style="--sw:#742B90"></i><i style="--sw:#221E53"></i>
+      <i style="--sw:#00B5EA"></i><i style="--sw:#99B4DE"></i><i style="--sw:#00609C"></i>
+    </div>
+  </div>
+  <div class="pie-portada sube"><span><strong>C/ Valentín Beato 11</strong><span class="largo"> · 28037 Madrid · Metro Suanzes</span></span><span><strong>91 371 76 42</strong></span></div>
+</section>
+
+<!-- 2 · impresión y diseño -->
+<section class="pl gris" id="imprimir" style="--ac:var(--c)">
+  <div class="control"><span class="n"><b></b>02 · Impresión y diseño</span><span class="tintas"><i></i><i></i><i></i><i></i></span></div>
+  <div class="cuerpo">
+    <div class="texto">
+      <p class="etiqueta sube">Impresión y diseño</p>
+      <h2 class="sube">Digital para pocas, offset para muchas</h2>
+      <p class="corto sube">Del boceto al arte final y de ahí a la máquina: lo diseñamos, lo imprimimos y lo encuadernamos.</p>
+      <div class="servicios">
+        <div class="servicio sube" style="--sw:var(--c)">
+          <h3>Impresión</h3>
+          <p>Digital para tiradas cortas y personalizadas; offset en 35×50 y 70×100 cm para grandes cantidades.</p>
+          <ul><li>Tarjetas</li><li>Folletos</li><li>Catálogos</li><li>Libros</li><li>Encuadernación</li></ul>
+        </div>
+        <div class="servicio sube" style="--sw:var(--morado)">
+          <h3>Diseño gráfico</h3>
+          <p>Imagen corporativa, logotipos y maquetación, con los artes finales listos para producir.</p>
+          <ul><li>Logotipos</li><li>Maquetación</li><li>Ilustración</li><li>Artes finales</li></ul>
         </div>
       </div>
-      <div class="carta" aria-hidden="true">
-        <i style="--sw:#BCD63C"></i><i style="--sw:#68BD45"></i><i style="--sw:#00B04D"></i>
-        <i style="--sw:#9ACBD9"></i><i style="--sw:#00B8C3"></i><i style="--sw:#00A7BD"></i>
-        <i style="--sw:#F7EC36"></i><i style="--sw:#FDCF82"></i><i style="--sw:#FAB42A"></i>
-        <i style="--sw:#EE2724"></i><i style="--sw:#F26E6A"></i><i style="--sw:#F0A8CA"></i>
-        <i style="--sw:#EC2C91"></i><i style="--sw:#742B90"></i><i style="--sw:#221E53"></i>
-        <i style="--sw:#00B5EA"></i><i style="--sw:#99B4DE"></i><i style="--sw:#00609C"></i>
-      </div>
     </div>
-    <div class="pie-portada sube"><span><strong>C/ Valentín Beato 11</strong><span class="largo"> · 28037 Madrid · Metro Suanzes</span></span><span><strong>91 371 76 42</strong></span></div>
-  </div></div>
+    <div class="fotos g-1">
+      <figure class="foto f1"><div class="marco contiene ph-impresion-folleto"><img src="assets/img/impresion-folleto.webp" width="673" height="533" alt="Folleto desplegable impreso en color" loading="lazy" decoding="async"></div><figcaption><b>Folleto</b><span>Digital</span></figcaption></figure>
+      <figure class="foto f2"><div class="marco contiene ph-impresion-calendario"><img src="assets/img/impresion-calendario.webp" width="450" height="325" alt="Calendarios de sobremesa con espiral" loading="lazy" decoding="async"></div><figcaption><b>Calendarios</b><span>Wire-o</span></figcaption></figure>
+      <figure class="foto f3"><div class="marco contiene ph-impresion-tarjeta"><img src="assets/img/impresion-tarjeta.webp" width="283" height="177" alt="Tarjeta de visita" loading="lazy" decoding="async"></div><figcaption><b>Tarjetas</b><span>Diseño e impresión</span></figcaption></figure>
+    </div>
+  </div>
 </section>
 
-<!-- 02 · impresión -->
-<section class="pl" id="impresion" style="--ac:var(--c)">
-  <div class="hoja"><div class="pliego">
-    <i class="corte si"></i><i class="corte sd"></i><i class="corte ii"></i><i class="corte id"></i>
-    <div class="control"><span class="n"><b></b>Pliego 02/09 · Impresión</span><span class="tintas"><i></i><i></i><i></i><i></i><i></i></span><span class="registro" aria-hidden="true"></span></div>
-    <div class="cuerpo">
-      <div class="texto">
-        <p class="etiqueta sube">Digital y offset</p>
-        <h2><span class="reg" data-t="Digital para pocas, offset para muchas"><span>Digital para pocas, offset para muchas</span></span></h2>
-        <p class="sube">Con la digital hacemos tiradas muy cortas sin perder calidad, y cada ejemplar se puede corregir o personalizar. Para buzoneo y grandes cantidades, offset en pliego pequeño (35×50 cm) y grande (70×100 cm).</p>
-        <p class="corto sube">Encuadernamos en espiral, wire-o o grapa, y plastificamos, encapsulamos y montamos en cartón pluma.</p>
-        <ul class="fichas sube">
-          <li>Tarjetas de visita</li><li>Folletos</li><li>Catálogos</li><li>Flyers</li><li class="media">Invitaciones</li><li class="media">Papelería corporativa</li><li class="extra">Sobres</li><li class="extra">Carpetas</li><li class="extra">Adhesivo troquelado</li><li class="extra">Datos variables</li><li class="extra">Libros</li>
-        </ul>
-      </div>
-      <div class="pruebas g-impresion">
-        <figure class="prueba p1"><div class="marco contiene ph-impresion-folleto"><img src="assets/img/impresion-folleto.webp" width="673" height="533" alt="Folleto desplegable impreso en color" loading="lazy" decoding="async"></div><figcaption><b>Folleto</b><span>Digital</span></figcaption></figure>
-        <figure class="prueba p2"><div class="marco contiene ph-impresion-calendario"><img src="assets/img/impresion-calendario.webp" width="450" height="325" alt="Calendarios de sobremesa con espiral" loading="lazy" decoding="async"></div><figcaption><b>Calendarios</b><span>Wire-o</span></figcaption></figure>
-        <figure class="prueba p3"><div class="marco contiene ph-impresion-tarjeta"><img src="assets/img/impresion-tarjeta.webp" width="283" height="177" alt="Tarjeta de visita" loading="lazy" decoding="async"></div><figcaption><b>Tarjetas</b><span>Papelería</span></figcaption></figure>
-      </div>
-    </div>
-  </div></div>
-</section>
-
-<!-- 03 · gran formato -->
+<!-- 3 · gran formato y señalética -->
 <section class="pl" id="gran-formato" style="--ac:var(--m)">
-  <div class="hoja"><div class="pliego">
-    <i class="corte si"></i><i class="corte sd"></i><i class="corte ii"></i><i class="corte id"></i>
-    <div class="control"><span class="n"><b></b>Pliego 03/09 · Gran formato y rotulación</span><span class="tintas"><i></i><i></i><i></i><i></i><i></i></span><span class="registro" aria-hidden="true"></span></div>
-    <div class="cuerpo al-reves">
-      <div class="texto">
-        <p class="etiqueta sube">Gran formato y rotulación</p>
-        <h2><span class="reg" data-t="En tamaño, el límite lo pones tú"><span>En tamaño, el límite lo pones tú</span></span></h2>
-        <p class="sube">La rotulación de una furgoneta, la decoración de un restaurante, el escaparate de una tienda o un mural que recorra el hall de un hotel. Vinilos, lonas, cartelería y letras corpóreas, con acabados que aguantan.</p>
-        <ul class="fichas sube">
-          <li>Murales</li><li>Vinilos</li><li>Lonas</li><li>Vehículos</li><li class="media">Escaparates</li><li class="media">Cartelería</li><li class="extra">Decoración</li><li class="extra">Letras corpóreas</li>
-        </ul>
-      </div>
-      <div class="pruebas g-gran">
-        <figure class="prueba p1"><div class="marco ph-gran-mural"><img src="assets/img/gran-mural.webp" width="1400" height="1046" alt="Mural fotográfico de una calle de Madrid cubriendo una pared entera" loading="lazy" decoding="async"></div><figcaption><b>Mural de pared</b><span>Gran formato</span></figcaption></figure>
-        <figure class="prueba p2"><div class="marco ph-gran-coche"><img src="assets/img/gran-coche.webp" width="537" height="401" alt="Furgoneta blanca rotulada con el logotipo de una empresa" loading="lazy" decoding="async"></div><figcaption><b>Vehículo</b><span>Vinilo</span></figcaption></figure>
-        <figure class="prueba p3"><div class="marco ph-gran-vinilo"><img src="assets/img/gran-vinilo.webp" width="406" height="304" alt="Cristalera decorada con vinilo de colores" loading="lazy" decoding="async"></div><figcaption><b>Cristalera</b><span>Decoración</span></figcaption></figure>
-      </div>
-    </div>
-  </div></div>
-</section>
-
-<!-- 04 · señalética -->
-<section class="pl" id="senaletica" style="--ac:var(--y)" data-oscuro>
-  <div class="hoja"><div class="pliego">
-    <i class="corte si"></i><i class="corte sd"></i><i class="corte ii"></i><i class="corte id"></i>
-    <div class="control"><span class="n"><b></b>Pliego 04/09 · Señalética</span><span class="tintas"><i></i><i></i><i></i><i></i><i></i></span><span class="registro" aria-hidden="true"></span></div>
-    <div class="cuerpo">
-      <div class="texto">
-        <p class="etiqueta sube">Señalética y directorios</p>
-        <h2><span class="reg" data-t="Para que nadie se pierda"><span>Para que nadie se pierda</span></span></h2>
-        <p class="sube">Somos especialistas en señalética y directorios: rótulos de planta, señalización de suelo, placas y directorios de edificio, del diseño a la instalación.</p>
-        <ul class="fichas sube">
-          <li>Directorios</li><li>Señalización de suelo</li><li>Placas</li><li class="media">Rótulos de planta</li><li class="extra">Metacrilato</li><li class="extra">Instalación</li>
-        </ul>
-      </div>
-      <div class="pruebas g-senal">
-        <figure class="prueba p1"><div class="marco ph-senal-barajas"><img src="assets/img/senal-barajas.webp" width="897" height="673" alt="Mostradores de un aeropuerto con carteles amarillos de información colgados del techo" loading="lazy" decoding="async"></div><figcaption><b>Señales colgadas</b><span>Aeropuerto</span></figcaption></figure>
-        <figure class="prueba p2"><div class="marco ph-senal-suelo"><img src="assets/img/senal-suelo.webp" width="410" height="549" alt="Pasillo amarillo de acceso exclusivo pintado en el suelo con pictogramas" loading="lazy" decoding="async"></div><figcaption><b>Suelo</b><span>Vinilo</span></figcaption></figure>
-        <figure class="prueba p3"><div class="marco ph-senal-directorio"><img src="assets/img/senal-directorio.webp" width="376" height="556" alt="Directorio de empresas por plantas en placas metálicas" loading="lazy" decoding="async"></div><figcaption><b>Directorio</b><span>Placas</span></figcaption></figure>
-      </div>
-    </div>
-  </div></div>
-</section>
-
-<!-- 05 · ferias y PLV -->
-<section class="pl" id="ferias" style="--ac:var(--verde)">
-  <div class="hoja"><div class="pliego">
-    <i class="corte si"></i><i class="corte sd"></i><i class="corte ii"></i><i class="corte id"></i>
-    <div class="control"><span class="n"><b></b>Pliego 05/09 · Ferias, eventos y PLV</span><span class="tintas"><i></i><i></i><i></i><i></i><i></i></span><span class="registro" aria-hidden="true"></span></div>
-    <div class="cuerpo al-reves">
-      <div class="texto">
-        <p class="etiqueta sube">Ferias, eventos y PLV</p>
-        <h2><span class="reg" data-t="Mostrar y vender sin necesidad de hablar"><span>Mostrar y vender sin necesidad de hablar</span></span></h2>
-        <p class="sube">Diseñamos y construimos stands de cualquier tamaño, y nos encargamos de la producción, el transporte, el montaje y el desmontaje. Y todo lo que vende en el punto de venta: roll-ups, photocalls, mostradores y expositores.</p>
-        <ul class="fichas sube">
-          <li>Stands</li><li>Roll-up</li><li>Photocall</li><li class="media">Mostradores</li><li class="extra">Congresos</li><li class="extra">Exposiciones</li><li class="extra">Montaje</li>
-        </ul>
-      </div>
-      <div class="pruebas g-ferias">
-        <figure class="prueba p1"><div class="marco ph-ferias-checkin"><img src="assets/img/ferias-checkin.webp" width="842" height="630" alt="Banderolas impresas colgadas en el pasillo de una feria" loading="lazy" decoding="async"></div><figcaption><b>Banderolas</b><span>Feria</span></figcaption></figure>
-        <figure class="prueba p2"><div class="marco ph-ferias-rollup"><img src="assets/img/ferias-rollup.webp" width="215" height="497" alt="Roll-up de la Semana Gótica de Madrid" loading="lazy" decoding="async"></div><figcaption><b>Roll-up</b></figcaption></figure>
-        <figure class="prueba p3"><div class="marco ph-ferias-stand"><img src="assets/img/ferias-stand.webp" width="432" height="374" alt="Stand de feria en rojo y blanco con un coche en exposición" loading="lazy" decoding="async"></div><figcaption><b>Stand</b><span>Feria</span></figcaption></figure>
-      </div>
-    </div>
-  </div></div>
-</section>
-
-<!-- 06 · trabajos especiales -->
-<section class="pl" id="especiales" style="--ac:var(--naranja)">
-  <div class="hoja"><div class="pliego">
-    <i class="corte si"></i><i class="corte sd"></i><i class="corte ii"></i><i class="corte id"></i>
-    <div class="control"><span class="n"><b></b>Pliego 06/09 · Trabajos especiales</span><span class="tintas"><i></i><i></i><i></i><i></i><i></i></span><span class="registro" aria-hidden="true"></span></div>
-    <div class="cuerpo">
-      <div class="texto">
-        <p class="etiqueta sube">Láser, metacrilato y prototipos</p>
-        <h2><span class="reg" data-t="El detalle marca la diferencia"><span>El detalle marca la diferencia</span></span></h2>
-        <p class="sube">Grabamos con láser madera, cartón, vidrio y metacrilato, incluso piezas de fruta. Cortamos y plegamos metacrilato, hacemos sellos y letras corpóreas y, si vas a hacer una tirada grande, te construimos antes un prototipo lo más real posible.</p>
-        <ul class="fichas sube">
-          <li>Grabado láser</li><li>Metacrilato</li><li>Prototipos</li><li class="media">Sellos</li><li class="extra">Serigrafía</li><li class="extra">Merchandising</li>
-        </ul>
-      </div>
-      <div class="pruebas g-especial">
-        <figure class="prueba p1"><div class="marco ph-especial-laser"><img src="assets/img/especial-laser.webp" width="475" height="357" alt="Máquina de grabado láser cortando una caja de metacrilato" loading="lazy" decoding="async"></div><figcaption><b>Láser</b><span>Metacrilato</span></figcaption></figure>
-        <figure class="prueba p2"><div class="marco ph-especial-frascos"><img src="assets/img/especial-frascos.webp" width="425" height="317" alt="Frascos de cristal grabados con láser" loading="lazy" decoding="async"></div><figcaption><b>Vidrio</b><span>Grabado</span></figcaption></figure>
-        <figure class="prueba p3"><div class="marco contiene ph-especial-avda"><img src="assets/img/especial-avda.webp" width="332" height="155" alt="Letras corpóreas metálicas" loading="lazy" decoding="async"></div><figcaption><b>Letras corpóreas</b></figcaption></figure>
-        <figure class="prueba p4"><div class="marco contiene ph-especial-sellos"><img src="assets/img/especial-sellos.webp" width="470" height="342" alt="Sellos de madera y automáticos" loading="lazy" decoding="async"></div><figcaption><b>Sellos</b></figcaption></figure>
-      </div>
-    </div>
-  </div></div>
-</section>
-
-<!-- 07 · diseño -->
-<section class="pl diseno" id="diseno" style="--ac:var(--morado)">
-  <div class="hoja"><div class="pliego">
-    <i class="corte si"></i><i class="corte sd"></i><i class="corte ii"></i><i class="corte id"></i>
-    <div class="control"><span class="n"><b></b>Pliego 07/09 · Diseño gráfico</span><span class="tintas"><i></i><i></i><i></i><i></i><i></i></span><span class="registro" aria-hidden="true"></span></div>
-    <div class="cuerpo">
-      <div class="texto">
-        <p class="etiqueta sube">Diseño gráfico</p>
-        <h2><span class="reg" data-t="Del boceto al arte final"><span>Del boceto al arte final</span></span></h2>
-        <p class="sube">Un buen resultado empieza por un diseño bien planteado. Boceteamos, maquetamos folletos, papelería, libros y carteles, y preparamos los artes finales para que salgan bien de máquina. También diseñamos piezas grandes: stands, mostradores y señalética.</p>
-        <ul class="fichas sube">
-          <li>Imagen corporativa</li><li>Logotipos</li><li>Maquetación</li><li class="media">Ilustración</li><li class="extra">Artes finales</li>
-        </ul>
-        <p class="socios sube"><b>Para agencias y estudios.</b> Somos el apoyo de producción de agencias de publicidad, estudios de diseño, decoración y arquitectura. Trabajamos codo con codo con ellos.</p>
-      </div>
-      <div class="grande" aria-hidden="true">
-        <svg viewBox="-1 -1 54.567 37.594"><path d="M0,0L0.266,0C2.615,0 4.776,0.985 6.747,2.957C8.719,4.928 9.704,7.613 9.704,11.012L9.704,24.582C9.704,27.981 8.719,30.666 6.747,32.637C4.776,34.608 2.615,35.594 0.266,35.594L0,35.594L0,32.354C2.147,32.101 3.222,31.021 3.222,29.111L3.241,6.482C3.241,4.562 2.16,3.48 0,3.24Z"/><path d="M52.567,35.594L52.301,35.594C49.952,35.594 47.791,34.609 45.82,32.637C43.848,30.666 42.863,27.982 42.863,24.582L42.863,11.012C42.863,7.614 43.848,4.928 45.82,2.957C47.791,0.986 49.952,0 52.301,0L52.567,0L52.567,3.24C50.407,3.494 49.326,4.574 49.326,6.483L49.326,29.112C49.326,31.033 50.407,32.114 52.567,32.354Z"/><path d="M23.468,12.922L23.468,2.811L29.1,2.811L29.1,12.922L37.862,7.883L40.661,12.725L31.9,17.797L40.661,22.869L37.862,27.711L29.068,22.672L29.068,32.783L23.468,32.783L23.468,22.672L14.706,27.711L11.906,22.869L20.668,17.797L11.906,12.725L14.706,7.883Z"/></svg>
-      </div>
-    </div>
-  </div></div>
-</section>
-
-<!-- 08 · presupuesto -->
-<section class="pl presupuesto" id="presupuesto" style="--ac:var(--rojo)">
-  <div class="hoja"><div class="pliego">
-    <i class="corte si"></i><i class="corte sd"></i><i class="corte ii"></i><i class="corte id"></i>
-    <div class="control"><span class="n"><b></b>Pliego 08/09 · Presupuesto</span><span class="tintas"><i></i><i></i><i></i><i></i><i></i></span><span class="registro" aria-hidden="true"></span></div>
-    <div class="cuerpo">
-      <div class="texto">
-        <p class="etiqueta sube">Presupuesto sin compromiso</p>
-        <h2><span class="reg" data-t="Cuéntanos qué quieres imprimir"><span>Cuéntanos qué quieres imprimir</span></span></h2>
-        <p class="sube">Te asesoramos y te damos precio. Llámanos o escríbenos.</p>
-        <div class="contacto sube">
-          <a class="dato tel" href="tel:+34913717642" data-tel="91 371 76 42"><small>Teléfono</small><strong>91 371 76 42</strong></a>
-          <a class="dato mail" href="mailto:comercial@comunicacion-global.com" data-mail="comercial@comunicacion-global.com"><small>Correo</small><strong>comercial@comunicacion-global.com</strong></a>
+  <div class="control"><span class="n"><b></b>03 · Gran formato y señalética</span><span class="tintas"><i></i><i></i><i></i><i></i></span></div>
+  <div class="cuerpo al-reves">
+    <div class="texto">
+      <p class="etiqueta sube">Gran formato y señalética</p>
+      <h2 class="sube">En tamaño, el límite lo pones tú</h2>
+      <p class="corto sube">Una furgoneta, un escaparate o un mural que recorra el hall de un hotel.</p>
+      <div class="servicios">
+        <div class="servicio sube" style="--sw:var(--m)">
+          <h3>Gran formato</h3>
+          <p>Murales, vinilos, lonas, cartelería y rotulación de vehículos y locales.</p>
+          <ul><li>Murales</li><li>Vinilos</li><li>Lonas</li><li>Vehículos</li></ul>
+        </div>
+        <div class="servicio sube" style="--sw:#E3C800">
+          <h3>Señalética</h3>
+          <p>Somos especialistas en señalética y directorios, del diseño a la instalación.</p>
+          <ul><li>Directorios</li><li>Suelos</li><li>Placas</li><li>Letras corpóreas</li></ul>
         </div>
       </div>
-      <div class="orden sube">
-        <div class="cab"><span>Orden de trabajo</span><i><b style="background:var(--c)"></b><b style="background:var(--m)"></b><b style="background:var(--y)"></b><b style="background:#fff"></b></i></div>
-        <ol>
-          <li><span>Qué pieza es<small>Folleto, lona, vinilo, stand, placa…</small></span></li>
-          <li><span>Medida y material<small>Si no lo sabes, te aconsejamos</small></span></li>
-          <li><span>Cuántas unidades<small>Desde una sola</small></span></li>
-          <li><span>Para cuándo<small>Fecha de entrega o de montaje</small></span></li>
-          <li><span>Si tienes ya el diseño<small>O si lo hacemos nosotros</small></span></li>
-        </ol>
-      </div>
     </div>
-  </div></div>
+    <div class="fotos g-2">
+      <figure class="foto f1"><div class="marco ph-gran-mural"><img src="assets/img/gran-mural.webp" width="1400" height="1046" alt="Mural fotográfico de una calle de Madrid cubriendo una pared entera" loading="lazy" decoding="async"></div><figcaption><b>Mural de pared</b><span>Gran formato</span></figcaption></figure>
+      <figure class="foto f2"><div class="marco ph-senal-suelo"><img src="assets/img/senal-suelo.webp" width="410" height="549" alt="Pasillo amarillo de acceso exclusivo señalizado en el suelo con pictogramas" loading="lazy" decoding="async"></div><figcaption><b>Señalización</b><span>Suelo</span></figcaption></figure>
+      <figure class="foto f3"><div class="marco ph-gran-coche"><img src="assets/img/gran-coche.webp" width="537" height="401" alt="Furgoneta blanca rotulada con el logotipo de una empresa" loading="lazy" decoding="async"></div><figcaption><b>Vehículo</b><span>Vinilo</span></figcaption></figure>
+      <figure class="foto f4"><div class="marco ph-senal-barajas"><img src="assets/img/senal-barajas.webp" width="897" height="673" alt="Mostradores de un aeropuerto con carteles amarillos de información" loading="lazy" decoding="async"></div><figcaption><b>Señales colgadas</b></figcaption></figure>
+    </div>
+  </div>
 </section>
 
-<!-- 09 · cómo llegar -->
-<section class="pl llegar" id="como-llegar" style="--ac:var(--marino)">
-  <div class="hoja"><div class="pliego">
-    <i class="corte si"></i><i class="corte sd"></i><i class="corte ii"></i><i class="corte id"></i>
-    <div class="control"><span class="n"><b></b>Pliego 09/09 · Cómo llegar</span><span class="tintas"><i></i><i></i><i></i><i></i><i></i></span><span class="registro" aria-hidden="true"></span></div>
-    <div class="cuerpo al-reves">
-      <div class="texto">
-        <p class="etiqueta sube">Cómo llegar</p>
-        <h2><span class="reg" data-t="Valentín Beato 11, 1ºA"><span>Valentín Beato 11, 1ºA</span></span></h2>
-        <p class="sube">28037 Madrid, en el polígono de Julián Camarillo (Simancas), a tres minutos andando del metro.</p>
-        <ul class="transporte sube">
-          <li><span class="linea metro">5</span><span><b>Suanzes</b>, a 3 minutos. Torre Arias, a 10.</span></li>
-          <li><span class="linea bus">77</span><span>Autobuses <b>77, 104 y 105</b>, desde Ciudad Lineal. Nocturno N5.</span></li>
-        </ul>
-        <p class="pie sube">© Comunicación Global Gráfica, S.L. · Madrid</p>
-      </div>
-      <div class="mapa-caja">
-        <a class="mapa" href="https://www.google.com/maps/dir/?api=1&amp;destination=Calle+de+Valent%C3%ADn+Beato+11%2C+28037+Madrid" target="_blank" rel="noopener" aria-label="Abrir la ruta en Google Maps">
-          <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-3.6318676%2C40.4365253%2C-3.6198676%2C40.4425253&amp;layer=mapnik" title="Mapa de la zona de Valentín Beato, en Madrid" loading="lazy" tabindex="-1"></iframe>
-          <span class="pin" aria-hidden="true"><b>CGG</b><i></i></span>
-          <span class="credito">© OpenStreetMap</span>
-          <span class="btn chico ruta">Cómo llegar <span class="flecha">→</span></span>
-        </a>
+<!-- 4 · ferias y trabajos especiales -->
+<section class="pl gris" id="ferias" style="--ac:var(--naranja)">
+  <div class="control"><span class="n"><b></b>04 · Ferias y trabajos especiales</span><span class="tintas"><i></i><i></i><i></i><i></i></span></div>
+  <div class="cuerpo">
+    <div class="texto">
+      <p class="etiqueta sube" style="color:#C98500">Ferias, PLV y trabajos especiales</p>
+      <h2 class="sube">El detalle marca la diferencia</h2>
+      <p class="corto sube">Desde una sola unidad: un prototipo, un stand o una pieza grabada con láser.</p>
+      <div class="servicios">
+        <div class="servicio sube" style="--sw:var(--verde)">
+          <h3>Ferias y PLV</h3>
+          <p>Stands de cualquier tamaño con montaje y desmontaje, roll-ups, photocalls y mostradores.</p>
+          <ul><li>Stands</li><li>Roll-up</li><li>Photocall</li><li>Expositores</li></ul>
+        </div>
+        <div class="servicio sube" style="--sw:var(--naranja)">
+          <h3>Láser y metacrilato</h3>
+          <p>Grabamos madera, vidrio, metacrilato y hasta fruta. Sellos, prototipos y serigrafía.</p>
+          <ul><li>Grabado láser</li><li>Metacrilato</li><li>Sellos</li><li>Prototipos</li></ul>
+        </div>
       </div>
     </div>
-  </div></div>
+    <div class="fotos g-3">
+      <figure class="foto f1"><div class="marco ph-ferias-stand"><img src="assets/img/ferias-stand.webp" width="432" height="374" alt="Stand de feria en rojo y blanco con un coche en exposición" loading="lazy" decoding="async"></div><figcaption><b>Stand</b><span>Feria</span></figcaption></figure>
+      <figure class="foto f2"><div class="marco ph-especial-laser"><img src="assets/img/especial-laser.webp" width="475" height="357" alt="Máquina de grabado láser cortando una caja de metacrilato" loading="lazy" decoding="async"></div><figcaption><b>Láser</b><span>Metacrilato</span></figcaption></figure>
+      <figure class="foto f3"><div class="marco ph-ferias-checkin"><img src="assets/img/ferias-checkin.webp" width="842" height="630" alt="Banderolas impresas colgadas en el pasillo de una feria" loading="lazy" decoding="async"></div><figcaption><b>Banderolas</b><span>Feria</span></figcaption></figure>
+      <figure class="foto f4"><div class="marco ph-especial-frascos"><img src="assets/img/especial-frascos.webp" width="425" height="317" alt="Frascos de cristal grabados con láser" loading="lazy" decoding="async"></div><figcaption><b>Vidrio</b><span>Grabado</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · presupuesto y cómo llegar -->
+<section class="pl" id="contacto" style="--ac:var(--rojo)">
+  <div class="control"><span class="n"><b></b>05 · Presupuesto y cómo llegar</span><span class="tintas"><i></i><i></i><i></i><i></i></span></div>
+  <div class="cuerpo">
+    <div class="texto">
+      <p class="etiqueta sube">Presupuesto sin compromiso</p>
+      <h2 class="sube">Cuéntanos qué quieres imprimir</h2>
+      <div class="contacto sube">
+        <a class="dato tel" href="tel:+34913717642"><small>Teléfono</small><strong>91 371 76 42</strong></a>
+        <a class="dato mail" href="mailto:comercial@comunicacion-global.com"><small>Correo</small><strong>comercial@comunicacion-global.com</strong></a>
+      </div>
+      <p class="pedir sube"><b>Para darte precio:</b> qué pieza es, la medida, cuántas unidades, para cuándo y si ya tienes el diseño.</p>
+    </div>
+    <div class="mapa-caja sube">
+      <a class="mapa" href="https://www.google.com/maps/dir/?api=1&amp;destination=Calle+de+Valent%C3%ADn+Beato+11%2C+28037+Madrid" target="_blank" rel="noopener" aria-label="Abrir la ruta en Google Maps">
+        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-3.6318676%2C40.4365253%2C-3.6198676%2C40.4425253&amp;layer=mapnik" title="Mapa de la zona de Valentín Beato, en Madrid" loading="lazy" tabindex="-1"></iframe>
+        <span class="pin" aria-hidden="true"><b>CGG</b><i></i></span>
+        <span class="credito">© OpenStreetMap</span>
+        <span class="btn chico ruta">Cómo llegar <span class="flecha">→</span></span>
+      </a>
+      <div class="llegar">
+        <span class="dir">C/ Valentín Beato 11, 1ºA · 28037 Madrid</span>
+        <span class="linea metro">5</span><span><b>Suanzes</b>, a 3 minutos andando</span>
+        <span class="linea bus">bus</span><span>77, 104 y 105 · nocturno N5</span>
+      </div>
+    </div>
+  </div>
+  <p class="pie">© Comunicación Global Gráfica, S.L. · Madrid</p>
 </section>
 </main>
 
@@ -618,19 +467,15 @@ button.dato{text-align:left}
   <button type="button" class="b-menu cerrar"><span>Cerrar ✕</span></button>
   <div class="rejilla">
     <button type="button" class="chip" data-ir="portada" style="--sw:var(--azul)"><span class="tono"></span><span class="nombre"><small>CGG 01</small>Portada</span></button>
-    <button type="button" class="chip" data-ir="impresion" style="--sw:var(--c)"><span class="tono"></span><span class="nombre"><small>CGG 02</small>Impresión</span></button>
-    <button type="button" class="chip" data-ir="gran-formato" style="--sw:var(--m)"><span class="tono"></span><span class="nombre"><small>CGG 03</small>Gran formato</span></button>
-    <button type="button" class="chip" data-ir="senaletica" style="--sw:var(--y)"><span class="tono"></span><span class="nombre"><small>CGG 04</small>Señalética</span></button>
-    <button type="button" class="chip" data-ir="ferias" style="--sw:var(--verde)"><span class="tono"></span><span class="nombre"><small>CGG 05</small>Ferias y PLV</span></button>
-    <button type="button" class="chip" data-ir="especiales" style="--sw:var(--naranja)"><span class="tono"></span><span class="nombre"><small>CGG 06</small>Trabajos especiales</span></button>
-    <button type="button" class="chip" data-ir="diseno" style="--sw:var(--morado)"><span class="tono"></span><span class="nombre"><small>CGG 07</small>Diseño gráfico</span></button>
-    <button type="button" class="chip" data-ir="presupuesto" style="--sw:var(--rojo)"><span class="tono"></span><span class="nombre"><small>CGG 08</small>Presupuesto</span></button>
-    <button type="button" class="chip" data-ir="como-llegar" style="--sw:var(--marino)"><span class="tono"></span><span class="nombre"><small>CGG 09</small>Cómo llegar</span></button>
+    <button type="button" class="chip" data-ir="imprimir" style="--sw:var(--c)"><span class="tono"></span><span class="nombre"><small>CGG 02</small>Impresión y diseño</span></button>
+    <button type="button" class="chip" data-ir="gran-formato" style="--sw:var(--m)"><span class="tono"></span><span class="nombre"><small>CGG 03</small>Gran formato y señalética</span></button>
+    <button type="button" class="chip" data-ir="ferias" style="--sw:var(--naranja)"><span class="tono"></span><span class="nombre"><small>CGG 04</small>Ferias y trabajos especiales</span></button>
+    <button type="button" class="chip" data-ir="contacto" style="--sw:var(--rojo)"><span class="tono"></span><span class="nombre"><small>CGG 05</small>Presupuesto y cómo llegar</span></button>
   </div>
 </div>
 
 <!-- ficha de contacto, para el ordenador -->
-<div class="ficha" id="ficha" role="dialog" aria-modal="true" aria-labelledby="ficha-t" style="--ac:var(--rojo)">
+<div class="ficha" id="ficha" role="dialog" aria-modal="true" aria-labelledby="ficha-t">
   <div class="caja">
     <button type="button" class="x">Cerrar ✕</button>
     <h3 id="ficha-t">Pide tu presupuesto</h3>
@@ -642,7 +487,6 @@ button.dato{text-align:left}
 
 <script>
 (function () {
-  var root = document.documentElement;
   var reducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var secciones = [].slice.call(document.querySelectorAll('.pl'));
   var tira = [].slice.call(document.querySelectorAll('.tira button'));
@@ -660,7 +504,7 @@ button.dato{text-align:left}
     var destino = el.getBoundingClientRect().top + window.pageYOffset;
     var desde = window.pageYOffset, dist = destino - desde;
     if (reducido || Math.abs(dist) < 2) { window.scrollTo(0, destino); return; }
-    var dur = Math.min(2000, Math.max(900, Math.abs(dist) * 0.35)), t0 = null;
+    var dur = Math.min(1600, Math.max(800, Math.abs(dist) * 0.3)), t0 = null;
     cancelar();
     function paso(t) {
       if (t0 === null) t0 = t;
@@ -675,13 +519,13 @@ button.dato{text-align:left}
     var b = e.target.closest('[data-ir]'); if (!b) return;
     e.preventDefault();
     var id = b.getAttribute('data-ir');
-    if (menu.classList.contains('abierto')) { cerrarMenu(); setTimeout(function () { irA(id); }, 260); }
+    if (menu.classList.contains('abierto')) { cerrarMenu(); setTimeout(function () { irA(id); }, 220); }
     else irA(id);
   });
 
   /* ---- menú: carta de color ---- */
-  chips.forEach(function (c, i) { c.style.transitionDelay = (i * 45) + 'ms'; });
-  function abrirMenu() { menu.classList.add('abierto'); bMenu.setAttribute('aria-expanded', 'true'); setTimeout(function () { var a = menu.querySelector('.chip.actual') || chips[0]; a.focus({ preventScroll: true }); }, 60); }
+  chips.forEach(function (c, i) { c.style.transitionDelay = (i * 50) + 'ms'; });
+  function abrirMenu() { menu.classList.add('abierto'); bMenu.setAttribute('aria-expanded', 'true'); setTimeout(function () { (menu.querySelector('.chip.actual') || chips[0]).focus({ preventScroll: true }); }, 60); }
   function cerrarMenu() { menu.classList.remove('abierto'); bMenu.setAttribute('aria-expanded', 'false'); bMenu.focus({ preventScroll: true }); }
   bMenu.addEventListener('click', function () { menu.classList.contains('abierto') ? cerrarMenu() : abrirMenu(); });
   menu.querySelector('.cerrar').addEventListener('click', cerrarMenu);
@@ -718,70 +562,47 @@ button.dato{text-align:left}
     else if (menu.classList.contains('abierto')) cerrarMenu();
   });
 
-  /* ---- trazo de la marca grande (diseño) ---- */
-  [].forEach.call(document.querySelectorAll('.grande path'), function (p) {
-    try { p.style.setProperty('--l', Math.ceil(p.getTotalLength()) + 1); } catch (e) {}
-  });
-
   /* ---- entradas: solo lo que está por debajo de la pantalla ---- */
-  var marcos = [].slice.call(document.querySelectorAll('.marco'));
   if (!reducido && 'IntersectionObserver' in window) {
     var alto = window.innerHeight;
     secciones.forEach(function (s) {
-      if (s.getBoundingClientRect().top > alto * 0.6) {
+      if (s.getBoundingClientRect().top > alto * 0.7) {
         s.classList.add('pre');
         [].forEach.call(s.querySelectorAll('.marco'), function (m) { m.classList.add('espera'); });
       }
-      /* escalones de 120 ms dentro de cada pliego */
-      [].forEach.call(s.querySelectorAll('.sube, .reg'), function (el, i) {
-        var d = (i * 120) + 'ms';
-        if (el.classList.contains('reg')) el.style.setProperty('--d', d);
-        else el.style.transitionDelay = d;
-      });
-      [].forEach.call(s.querySelectorAll('.carta i'), function (el, i) { el.style.transitionDelay = (300 + i * 40) + 'ms'; });
+      [].forEach.call(s.querySelectorAll('.sube'), function (el, i) { el.style.transitionDelay = (i * 90) + 'ms'; });
+      [].forEach.call(s.querySelectorAll('.carta i'), function (el, i) { el.style.transitionDelay = (200 + i * 35) + 'ms'; });
     });
     var io = new IntersectionObserver(function (ents) {
       ents.forEach(function (en) {
         if (!en.isIntersecting) return;
         var s = en.target; io.unobserve(s);
         s.classList.remove('pre');
-        [].forEach.call(s.querySelectorAll('.marco.espera'), function (m, i) { revelar(m, 250 + i * 160); });
-        setTimeout(function () { [].forEach.call(s.querySelectorAll('.sube,.reg'), function (el) { el.style.transitionDelay = ''; el.style.removeProperty('--d'); }); }, 2500);
+        [].forEach.call(s.querySelectorAll('.marco.espera'), function (m, i) { revelar(m, 150 + i * 120); });
+        setTimeout(function () { [].forEach.call(s.querySelectorAll('.sube'), function (el) { el.style.transitionDelay = ''; }); }, 1800);
       });
-    }, { threshold: 0, rootMargin: '0px 0px -30% 0px' });
+    }, { threshold: 0, rootMargin: '0px 0px -25% 0px' });
     secciones.forEach(function (s) { if (s.classList.contains('pre')) io.observe(s); });
   }
-  /* una foto se «imprime» solo cuando ya está descodificada; hasta entonces, su marcador */
+  /* una foto aparece solo cuando ya está descodificada; hasta entonces, su marcador */
   function revelar(m, retraso) {
     var img = m.querySelector('img');
-    function va() {
-      setTimeout(function () {
-        m.style.setProperty('--anchura', (m.clientWidth + 8) + 'px');
-        m.classList.add('pasa'); m.classList.remove('espera');
-      }, retraso);
-    }
-    if (img.complete && img.naturalWidth) { (img.decode ? img.decode() : Promise.resolve()).then(va, va); }
-    else { img.loading = 'eager'; img.addEventListener('load', function () { (img.decode ? img.decode() : Promise.resolve()).then(va, va); }, { once: true }); img.addEventListener('error', va, { once: true }); }
+    function va() { setTimeout(function () { m.classList.remove('espera'); }, retraso); }
+    function lista() { (img.decode ? img.decode() : Promise.resolve()).then(va, va); }
+    if (img.complete && img.naturalWidth) lista();
+    else { img.loading = 'eager'; img.addEventListener('load', lista, { once: true }); img.addEventListener('error', va, { once: true }); }
   }
 
-  /* ---- al bajar: pliego activo en la tira y paralaje suave de las fotos ---- */
+  /* ---- sección activa en la tira ---- */
   var activo = -1, pendiente = false;
   function alBajar() {
     pendiente = false;
     var h = window.innerHeight, idx = 0;
     for (var i = 0; i < secciones.length; i++) { if (secciones[i].getBoundingClientRect().top <= h * 0.45) idx = i; }
-    if (idx !== activo) {
-      activo = idx;
-      tira.forEach(function (b, i) { b.classList.toggle('activa', i === idx); if (i === idx) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current'); });
-      chips.forEach(function (c, i) { c.classList.toggle('actual', i === idx); });
-    }
-    if (reducido) return;
-    for (var k = 0; k < marcos.length; k++) {
-      var r = marcos[k].getBoundingClientRect();
-      if (r.bottom < -50 || r.top > h + 50) continue;
-      var c = (r.top + r.height / 2 - h / 2) / h;
-      marcos[k].firstElementChild.style.setProperty('--py', (c * -22).toFixed(1) + 'px');
-    }
+    if (idx === activo) return;
+    activo = idx;
+    tira.forEach(function (b, i) { b.classList.toggle('activa', i === idx); if (i === idx) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current'); });
+    chips.forEach(function (c, i) { c.classList.toggle('actual', i === idx); });
   }
   window.addEventListener('scroll', function () { if (!pendiente) { pendiente = true; requestAnimationFrame(alBajar); } }, { passive: true });
   window.addEventListener('resize', alBajar);
