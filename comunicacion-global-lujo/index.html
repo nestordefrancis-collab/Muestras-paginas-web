@@ -182,12 +182,6 @@ h2{font-size:clamp(42px,5vw,86px);line-height:1.02}
 .lista .flecha{justify-self:end;font:300 20px/1 var(--sans);color:rgba(243,239,231,.4);transition:transform .7s var(--lujo), color .5s}
 .lista li:hover .flecha{transform:translateX(6px) rotate(-45deg);color:var(--marfil)}
 .lista .mini{display:none}
-/* la foto que sigue al cursor */
-.visor{position:fixed;left:0;top:0;z-index:30;width:300px;aspect-ratio:4/5;pointer-events:none;overflow:hidden;
-  clip-path:inset(50% 50% 50% 50%);transition:clip-path .7s var(--lujo);will-change:transform}
-.visor.ve{clip-path:inset(0 0 0 0)}
-.visor img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.12);transition:opacity .5s, transform 1.2s var(--lujo)}
-.visor img.ve{opacity:1;transform:none}
 
 /* ---------- 4 · trabajos ---------- */
 .trabajos .cabeza{grid-column:1/6;grid-row:1;align-self:start}
@@ -315,7 +309,6 @@ h2{font-size:clamp(42px,5vw,86px);line-height:1.02}
   .lista h3{font-size:clamp(21px,6vw,28px)}
   .lista .mini{display:block;width:54px;height:54px;overflow:hidden;background:var(--noche2) var(--ph) center/cover}
   .lista .mini img{width:100%;height:100%;object-fit:cover}
-  .visor{display:none}
   .trabajos{justify-content:center}
   .trabajos .cabeza p{margin-top:16px;font-size:14.5px}
   .trabajos .t1{margin-top:24px}
@@ -456,12 +449,12 @@ h2{font-size:clamp(42px,5vw,86px);line-height:1.02}
     <p class="ap">Un solo interlocutor para el diseño, la producción y el montaje.</p>
   </div>
   <ol class="lista">
-    <li class="ap" data-foto="impresion-folleto"><div class="fila"><span class="n">01</span><h3>Impresión <em>digital y offset</em></h3><span class="d">Tarjetas, catálogos, libros y papelería, con encuadernación y acabados</span><span class="flecha" aria-hidden="true">→</span><span class="mini ph-impresion-folleto"><img data-k="impresion-folleto" src="assets/img/impresion-folleto.webp" alt="" loading="lazy" decoding="async"></span></div></li>
-    <li class="ap" data-foto="gran-mural"><div class="fila"><span class="n">02</span><h3>Gran formato <em>y rotulación</em></h3><span class="d">Murales, vinilos, lonas, escaparates y vehículos</span><span class="flecha" aria-hidden="true">→</span><span class="mini ph-gran-coche"><img data-k="gran-coche" src="assets/img/gran-coche.webp" alt="" loading="lazy" decoding="async"></span></div></li>
-    <li class="ap" data-foto="senal-suelo"><div class="fila"><span class="n">03</span><h3>Señalética <em>y directorios</em></h3><span class="d">Del diseño a la instalación, en oficinas, edificios y espacios públicos</span><span class="flecha" aria-hidden="true">→</span><span class="mini ph-senal-suelo"><img data-k="senal-suelo" src="assets/img/senal-suelo.webp" alt="" loading="lazy" decoding="async"></span></div></li>
-    <li class="ap" data-foto="ferias-stand"><div class="fila"><span class="n">04</span><h3>Ferias, stands <em>y PLV</em></h3><span class="d">Producción, transporte, montaje y desmontaje. Roll-ups y photocalls</span><span class="flecha" aria-hidden="true">→</span><span class="mini ph-ferias-stand"><img data-k="ferias-stand" src="assets/img/ferias-stand.webp" alt="" loading="lazy" decoding="async"></span></div></li>
-    <li class="ap" data-foto="especial-laser"><div class="fila"><span class="n">05</span><h3>Láser <em>y metacrilato</em></h3><span class="d">Grabado y corte sobre madera, vidrio y metacrilato. Prototipos y sellos</span><span class="flecha" aria-hidden="true">→</span><span class="mini ph-especial-laser"><img data-k="especial-laser" src="assets/img/especial-laser.webp" alt="" loading="lazy" decoding="async"></span></div></li>
-    <li class="ap" data-foto="impresion-tarjeta"><div class="fila"><span class="n">06</span><h3>Diseño <em>gráfico</em></h3><span class="d">Imagen corporativa, maquetación y artes finales listos para producir</span><span class="flecha" aria-hidden="true">→</span><span class="mini ph-impresion-tarjeta"><img data-k="impresion-tarjeta" src="assets/img/impresion-tarjeta.webp" alt="" loading="lazy" decoding="async"></span></div></li>
+    <li class="ap"><div class="fila"><span class="n">01</span><h3>Impresión <em>digital y offset</em></h3><span class="d">Tarjetas, catálogos, libros y papelería, con encuadernación y acabados</span><span class="flecha" aria-hidden="true">→</span><span class="mini ph-impresion-folleto"><img data-k="impresion-folleto" src="assets/img/impresion-folleto.webp" alt="" loading="lazy" decoding="async"></span></div></li>
+    <li class="ap"><div class="fila"><span class="n">02</span><h3>Gran formato <em>y rotulación</em></h3><span class="d">Murales, vinilos, lonas, escaparates y vehículos</span><span class="flecha" aria-hidden="true">→</span><span class="mini ph-gran-coche"><img data-k="gran-coche" src="assets/img/gran-coche.webp" alt="" loading="lazy" decoding="async"></span></div></li>
+    <li class="ap"><div class="fila"><span class="n">03</span><h3>Señalética <em>y directorios</em></h3><span class="d">Del diseño a la instalación, en oficinas, edificios y espacios públicos</span><span class="flecha" aria-hidden="true">→</span><span class="mini ph-senal-suelo"><img data-k="senal-suelo" src="assets/img/senal-suelo.webp" alt="" loading="lazy" decoding="async"></span></div></li>
+    <li class="ap"><div class="fila"><span class="n">04</span><h3>Ferias, stands <em>y PLV</em></h3><span class="d">Producción, transporte, montaje y desmontaje. Roll-ups y photocalls</span><span class="flecha" aria-hidden="true">→</span><span class="mini ph-ferias-stand"><img data-k="ferias-stand" src="assets/img/ferias-stand.webp" alt="" loading="lazy" decoding="async"></span></div></li>
+    <li class="ap"><div class="fila"><span class="n">05</span><h3>Láser <em>y metacrilato</em></h3><span class="d">Grabado y corte sobre madera, vidrio y metacrilato. Prototipos y sellos</span><span class="flecha" aria-hidden="true">→</span><span class="mini ph-especial-laser"><img data-k="especial-laser" src="assets/img/especial-laser.webp" alt="" loading="lazy" decoding="async"></span></div></li>
+    <li class="ap"><div class="fila"><span class="n">06</span><h3>Diseño <em>gráfico</em></h3><span class="d">Imagen corporativa, maquetación y artes finales listos para producir</span><span class="flecha" aria-hidden="true">→</span><span class="mini ph-impresion-tarjeta"><img data-k="impresion-tarjeta" src="assets/img/impresion-tarjeta.webp" alt="" loading="lazy" decoding="async"></span></div></li>
   </ol>
 </section>
 
@@ -513,15 +506,6 @@ h2{font-size:clamp(42px,5vw,86px);line-height:1.02}
   <p class="pie versal"><span>© Comunicación Global Gráfica</span><span class="largo">Madrid</span></p>
 </section>
 </main>
-
-<div class="visor" aria-hidden="true">
-  <img data-k="impresion-folleto" alt="">
-  <img data-k="gran-mural" alt="">
-  <img data-k="senal-suelo" alt="">
-  <img data-k="ferias-stand" alt="">
-  <img data-k="especial-laser" alt="">
-  <img data-k="impresion-tarjeta" alt="">
-</div>
 
 <!-- menú -->
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menú">
@@ -676,35 +660,6 @@ h2{font-size:clamp(42px,5vw,86px);line-height:1.02}
     function lista() { (img.decode ? img.decode() : Promise.resolve()).then(va, va); }
     if (img.complete && img.naturalWidth) lista();
     else { img.loading = 'eager'; img.addEventListener('load', lista, { once: true }); img.addEventListener('error', va, { once: true }); }
-  }
-
-  /* ---- la foto que sigue al cursor en la lista de servicios ---- */
-  var visor = document.querySelector('.visor');
-  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && !reducido) {
-    var fotos = {}; [].forEach.call(visor.querySelectorAll('img'), function (im) {
-      /* la misma foto que ya está en la página, para no cargarla dos veces */
-      var k = im.getAttribute('data-k'), fuente = document.querySelector('main img[data-k="' + k + '"]');
-      if (fuente) im.src = fuente.getAttribute('src');
-      fotos[k] = im;
-    });
-    var mx = 0, my = 0, vx = 0, vy = 0, corriendo = false;
-    function sigue() {
-      vx += (mx - vx) * 0.12; vy += (my - vy) * 0.12;
-      visor.style.transform = 'translate3d(' + (vx - 150).toFixed(1) + 'px,' + (vy - 190).toFixed(1) + 'px,0)';
-      if (Math.abs(mx - vx) > .3 || Math.abs(my - vy) > .3) requestAnimationFrame(sigue); else corriendo = false;
-    }
-    function empuja() { if (!corriendo) { corriendo = true; requestAnimationFrame(sigue); } }
-    [].forEach.call(document.querySelectorAll('.lista li'), function (li) {
-      li.addEventListener('mouseenter', function (e) {
-        var k = li.getAttribute('data-foto');
-        Object.keys(fotos).forEach(function (n) { fotos[n].classList.toggle('ve', n === k); });
-        if (!visor.classList.contains('ve')) { vx = mx = e.clientX; vy = my = e.clientY; }
-        visor.classList.add('ve'); empuja();
-      });
-      li.addEventListener('mousemove', function (e) { mx = e.clientX; my = e.clientY; empuja(); });
-      li.addEventListener('mouseleave', function () { visor.classList.remove('ve'); });
-    });
-    window.addEventListener('scroll', function () { visor.classList.remove('ve'); }, { passive: true });
   }
 
   /* ---- cabecera clara u oscura según lo que tenga debajo, y paralaje suave ---- */
