@@ -231,7 +231,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
 .menu-pie p{margin:12px 0 0;font-size:14px;line-height:1.5;color:var(--tinta-2)}
 
 /* ---------- 0 · portada ---------- */
-.portada-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);grid-template-areas:"texto cumbre";gap:clamp(24px,5vw,72px);align-items:center}
+.portada-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"texto cumbre";gap:clamp(24px,5vw,72px);align-items:center}
 .portada-texto{grid-area:texto}
 .portada h1{font-size:clamp(3.4rem, 8.6vw, 8rem);line-height:.9;letter-spacing:-.02em;font-weight:400;margin-bottom:26px}
 .portada h1 em{display:inline-block;color:var(--liquen);margin-left:.45em}
@@ -240,10 +240,10 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
 .nota-google{display:flex;align-items:center;gap:12px;font:500 14px/1.2 var(--f-cond);letter-spacing:.12em;text-transform:uppercase;color:rgba(232,211,180,.72);margin:0}
 .nota-google b{font:400 2.4rem/1 var(--f-serif);letter-spacing:0;color:var(--pergamino);text-transform:none}
 .estrellas{color:var(--liquen);letter-spacing:.1em}
-.cumbre{grid-area:cumbre;position:relative;width:min(100%, 62vh, 520px);aspect-ratio:1/1.04;justify-self:center}
-.cumbre .logo{position:absolute;left:0;top:0;width:82%;height:auto;overflow:visible;filter:drop-shadow(0 26px 40px rgba(0,0,0,.45))}
-.ejemplar{position:absolute;right:0;bottom:0;width:44%;transform:rotate(4deg)}
-.ejemplar .foto{aspect-ratio:760/950}
+.cumbre{grid-area:cumbre;position:relative;width:min(100%, 70vh, 600px);aspect-ratio:1/1.06;justify-self:center}
+.cumbre .logo{position:absolute;left:-2%;top:-2%;width:50%;z-index:3;height:auto;overflow:visible;filter:drop-shadow(0 26px 40px rgba(0,0,0,.45))}
+.ejemplar{position:absolute;right:0;bottom:0;width:80%;transform:rotate(2.4deg)}
+.ejemplar .foto{aspect-ratio:900/1125}
 .colgante{position:absolute;left:-34px;bottom:12%;z-index:2;background:var(--pergamino-2) var(--grano);color:var(--tinta);padding:9px 13px 9px 25px;
   font:600 11px/1.25 var(--f-cond);letter-spacing:.14em;text-transform:uppercase;transform:rotate(-9deg);transform-origin:100% 50%;
   clip-path:polygon(16px 0,100% 0,100% 100%,16px 100%,0 50%);box-shadow:0 8px 18px -10px rgba(0,0,0,.6)}
@@ -256,14 +256,14 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
 @keyframes gotea{to{background-position-y:14px}}
 
 /* ---------- 1 · antes de que lo necesite ---------- */
-.antes-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(28px,5vw,80px);align-items:center}
+.antes-grid{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:clamp(28px,5vw,80px);align-items:center}
 .antes-grid .h2{max-width:11ch;margin-bottom:22px}
 .tarifa{display:flex;align-items:center;gap:14px;margin-top:22px;padding:14px 16px;border:1.5px solid rgba(47,90,60,.45);max-width:470px}
 .tarifa svg{width:40px;height:40px;flex:none;stroke:var(--bosque);fill:none;stroke-width:1.4;stroke-linecap:round}
 .tarifa p{margin:0;font-size:15.5px;line-height:1.4}
 .tarifa b{display:block;font:500 1.25rem/1.15 var(--f-serif)}
 .antes-foto{position:relative;padding-bottom:40px}
-.antes-foto .marco{max-width:calc(75vh + 18px)}
+.antes-foto .marco{max-width:calc(98vh + 18px)}
 .antes-foto .marco .foto{aspect-ratio:1300/794}
 .todavia{position:absolute;left:-28px;bottom:0;width:min(290px,70%);transform:rotate(-2deg)}
 .todavia h3{font-size:1.5rem;margin-bottom:8px}
@@ -272,7 +272,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
 .todavia .mano{margin-top:10px;font-size:1.45rem}
 
 /* ---------- 2 · peluquería canina ---------- */
-.pelu-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,.75fr);gap:clamp(28px,4vw,64px);align-items:center}
+.pelu-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(28px,4vw,64px);align-items:center}
 .pelu-grid .h2{margin-bottom:10px}
 .pelu-grid .entrada{margin-bottom:18px}
 .mantos li{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1fr) minmax(0,1.35fr);gap:18px;align-items:baseline;padding:13px 0;border-top:1px solid rgba(232,211,180,.16)}
@@ -282,24 +282,29 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
 .razas{margin:0;font-size:14.5px;color:rgba(232,211,180,.62)}
 .tecnicas{margin:0;font-size:16px;color:var(--pergamino)}
 .pelu-pie{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:16px;font:600 12.5px/1.4 var(--f-cond);letter-spacing:.14em;text-transform:uppercase;color:var(--liquen)}
-.pelu-foto .foto{aspect-ratio:1100/885}
-.pelu-foto{transform:rotate(2.5deg)}
+.pelu-foto .foto{aspect-ratio:1300/1046}
+.pelu-foto{transform:rotate(2.2deg);width:84%;margin-left:auto}
+/* peluquería: el caniche en grande y el perrito de la mesa asomando por debajo */
+@media (min-width:761px){.pelu-grid .h2{font-size:clamp(2.3rem,4.4vw,3.9rem)}}
+.pelu-fotos{position:relative;width:100%;max-width:560px;justify-self:end;padding-bottom:56px}
+.pelu-foto2{position:absolute;left:0;bottom:0;width:48%;transform:rotate(-4deg)}
+.pelu-foto2 .foto{aspect-ratio:1000/687}
 
 /* ---------- 3 · spa ---------- */
-.spa-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:clamp(28px,5vw,80px);align-items:center}
+.spa-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,5vw,80px);align-items:center}
 .spa-grid .entrada{margin:18px 0}
 .tres{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
 .tres span{font:600 13.5px/1 var(--f-cond);letter-spacing:.16em;text-transform:uppercase;padding:11px 14px;border:1.5px solid rgba(47,90,60,.5);color:var(--bosque)}
 .ayuda{display:flex;flex-wrap:wrap;gap:4px 16px;font:400 1.2rem/1.5 var(--f-serif);margin-bottom:22px;max-width:560px}
 .ayuda li{position:relative;padding-left:15px}
 .ayuda li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;border:1.5px solid var(--bosque)}
-.spa-foto{transform:rotate(-2deg);max-width:calc(43vh + 18px);justify-self:end}
-.spa-foto .foto{aspect-ratio:800/1067}
+.spa-foto{transform:rotate(-2deg);max-width:calc(52vh + 18px);justify-self:end}
+.spa-foto .foto{aspect-ratio:1100/1467}
 
 /* ---------- 4 · gatos ---------- */
-.gatos-grid{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:clamp(28px,5vw,80px);align-items:center}
-.gato{transform:rotate(-2deg);max-width:calc(54vh + 18px)}
-.gato .foto{aspect-ratio:900/984}
+.gatos-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,5vw,80px);align-items:center}
+.gato{transform:rotate(-2deg);max-width:calc(62vh + 18px)}
+.gato .foto{aspect-ratio:1100/1203}
 .gatos-grid .h2{margin-bottom:20px}
 .gatos-grid p:not(.mano):not(.antetitulo){max-width:52ch;color:rgba(232,211,180,.84)}
 .servicios-gato{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:18px 0}
@@ -310,7 +315,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
 /* ---------- 5 · quién ---------- */
 .quien .h2{margin-bottom:34px}
 .personas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4vw,64px)}
-.persona{display:grid;grid-template-columns:190px minmax(0,1fr);gap:24px;align-items:start}
+.persona{display:grid;grid-template-columns:236px minmax(0,1fr);gap:24px;align-items:start}
 .polaroid{margin:0;background:var(--pergamino-2);padding:7px 7px 30px;transform:rotate(-3deg);box-shadow:0 18px 30px -20px rgba(15,5,10,.7);position:relative}
 .persona:nth-child(2) .polaroid{transform:rotate(2.5deg)}
 .polaroid::before{content:"";position:absolute;top:-11px;left:50%;width:66px;height:22px;margin-left:-33px;background:rgba(170,184,140,.78);transform:rotate(-4deg)}
@@ -325,7 +330,14 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
 .chips li::before{content:"";position:absolute;left:9px;top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:var(--bosque)}
 
 /* ---------- 6 · escuela ---------- */
-.escuela .h2{margin-bottom:12px}
+.escuela-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.5fr);gap:clamp(28px,4vw,64px);align-items:center}
+.escuela-foto{transform:rotate(2deg);max-width:calc(48vh + 18px);justify-self:end}
+.escuela-foto .foto{aspect-ratio:1100/1467}
+@media (min-width:761px){
+  .escuela-grid .curso b{font-size:clamp(2.6rem,4.2vw,3.6rem)}
+  .escuela-grid .curso b.medida{font-size:clamp(1.8rem,3vw,2.4rem);line-height:1.15;padding-top:.3em}
+}
+.escuela .h2{margin-bottom:24px}
 .escuela .entrada{margin-bottom:30px}
 .cursos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid rgba(232,211,180,.2)}
 .curso{padding:22px 26px 0 0}
@@ -350,7 +362,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
 .kraft cite{display:block;margin-top:10px;font:600 11.5px/1 var(--f-cond);letter-spacing:.14em;text-transform:uppercase;font-style:normal;color:var(--tinta-2)}
 
 /* ---------- 8 · cita ---------- */
-.cita-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(28px,5vw,80px);align-items:center}
+.cita-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:center}
 .cita .h2{margin-bottom:18px}
 .telefono{display:inline-flex;align-items:center;gap:14px;text-decoration:none;font:400 clamp(2.4rem,4.4vw,3.2rem)/1 var(--f-serif);color:var(--pergamino);padding:6px 0 10px;border-bottom:2px solid var(--liquen)}
 .telefono svg{width:.8em;height:.8em;stroke:var(--liquen);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
@@ -360,8 +372,8 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
 .horario div dd{margin:4px 0 0;font:500 1.15rem/1.2 var(--f-serif)}
 .direccion{font-size:16px;color:rgba(232,211,180,.84);margin:0}
 .direccion a{color:var(--liquen)}
-.local .foto{aspect-ratio:900/1200}
-.local{transform:rotate(2deg);max-width:calc(39vh + 18px);justify-self:end}
+.local .foto{aspect-ratio:1500/1125}
+.local{transform:rotate(2deg);max-width:calc(72vh + 18px);justify-self:end}
 .direccion .senda{font:inherit;color:var(--liquen)}
 /* redes sociales: Instagram y Facebook */
 .redes{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
@@ -397,38 +409,63 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
 .firma p{margin:0;font-size:12.5px;line-height:1.45;color:var(--tinta-3);max-width:46ch}
 .firma p b{display:block;font:400 italic 1.25rem/1.2 var(--f-serif);color:var(--tinta);margin-bottom:3px}
 
+/* ---------- tabletas ---------- */
+@media (min-width:761px) and (max-width:1060px){
+  .pelu-grid{grid-template-columns:minmax(0,1.5fr) minmax(0,.8fr)}
+  .pelu-fotos{padding-bottom:0}
+  .pelu-foto2{display:none}
+  .pelu-foto{width:100%}
+  .escuela-grid{grid-template-columns:1fr}
+  .escuela-foto{display:none}
+  .antes-grid{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+}
+/* iPad en vertical: la portada se apila y el perro se ve grande */
+@media (min-width:761px) and (max-width:1060px) and (orientation:portrait){
+  .portada-grid{grid-template-columns:1fr;grid-template-areas:"cumbre" "texto";gap:clamp(28px,5vh,56px);justify-items:center}
+  .portada-texto{width:100%;max-width:640px}
+  .cumbre{width:min(78vw,40vh,480px)}
+  .portada-grid{gap:clamp(24px,3.5vh,40px)}
+  .pelu-pie,.pelu-grid .entrada{display:none}
+  .antes-grid,.pelu-grid,.spa-grid,.gatos-grid{grid-template-columns:1fr;gap:clamp(20px,3vh,36px)}
+  .antes-foto{order:-1;width:100%;max-width:600px;justify-self:center}
+  .antes-foto .marco{max-width:none}
+  .pelu-fotos{order:-1;max-width:470px;justify-self:center;padding-bottom:44px}
+  .pelu-foto{width:84%}
+  .pelu-foto2{display:block}
+  .cita-grid{grid-template-columns:1fr;gap:clamp(20px,3vh,36px)}
+  .local{order:-1;justify-self:center;width:100%;max-width:min(520px,calc(40vh + 40px))}
+  .cita .entrada{display:none}
+  .spa-foto{order:-1;justify-self:center;max-width:calc(34vh + 18px)}
+  .gato{justify-self:center;max-width:calc(34vh + 18px)}
+}
+
 /* ---------- móvil ---------- */
 @media (max-width:760px){
   body{font-size:16px}
-  .ancho,.ejemplar,.bajar{display:none!important}
+  .ancho,.bajar{display:none!important}
   .hoja-fija{padding-top:96px}
   :root{--descanso:45vh}
   .antetitulo{margin-bottom:10px}
-  .portada-grid{grid-template-columns:1fr;grid-template-areas:"cumbre" "texto";gap:20px}
-  .cumbre{width:min(52vw, 230px);aspect-ratio:1;justify-self:start}
-  .cumbre .logo{width:100%}
+  .portada .hoja-fija{padding-top:0}
+  .portada-grid{grid-template-columns:1fr;grid-template-areas:"cumbre" "texto";gap:0}
+  .portada-texto{padding-top:62px}
   .portada h1{font-size:13.5vw}
   .acciones .btn{flex:1 1 auto;justify-content:center}
   .nota-google b{font-size:1.9rem}
   .h2{font-size:10.4vw}
-  .antes-grid,.pelu-grid,.spa-grid,.gatos-grid,.huellas-grid,.cita-grid,.llegar-grid{grid-template-columns:1fr;gap:22px}
+  .antes-grid,.pelu-grid,.spa-grid,.gatos-grid,.huellas-grid,.cita-grid,.llegar-grid,.escuela-grid{grid-template-columns:1fr;gap:22px}
   .rutas li{grid-template-columns:82px 1fr;gap:10px;padding:9px 0}
   .rutas p{font-size:14.5px}
   .mapa{transform:none}
   .panel{padding:20px 18px}
   .panel-datos div{grid-template-columns:66px 1fr}
-  .antes-foto{display:none}
   .todavia-movil{display:block!important;position:static;width:auto;transform:rotate(-1.2deg);margin-top:18px}
   .mantos li{grid-template-columns:1fr;gap:3px;padding:11px 0}
   .mantos h3 small{display:inline;margin:0 0 0 8px}
   .razas{display:none}
   .tecnicas{font-size:15px}
-  .gato{transform:none;max-width:none}
-  .gato .foto{aspect-ratio:auto;height:210px}
-  .gato .foto img{object-position:50% 30%}
-  .gato figcaption{display:none}
   .personas{grid-template-columns:1fr;gap:26px}
-  .persona{grid-template-columns:104px minmax(0,1fr);gap:18px}
+  .persona{grid-template-columns:124px minmax(0,1fr);gap:18px}
   .polaroid{padding:5px 5px 6px}
   .polaroid figcaption,.polaroid::before{display:none}
   .persona h3{font-size:1.8rem}
@@ -451,6 +488,33 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
   .rotulo > a,.rotulo > span,.rotulo > button{padding:0 11px;min-height:42px}
   .menu{left:10px;width:calc(100vw - 20px)}
   .hito .etiqueta{display:none}
+
+  /* ---- las fotos de animales, a sangre y pegadas arriba de cada lámina ---- */
+  .cumbre{width:auto;margin:0 calc(-1 * var(--lado));aspect-ratio:auto;height:clamp(250px,44vh,400px);justify-self:stretch}
+  .ejemplar{position:absolute;inset:0;width:auto;transform:none;padding:0;background:none;box-shadow:none}
+  .ejemplar .foto{height:100%;aspect-ratio:auto}
+  .ejemplar .foto img{object-position:50% 3%}
+  .ejemplar::after{content:"";position:absolute;left:0;right:0;bottom:0;height:42%;background:linear-gradient(rgba(30,13,23,0),var(--noche));pointer-events:none}
+  .cumbre .logo{left:var(--lado);top:auto;bottom:-50px;width:min(34vw,140px)}
+  .colgante{left:auto;right:12px;bottom:14px;padding:7px 10px 7px 21px;font-size:9.5px;transform:rotate(-4deg);transform-origin:100% 50%}
+  .colgante span{font-size:1rem}
+  .antes-foto .marco,.spa-foto,.gato,.escuela-foto,.local,.pelu-fotos .marco{max-width:none;transform:none;padding:0;background:none;box-shadow:none;margin:0;width:auto}
+  .antes-foto,.spa-foto,.gato,.escuela-foto,.local,.pelu-fotos{order:-1;margin:-96px calc(-1 * var(--lado)) 0;padding:0;max-width:none;justify-self:stretch;transform:none}
+  .antes-foto .marco .foto,.spa-foto .foto,.gato .foto,.escuela-foto .foto,.local .foto,.pelu-fotos .foto{aspect-ratio:auto;height:clamp(205px,33vh,285px)}
+  .marco figcaption{display:none}
+  .antes-foto .todavia{display:none}
+  .pelu-fotos{display:grid;grid-template-columns:1fr 1fr}
+  .pelu-foto2{position:static}
+  .antes-foto .foto img{object-position:50% 40%}
+  .spa-foto .foto img{object-position:50% 26%}
+  .gato .foto img{object-position:50% 28%}
+  .escuela-foto .foto img{object-position:50% 24%}
+  .local .foto img{object-position:50% 72%}
+  /* para que la foto, el titular y lo esencial quepan en la pantalla durante la pausa */
+  .antes-grid .entrada,.escuela .entrada,.cita .entrada,.pelu-pie,.spa-grid .ayuda,.gatos-grid [data-f="70"]{display:none}
+  .antes-grid .h2{max-width:none}
+  .mantos li{padding:8px 0}
+  .curso,.curso + .curso{padding:10px 0}
 }
 .todavia-movil{display:none}
 /* móviles estrechos: el rótulo deja solo el número de la lámina */
@@ -644,7 +708,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
 <text x="51.33" y="57.58" textLength="15.96" lengthAdjust="spacingAndGlyphs" font-family="'Barlow', 'Gill Sans', sans-serif" font-weight="500" font-size="2.93" fill="#3a6444">Pet Care</text></g>
 </svg>
       <figure class="ejemplar marco" data-p="foto">
-        <div class="foto" style="--ph:url(data:image/webp;base64,UklGRrgAAABXRUJQVlA4IKwAAABQBwCdASooADIAPqlGlUqmJCIht/xtUMAVCWcAxrtT2fSFE9EKljakE/PxIHOM5AjRz7nPm6DFIboKFQPdkEqyy/WAAP7pTQkgCqCxow7qGC8o1Xf1L0uGrINtQdoDnWYGGcJ/Z46ipBIK7s3aNZt2EKAxo78NM3M1eJVfJ4TpBJ9+t4lsSKwJ6rXGQDcKl226KX9fasHvTX3B41N4eSt9LcK6CAnNr2IV4AAA)"><img src="assets/img/tocon.webp" width="760" height="950" alt="Un perro de agua español marrón, con arnés naranja, sentado sobre un tocón en un parque" fetchpriority="high"></div>
+        <div class="foto" style="--ph:url(data:image/webp;base64,UklGRrgAAABXRUJQVlA4IKwAAADQBwCdASooADIAPq1El0qmI6Iht/xqqMAViWcAygNT2cMouZDhysclxEzpjsl3oufb4vmTNy+aSM/ewpwGuE1X4O6poaFsAAD+5Eses2j55Spgy4pB5a08J2J9vDacLD4MPZeHh/OMYF+VU82IQlH15tfZr7Hot+B3I9SV8W1O+9CBNdfV4m7ai48L+JgT6B3wb1gPaiIRKyZA4xa/Olx7IUx3OvbIroMQ1MQA)"><img src="assets/img/tocon.webp" width="900" height="1125" alt="Un perro de agua español marrón, con arnés naranja, sentado sobre un tocón en un parque" fetchpriority="high"></div>
         <p class="colgante">Ejemplar observado<span>perro de agua, manto rizado</span></p>
       </figure>
     </div>
@@ -655,7 +719,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
 </section>
 
 <!-- ============ I · ANTES DE QUE LO NECESITE ============ -->
-<section id="antes" class="hoja reposo papel" data-num="I" data-titulo="Mantenimiento">
+<section id="antes" data-pin-arriba class="hoja reposo papel" data-num="I" data-titulo="Mantenimiento">
   <div class="hoja-fija">
   <svg class="topo" viewBox="0 0 1240 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#topo-b" x="560" y="200"/></svg>
   <div class="hoja-cuerpo antes-grid">
@@ -697,7 +761,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
 </section>
 
 <!-- ============ II · PELUQUERÍA CANINA ============ -->
-<section id="peluqueria" class="hoja reposo oscura" data-num="II" data-titulo="Peluquería canina">
+<section id="peluqueria" data-pin-arriba class="hoja reposo oscura" data-num="II" data-titulo="Peluquería canina">
   <div class="hoja-fija">
   <svg class="topo" viewBox="0 0 1240 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#topo-a" x="-260" y="140"/></svg>
   <div class="hoja-cuerpo pelu-grid">
@@ -714,17 +778,22 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
       </ol>
       <p class="pelu-pie" data-p="deriva" data-f="90"><span>Alta cosmética</span><span>Uñas y oídos</span><span>Precio según su tiempo</span></p>
     </div>
-    <figure class="marco pelu-foto ancho" data-p="foto">
-      <div class="foto" style="--ph:url(data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAAAwBACdASooACAAPrlGnkqzI6KhtVv4AmAXCWcAy2gw/LztCQqGFhX1ZwAA/vBPnAj8ljKLKA7S1n9cVORdlTute0KGn+iLskcs1xFwQbD5ehEMpAAAAA==)"><img src="assets/img/caniche.webp" width="1100" height="885" loading="lazy" alt="Un caniche toy blanco con un jersey rosa"></div>
-      <figcaption>Caniche, manto rizado</figcaption>
-    </figure>
+    <div class="pelu-fotos">
+      <figure class="marco pelu-foto" data-p="foto">
+        <div class="foto" style="--ph:url(data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAADQAwCdASooACAAPrlGnkqzI6KhtVv4AmAXCWcAyJgw/LztCOcKSXgA/vBPnAj7bvKgNEQNW0I2AIXHgKW/IBf0RdZj6v/KDkQ0E/w76txc5CigAAA=)"><img src="assets/img/caniche.webp" width="1300" height="1046" loading="lazy" alt="Un caniche toy blanco con un jersey rosa"></div>
+        <figcaption>Caniche, manto rizado</figcaption>
+      </figure>
+      <figure class="marco pelu-foto2" data-p="foto">
+        <div class="foto" style="--ph:url(data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAAAwBgCdASooABwAPrFInUqnJCMhtUgA4BYJZQC369ZRfLFcoOHJYUs5BDmSytx7K1Xtg17bBfCRvOYAAPxwH6DxXUB+HAOG15T4WWVwUcLsaRf4NS9+N8qsJUxVPikspku4UAW7RtOfTEojFGROmyrJNTzW8wdboBgbhXF7Deiwd0Qiff6RXQAA)"><img src="assets/img/mesa.webp" width="1000" height="687" loading="lazy" alt="Un perrito blanco de pelo largo descansa tumbado sobre la mesa de trabajo"></div>
+      </figure>
+    </div>
   </div>
   <p class="hito"><span class="sello">II</span><span class="etiqueta">Lámina II · Peluquería canina</span></p>
   </div>
 </section>
 
 <!-- ============ III · SPA ============ -->
-<section id="spa" class="hoja reposo papel" data-num="III" data-titulo="Spa">
+<section id="spa" data-pin-arriba class="hoja reposo papel" data-num="III" data-titulo="Spa">
   <div class="hoja-fija">
   <svg class="topo" viewBox="0 0 1240 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#topo-b" x="-120" y="-80"/></svg>
   <div class="hoja-cuerpo spa-grid">
@@ -736,9 +805,9 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
       <ul class="ayuda" data-p="deriva" data-f="120"><li>caspa</li><li>sebo</li><li>alergias</li><li>caída de pelo</li><li>mal olor</li><li>hongos</li><li>bacterias</li><li>inflamación</li></ul>
       <a class="btn btn-lleno" href="tel:+34636766197" data-p="deriva" data-f="140">Pregúntanos sin compromiso</a>
     </div>
-    <figure class="marco spa-foto ancho" data-p="foto">
-      <div class="foto" style="--ph:url(data:image/webp;base64,UklGRtQAAABXRUJQVlA4IMgAAACQCQCdASooADUAPqE8l0qmIyIhur5oAMAUCWcAzJdT2dcWoCtN21ZHgMsgjdhfTFvib12CPE1vIt8NWwHRxIP48/98dKHn0qmW0gaiQ4vx3F3P8g6oAPap37DX4Ol3848Uk2I3V+AQYkIB7020lgGoBKytckXR5c6JuJEfMkVimYpeLbgXP5kggwaoVBtmnMxPVGiC5VfRzSsFJgDq0UegB7kSz70q/MODZ+A9r1U/p2Vy5YDMohFLIH3gtgcNsVSbZiggGiVEAA==)"><img src="assets/img/cosmetica.webp" width="800" height="1067" loading="lazy" alt="Estanterías negras con frascos de champú, bálsamos y productos de cosmética para perros y gatos"></div>
-      <figcaption>Alta cosmética en la tienda</figcaption>
+    <figure class="marco spa-foto" data-p="foto">
+      <div class="foto" style="--ph:url(data:image/webp;base64,UklGRsYAAABXRUJQVlA4ILoAAACwCACdASooADUAPp1Am0qlpCKhuqwAsBOJZwDMHC4FO6DnwesFndqEbSNq1WrIn45aGJhYIe0KDtXxxdZpGEWnkSa2HlMdDDAhbnZn16AA/rmHkmNKr8v28sE20ato2+8cKr9KzfZiDEb2d3R9lVNOtaXo7X/4+HSI9uUPHIB3zo6DNAdNodr5Wg54z+1vpUvyXYlKwNc3bTrGzUNFmU0oi+y2wJICQWsRnAr5LQFhLoZtaczIsSESgAA=)"><img src="assets/img/bano.webp" width="1100" height="1467" loading="lazy" alt="Dos perritos blancos dentro de la bañera de spa, rodeados de espuma"></div>
+      <figcaption>Bañera de spa</figcaption>
     </figure>
   </div>
   <p class="hito"><span class="sello">III</span><span class="etiqueta">Lámina III · Spa</span></p>
@@ -746,12 +815,12 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
 </section>
 
 <!-- ============ IV · GATOS ============ -->
-<section id="gatos" class="hoja reposo oscura" data-num="IV" data-titulo="Gatos">
+<section id="gatos" data-pin-arriba class="hoja reposo oscura" data-num="IV" data-titulo="Gatos">
   <div class="hoja-fija">
   <svg class="topo" viewBox="0 0 1240 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#topo-a" x="420" y="260"/></svg>
   <div class="hoja-cuerpo gatos-grid">
     <figure class="marco gato" data-p="foto">
-      <div class="foto" style="--ph:url(data:image/webp;base64,UklGRsQAAABXRUJQVlA4ILgAAAAQCACdASooACwAPrVGnUqnI6KhvHQIAOAWiWMAwRAKkXyJCfC7uB6AoMWQen00xbAS+JvKiW50Ocm8Q5K9vk3PakpoD+qWh2d0AHy3Rs6/3h0cJN7p8zBqazyy8SD+s2G09nmqN4MK77zZuQRCorgw9FGXcc1t1wEoAt+QIFrdrbJ4Dp97BG8IjB3Urjwju5TatlDKRFmmSJXtCpVs/rZ9OtMVMau6sSa+b0VbZvcBso04wwhg0AAA)"><img src="assets/img/gato.webp" width="900" height="984" loading="lazy" alt="Un gato blanco y negro de pelo semilargo mira hacia un lado, delante de una pared morada y verde"></div>
+      <div class="foto" style="--ph:url(data:image/webp;base64,UklGRsYAAABXRUJQVlA4ILoAAAAwCACdASooACwAPrVGnkqnI6KhvHQIAOAWiWMAv2vM0XyJCfC7uB6AoMWQen00xbAS+JvKjllT9C/rIcH21GZvSrpuEGlJRUJ0wAB8t0bOv94dHCTe6fMwal8UY7wRcsQIX2FFPCUBkzng7sw7NeXKZ4npNqFBQ4z4I22NJlktjl6AGvXLQZoAPHP7dDDRncECBCSograS+zOhxYQGhRVObZ+tDsCWT0hzQkSxXAftzlfQaaHj7CPKAAA=)"><img src="assets/img/gato.webp" width="1100" height="1203" loading="lazy" alt="Un gato blanco y negro de pelo semilargo mira hacia un lado, delante de una pared morada y verde"></div>
       <figcaption>Con el mínimo estrés</figcaption>
     </figure>
     <div>
@@ -804,10 +873,11 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
 </section>
 
 <!-- ============ VI · ESCUELA ============ -->
-<section id="escuela" class="hoja reposo oscura escuela" data-num="VI" data-titulo="Escuela">
+<section id="escuela" data-pin-arriba class="hoja reposo oscura escuela" data-num="VI" data-titulo="Escuela">
   <div class="hoja-fija">
   <svg class="topo" viewBox="0 0 1240 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#topo-a" x="-40" y="-240"/></svg>
-  <div class="hoja-cuerpo">
+  <div class="hoja-cuerpo escuela-grid">
+   <div>
     <p class="antetitulo" data-p="deriva" data-f="40">Escuela de peluquería</p>
     <h2 class="h2" data-p="palabras">Haz de tu pasión <em>tu profesión</em></h2>
     <p class="entrada" data-p="deriva" data-f="70">Prácticas reales con perros y gatos desde el primer día, clases personalizadas y un horario que se adapta al tuyo.</p>
@@ -820,6 +890,11 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
       <a class="btn btn-lleno" href="tel:+34636766197">Reserva una clase gratis</a>
       <button class="btn btn-linea" type="button" data-panel="temario" aria-controls="panel-temario">Ver el temario</button>
     </div>
+   </div>
+   <figure class="marco escuela-foto" data-p="foto">
+     <div class="foto" style="--ph:url(data:image/webp;base64,UklGRtgAAABXRUJQVlA4IMwAAADQCQCdASooADUAPq1Km0qmJKKht/jqqMAViWUAxrtT29gY8CjuDZ5Rit1mKwWhnQHv4KEZfECfEFXRtJ6wmM8BQAXr04mn+I5yGY85/EMWlwXP5MhjzXAA/oENGCcGwBI6+FxYfoNnKCCpS54W+Q3rxKY2yvwEhnLDVAuCdwCQLpuX+jKtI+fmh3IGTlv/fsGrpJmOwCHDbQcvHsVKjkRkEbk/5nYlO/ykQ1Gi09hmxJw9iTNCFs6onjz2uoYrz3XgC44x8gAGN/7FAAA=)"><img src="assets/img/rizado.webp" width="1100" height="1467" loading="lazy" alt="Un perro de pelo rizado y largo, mojado, de pie sobre la mesa de trabajo de una sala verde y morada"></div>
+     <figcaption>En la mesa de trabajo</figcaption>
+   </figure>
   </div>
   <p class="hito"><span class="sello">VI</span><span class="etiqueta">Lámina VI · Escuela</span></p>
   </div>
@@ -854,7 +929,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
 </section>
 
 <!-- ============ VIII · PIDE CITA ============ -->
-<section id="cita" class="hoja reposo oscura cita" data-num="VIII" data-titulo="Pide cita">
+<section id="cita" data-pin-arriba class="hoja reposo oscura cita" data-num="VIII" data-titulo="Pide cita">
   <div class="hoja-fija">
   <svg class="topo" viewBox="0 0 1240 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#topo-a" x="300" y="-60"/></svg>
   <div class="hoja-cuerpo cita-grid">
@@ -871,9 +946,9 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
       <p class="direccion" data-p="deriva" data-f="130">Calle de Teresa Claramunt, 11 · 28919 Leganés · <button type="button" class="senda" data-ir="llegar">cómo llegar</button> · <a class="senda" href="mailto:info@jadogmadrid.com">info@jadogmadrid.com</a></p>
       <p class="redes" data-p="deriva" data-f="150"><a class="red" href="https://www.instagram.com/jadog.andrealonso/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r=".9"/></svg>Instagram</a><a class="red" href="https://www.facebook.com/jadogmadrid/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 21v-7h3l.6-3.5H14V8.6c0-1 .5-1.6 1.7-1.6h2V3.9c-.6-.1-1.6-.2-2.7-.2-2.8 0-4.5 1.7-4.5 4.7v2.1H7.4V14h3.1v7"/></svg>Facebook</a></p>
     </div>
-    <figure class="marco local ancho" data-p="foto">
-      <div class="foto" style="--ph:url(data:image/webp;base64,UklGRs4AAABXRUJQVlA4IMIAAABQCACdASooADUAPrVKnEqnJKKhtVgN+OAWiWUAyjQ6EXzOJ8ey8SrrCU0TtKwkE3IQhdXiHU+ZZUh/ee2qfO8OgTodZk499W2/DgAA+r29q4SIsfoCqY8dS8j9MvujYVCv7otBiGGfXGRynrgqrECJNzEhD2MacHni8qPkfNw9AZGIq/ZN/5idqZOpTr8dzMhqmjrkOExiZyAUg/UZINuezUVB/ezkKqyn0vK/oIEtzim8nk+xygVLa+FaDVhAyxAAAA==)"><img src="assets/img/local.webp" width="900" height="1200" loading="lazy" alt="Interior del local: pared morada, zócalo de rayas blancas y negras y una balda con figuras de gatos"></div>
-      <figcaption>El local, por dentro</figcaption>
+    <figure class="marco local" data-p="foto">
+      <div class="foto" style="--ph:url(data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAADwBQCdASooAB4APrVInkqnJCKhtVgMAOAWiWUAvVtT2JA9z3qabieq9zBM4C2MSGiwm8q4pQVAAAD+y3DyhKtT+nD0EJi8SYluh0+YtaWeNKbobBJl28EZmce7+GpzXsv/3AvxkbWe3vJmZoSI3vIrX72qFnuMIgMG095Y0rQuyAAA)"><img src="assets/img/salon.webp" width="1500" height="1125" loading="lazy" alt="El salón: dos peluqueras trabajando al fondo, paredes moradas y verdes, y un perro rizado sonriendo en primer plano"></div>
+      <figcaption>El salón, por dentro</figcaption>
     </figure>
   </div>
   <p class="hito"><span class="sello">VIII</span><span class="etiqueta">Lámina VIII · Pide cita</span></p>
@@ -1143,7 +1218,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cu
       var fija = h.querySelector('.hoja-fija');
       h._top = h.offsetTop;
       if (h.classList.contains('reposo') && !quieto) {
-        var f = Math.min(0, Hv - fija.offsetHeight);
+        var f = h.hasAttribute('data-pin-arriba') ? 0 : Math.min(0, Hv - fija.offsetHeight);
         fija.style.setProperty('--fijo', f + 'px');
         h._fijo = f;
         h._alto = h.offsetHeight;
