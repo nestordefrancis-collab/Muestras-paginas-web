@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Acordes · Escuela de música moderna en Leganés</title>
+<meta name="description" content="Clases de canto, guitarra, piano, batería y coro en San Nicasio, Leganés. Para todas las edades, desde los 2 años. Matrícula abierta: 916 48 54 93.">
+<meta name="theme-color" content="#FFFFFF">
+<script>
+  /* Todo se ve sin JavaScript. El guion del final solo esconde lo que está por
+     debajo de la pantalla (clase «pre») para enseñarlo al llegar. Si no llega a
+     marcar window.__animOk, se quita «js» y la página queda entera y quieta. */
+  document.documentElement.classList.add('js');
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!window.__animOk) document.documentElement.classList.remove('js');
+  });
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/img/portada-escenario.webp">
+<style>
+:root{
+  --rojo:#B3141E;           /* el del rótulo de la fachada */
+  --rojo-osc:#7E0C14;
+  --negro:#121011;
+  --blanco:#FFFFFF;
+  --hueso:#F3F1EE;
+  --gris:#6E6A68;
+  --filete:#E2DEDA;
+  --cab:68px;
+  --sans:'Schibsted Grotesk', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --suave:cubic-bezier(.25,.6,.3,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--blanco);color:var(--negro);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:inherit}
+a{color:inherit}
+.salto{position:fixed;left:12px;top:-60px;z-index:70;background:var(--negro);color:#fff;padding:10px 14px}
+.salto:focus{top:12px}
+.logo-svg{display:block;fill:currentColor}
+
+/* ---------- cabecera ---------- */
+.cab{position:fixed;inset:0 0 auto 0;height:var(--cab);z-index:40;display:flex;align-items:center;justify-content:space-between;
+  padding:0 max(36px,env(safe-area-inset-right)) 0 max(36px,env(safe-area-inset-left));pointer-events:none;color:var(--negro);transition:color .5s}
+.cab>*{pointer-events:auto}
+.cab .logo{color:var(--rojo);transition:color .5s}
+.cab .logo .logo-svg{height:38px;width:auto}
+.cab .der{display:flex;align-items:center;gap:26px;font:700 12.5px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase}
+.cab .der .enlace{padding:9px 0;position:relative;text-decoration:none}
+.cab .der .enlace::after{content:"";position:absolute;left:0;right:0;bottom:3px;height:2px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .4s var(--suave)}
+.cab .der .enlace:hover::after,.cab .der .enlace:focus-visible::after{transform:scaleX(1);transform-origin:left}
+.cab .menu{display:flex;align-items:center;gap:10px;padding:9px 0}
+.cab .menu i{display:flex;gap:3px;align-items:flex-end;height:12px}
+.cab .menu i b{display:block;width:3px;background:currentColor;transition:height .35s var(--suave)}
+.cab .menu i b:nth-child(1){height:6px}.cab .menu i b:nth-child(2){height:12px}.cab .menu i b:nth-child(3){height:9px}
+.cab .menu:hover i b:nth-child(1){height:12px}.cab .menu:hover i b:nth-child(2){height:5px}.cab .menu:hover i b:nth-child(3){height:11px}
+.cab.sobre-oscuro,.cab.sobre-oscuro .logo,.cab.sobre-rojo,.cab.sobre-rojo .logo{color:#fff}
+/* en la portada de ordenador, la mitad derecha es la foto: la navegación va en blanco */
+.cab.sobre-foto .der{color:#fff}
+
+/* ---------- mesa de mezclas: un canal por sección ---------- */
+.mesa{position:fixed;right:max(22px,env(safe-area-inset-right));top:50%;transform:translateY(-50%);z-index:39;display:flex;gap:10px;color:var(--negro);transition:color .5s}
+.canal{display:flex;flex-direction:column;align-items:center;gap:9px;width:26px;padding:4px 0}
+.canal .via{position:relative;width:26px;height:118px}
+.canal .via::before{content:"";position:absolute;left:12px;top:0;bottom:0;width:2px;background:currentColor;opacity:.22}
+.canal .via::after{content:"";position:absolute;left:6px;right:6px;top:0;bottom:0;
+  background:repeating-linear-gradient(to bottom,currentColor 0 1px,transparent 1px 14.6px);opacity:.18;
+  -webkit-mask:linear-gradient(90deg,#000 0 4px,transparent 4px 10px,#000 10px);mask:linear-gradient(90deg,#000 0 4px,transparent 4px 10px,#000 10px)}
+.canal .mando{position:absolute;left:2px;width:22px;height:12px;bottom:0;background:currentColor;border-radius:2px;
+  transform:translateY(calc(var(--nivel,0) * -106px));transition:background .4s}
+.canal .mando::after{content:"";position:absolute;left:3px;right:3px;top:5px;height:2px;background:var(--blanco);opacity:.9}
+.canal .n{font:700 10.5px/1 var(--sans);letter-spacing:.06em;opacity:.55;font-variant-numeric:tabular-nums;transition:opacity .4s}
+.canal.actual .mando{background:var(--rojo)}
+.canal.actual .n{opacity:1}
+.canal:hover .n{opacity:1}
+.mesa.sobre-oscuro,.mesa.sobre-foto{color:#fff}
+.mesa.sobre-foto .canal .mando::after{background:var(--rojo)}
+.mesa.sobre-foto .canal.actual .mando{background:#fff}
+.mesa.sobre-oscuro .canal .mando::after{background:var(--negro)}
+.mesa.sobre-rojo{color:#fff}
+.mesa.sobre-rojo .canal.actual .mando{background:#fff}
+.mesa.sobre-rojo .canal .mando::after{background:var(--rojo)}
+
+/* ---------- secciones: una pantalla cada una, seguidas ---------- */
+.sec{position:relative;min-height:100svh;padding:calc(var(--cab) + 28px) calc(max(36px,4vw) + 150px) 52px max(36px,4vw)}
+.sec.oscuro{background:var(--negro);color:#F2EEEB}
+.sec.rojo{background:var(--rojo);color:#fff}
+.etq{font:700 12px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--rojo);margin:0 0 20px;display:flex;align-items:center;gap:12px}
+.etq::before{content:"";width:8px;height:8px;background:currentColor}
+.oscuro .etq{color:#FF5A62}
+.rojo .etq{color:#fff}
+h1,h2,h3{margin:0;font-family:var(--sans);text-transform:uppercase}
+h1{font-weight:900;font-size:clamp(56px,7.6vw,132px);line-height:.88;letter-spacing:-.025em}
+h2{font-weight:900;font-size:clamp(42px,5vw,88px);line-height:.9;letter-spacing:-.02em}
+h1 .r,h2 .r{color:var(--rojo)}
+.oscuro h2 .r{color:#FF5A62}
+.entradilla{font:400 clamp(17px,1.3vw,20px)/1.55 var(--sans);max-width:31em;margin:24px 0 0;color:#3B3735}
+.oscuro .entradilla{color:rgba(242,238,235,.78)}
+.rojo .entradilla{color:rgba(255,255,255,.9)}
+
+.btn{position:relative;display:inline-flex;align-items:center;gap:14px;font:700 13px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;
+  padding:18px 24px 18px 20px;border:2px solid currentColor;transition:background .3s var(--suave), color .3s var(--suave), border-color .3s}
+/* vúmetro: ocho pilotos que se encienden de izquierda a derecha al pasar */
+.btn .vu{display:flex;gap:2px;align-items:center}
+.btn .vu i{display:block;width:3px;height:12px;background:currentColor;opacity:.25;transition:opacity .15s}
+.btn:hover .vu i,.btn:focus-visible .vu i{opacity:1}
+.btn .vu i:nth-child(2){transition-delay:.04s}.btn .vu i:nth-child(3){transition-delay:.08s}.btn .vu i:nth-child(4){transition-delay:.12s}
+.btn .vu i:nth-child(5){transition-delay:.16s}.btn .vu i:nth-child(6){transition-delay:.2s}
+.btn.lleno{background:var(--rojo);border-color:var(--rojo);color:#fff}
+.btn.lleno:hover,.btn.lleno:focus-visible{background:var(--negro);border-color:var(--negro)}
+.btn.borde:hover,.btn.borde:focus-visible{background:var(--negro);border-color:var(--negro);color:#fff}
+.oscuro .btn.borde:hover{background:#fff;border-color:#fff;color:var(--negro)}
+.rojo .btn.blanco{background:#fff;border-color:#fff;color:var(--rojo)}
+.rojo .btn.blanco:hover,.rojo .btn.blanco:focus-visible{background:var(--negro);border-color:var(--negro);color:#fff}
+
+/* ---------- fotos en duotono: gris + tinta roja multiplicada; al pasar, su color ---------- */
+.marco{position:relative;overflow:hidden;background:#2A0B0E var(--ph) center/cover no-repeat;margin:0}
+.marco img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.12) brightness(1.12);
+  transition:opacity 1.2s var(--suave), transform 1.6s var(--suave), filter .7s var(--suave)}
+.marco::after{content:"";position:absolute;inset:0;background:var(--rojo);mix-blend-mode:multiply;pointer-events:none;transition:opacity .7s var(--suave)}
+.marco.color::after{display:none}
+.marco.color img{filter:none}
+.vivo:hover .marco img,.marco.vivo:hover img{filter:grayscale(0) contrast(1) brightness(1)}
+.vivo:hover .marco::after,.marco.vivo:hover::after{opacity:0}
+.js .marco.espera img{opacity:0;transform:scale(1.04)}
+.js .marco.espera::after{opacity:0}
+.marco figcaption,.pie-foto{position:absolute;left:0;bottom:0;z-index:2;font:700 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;background:var(--negro);color:#fff;padding:8px 10px}
+
+/* entradas: aparecen y suben 14 px */
+.ap{transition:opacity .9s var(--suave), transform .9s var(--suave)}
+.js .pre .ap{opacity:0;transform:translateY(14px);transition:none}
+
+/* ---------- 1 · portada ---------- */
+.portada{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:0;padding:0;min-height:100svh}
+.portada .txt{display:flex;flex-direction:column;justify-content:center;padding:calc(var(--cab) + 30px) 56px 40px max(36px,4vw)}
+.portada .botones{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.portada .datos{display:flex;gap:34px;margin-top:auto;padding-top:28px;font:500 13px/1.45 var(--sans);color:var(--gris)}
+.portada .datos b{display:block;font-weight:700;color:var(--negro);font-size:14px}
+.portada .foto{position:relative;min-height:100svh}
+.portada .foto .marco{position:absolute;inset:0}
+.portada .foto .marco img{object-position:42% 40%}
+.portada .sello{position:absolute;left:-1px;bottom:56px;z-index:3;background:var(--blanco);padding:16px 22px 16px 20px;font:700 12px/1.4 var(--sans);letter-spacing:.12em;text-transform:uppercase}
+.portada .sello b{display:block;color:var(--rojo);font-size:26px;letter-spacing:-.01em;line-height:1;margin-bottom:4px}
+
+/* ---------- 2 · clases ---------- */
+.clases{display:flex;flex-direction:column;justify-content:center;gap:34px}
+.clases .cabeza{display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
+.clases .cabeza .entradilla{margin:0;max-width:26em}
+.rejilla{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(150px,24vh);gap:12px}
+.ficha-c{position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:18px 18px 16px;color:#fff;overflow:hidden;min-width:0}
+.ficha-c .marco{position:absolute;inset:0}
+.ficha-c h3{position:relative;z-index:2;font-weight:900;font-size:clamp(22px,1.9vw,32px);line-height:.95;letter-spacing:-.01em}
+.ficha-c p{position:relative;z-index:2;margin:8px 0 0;font:500 13.5px/1.4 var(--sans);opacity:.92;max-width:22em}
+.ficha-c .sombra{position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(18,16,17,.65),rgba(18,16,17,0) 55%);pointer-events:none}
+.ficha-c.liso{background:var(--negro)}
+.ficha-c.liso.r{background:var(--rojo)}
+.ficha-c.liso.h{background:var(--hueso);color:var(--negro)}
+.ficha-c.liso .num{position:absolute;top:16px;left:18px;font:700 12px/1 var(--sans);letter-spacing:.12em;opacity:.7}
+.ficha-c.liso h3{font-size:clamp(24px,2.1vw,36px)}
+.ficha-c.ancha{grid-column:span 2}
+
+/* ---------- 3 · escenario ---------- */
+.escenario{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:56px;align-items:center}
+.escenario .fotos{display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:1fr 1fr;gap:12px;height:min(70vh,640px)}
+.escenario .fotos .a{grid-row:1/3}
+.escenario .fotos .marco{height:100%}
+.agenda{list-style:none;margin:32px 0 0;padding:0;border-top:1px solid rgba(242,238,235,.18);max-width:32em}
+.agenda li{display:grid;grid-template-columns:7.5em 1fr;gap:4px 18px;padding:15px 0;border-bottom:1px solid rgba(242,238,235,.18)}
+.agenda .cuando{font:700 12px/1.5 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#FF5A62;padding-top:3px}
+.agenda h3{font-weight:800;font-size:18px;line-height:1.3;text-transform:none}
+.agenda p{grid-column:2;margin:0;font:400 14.5px/1.5 var(--sans);color:rgba(242,238,235,.7)}
+
+/* ---------- 4 · la escuela ---------- */
+.escuela{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center}
+.escuela .persiana{height:min(76vh,700px)}
+.escuela .persiana .marco{height:100%}
+.escuela .persiana .marco img{object-position:50% 40%}
+.puntos{list-style:none;margin:30px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:22px 30px;max-width:36em}
+.puntos li{border-top:3px solid var(--negro);padding-top:12px}
+.puntos b{display:block;font:900 15px/1.25 var(--sans);text-transform:uppercase;letter-spacing:.01em}
+.puntos span{display:block;margin-top:5px;font:400 14.5px/1.5 var(--sans);color:#4A4543}
+.escuela .mini{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:30px;max-width:36em}
+.escuela .mini .marco{aspect-ratio:3/2}
+
+/* ---------- 5 · matrícula y cómo llegar ---------- */
+.contacto{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:1fr auto;gap:0 56px;padding-bottom:26px}
+.contacto .txt{align-self:center}
+.tel{display:block;width:max-content;max-width:100%;margin-top:30px;text-decoration:none;font:900 clamp(46px,5.4vw,92px)/.95 var(--sans);letter-spacing:-.02em}
+.tel small{display:block;font:700 12px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;opacity:.75;margin-bottom:10px}
+.tel span{background:linear-gradient(currentColor,currentColor) no-repeat 0 100%/0 4px;transition:background-size .5s var(--suave)}
+.tel:hover span{background-size:100% 4px}
+.otros{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:22px;font:500 16px/1.4 var(--sans)}
+.otros a{text-decoration:none;border-bottom:2px solid rgba(255,255,255,.4);transition:border-color .3s}
+.otros a:hover{border-color:#fff}
+.horario{margin:28px 0 0;display:grid;grid-template-columns:auto 1fr;gap:6px 20px;font:400 15px/1.45 var(--sans);max-width:26em}
+.horario dt{font-weight:700}
+.horario dd{margin:0}
+.contacto .mapa-caja{align-self:center;display:flex;flex-direction:column;gap:18px}
+.mapa{position:relative;display:block;aspect-ratio:16/10.5;overflow:hidden;background:#5B0A10;text-decoration:none}
+.mapa iframe{position:absolute;left:-46px;top:-46px;width:calc(100% + 92px);height:calc(100% + 92px);border:0;pointer-events:none;filter:grayscale(1) contrast(1.05) brightness(1.05)}
+.mapa::after{content:"";position:absolute;inset:0;background:var(--rojo);mix-blend-mode:multiply;opacity:.55;pointer-events:none}
+.mapa .pin{position:absolute;left:50%;top:50%;z-index:2;width:16px;height:16px;margin:-8px 0 0 -8px;background:var(--negro);box-shadow:0 0 0 6px rgba(18,16,17,.25)}
+.mapa .ruta{position:absolute;left:14px;bottom:14px;z-index:2;font:700 12px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;background:#fff;color:var(--rojo);padding:12px 15px;transition:background .3s,color .3s}
+.mapa:hover .ruta{background:var(--negro);color:#fff}
+.mapa .credito{position:absolute;right:0;bottom:0;z-index:2;background:rgba(0,0,0,.55);font:400 10px/1 var(--sans);padding:4px 6px;color:#ddd}
+.llegar{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;font:400 14.5px/1.5 var(--sans);margin:0}
+.llegar dt{font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:12px;padding-top:3px}
+.llegar dd{margin:0;color:rgba(255,255,255,.9)}
+.pie{grid-column:1/3;align-self:end;margin-top:34px;padding-top:16px;border-top:1px solid rgba(255,255,255,.3);display:flex;justify-content:space-between;gap:20px;
+  font:500 12px/1.4 var(--sans);color:rgba(255,255,255,.75);letter-spacing:.04em}
+
+/* ---------- menú: la mesa entera, canal a canal ---------- */
+.menu-p{position:fixed;inset:0;z-index:50;background:var(--negro);color:#F2EEEB;display:flex;flex-direction:column;justify-content:center;
+  padding:calc(var(--cab) + 10px) max(36px,6vw) 40px;visibility:hidden;opacity:0;transition:opacity .45s var(--suave), visibility 0s linear .45s;overflow:auto}
+.menu-p.abierto{visibility:visible;opacity:1;transition:opacity .45s var(--suave)}
+.menu-p ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;max-width:1240px}
+.menu-p li{opacity:0;transform:translateY(14px);transition:opacity .6s var(--suave), transform .6s var(--suave)}
+.menu-p.abierto li{opacity:1;transform:none}
+.menu-p li button{display:flex;flex-direction:column;justify-content:space-between;gap:26px;width:100%;height:min(52vh,420px);padding:20px 18px;border:2px solid rgba(242,238,235,.18);transition:border-color .3s, background .3s}
+.menu-p li button:hover,.menu-p li button:focus-visible{border-color:var(--rojo);background:var(--rojo)}
+.menu-p li.actual button{border-color:#fff}
+.menu-p .n{font:700 12px/1 var(--sans);letter-spacing:.14em;opacity:.6}
+.menu-p .t{font:900 clamp(24px,2.4vw,40px)/.95 var(--sans);text-transform:uppercase;letter-spacing:-.01em}
+.menu-p .d{font:400 14px/1.4 var(--sans);opacity:.7}
+.menu-p .barra{position:relative;flex:1;min-height:60px;width:2px;background:rgba(242,238,235,.25);margin-left:10px}
+.menu-p .barra::after{content:"";position:absolute;left:-10px;width:22px;height:12px;border-radius:2px;background:#fff;bottom:0;transition:bottom .6s var(--suave)}
+.menu-p li button:hover .barra::after,.menu-p li.actual .barra::after{bottom:calc(100% - 12px)}
+.menu-p .cerrar{position:absolute;top:24px;right:max(36px,6vw);font:700 12.5px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:8px 0}
+.menu-p .pie-m{margin-top:28px;font:500 14px/1.5 var(--sans);opacity:.7}
+
+/* ---------- ficha de contacto (ordenador) ---------- */
+.ficha{position:fixed;inset:0;z-index:55;display:grid;place-items:center;padding:20px;background:rgba(18,16,17,.55);visibility:hidden;opacity:0;transition:opacity .35s, visibility 0s linear .35s}
+.ficha.abierta{visibility:visible;opacity:1;transition:opacity .35s}
+.ficha .caja{width:min(470px,100%);background:#fff;padding:32px;position:relative;border-top:8px solid var(--rojo)}
+.ficha h3{margin:0 0 8px;font:900 32px/1 var(--sans);text-transform:uppercase;letter-spacing:-.01em}
+.ficha p{margin:0 0 20px;color:var(--gris);font-size:15px}
+.ficha .fila{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--filete)}
+.ficha .fila strong{font:700 18px/1.3 var(--sans);overflow-wrap:anywhere}
+.ficha .fila small{display:block;font:700 11px/1 var(--sans);text-transform:uppercase;letter-spacing:.14em;color:var(--gris);margin-bottom:6px}
+.ficha .copiar{font:700 11px/1 var(--sans);text-transform:uppercase;letter-spacing:.14em;padding:10px 12px;border:2px solid var(--negro);flex:none;transition:background .3s,color .3s}
+.ficha .copiar:hover{background:var(--negro);color:#fff}
+.ficha .copiar.hecho{background:var(--rojo);border-color:var(--rojo);color:#fff}
+.ficha .x{position:absolute;top:16px;right:16px;font:700 11px var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:6px}
+
+/* ---------- pantallas bajas de ordenador ---------- */
+@media (min-width:901px) and (max-height:800px){
+  h1{font-size:clamp(52px,6.4vw,104px)}
+  h2{font-size:clamp(38px,4.2vw,70px)}
+  .entradilla{margin-top:16px;font-size:17px}
+  .rejilla{grid-auto-rows:minmax(120px,22vh)}
+  .ficha-c p{display:none}
+  .agenda{margin-top:22px}.agenda li{padding:11px 0}
+  .puntos{margin-top:22px;gap:16px 26px}
+  .escuela .mini{display:none}
+  .tel{margin-top:22px}
+  .canal .via{height:96px}
+  .canal .mando{transform:translateY(calc(var(--nivel,0) * -84px))}
+}
+@media (min-width:901px) and (max-width:1180px){
+  .sec{padding-right:calc(max(36px,4vw) + 140px)}
+  .rejilla{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .ficha-c.ancha{grid-column:span 1}
+  .ficha-c.sobra{display:none}
+}
+
+/* ---------- móvil y tableta ---------- */
+@media (max-width:900px){
+  :root{--cab:58px}
+  .cab{padding:0 16px;background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:color .5s, background .5s}
+  .cab.sobre-oscuro{background:rgba(18,16,17,.95)}
+  .cab.sobre-rojo{background:rgba(179,20,30,.96)}
+  .cab .logo .logo-svg{height:30px}
+  .cab .der{gap:16px;font-size:11.5px}
+  .cab .der .solo-o{display:none}
+  /* la mesa se encoge a cinco faders diminutos en la cabecera */
+  .mesa{top:calc(var(--cab) / 2);right:auto;left:122px;transform:translateY(-50%);gap:5px;z-index:41}
+  .canal{width:12px;gap:0;padding:0}
+  .canal .n{display:none}
+  .canal .via{width:12px;height:26px}
+  .canal .via::before{left:5px}
+  .canal .via::after{display:none}
+  .canal .mando{left:1px;width:10px;height:6px;border-radius:1px;transform:translateY(calc(var(--nivel,0) * -20px))}
+  .canal .mando::after{display:none}
+  .sec{display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:18px;padding:calc(var(--cab) + 18px) 18px 22px}
+  .sec>*{flex:none}
+  .etq{margin-bottom:12px;font-size:11px}
+  h1{font-size:clamp(46px,14vw,70px)}
+  h2{font-size:clamp(36px,10.6vw,52px)}
+  .entradilla{margin-top:12px;font-size:15.5px}
+  .btn{padding:15px 18px 15px 16px;font-size:12px}
+  /* portada: foto a sangre arriba, texto debajo */
+  .portada{display:flex;flex-direction:column;padding:var(--cab) 0 0;gap:0}
+  .portada .foto{order:-1;min-height:0;height:33svh}
+  .portada h1{font-size:clamp(42px,12.4vw,64px)}
+  .portada .entradilla{font-size:15px}
+  .portada .datos{display:none}
+  .portada .botones{flex-wrap:nowrap}
+  .portada .btn{padding:14px 13px;font-size:11.5px;letter-spacing:.08em;gap:10px;white-space:nowrap}
+  .portada .sello{bottom:14px;padding:10px 14px;font-size:10.5px}
+  .portada .sello b{font-size:19px}
+  .portada .txt{padding:22px 18px 20px;flex:1}
+  .portada .botones{margin-top:22px;gap:10px}
+  .portada .datos{gap:22px;padding-top:18px;font-size:12px}
+  .clases .cabeza{display:block}
+  .clases .cabeza .entradilla{margin-top:12px}
+  .clases{gap:20px}
+  .rejilla{grid-template-columns:1fr 1fr;grid-auto-rows:minmax(92px,15svh);gap:8px}
+  .ficha-c{padding:12px}
+  .ficha-c h3,.ficha-c.liso h3{font-size:19px}
+  .ficha-c p{display:none}
+  .ficha-c.liso .num{top:10px;left:12px;font-size:10.5px}
+  .ficha-c.ancha{grid-column:span 1}
+  .ficha-c.sobra{display:none}
+  .escenario{display:flex;gap:16px}
+  .escenario .fotos{order:-1;height:30svh;grid-template-columns:1.4fr 1fr;grid-template-rows:1fr;gap:8px}
+  .escenario .fotos .a{grid-row:auto}
+  .escenario .fotos .c{display:none}
+  .agenda{margin-top:14px}
+  .agenda li{grid-template-columns:1fr;padding:9px 0;gap:2px}
+  .agenda p{display:none}
+  .agenda li:nth-child(3){display:none}
+  .agenda h3{font-size:16px}
+  .escenario .fotos{height:27svh}
+  .escuela{display:flex;gap:16px}
+  .escuela .persiana{order:-1;height:34svh}
+  .puntos{grid-template-columns:1fr 1fr;gap:12px 16px;margin-top:16px}
+  .puntos span{display:none}
+  .puntos b{font-size:13px}
+  .escuela .mini{display:none}
+  .contacto{display:flex;padding-bottom:18px}
+  .tel{margin-top:18px;font-size:clamp(40px,11.5vw,56px)}
+  .otros{margin-top:14px;font-size:14.5px;gap:8px 20px}
+  .horario{margin-top:14px;font-size:14px;gap:2px 14px}
+  .contacto .mapa-caja{gap:10px}
+  .mapa{aspect-ratio:16/6}
+  .contacto .pie span+span{display:none}
+  .llegar{font-size:13.5px;gap:4px 14px}
+  .llegar .largo,.llegar .donde{display:none}
+  .contacto h2{font-size:clamp(34px,10vw,46px)}
+  .pie{margin-top:16px;flex-direction:column;gap:4px}
+  .menu-p{justify-content:flex-start;padding:calc(var(--cab) + 16px) 18px 30px}
+  .menu-p ol{grid-template-columns:1fr;gap:8px}
+  .menu-p li button{height:auto;flex-direction:row;align-items:center;justify-content:flex-start;gap:16px;padding:14px 16px}
+  .menu-p .barra,.menu-p .d{display:none}
+  .menu-p .t{font-size:26px}
+  .menu-p .cerrar{top:18px;right:18px}
+}
+@media (max-width:400px){
+  .portada .btn .vu{display:none}
+  .cab .der{gap:14px}
+}
+@media (max-width:900px) and (max-height:640px){
+  .portada .foto{height:32svh}
+  .rejilla{grid-auto-rows:minmax(78px,13svh)}
+  .escenario .fotos{height:24svh}
+  .escuela .persiana{height:26svh}
+  .agenda li:nth-child(3){display:none}
+  .horario{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms !important}
+}
+.ph-portada-escenario{--ph:url(data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAABwBQCdASocABMAPtFaoEuoJaMhsBgMAQAaCWYAnTLevQ91AX8OGQ+Mk567Oz3NDsle8UiAAP7xTggsMfDO27pt3i938kRTB3gtkQQ3DctxXCoJ+hkM3brtPvoOOtpHM8vD9QUd7ihcfEx+IfrEx7idJMecUYyHSe+BttsLXJRMP7RKPzwwK93rVk6bj4AA)}
+.ph-escenario-luces{--ph:url(data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAAAwBQCdASocABMAPsFWokunpaOht/qoAPAYCWUAuwAh32rOPOgTpVB8fHKAjhm9qcREAAD+9XKdnLUz4br1pGVz5dozKJRnveaJWbmPEnkn8PTYWzLUHhR8Ld+nQ6Eo10q/70ko6vkhm+7h8oAAAA==)}
+.ph-escenario-chispas{--ph:url(data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAABQBQCdASocABMAPtFcpk4oJSMiKAqpABoJZgCxHyGBOWCsRL+ohep8Lpl7+IsGTAiCokAA/vMllrPnH47miVMDttyici24Lk/xw4UKAiaT+JEfubJ77m6qffQqmd1PbACq1PlKS4Pc/U7ebFWlVEcIDt2yagus7AuR291MdQQ4sJSQAAA=)}
+.ph-jam-derry{--ph:url(data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAAAQBQCdASocABMAPtFapk2oJSOiMBgIAQAaCWUAtsgR6R7qWX6WdhE01JvRU54apoIAAP7kQYzrBKB9++YUKIl+cEDnClXkj1msKk4mnIntH4S/A/EwpEdleQ/aaS2GaMj+BzFZsWb+EyUbMcgU02ai+mvdw2XhgwJCZAIwAAA=)}
+.ph-clase-canto{--ph:url(data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAAAQBgCdASocACYAPsFMn0unpCKhurZoAPAYCWMAyBe+SUk+9R3d6zxkETPRp86RIwr9L4w60e33ksAA/vdVcLdIk1udqb7i+3shtIo4/RvaEGscpJI8DD6IwVuGu8px58kyVu4Kf4He0hBn3r5CcbXZTtsIjPhyrdH7AkO62JkciCKuu/My5QAA)}
+.ph-clase-guitarra{--ph:url(data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAACQBACdASocABYAPsFQn0unpSKht/qoAPAYCWMAuwAh3zGsvl8fcUXF8RDdoAAA/vaJnto6kU0NRYWrCFbNJJaX7b7AgxIKaXihOxENxePiCjdlCDfm/bUQ2zcWyGRYecD4AA==)}
+.ph-clase-piano{--ph:url(data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAADwBQCdASocACMAPsVQn0unpKKhsA1Q8BiJZQDBkCFsC0rewuRyJrB6nnR09F68ilTasGZ0htq4gAD+7D9H444HfkoutG5Abfav1yzn7zotwqF9PfQN9lDb3fQIBZzM+1hu7ceeJzaYMYuX4fbH1S5gLPR6sfz2h5bk1j4bP/pm0g0ghs13sRTYCNuF6++yh/6ynz3peSZz/i/wRkgD+gAA)}
+.ph-clase-bateria{--ph:url(data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAADwBACdASocABMAPsFKoEunpCMht/qoAPAYCWIAnQAh31EjV+FxhgV1dcH2lkOiBAAA/iXiksyRO8tlp6LyRbX6C7xWpOIPLUdsXWnZ6618nCnChbFuO7sub9vgN94zEXbO/To0DtTrwRD2pGi1fJIYdg5j1cLmWtnAAA==)}
+.ph-clase-saxo{--ph:url(data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAABQBQCdASocABMAPsVQoEunpKMhsAwA8BiJaACdMoR2iKr0AAM2cQvO5fbY/vHzOEfL3NAA+9jycWTedC6oqWGqX+Rezra/F7XVwfDWTzzr/FJ/oUIIB7e+ROeoOIX6G+kXIRo2IaffX6KcBCQL6+mDhhmsyqna5ElqZC89+6HLC91EZgh2GR6Amhh0zxQBUwPATIIiArrB3OQ77teDAAAA)}
+.ph-escuela-persiana{--ph:url(data:image/webp;base64,UklGRrQAAABXRUJQVlA4IKgAAADwBQCdASocABoAPs1Qo0unpKMht/VYAPAZiWIApaxGMpN2VJrFx3s/tOwH5NDueFtuQCp+CXMQAAD+5ueKdeMwW3BotXQ2dUDwTB8HQb5+rGBefwyRV8lUfIsthmNARgdRUhZ6PtVovu7PTH/mKloPF8IOe/AjWChi/y8Oj5a1Y3vwxrzbiQZH09O6WEFSJ4hP1TwvUPAYWirciv4ui2Wsgm6Zt14gAAA=)}
+.ph-escuela-recepcion{--ph:url(data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAACQBQCdASocABMAPtFcqE4oJSQiKAqpABoJZAC1GoM3Bb+ARtSAHpaki/SK9P8SNagnb0xbAADLnZD4+vR+O28CkLr+r2Fl0SywEWywNA899XvxF12tGnoHs7obow8dAorSEdmprlU0GUm+J2d2Pvg0700AC3HWGt83JVfB/Zfd59t+9jfQAA==)}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="0 0 1883 704"><path fill-rule="evenodd" d="M1533.4 2.5 1542.5 3.0 1558.0 7.9 1569.0 13.9 1577.5 21.2 1583.5 29.5 1587.5 40.1 1588.3 50.5 1586.6 61.0 1581.5 72.4 1573.0 84.1 1567.0 94.5 1547.5 136.8 1539.6 152.0 1534.5 159.5 1530.8 163.5 1527.0 166.6 1522.0 168.4 1520.9 169.5 1443.9 351.0 1422.0 407.0 1413.0 433.2 1402.9 466.0 1397.0 488.5 1394.0 504.0 1393.7 514.5 1395.0 521.0 1398.9 527.5 1404.6 531.5 1414.5 534.6 1427.0 536.3 1443.5 534.6 1459.0 531.6 1473.0 527.6 1486.5 522.3 1486.8 521.0 1479.0 508.0 1474.0 495.4 1470.9 482.5 1468.9 463.0 1468.9 447.5 1470.9 430.0 1475.0 414.0 1482.0 397.0 1490.9 382.0 1501.0 369.1 1514.1 356.0 1527.3 346.0 1542.0 337.9 1556.0 332.9 1570.0 329.9 1586.5 328.9 1598.5 330.0 1611.5 333.9 1621.6 340.0 1627.2 345.0 1631.5 350.1 1637.5 360.5 1641.6 374.5 1642.6 386.5 1641.7 401.0 1638.5 415.3 1632.6 431.5 1624.6 447.5 1615.5 462.3 1604.5 477.3 1591.5 492.3 1575.5 507.5 1562.7 518.0 1562.6 519.0 1571.0 526.5 1580.2 531.5 1589.5 534.6 1602.5 536.7 1615.5 536.6 1630.5 534.5 1648.5 529.6 1663.0 523.5 1671.5 518.5 1682.3 510.5 1693.2 500.5 1702.5 490.3 1713.5 476.1 1721.6 464.0 1730.5 449.0 1739.5 431.5 1752.6 400.5 1759.6 377.0 1759.5 375.5 1755.0 369.9 1752.1 364.0 1750.9 358.5 1750.4 351.5 1750.9 343.5 1752.0 338.2 1754.0 332.7 1758.0 325.5 1764.0 318.3 1770.0 313.0 1776.1 309.0 1782.5 306.0 1789.0 304.0 1796.5 302.8 1807.5 302.8 1813.0 304.0 1817.6 306.0 1823.0 310.0 1826.5 314.2 1828.6 318.5 1829.7 324.0 1829.5 331.4 1825.5 344.5 1818.7 360.5 1847.6 414.0 1859.6 440.0 1866.6 458.0 1873.5 480.0 1877.6 498.0 1880.2 519.5 1880.4 535.0 1879.6 545.5 1877.6 556.5 1872.6 572.5 1864.5 588.4 1853.5 602.8 1841.3 614.5 1832.0 621.5 1822.4 627.5 1807.5 633.5 1798.3 635.5 1790.5 636.3 1773.0 635.6 1758.5 632.6 1739.5 625.6 1723.2 616.5 1710.2 606.5 1701.0 596.2 1694.0 584.4 1691.9 578.5 1690.8 572.5 1690.9 567.0 1692.0 562.6 1695.0 557.2 1699.0 553.0 1703.5 549.9 1706.5 548.8 1711.5 548.4 1717.5 549.9 1722.9 553.0 1727.5 556.9 1736.5 568.3 1742.6 581.0 1744.2 588.0 1744.2 593.0 1745.0 594.5 1749.7 598.5 1755.5 601.6 1761.5 603.6 1768.0 604.7 1776.5 604.7 1783.5 603.7 1794.8 599.5 1800.9 595.5 1805.4 591.5 1812.5 581.4 1817.5 568.4 1820.7 550.5 1821.1 531.0 1818.6 510.0 1809.5 476.5 1799.5 447.0 1788.5 422.0 1783.5 413.1 1780.0 408.5 1779.1 409.5 1774.5 424.3 1767.5 442.9 1754.6 470.0 1739.5 494.2 1722.5 515.0 1714.1 523.5 1702.5 533.6 1682.3 547.5 1669.0 554.6 1657.5 559.6 1635.0 566.6 1619.5 569.4 1607.0 570.6 1585.0 569.6 1570.5 567.6 1557.0 564.5 1542.0 559.6 1528.6 553.5 1515.5 545.6 1496.5 553.6 1479.5 559.6 1461.5 564.6 1440.0 568.6 1420.5 570.6 1405.5 570.6 1382.5 568.6 1368.5 565.5 1359.1 561.5 1352.6 556.5 1347.9 550.0 1344.9 541.0 1344.7 529.0 1345.9 519.0 1348.9 506.0 1355.7 484.5 1355.5 483.2 1334.5 515.5 1324.5 528.4 1314.5 539.5 1305.0 548.5 1293.3 557.5 1282.9 563.5 1273.5 567.5 1262.4 570.5 1254.5 571.6 1244.5 571.7 1235.0 570.6 1227.0 568.6 1219.5 565.6 1213.0 561.6 1207.1 556.0 1206.0 555.8 1188.5 561.6 1166.0 566.5 1149.5 568.7 1122.5 569.6 1107.0 568.6 1091.5 566.6 1081.1 564.5 1071.5 561.6 1064.0 557.5 1059.0 553.4 1054.0 547.1 1051.0 541.0 1048.9 532.5 1048.7 523.5 1049.9 513.0 1051.9 504.5 1059.0 483.6 1081.5 431.0 1085.6 418.5 1086.8 411.0 1086.7 408.0 1085.5 405.0 1080.5 399.0 1071.5 392.0 1058.5 383.9 1056.9 386.5 1041.5 427.9 1027.6 459.5 1012.6 488.5 996.6 513.5 987.5 525.3 980.5 533.0 964.5 547.5 954.5 554.5 943.5 560.6 934.0 564.5 924.0 567.6 914.5 569.5 902.0 570.7 880.0 569.7 866.0 567.6 847.5 573.5 830.5 576.6 814.0 577.7 796.0 576.6 784.0 574.6 772.5 571.6 752.1 563.5 733.5 552.6 715.5 537.9 693.9 549.5 670.0 559.5 646.5 566.5 623.5 570.6 611.0 571.6 594.0 571.7 564.0 569.6 544.0 565.6 531.5 561.5 520.5 556.9 512.0 566.5 505.3 572.5 497.8 577.5 489.8 581.5 481.0 584.6 471.5 586.5 459.5 587.2 450.1 586.5 434.0 582.6 418.5 575.5 403.0 564.5 389.0 550.2 377.9 534.5 368.9 517.5 358.9 492.5 348.2 460.5 320.5 464.6 301.5 466.6 283.5 467.7 259.0 468.1 256.9 470.0 231.5 517.5 210.5 554.4 193.5 582.3 178.5 605.1 162.5 627.2 146.5 646.5 133.0 660.5 117.5 673.5 103.0 682.5 87.5 688.5 74.0 690.7 63.0 690.7 54.0 689.6 39.0 685.6 30.5 681.6 24.1 677.5 17.1 671.5 12.8 666.5 9.0 660.7 6.0 654.5 2.9 643.5 2.2 634.5 3.0 624.7 6.0 614.0 11.0 605.1 17.0 598.0 24.5 591.9 33.6 587.0 43.0 584.0 53.0 582.6 59.6 583.0 62.5 584.1 64.7 586.0 65.6 588.5 64.7 592.5 57.0 603.2 53.0 612.5 51.8 618.5 51.8 629.0 54.0 637.5 58.0 644.1 64.4 649.5 70.0 651.6 76.0 651.5 82.5 649.5 89.5 645.5 94.5 641.6 108.2 627.5 124.5 605.2 139.5 580.4 157.6 546.0 177.5 503.5 193.8 465.0 193.9 464.0 193.1 463.5 184.5 461.6 180.9 456.5 179.8 452.5 179.9 447.0 183.0 436.0 187.0 429.7 192.0 425.9 196.0 425.3 212.5 426.9 213.5 426.6 214.5 424.9 236.5 375.4 255.6 325.5 270.5 281.3 288.9 219.0 297.0 194.6 301.0 187.2 305.7 182.0 311.0 179.0 317.0 177.9 330.5 177.9 350.5 179.9 354.5 180.9 358.4 183.0 361.5 185.8 364.6 190.0 366.6 194.5 370.6 216.0 377.9 294.5 384.9 352.5 393.9 409.5 403.0 452.2 408.9 474.5 414.9 493.5 420.9 509.5 428.0 524.8 434.0 535.2 441.0 544.7 449.0 552.6 457.0 557.5 463.5 559.6 468.0 559.9 474.0 559.6 480.5 557.7 486.0 554.6 489.5 551.6 495.7 543.0 495.4 541.5 486.7 533.5 478.0 523.3 471.9 513.5 467.0 502.3 464.9 494.5 462.9 476.5 462.9 461.0 464.0 448.2 466.9 433.0 470.0 422.5 475.0 410.0 483.0 395.2 492.0 382.3 499.9 373.0 512.0 361.0 523.0 352.0 539.0 342.0 555.5 334.9 566.0 331.9 576.0 330.0 593.5 328.9 611.5 330.9 623.5 334.9 634.7 342.0 639.5 346.6 643.6 352.0 646.6 358.0 648.6 365.5 649.0 373.0 648.5 379.5 646.5 386.4 642.5 393.2 637.2 398.5 632.0 401.6 624.0 403.4 617.0 402.4 615.8 401.0 615.4 399.0 614.5 388.6 611.5 381.3 608.5 378.0 605.3 376.0 598.0 373.9 587.5 374.0 576.0 376.9 566.3 382.0 557.6 389.0 550.0 397.1 544.0 405.2 535.0 421.7 532.0 429.5 528.9 440.5 526.9 453.0 526.5 461.0 526.8 474.5 527.8 482.5 532.0 496.8 536.0 504.4 541.0 511.2 546.3 516.5 553.0 521.5 568.0 529.6 577.0 532.6 586.0 534.6 594.0 535.7 608.0 536.1 620.5 535.6 635.5 533.6 649.0 530.6 665.0 525.6 680.0 519.5 694.5 512.0 684.9 493.5 677.9 473.5 674.0 452.0 673.3 435.5 674.9 416.0 680.0 394.5 687.9 375.0 694.0 364.1 700.0 355.2 709.0 344.0 721.2 332.0 734.0 322.0 747.0 314.0 759.6 308.0 777.5 301.9 792.0 298.9 808.5 297.4 828.0 298.0 849.5 301.9 869.5 308.9 880.0 314.0 891.5 321.0 909.2 335.0 922.7 349.5 930.5 360.2 936.5 370.0 945.6 390.0 950.6 407.5 952.6 419.0 953.7 431.0 953.6 444.5 952.6 455.5 949.5 472.0 942.5 492.5 932.6 511.5 919.5 529.2 904.0 545.0 912.5 542.5 923.0 537.5 933.9 530.5 943.8 522.5 952.5 514.2 963.5 501.5 972.5 489.0 979.6 477.5 990.5 457.0 1001.6 433.5 1015.5 400.5 1029.5 364.0 1029.4 363.0 1024.9 357.5 1022.0 352.4 1018.9 342.5 1018.4 334.5 1018.8 326.0 1021.0 316.6 1026.0 306.8 1033.0 299.0 1041.0 294.0 1050.0 291.8 1058.5 291.8 1064.5 292.9 1071.5 295.9 1076.6 300.0 1081.5 307.1 1083.8 316.0 1083.4 327.5 1079.0 341.5 1119.4 365.0 1131.3 373.0 1137.5 378.2 1142.5 383.6 1146.5 389.6 1148.6 394.5 1149.5 400.0 1149.2 405.0 1147.5 414.0 1144.5 423.9 1137.5 441.8 1118.0 485.0 1110.9 505.0 1108.8 518.0 1109.2 521.5 1111.0 526.0 1114.5 529.7 1121.0 532.6 1134.0 535.3 1144.5 536.0 1156.5 535.6 1164.5 534.5 1177.0 531.5 1185.5 528.5 1191.5 525.5 1192.3 524.5 1190.0 506.0 1190.0 494.0 1190.9 481.5 1192.9 469.0 1196.0 456.1 1203.9 434.0 1212.9 416.0 1223.0 400.4 1236.0 384.2 1252.0 368.0 1268.0 354.9 1285.5 344.0 1303.5 336.0 1322.0 330.9 1342.0 328.9 1357.5 329.9 1370.5 333.0 1379.0 336.0 1389.0 340.6 1389.9 340.0 1464.5 146.5 1461.2 130.5 1461.9 119.5 1475.9 74.5 1484.0 52.5 1490.0 39.6 1495.0 30.7 1500.0 23.3 1506.1 16.0 1513.0 10.0 1519.5 6.0 1525.0 3.8 1533.0 2.5ZM1482.1 3.0 1487.0 2.9 1490.0 3.8 1491.8 5.5 1492.6 8.0 1489.5 20.0 1487.0 23.3 1484.0 24.6 1479.0 24.5 1474.5 22.5 1470.9 18.5 1468.8 13.0 1469.0 9.5 1471.2 6.0 1473.0 4.9 1482.0 3.0ZM1465.5 37.0 1470.0 37.0 1474.0 37.9 1476.5 39.7 1477.5 42.0 1470.5 56.2 1467.5 59.4 1465.0 60.3 1461.0 59.6 1457.0 56.5 1454.9 53.0 1454.3 49.0 1454.9 44.5 1457.0 40.7 1461.3 38.0 1465.0 37.1ZM1598.6 65.0 1603.0 64.8 1605.5 66.0 1606.8 67.5 1607.4 70.5 1606.7 74.0 1604.5 77.8 1601.8 80.5 1598.0 82.4 1595.0 82.5 1593.0 81.5 1591.7 79.5 1591.2 75.0 1591.8 71.0 1593.0 68.7 1596.0 66.0 1598.5 65.0ZM1452.4 74.5 1455.5 74.7 1457.5 76.3 1458.5 79.0 1458.7 84.0 1457.6 87.5 1456.2 89.5 1453.3 91.5 1450.5 92.4 1447.5 92.4 1445.0 91.5 1443.1 89.0 1442.8 86.0 1443.9 82.0 1446.0 78.7 1448.8 76.0 1452.0 74.6ZM1583.4 96.0 1585.5 96.2 1589.5 98.1 1592.5 101.5 1593.8 105.0 1593.7 110.0 1592.5 113.7 1590.3 116.5 1586.0 118.6 1580.5 119.3 1575.5 118.6 1572.0 116.8 1570.6 114.5 1570.9 112.0 1577.0 101.4 1580.0 97.8 1583.0 96.1ZM1561.5 131.0 1566.5 130.8 1570.0 131.8 1573.2 134.0 1575.5 137.0 1577.3 141.5 1577.5 145.0 1576.5 148.1 1573.9 150.5 1569.5 151.7 1560.5 152.3 1556.6 151.5 1554.2 149.5 1553.8 145.0 1555.9 138.0 1558.0 133.8 1561.0 131.3ZM807.4 310.0 818.0 309.9 830.4 311.0 845.5 313.9 855.5 317.0 867.8 322.0 879.0 328.0 889.5 335.0 898.1 342.0 907.5 351.2 915.6 361.0 922.5 371.2 928.5 382.1 933.5 394.0 936.5 403.5 938.6 412.0 940.6 426.0 941.1 438.0 940.5 450.5 938.6 463.0 935.5 475.0 931.5 486.0 925.5 498.5 919.5 508.4 910.5 520.3 900.7 530.5 891.3 538.5 879.7 546.5 870.5 551.6 856.8 557.5 847.0 560.6 833.0 563.6 822.5 564.7 805.0 564.7 794.5 563.6 784.0 561.6 770.5 557.6 758.5 552.6 747.5 546.6 737.0 539.5 728.5 532.5 719.4 523.5 711.0 513.3 704.0 502.9 697.9 491.5 693.9 482.0 689.9 469.5 687.0 454.3 686.1 444.5 686.0 431.5 686.9 421.0 689.0 409.5 693.0 395.5 698.0 383.3 704.0 372.0 711.0 361.6 718.0 353.0 727.9 343.0 736.3 336.0 748.0 328.0 759.3 322.0 769.0 317.9 781.5 313.9 796.0 311.1 807.0 310.0ZM321.3 316.0 322.0 315.5 322.5 317.0 329.0 366.5 337.3 415.5 325.0 418.6 303.5 422.6 281.0 425.7 279.5 425.7 278.9 425.0 300.6 373.5 321.0 316.5ZM804.4 318.0 825.5 318.3 837.0 319.9 849.0 323.0 860.0 327.0 870.4 332.0 880.3 338.0 889.5 344.9 899.5 354.1 906.5 362.0 913.5 371.5 919.5 381.6 923.6 390.0 927.6 400.5 930.6 412.0 932.7 424.5 933.3 438.5 932.7 450.5 930.6 463.0 928.5 471.3 924.5 482.7 918.6 495.0 913.5 503.4 905.5 514.1 897.8 522.5 890.1 529.5 880.8 536.5 871.0 542.5 860.9 547.5 850.0 551.6 838.5 554.6 826.5 556.6 815.0 557.2 801.0 556.6 788.5 554.6 777.0 551.6 766.2 547.5 756.0 542.5 746.2 536.5 737.0 529.6 728.2 521.5 721.0 513.5 714.0 504.1 707.9 494.0 703.0 483.8 698.9 472.5 696.0 461.0 694.0 446.5 693.8 432.0 694.9 420.0 699.0 402.0 703.0 391.1 708.0 380.7 714.9 369.5 722.0 360.2 729.6 352.0 737.4 345.0 747.0 337.9 758.6 331.0 772.1 325.0 781.5 322.0 795.3 319.0 804.0 318.0ZM809.7 334.0 815.0 333.9 819.5 336.0 822.5 339.6 823.7 344.0 823.7 531.0 821.5 536.8 816.5 540.6 811.5 541.1 806.4 539.5 802.9 536.0 801.2 530.0 801.3 344.5 801.9 341.0 803.9 337.5 807.0 335.0 809.5 334.1ZM1578.2 372.0 1586.5 371.8 1592.0 373.0 1597.5 376.2 1601.5 381.3 1603.5 387.0 1604.1 394.5 1603.6 402.5 1601.5 412.0 1597.5 423.3 1591.5 435.9 1583.5 449.4 1576.5 459.2 1568.7 468.5 1559.8 477.5 1550.4 485.5 1542.0 491.3 1539.0 488.3 1534.0 479.4 1531.9 473.0 1530.1 462.5 1530.1 445.0 1531.9 431.0 1534.0 422.6 1537.0 413.8 1542.0 403.2 1547.0 395.1 1553.0 387.3 1559.3 381.0 1565.0 376.9 1571.0 373.9 1578.0 372.0ZM773.5 373.0 779.5 372.8 782.5 374.0 786.6 378.0 788.0 383.0 788.0 492.0 786.5 497.2 784.5 499.6 781.5 501.6 777.0 502.5 771.9 501.5 767.3 497.5 765.7 492.5 765.6 383.0 765.9 380.5 767.8 377.0 770.0 374.8 773.0 373.2ZM1352.2 373.0 1364.5 373.1 1374.5 376.0 1375.8 377.5 1361.5 410.7 1346.6 441.5 1335.5 461.8 1325.5 478.1 1313.5 495.3 1304.5 506.3 1295.3 515.5 1286.0 522.6 1278.3 526.5 1271.0 528.3 1266.5 528.5 1261.5 527.6 1256.0 524.6 1251.0 518.5 1248.9 513.5 1247.9 508.5 1247.9 499.0 1250.0 487.1 1254.9 472.0 1263.0 454.1 1272.0 438.5 1281.0 425.4 1294.0 409.5 1307.0 396.3 1317.1 388.0 1330.0 380.0 1342.5 375.0 1352.0 373.0ZM848.2 385.5 852.2 386.0 856.7 389.0 858.7 392.0 859.7 397.5 859.6 481.0 858.6 484.5 856.4 487.5 853.5 489.6 849.0 490.7 843.5 489.7 840.3 487.5 837.9 484.0 837.1 480.0 837.1 395.5 838.0 392.0 841.0 388.0 844.5 386.0 848.0 385.5ZM738.8 409.0 744.5 408.7 748.1 410.0 751.5 413.1 753.6 418.5 753.5 457.5 751.4 462.5 749.4 464.5 746.0 466.3 740.0 466.7 736.7 465.5 732.9 462.0 731.1 457.0 731.1 418.5 733.2 413.0 735.1 411.0 738.5 409.1ZM881.2 409.0 887.0 408.8 890.5 410.0 894.5 414.0 895.8 417.5 895.7 458.5 892.9 463.5 888.0 466.5 882.5 466.7 879.0 465.5 875.0 461.5 873.6 457.5 873.8 417.0 876.5 412.0 881.0 409.1ZM913.9 593.5 975.0 593.8 1020.5 595.8 1069.5 599.9 1108.5 604.9 1117.5 606.9 1126.5 610.0 1130.5 612.2 1133.5 615.0 1134.8 618.0 1134.5 622.8 1131.5 628.5 1128.0 632.2 1093.0 628.9 1045.0 625.9 993.0 624.4 950.5 624.2 922.5 625.0 875.0 627.9 804.0 634.9 758.0 641.0 707.0 648.9 653.0 658.9 616.0 666.9 580.5 675.7 577.5 681.3 573.3 685.5 566.4 689.5 558.5 692.6 532.5 698.6 512.5 701.6 495.0 700.1 489.1 698.5 482.0 693.2 479.0 689.3 475.9 683.5 473.9 677.5 472.9 671.5 472.9 664.5 474.0 658.6 476.0 653.6 480.0 648.2 484.3 645.0 489.5 642.9 545.0 631.9 603.0 621.9 656.0 614.0 711.5 606.9 759.0 602.0 808.0 597.9 860.5 594.9 913.5 593.5Z"/></symbol>
+</svg>
+
+<button type="button" class="salto" data-ir="clases">Saltar al contenido</button>
+
+<header class="cab">
+  <button type="button" class="logo" data-ir="portada" aria-label="Acordes, escuela de música moderna. Volver al principio">
+    <svg class="logo-svg" viewBox="0 0 1883 704" role="img" aria-hidden="true"><use href="#logo"/></svg>
+  </button>
+  <nav class="der" aria-label="Principal">
+    <button type="button" class="enlace solo-o" data-ir="clases">Clases</button>
+    <button type="button" class="enlace solo-o" data-ir="escenario">Escenario</button>
+    <a class="enlace" href="tel:+34916485493">Llamar</a>
+    <button type="button" class="menu" aria-expanded="false" aria-controls="menu"><i aria-hidden="true"><b></b><b></b><b></b></i>Menú</button>
+  </nav>
+</header>
+
+<!-- mesa de mezclas: un fader por sección; sube según avanzas -->
+<nav class="mesa" aria-label="Secciones">
+  <button type="button" class="canal" data-ir="portada" aria-label="01 · Portada"><span class="via"><span class="mando"></span></span><span class="n">01</span></button>
+  <button type="button" class="canal" data-ir="clases" aria-label="02 · Clases"><span class="via"><span class="mando"></span></span><span class="n">02</span></button>
+  <button type="button" class="canal" data-ir="escenario" aria-label="03 · Escenario"><span class="via"><span class="mando"></span></span><span class="n">03</span></button>
+  <button type="button" class="canal" data-ir="escuela" aria-label="04 · La escuela"><span class="via"><span class="mando"></span></span><span class="n">04</span></button>
+  <button type="button" class="canal" data-ir="contacto" aria-label="05 · Matrícula"><span class="via"><span class="mando"></span></span><span class="n">05</span></button>
+</nav>
+
+<main>
+  <!-- 1 · portada -->
+  <section class="sec portada" id="portada">
+    <div class="txt">
+      <p class="etq ap">Escuela de música moderna · Leganés</p>
+      <h1 class="ap">Aquí la<br>música <span class="r">se toca</span></h1>
+      <p class="entradilla ap">Canto, guitarra, piano, batería y coro en San Nicasio. Para todas las edades, desde los 2 años, con profesores que suben al escenario cada mes.</p>
+      <div class="botones ap">
+        <a class="btn lleno" href="tel:+34916485493"><span class="vu" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>Pide información</a>
+        <button type="button" class="btn borde" data-ir="clases">Ver las clases</button>
+      </div>
+      <div class="datos ap">
+        <span><b>916 48 54 93</b>Lunes a viernes, 16:30–22:30</span>
+        <span><b>C. de la Encina, 2</b>Metro San Nicasio</span>
+      </div>
+    </div>
+    <div class="foto vivo">
+      <figure class="marco ph-portada-escenario">
+        <img src="assets/img/portada-escenario.webp" alt="Cantante y guitarrista de Acordes en concierto, con luces azules" width="1800" height="1200" fetchpriority="high">
+      </figure>
+      <p class="sello ap"><b>Matrícula abierta</b>Curso 2026–27</p>
+    </div>
+  </section>
+
+  <!-- 2 · clases -->
+  <section class="sec clases" id="clases">
+    <div class="cabeza">
+      <div>
+        <p class="etq ap">Clases</p>
+        <h2 class="ap">Elige tu<br><span class="r">instrumento</span></h2>
+      </div>
+      <p class="entradilla ap">Un enfoque moderno y adaptado a cada alumno: aprendes con las canciones que te gustan y tocas en grupo desde el principio.</p>
+    </div>
+    <div class="rejilla">
+      <article class="ficha-c vivo ap">
+        <figure class="marco ph-clase-canto"><img src="assets/img/clase-canto.webp" alt="Alumna cantando en el escenario" width="361" height="487" loading="lazy"></figure>
+        <span class="sombra"></span>
+        <h3>Canto</h3><p>Técnica vocal, repertorio moderno y escenario</p>
+      </article>
+      <article class="ficha-c vivo ap">
+        <figure class="marco ph-clase-guitarra"><img src="assets/img/clase-guitarra.webp" alt="Guitarrista tocando una guitarra acústica" width="1000" height="794" loading="lazy"></figure>
+        <span class="sombra"></span>
+        <h3>Guitarra</h3><p>Acústica, eléctrica y bajo</p>
+      </article>
+      <article class="ficha-c vivo ap">
+        <figure class="marco ph-clase-piano"><img src="assets/img/clase-piano.webp" alt="Manos sobre el teclado de un piano con una partitura" width="361" height="448" loading="lazy"></figure>
+        <span class="sombra"></span>
+        <h3>Piano y teclado</h3><p>Lectura, acompañamiento y armonía</p>
+      </article>
+      <article class="ficha-c vivo ap">
+        <figure class="marco ph-clase-bateria"><img src="assets/img/clase-bateria.webp" alt="Aula de Acordes con batería, teclado, guitarras y amplificadores" width="1000" height="666" loading="lazy"></figure>
+        <span class="sombra"></span>
+        <h3>Batería</h3><p>Ritmo, coordinación y banda</p>
+      </article>
+      <article class="ficha-c liso r ancha ap">
+        <span class="num">Desde los 2 años</span>
+        <h3>Música para peques</h3><p>Ritmo, juego y canciones para empezar con buen oído</p>
+      </article>
+      <article class="ficha-c liso ap">
+        <span class="num">En grupo</span>
+        <h3>Coro</h3><p>Coro Acordes San Nicasio</p>
+      </article>
+      <article class="ficha-c liso h sobra ap">
+        <span class="num">Sábados</span>
+        <h3>Doblaje</h3><p>Curso de doblaje y voz</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 3 · escenario -->
+  <section class="sec oscuro escenario" id="escenario">
+    <div class="txt">
+      <p class="etq ap">Escenario</p>
+      <h2 class="ap">Súbete al<br><span class="r">escenario</span></h2>
+      <p class="entradilla ap">Lo que aprendes en clase se toca en directo: jam sessions con banda, audiciones y el coro de la escuela.</p>
+      <ul class="agenda">
+        <li class="ap"><span class="cuando">Cada mes · 21:30</span><div><h3>Jam session en la Derry</h3></div><p>Derry Irish Tavern, Av. Rey Juan Carlos I, 35. Eliges canción del repertorio y la tocas con la banda de profes</p></li>
+        <li class="ap"><span class="cuando">Todo el año</span><div><h3>Coro Acordes San Nicasio</h3></div><p>Fiestas de San Fortunato, audiciones y conciertos por Madrid</p></li>
+        <li class="ap"><span class="cuando">Junio</span><div><h3>Audiciones de alumnos</h3></div><p>Para que la familia vea lo que habéis preparado durante el curso</p></li>
+      </ul>
+    </div>
+    <div class="fotos">
+      <figure class="marco vivo a ph-escenario-luces ap"><img src="assets/img/escenario-luces.webp" alt="Banda tocando en un escenario grande con focos" width="1600" height="1067" loading="lazy"></figure>
+      <figure class="marco vivo b ph-jam-derry ap"><img src="assets/img/jam-derry.webp" alt="Jam session en la Derry Irish Tavern con cantante, guitarras, saxo y teclado" width="1400" height="933" loading="lazy"></figure>
+      <figure class="marco vivo c ph-escenario-chispas ap"><img src="assets/img/escenario-chispas.webp" alt="Guitarrista en concierto con una cascada de chispas" width="1200" height="800" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <!-- 4 · la escuela -->
+  <section class="sec escuela" id="escuela">
+    <div class="persiana ap">
+      <figure class="marco color ph-escuela-persiana"><img src="assets/img/escuela-persiana.webp" alt="Fachada de Acordes: el rótulo rojo y la persiana pintada con una cantante de jazz" width="1400" height="1280" loading="lazy"><figcaption>C. de la Encina, 2</figcaption></figure>
+    </div>
+    <div class="txt">
+      <p class="etq ap">La escuela</p>
+      <h2 class="ap">La persiana<br>que <span class="r">canta</span></h2>
+      <p class="entradilla ap">Nos encontrarás por la cantante pintada en la persiana. Dentro, aulas equipadas para tocar de verdad: batería, amplis, teclados y un sitio para esperar a los peques.</p>
+      <ul class="puntos">
+        <li class="ap"><b>Desde los 2 años</b><span>Y sin límite de edad: hay alumnos de todas las generaciones</span></li>
+        <li class="ap"><b>Escuela Trinity</b><span>Centro autorizado para los exámenes oficiales del Trinity College London</span></li>
+        <li class="ap"><b>Profes en activo</b><span>Músicos que tocan cada mes en directo</span></li>
+        <li class="ap"><b>A tu ritmo</b><span>Clases adaptadas a lo que quieres tocar</span></li>
+      </ul>
+      <div class="mini">
+        <figure class="marco vivo ph-escuela-recepcion ap"><img src="assets/img/escuela-recepcion.webp" alt="Recepción de la escuela con guitarras colgadas" width="900" height="600" loading="lazy"></figure>
+        <figure class="marco vivo ph-clase-saxo ap"><img src="assets/img/clase-saxo.webp" alt="Saxofón dorado junto a una guitarra" width="900" height="600" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · matrícula y cómo llegar -->
+  <section class="sec rojo contacto" id="contacto">
+    <div class="txt">
+      <p class="etq ap">Matrícula abierta</p>
+      <h2 class="ap">Ven a<br>probar</h2>
+      <a class="tel ap" href="tel:+34916485493"><small>Llámanos</small><span>916 48 54 93</span></a>
+      <div class="otros ap">
+        <a href="tel:+34655468088">Móvil 655 46 80 88</a>
+        <a href="mailto:escuela.acordes@escuelaacordes.com">escuela.acordes@escuelaacordes.com</a>
+      </div>
+      <dl class="horario ap">
+        <dt>Lunes a viernes</dt><dd>16:30 – 22:30</dd>
+        <dt>Sábados</dt><dd>10:00 – 14:00</dd>
+      </dl>
+    </div>
+    <div class="mapa-caja">
+      <a class="mapa ap" href="https://www.google.com/maps/dir/?api=1&amp;destination=Acordes+Escuela+de+M%C3%BAsica+Moderna%2C+Calle+de+la+Encina+2%2C+28918+Legan%C3%A9s" target="_blank" rel="noopener" aria-label="Cómo llegar a C. de la Encina, 2, Leganés, en Google Maps">
+        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-3.7774808%2C40.3354601%2C-3.7654808%2C40.3414601&amp;layer=mapnik" title="Mapa de la zona de la calle de la Encina, en Leganés" loading="lazy" tabindex="-1"></iframe>
+        <span class="pin" aria-hidden="true"></span>
+        <span class="ruta">Cómo llegar</span>
+        <span class="credito">© OpenStreetMap</span>
+      </a>
+      <dl class="llegar ap">
+        <dt>Metro</dt><dd>San Nicasio (L12, Metrosur), a unos 8 minutos andando<span class="largo"> · Leganés Central (L12 y Cercanías C-5), a 15</span></dd>
+        <dt>Bus</dt><dd>450, 482, 483, 486, 487, 488 y urbano L1</dd>
+        <dt class="donde">Dónde</dt><dd class="donde">C. de la Encina, 2 · 28918 Leganés</dd>
+      </dl>
+    </div>
+    <footer class="pie">
+      <span>Acordes Escuela de Música Moderna · Leganés</span>
+      <span>Muestra de diseño · 2026</span>
+    </footer>
+  </section>
+</main>
+
+<!-- menú -->
+<div class="menu-p" id="menu" role="dialog" aria-modal="true" aria-label="Menú">
+  <button type="button" class="cerrar">Cerrar</button>
+  <ol>
+    <li><button type="button" data-ir="portada"><span class="n">01</span><span class="barra" aria-hidden="true"></span><span><span class="t">Portada</span><br><span class="d">Aquí la música se toca</span></span></button></li>
+    <li><button type="button" data-ir="clases"><span class="n">02</span><span class="barra" aria-hidden="true"></span><span><span class="t">Clases</span><br><span class="d">Canto, guitarra, piano, batería y más</span></span></button></li>
+    <li><button type="button" data-ir="escenario"><span class="n">03</span><span class="barra" aria-hidden="true"></span><span><span class="t">Escenario</span><br><span class="d">Jam sessions, coro y audiciones</span></span></button></li>
+    <li><button type="button" data-ir="escuela"><span class="n">04</span><span class="barra" aria-hidden="true"></span><span><span class="t">La escuela</span><br><span class="d">Desde los 2 años · Trinity</span></span></button></li>
+    <li><button type="button" data-ir="contacto"><span class="n">05</span><span class="barra" aria-hidden="true"></span><span><span class="t">Matrícula</span><br><span class="d">916 48 54 93 · cómo llegar</span></span></button></li>
+  </ol>
+  <p class="pie-m">C. de la Encina, 2 · Leganés · Lunes a viernes 16:30–22:30 · Sábados 10:00–14:00</p>
+</div>
+
+<!-- ficha de contacto, para el ordenador -->
+<div class="ficha" id="ficha" role="dialog" aria-modal="true" aria-labelledby="ficha-t">
+  <div class="caja">
+    <button type="button" class="x">Cerrar</button>
+    <h3 id="ficha-t">Pide información</h3>
+    <p>Llámanos o escríbenos y te contamos horarios, precios y cómo probar una clase.</p>
+    <div class="fila"><span><small>Teléfono</small><strong>916 48 54 93</strong></span><button type="button" class="copiar" data-copiar="916485493">Copiar</button></div>
+    <div class="fila"><span><small>Móvil</small><strong>655 46 80 88</strong></span><button type="button" class="copiar" data-copiar="655468088">Copiar</button></div>
+    <div class="fila"><span><small>Correo</small><strong>escuela.acordes@escuelaacordes.com</strong></span><button type="button" class="copiar" data-copiar="escuela.acordes@escuelaacordes.com">Copiar</button></div>
+    <div class="fila"><span><small>Horario</small><strong>L–V 16:30–22:30 · S 10:00–14:00</strong></span></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var reducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var secciones = [].slice.call(document.querySelectorAll('.sec'));
+  var canales = [].slice.call(document.querySelectorAll('.mesa .canal'));
+  var entradas = [].slice.call(document.querySelectorAll('#menu li'));
+  var menu = document.getElementById('menu'), bMenu = document.querySelector('.cab .menu');
+  var cab = document.querySelector('.cab'), mesa = document.querySelector('.mesa');
+  var ficha = document.getElementById('ficha');
+  var esTelefono = /Android.*Mobile|iPhone|iPod|Windows Phone/i.test(navigator.userAgent);
+
+  /* ---- desplazamiento propio (botones, no enlaces #) ---- */
+  var anim = null;
+  function cancelar() { if (anim) { cancelAnimationFrame(anim); anim = null; } }
+  ['wheel', 'touchstart', 'keydown'].forEach(function (ev) { window.addEventListener(ev, cancelar, { passive: true }); });
+  function irA(id) {
+    var el = document.getElementById(id); if (!el) return;
+    var destino = el.getBoundingClientRect().top + window.pageYOffset;
+    var desde = window.pageYOffset, dist = destino - desde;
+    if (reducido || Math.abs(dist) < 2) { window.scrollTo(0, destino); return; }
+    var dur = Math.min(1800, Math.max(900, Math.abs(dist) * 0.32)), t0 = null;
+    cancelar();
+    function paso(t) {
+      if (t0 === null) t0 = t;
+      var p = Math.min(1, (t - t0) / dur);
+      var e = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+      window.scrollTo(0, desde + dist * e);
+      if (p < 1) anim = requestAnimationFrame(paso); else anim = null;
+    }
+    anim = requestAnimationFrame(paso);
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-ir]'); if (!b) return;
+    e.preventDefault();
+    var id = b.getAttribute('data-ir');
+    if (menu.classList.contains('abierto')) { cerrarMenu(); setTimeout(function () { irA(id); }, 300); }
+    else irA(id);
+  });
+
+  /* ---- menú ---- */
+  entradas.forEach(function (li, i) { li.style.transitionDelay = (100 + i * 70) + 'ms'; });
+  function abrirMenu() { menu.classList.add('abierto'); bMenu.setAttribute('aria-expanded', 'true'); setTimeout(function () { var a = menu.querySelector('li.actual button') || menu.querySelector('li button'); a.focus({ preventScroll: true }); }, 80); }
+  function cerrarMenu() { menu.classList.remove('abierto'); bMenu.setAttribute('aria-expanded', 'false'); bMenu.focus({ preventScroll: true }); }
+  bMenu.addEventListener('click', function () { menu.classList.contains('abierto') ? cerrarMenu() : abrirMenu(); });
+  menu.querySelector('.cerrar').addEventListener('click', cerrarMenu);
+
+  /* ---- ficha de contacto en el ordenador (tel: y mailto: no hacen nada ahí) ---- */
+  function abrirFicha() { ficha.classList.add('abierta'); ficha.querySelector('.x').focus({ preventScroll: true }); }
+  function cerrarFicha() { ficha.classList.remove('abierta'); }
+  if (!esTelefono) {
+    [].forEach.call(document.querySelectorAll('a[href^="tel:"], a[href^="mailto:"]'), function (a) {
+      a.removeAttribute('href'); a.setAttribute('role', 'button'); a.setAttribute('tabindex', '0'); a.style.cursor = 'pointer';
+      a.addEventListener('click', abrirFicha);
+      a.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrirFicha(); } });
+    });
+  }
+  ficha.querySelector('.x').addEventListener('click', cerrarFicha);
+  ficha.addEventListener('click', function (e) { if (e.target === ficha) cerrarFicha(); });
+  [].forEach.call(ficha.querySelectorAll('[data-copiar]'), function (b) {
+    b.addEventListener('click', function () {
+      var dato = b.getAttribute('data-copiar');
+      function hecho() { b.textContent = 'Copiado'; b.classList.add('hecho'); setTimeout(function () { b.textContent = 'Copiar'; b.classList.remove('hecho'); }, 1800); }
+      function aMano() {
+        var t = document.createElement('textarea'); t.value = dato; t.setAttribute('readonly', '');
+        t.style.position = 'fixed'; t.style.opacity = '0'; document.body.appendChild(t); t.select();
+        var ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(t); if (ok) hecho();
+      }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(dato).then(hecho, aMano); else aMano();
+    });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    if (ficha.classList.contains('abierta')) cerrarFicha();
+    else if (menu.classList.contains('abierto')) cerrarMenu();
+  });
+
+  /* ---- entradas: solo lo que está por debajo de la pantalla ---- */
+  if (!reducido && 'IntersectionObserver' in window) {
+    var alto = window.innerHeight;
+    secciones.forEach(function (s) {
+      if (s.getBoundingClientRect().top > alto * 0.7) {
+        s.classList.add('pre');
+        [].forEach.call(s.querySelectorAll('.marco'), function (m) { m.classList.add('espera'); });
+      }
+      [].forEach.call(s.querySelectorAll('.ap'), function (el, i) { el.style.transitionDelay = (i * 90) + 'ms'; });
+    });
+    var io = new IntersectionObserver(function (ents) {
+      ents.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var s = en.target; io.unobserve(s);
+        s.classList.remove('pre');
+        [].forEach.call(s.querySelectorAll('.marco.espera'), function (m, i) { revelar(m, 150 + i * 120); });
+        setTimeout(function () { [].forEach.call(s.querySelectorAll('.ap'), function (el) { el.style.transitionDelay = ''; }); }, 2200);
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -22% 0px' });
+    secciones.forEach(function (s) { if (s.classList.contains('pre')) io.observe(s); });
+  }
+  /* una foto aparece solo cuando ya está descodificada; hasta entonces, su marcador */
+  function revelar(m, retraso) {
+    var img = m.querySelector('img');
+    function va() { setTimeout(function () { m.classList.remove('espera'); }, retraso); }
+    function lista() { (img.decode ? img.decode() : Promise.resolve()).then(va, va); }
+    if (img.complete && img.naturalWidth) lista();
+    else { img.loading = 'eager'; img.addEventListener('load', lista, { once: true }); img.addEventListener('error', va, { once: true }); }
+  }
+
+  /* ---- la mesa: cada fader sube con lo que llevas recorrido de su sección ---- */
+  var activo = -1, pendiente = false;
+  function alBajar() {
+    pendiente = false;
+    var h = window.innerHeight, idx = 0, fondo = '';
+    for (var i = 0; i < secciones.length; i++) {
+      var r = secciones[i].getBoundingClientRect();
+      if (r.top <= h * 0.45) idx = i;
+      /* nivel: 0 cuando la sección asoma por abajo, 1 cuando su final llega arriba */
+      var nivel = Math.min(1, Math.max(0, (h - r.top) / (r.height + h * 0.35)));
+      canales[i].style.setProperty('--nivel', nivel.toFixed(3));
+      var ref = secciones[i];
+      var y = window.innerWidth <= 900 ? 30 : h / 2;
+      if (r.top <= y && r.bottom > y) fondo = ref.classList.contains('oscuro') ? 'oscuro' : ref.classList.contains('rojo') ? 'rojo' : '';
+      if (r.top <= 34 && r.bottom > 34) {
+        cab.classList.toggle('sobre-oscuro', ref.classList.contains('oscuro'));
+        cab.classList.toggle('sobre-rojo', ref.classList.contains('rojo'));
+      }
+    }
+    mesa.classList.toggle('sobre-oscuro', fondo === 'oscuro');
+    mesa.classList.toggle('sobre-rojo', fondo === 'rojo');
+    var ancho = window.innerWidth > 900, rp = secciones[0].getBoundingClientRect();
+    cab.classList.toggle('sobre-foto', ancho && rp.bottom > 34);
+    mesa.classList.toggle('sobre-foto', ancho && rp.bottom > h / 2);
+    if (!ancho) { mesa.classList.toggle('sobre-oscuro', cab.classList.contains('sobre-oscuro')); mesa.classList.toggle('sobre-rojo', cab.classList.contains('sobre-rojo')); }
+    if (idx === activo) return;
+    activo = idx;
+    canales.forEach(function (c, i) { c.classList.toggle('actual', i === idx); });
+    entradas.forEach(function (li, i) { li.classList.toggle('actual', i === idx); });
+  }
+  window.addEventListener('scroll', function () { if (!pendiente) { pendiente = true; requestAnimationFrame(alBajar); } }, { passive: true });
+  window.addEventListener('resize', alBajar);
+  alBajar();
+
+  window.__animOk = true;
+})();
+</script>
+</body>
+</html>
