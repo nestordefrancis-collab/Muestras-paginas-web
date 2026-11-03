@@ -8,11 +8,14 @@
 <meta name="theme-color" content="#F4F1EC">
 <script>
   /* Todo se ve sin JavaScript. El guion del final solo esconde lo que está por
-     debajo de la pantalla (clase «pre») para enseñarlo al llegar. Si no llega a
-     marcar window.__animOk, se quita «js» y la página queda entera y quieta. */
+     debajo de la pantalla (clase «pre») para enseñarlo al llegar, y abre el telón
+     de entrada. Si no llega a marcar window.__animOk, se quitan «js», «intro» y
+     «telon-on», y la página queda entera y quieta. */
   document.documentElement.classList.add('js');
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && !location.hash && (window.pageYOffset || 0) < 40)
+    document.documentElement.classList.add('intro', 'telon-on');
   document.addEventListener('DOMContentLoaded', function () {
-    if (!window.__animOk) document.documentElement.classList.remove('js');
+    if (!window.__animOk) document.documentElement.classList.remove('js', 'intro', 'telon-on');
   });
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,12 +36,14 @@
   --serif:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
   --mono:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
   --suave:cubic-bezier(.25,.6,.3,1);
+  --telon:cubic-bezier(.7,0,.2,1);
   /* pespunte: puntadas de 7 px con 5 de hueco */
   --puntada:currentColor 0 7px, transparent 7px 12px;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--hueso);color:var(--tinta);font:500 19px/1.5 var(--serif);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.js.telon-on body{overflow:hidden}
 img{display:block;max-width:100%}
 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:inherit}
 a{color:inherit}
@@ -47,7 +52,33 @@ ul,ol{list-style:none;margin:0;padding:0}
 .salto:focus{top:12px}
 svg.logo{display:block;fill:currentColor}
 
-/* ---------- el pespunte: un marco de puntadas dentro de cualquier pieza ---------- */
+/* ---------- entrada: el logo se dibuja, se cose la costura y el telón se abre por ella ---------- */
+.telon{display:none}
+.js.telon-on .telon{display:block;position:fixed;inset:0;z-index:90}
+.telon .mitad{position:absolute;left:0;right:0;display:flex;flex-direction:column;align-items:center;background:var(--tinta);color:var(--hueso);
+  transition:transform 1.15s var(--telon)}
+.telon .sup{top:0;height:calc(50% + 1px);justify-content:flex-end;padding-bottom:30px;gap:12px}
+.telon .inf{bottom:0;height:50%;justify-content:flex-start;padding-top:26px}
+.js.abre .telon .sup{transform:translateY(-100%)}
+.js.abre .telon .inf{transform:translateY(100%)}
+/* la costura que cruza la pantalla: va en el borde del paño de arriba */
+.telon .sup::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;color:var(--rojo-claro);
+  background:repeating-linear-gradient(90deg,currentColor 0 10px,transparent 10px 17px);clip-path:inset(0 100% 0 0);animation:cose 1.1s steps(42) 1.15s forwards}
+.telon .i-em{width:128px;height:auto;overflow:visible}
+/* primero se dibujan los contornos; luego se apagan y aparece el respaldo de verdad, con sus huecos */
+.telon .i-em .trazos path{fill:none;stroke:var(--hueso);stroke-width:1.6;stroke-dasharray:var(--l,400);stroke-dashoffset:var(--l,400);
+  animation:traza 1.25s var(--suave) .1s forwards, apaga .6s ease 1.1s forwards}
+.telon .i-em .lleno{fill:var(--hueso);opacity:0;animation:asoma-plano .6s ease 1.05s forwards}
+.telon .i-no{width:250px;height:auto;clip-path:inset(0 100% 0 0);animation:barre 1s var(--suave) .6s forwards}
+.telon .i-lema{width:232px;height:auto;opacity:0;transform:translateY(-6px);animation:asoma .9s var(--suave) 1.7s forwards}
+@keyframes traza{to{stroke-dashoffset:0}}
+@keyframes apaga{to{stroke-opacity:0}}
+@keyframes asoma-plano{to{opacity:1}}
+@keyframes barre{to{clip-path:inset(0 0 0 0)}}
+@keyframes cose{to{clip-path:inset(0 0 0 0)}}
+@keyframes asoma{to{opacity:1;transform:none}}
+
+/* ---------- el pespunte: un marco de puntadas dentro de botones y etiquetas ---------- */
 .cosido{position:relative}
 .cosido::after{content:"";position:absolute;inset:var(--ins,6px);pointer-events:none;z-index:2;color:var(--hilo,currentColor);
   background:
@@ -103,7 +134,6 @@ h1 em,h2 em{font-style:italic;font-weight:400;color:var(--rojo)}
 .oscuro h2 em{color:var(--rojo-claro)}
 .entradilla{font:500 clamp(19px,1.4vw,22px)/1.5 var(--serif);max-width:30em;margin:24px 0 0;color:#3A3530}
 .oscuro .entradilla{color:rgba(244,241,236,.76)}
-.mono{font-family:var(--mono)}
 
 /* botones: al pasar, el pespunte se cose puntada a puntada */
 .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:58px;padding:0 26px;
@@ -115,22 +145,24 @@ h1 em,h2 em{font-style:italic;font-weight:400;color:var(--rojo)}
 .btn.lleno:hover,.btn.lleno:focus-visible{background:var(--rojo);border-color:var(--rojo)}
 .btn.borde:hover,.btn.borde:focus-visible{color:var(--rojo)}
 
-/* fotos: marco con pespunte claro; al pasar, el hilo se vuelve rojo y se ciñe */
-.marco{position:relative;overflow:hidden;margin:0;background:#3A3530 var(--ph) center/cover no-repeat;--ins:11px;--hilo:rgba(244,241,236,.72)}
+/* fotos limpias, sin marco; al pasar, la foto se acerca un poco */
+.marco{position:relative;overflow:hidden;margin:0;background:#3A3530 var(--ph) center/cover no-repeat}
 .marco img{position:absolute;left:0;top:-7%;width:100%;height:114%;object-fit:cover;transform:translate3d(0,var(--py,0px),0);
-  transition:opacity 1.1s var(--suave), scale 1.5s var(--suave)}
-.marco::after{transition:inset .5s var(--suave), color .5s}
-.vivo:hover .marco::after,.marco.vivo:hover::after{inset:7px;color:var(--rojo)}
+  transition:opacity 1.1s var(--suave), scale 1.4s var(--suave)}
+.vivo:hover .marco img,.marco.vivo:hover img{scale:1.04}
 .js .marco.espera img{opacity:0;scale:1.05}
-.pie-foto{position:absolute;left:11px;bottom:11px;z-index:3;margin:0;background:var(--hueso);color:var(--tinta);padding:9px 12px;font:500 10.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.pie-foto{position:absolute;left:0;bottom:0;z-index:3;margin:0;background:var(--hueso);color:var(--tinta);padding:11px 14px 10px;font:500 10.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase}
 
 /* entradas: aparecen y suben 14 px */
 .ap{transition:opacity .9s var(--suave), transform .9s var(--suave)}
 .js .pre .ap{opacity:0;transform:translateY(14px);transition:none}
+.js.intro .portada .ap{opacity:0;transform:translateY(14px)}
+.js.intro .portada .marco img{scale:1.1}
 
-/* ---------- 1 · portada ---------- */
-.portada{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(36px,5vw,80px);align-items:stretch}
-.portada .txt{display:flex;flex-direction:column;justify-content:center;padding:12px 0}
+/* ---------- 1 · portada: texto a la izquierda, foto a sangre hasta el borde ---------- */
+.portada{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:clamp(36px,5vw,80px);align-items:stretch;
+  padding:var(--cab) 0 0 max(40px,4vw)}
+.portada .txt{display:flex;flex-direction:column;justify-content:center;padding:26px 0 58px}
 .portada .botones{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
 .datos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:44px;border-top:1px solid var(--filete);max-width:34em}
 .datos li{padding:16px 16px 0 0}
@@ -141,38 +173,41 @@ h1 em,h2 em{font-style:italic;font-weight:400;color:var(--rojo)}
 .portada .foto .marco{position:absolute;inset:0}
 .portada .foto .marco img{object-position:60% 50%}
 
-/* ---------- 2 · tapizados: muestras prendidas en el tablero ---------- */
-.tapizados .cabeza{display:flex;justify-content:space-between;align-items:flex-end;gap:56px;margin-bottom:38px}
+/* ---------- 2 · tapizados: mosaico con una pieza grande y tres que la rodean ---------- */
+.tapizados .cabeza{display:flex;justify-content:space-between;align-items:flex-end;gap:56px;margin-bottom:34px}
 .tapizados .cabeza .entradilla{margin:0;max-width:24em}
-.muestras{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;align-items:start}
-.muestra{translate:0 var(--dy,0px)}
-.muestra:nth-child(2){margin-top:34px}
-.muestra:nth-child(4){margin-top:18px}
-.muestra .marco{height:clamp(190px,33vh,380px)}
-.muestra .t{display:flex;align-items:baseline;gap:12px;margin-top:16px}
-.muestra .n{font:500 11px/1 var(--mono);letter-spacing:.12em;color:var(--rojo)}
-.muestra h3{font-size:30px;line-height:1.02}
-.muestra p{margin:6px 0 0;font-size:17px;line-height:1.4;color:#4A443E}
-.muestra .precio{display:block;margin-top:10px;font:500 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--gris)}
-.muestra .precio b{font-weight:500;color:var(--tinta)}
-.tambien{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:38px;font:500 11.5px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--gris)}
+.mosaico{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr) minmax(0,1fr);grid-template-rows:1fr 1fr;gap:14px;height:clamp(320px,50vh,540px)}
+.pieza{position:relative;min-width:0;min-height:0}
+.pieza .marco{position:absolute;inset:0}
+.pieza.a{grid-row:1/3}
+.pieza.d{grid-column:2/4}
+.pieza.d .marco img{object-position:50% 40%}
+/* el rótulo se recorta en la esquina de la foto, del color del fondo */
+.rotulo{position:absolute;left:0;bottom:0;z-index:3;margin:0;max-width:calc(100% - 20px);padding:13px 18px 12px 0;background:var(--hueso2);transition:background .4s, color .4s, padding .4s}
+.rotulo .n{margin-right:10px;font:500 10.5px/1 var(--mono);letter-spacing:.12em;color:var(--rojo);vertical-align:3px}
+.rotulo b{font:500 27px/1.05 var(--serif)}
+.rotulo small{display:block;margin-top:5px;font:500 10.5px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--gris);transition:color .4s}
+.pieza:hover .rotulo{background:var(--tinta);color:var(--hueso);padding-left:16px}
+.pieza:hover .rotulo small{color:rgba(244,241,236,.7)}
+.tambien{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:30px;font:500 11.5px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--gris)}
 .tambien b{font-weight:500;color:var(--rojo)}
 .tambien span+span::before{content:"";display:inline-block;width:14px;height:1.5px;margin-right:18px;vertical-align:middle;background:repeating-linear-gradient(90deg,currentColor 0 4px,transparent 4px 7px)}
 
-/* ---------- 3 · clásicos y motos ---------- */
+/* ---------- 3 · clásicos y motos: dos fotos que se montan, y la moto junto a su texto ---------- */
 .clasicos{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(40px,5vw,84px);align-items:center}
-/* arriba el salpicadero a lo ancho; abajo el coche de latón y la moto */
-.clasicos .fotos{display:grid;grid-template-columns:1fr 1.25fr;grid-template-rows:1.2fr 1fr;gap:16px;height:min(74vh,680px)}
-.clasicos .fotos .a{grid-column:1/3}
+.clasicos .fotos{position:relative;height:min(74vh,680px)}
+.clasicos .fotos .a{position:absolute;top:0;right:0;width:86%;height:76%}
+.clasicos .fotos .b{position:absolute;left:0;bottom:0;width:44%;height:46%;box-shadow:0 0 0 14px var(--tinta)}
 .clasicos .fotos .b img{object-position:50% 35%}
-.clasicos .fotos .marco{height:100%}
 .clasicos .precio,.moto .precio{display:inline-block;margin-top:18px;font:500 11.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:rgba(244,241,236,.6)}
 .clasicos .precio b,.moto .precio b{font-weight:500;color:var(--hueso)}
-.moto{position:relative;margin-top:34px;padding-top:26px;max-width:30em}
+.moto{position:relative;display:grid;grid-template-columns:150px minmax(0,1fr);gap:22px;align-items:start;margin-top:34px;padding-top:26px;max-width:34em}
 .moto::before{content:"";position:absolute;left:0;right:0;top:0;height:1.5px;color:var(--rojo-claro);background:repeating-linear-gradient(90deg,var(--puntada))}
-.moto h3{font-size:34px;line-height:1.05}
+.moto .marco{height:104px}
+.moto h3{font-size:32px;line-height:1.05}
 .moto h3 em{font-style:italic;font-weight:400;color:var(--rojo-claro)}
-.moto p{margin:8px 0 0;font-size:18px;color:rgba(244,241,236,.76)}
+.moto p{margin:6px 0 0;font-size:17.5px;line-height:1.45;color:rgba(244,241,236,.76)}
+.moto .precio{margin-top:10px}
 
 /* ---------- 4 · cómo trabajamos y precios ---------- */
 .trabajo{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(40px,5vw,90px);align-items:center}
@@ -209,12 +244,11 @@ h1 em,h2 em{font-style:italic;font-weight:400;color:var(--rojo)}
 .horario dt{font:500 11px/1.9 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:rgba(244,241,236,.6)}
 .horario dd{margin:0}
 .mapa-caja{align-self:center;display:flex;flex-direction:column;gap:18px}
-.mapa{position:relative;display:block;aspect-ratio:16/10.5;overflow:hidden;background:#3A3530;text-decoration:none;--ins:10px;--hilo:rgba(22,22,22,.55)}
+.mapa{position:relative;display:block;aspect-ratio:16/10.5;overflow:hidden;background:#3A3530;text-decoration:none}
 .mapa iframe{position:absolute;left:-46px;top:-46px;width:calc(100% + 92px);height:calc(100% + 92px);border:0;pointer-events:none;filter:grayscale(1) sepia(.18) contrast(1.04)}
 .mapa .pin{position:absolute;left:50%;top:50%;z-index:3;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--rojo);box-shadow:0 0 0 6px rgba(193,64,62,.25)}
-.mapa .ruta{position:absolute;left:18px;bottom:18px;z-index:3;font:500 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;background:var(--tinta);color:var(--hueso);padding:12px 15px;transition:background .3s}
+.mapa .ruta{position:absolute;left:0;bottom:0;z-index:3;font:500 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;background:var(--tinta);color:var(--hueso);padding:13px 16px;transition:background .3s}
 .mapa:hover .ruta{background:var(--rojo)}
-.mapa:hover::after{color:var(--rojo)}
 .mapa .credito{position:absolute;right:0;bottom:0;z-index:3;background:rgba(22,22,22,.6);font:400 10px/1 var(--mono);padding:4px 6px;color:#ddd}
 .llegar{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;margin:0;font-size:17px;line-height:1.45}
 .llegar dt{font:500 11px/1.9 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:rgba(244,241,236,.6)}
@@ -271,22 +305,23 @@ h1 em,h2 em{font-style:italic;font-weight:400;color:var(--rojo)}
   .entradilla{margin-top:16px;font-size:19px}
   .datos{margin-top:30px}.datos b{font-size:30px}
   .portada .botones{margin-top:26px}
-  .tapizados .cabeza{margin-bottom:26px}
-  .muestra .marco{height:clamp(170px,29vh,300px)}
-  .muestra p{display:none}
-  .tambien{margin-top:26px}
+  .tapizados .cabeza{margin-bottom:24px}
+  .mosaico{height:clamp(300px,48vh,440px)}
+  .rotulo b{font-size:24px}
+  .tambien{margin-top:22px}
   .clasicos .fotos{height:min(70vh,600px)}
-  .moto{margin-top:24px;padding-top:20px}
+  .moto{margin-top:24px;padding-top:20px;grid-template-columns:130px minmax(0,1fr)}
+  .moto .marco{height:92px}
   .pasos{margin-top:22px}.pasos li{padding:13px 0}
-  .lado .marco{height:clamp(130px,20vh,200px)}
+  .lado .marco{height:clamp(130px,22vh,210px)}
   .precios dt,.precios dd{padding:9px 0}
   .wa-grande{margin-top:20px}
   .horario{margin-top:18px}
 }
 @media (min-width:901px) and (max-width:1180px){
-  .muestras{gap:16px}
-  .muestra h3{font-size:26px}
   .tapizados .cabeza{gap:32px}
+  .rotulo b{font-size:23px}
+  .rotulo small{display:none}
 }
 
 /* ---------- móvil y tableta ---------- */
@@ -302,6 +337,11 @@ h1 em,h2 em{font-style:italic;font-weight:400;color:var(--rojo)}
   .etiqueta.wa{display:inline-flex}
   .cab.sobre-oscuro .etiqueta.wa{background:var(--rojo);color:var(--hueso);--hilo:rgba(244,241,236,.5)}
   .pestana{display:none}
+  .telon .i-em{width:100px}
+  .telon .i-no{width:196px}
+  .telon .i-lema{width:182px}
+  .telon .sup{padding-bottom:24px;gap:10px}
+  .telon .inf{padding-top:20px}
   .sec{justify-content:center;gap:16px;padding:calc(var(--cab) + 18px) 18px 24px}
   .sec>*{flex:none}
   /* en columna, todo a lo ancho (el centrado del escritorio encoge las fotos y el mapa) */
@@ -316,7 +356,6 @@ h1 em,h2 em{font-style:italic;font-weight:400;color:var(--rojo)}
   /* portada: foto a sangre arriba, texto debajo */
   .portada{display:flex;flex-direction:column;padding:var(--cab) 0 0;gap:0}
   .portada .foto{order:-1;min-height:0;height:36svh}
-  .portada .foto .marco{--ins:9px}
   .portada .txt{flex:1;padding:20px 18px 22px}
   .portada .botones{flex-wrap:nowrap;gap:8px;margin-top:20px}
   .portada .botones .btn{flex:1 1 auto}
@@ -324,31 +363,33 @@ h1 em,h2 em{font-style:italic;font-weight:400;color:var(--rojo)}
   .datos li{padding:11px 8px 0 0}
   .datos b{font-size:25px}
   .datos span{font-size:9px;letter-spacing:.06em;margin-top:5px}
-  .pie-foto{font-size:9.5px;padding:7px 9px;left:9px;bottom:9px}
-  /* tapizados: cuatro muestras en dos filas */
+  .pie-foto{font-size:9.5px;padding:8px 10px 7px}
+  /* tapizados: la grande a lo ancho, dos debajo y la última a lo ancho */
   .tapizados .cabeza{display:block;margin-bottom:6px}
   .tapizados .cabeza .entradilla{margin-top:10px;font-size:16.5px}
-  .muestras{grid-template-columns:1fr 1fr;gap:16px 10px}
-  .muestra:nth-child(2),.muestra:nth-child(4){margin-top:0}
-  .muestra{translate:none}
-  .muestra .marco{height:15svh;--ins:7px}
-  .muestra .t{margin-top:9px;gap:8px}
-  .muestra h3{font-size:21px}
-  .muestra p{display:none}
-  .muestra .precio{margin-top:5px;font-size:9.5px;letter-spacing:.08em}
+  .mosaico{grid-template-columns:1fr 1fr;grid-template-rows:21svh 14svh 14svh;height:auto;gap:8px}
+  .pieza.a{grid-column:1/3;grid-row:auto}
+  .pieza.d{grid-column:1/3}
+  .rotulo{padding:5px 10px 3px 0;max-width:calc(100% - 12px)}
+  .rotulo .n{font-size:9px;margin-right:6px;vertical-align:2px}
+  .rotulo b{font-size:16px}
+  .pieza.a .rotulo{padding:7px 12px 6px 0}
+  .pieza.a .rotulo b{font-size:19px}
+  .rotulo small{display:none}
+  .pieza.a .rotulo small{display:block;font-size:9.5px;margin-top:3px}
   .tambien{display:none}
-  /* clásicos: fotos arriba */
+  /* clásicos: las dos fotos montadas arriba */
   .clasicos{display:flex}
-  .clasicos .fotos{order:-1;height:29svh;grid-template-columns:1.35fr 1fr;grid-template-rows:1fr;gap:8px}
-  .clasicos .fotos .a{grid-column:auto}
-  .clasicos .fotos .b{display:none}
-  .clasicos .fotos .marco{--ins:7px}
+  .clasicos .fotos{order:-1;height:30svh}
+  .clasicos .fotos .a{width:82%;height:80%}
+  .clasicos .fotos .b{width:44%;height:52%;box-shadow:0 0 0 8px var(--tinta)}
   .clasicos .entradilla{font-size:16.5px}
   .clasicos .precio{margin-top:10px;font-size:10px}
-  .moto{margin-top:16px;padding-top:14px}
-  .moto h3{font-size:25px}
-  .moto p{font-size:16px;margin-top:4px}
-  .moto .precio{margin-top:8px;font-size:10px}
+  .moto{grid-template-columns:96px minmax(0,1fr);gap:14px;margin-top:16px;padding-top:14px}
+  .moto .marco{height:66px}
+  .moto h3{font-size:24px}
+  .moto p{font-size:15.5px;margin-top:3px}
+  .moto .precio{margin-top:6px;font-size:10px}
   /* cómo trabajamos */
   .trabajo{display:flex}
   .pasos{margin-top:12px}
@@ -373,8 +414,8 @@ h1 em,h2 em{font-style:italic;font-weight:400;color:var(--rojo)}
   .otros{margin-top:12px;font-size:17px;gap:6px 20px}
   .horario{margin-top:12px;font-size:16px;gap:2px 14px}
   .mapa-caja{gap:10px}
-  .mapa{aspect-ratio:16/6.4;--ins:6px}
-  .mapa .ruta{left:10px;bottom:10px;padding:9px 11px;font-size:10px}
+  .mapa{aspect-ratio:16/6.4}
+  .mapa .ruta{padding:10px 12px;font-size:10px}
   .llegar{font-size:15px;gap:3px 12px}
   .llegar .largo,.llegar .donde{display:none}
   .pie{margin-top:14px;padding-top:12px;flex-direction:row}
@@ -390,24 +431,25 @@ h1 em,h2 em{font-style:italic;font-weight:400;color:var(--rojo)}
   .portada .foto{height:33svh}
   .portada .entradilla{display:none}
   .tapizados .cabeza .entradilla{display:none}
-  .muestra .marco{height:14svh}
-  .clasicos .fotos{height:26svh}
+  .mosaico{grid-template-rows:20svh 13svh 13svh}
+  .clasicos .fotos{height:27svh}
   .clasicos .entradilla{display:none}
   .horario{display:none}
 }
 @media (max-width:900px) and (max-height:600px){
   .portada .foto{height:30svh}
   .datos{display:none}
-  .muestra .marco{height:13svh}
-  .muestra .precio{display:none}
-  .clasicos .fotos{height:24svh}
+  .mosaico{grid-template-rows:19svh 12svh 12svh}
+  .pieza.a .rotulo small{display:none}
+  .clasicos .fotos{height:25svh}
   .moto p{display:none}
+  .moto .marco{height:52px}
   .precios .nota{display:none}
   .pasos li{padding:6px 0}
   .mapa{aspect-ratio:16/5.4}
+  .llegar dt:nth-of-type(2),.llegar dd:nth-of-type(2){display:none}
   .wa-grande small{display:none}
   .pie{margin-top:8px;padding-top:8px}
-  .llegar dt:nth-of-type(2),.llegar dd:nth-of-type(2){display:none}
 }
 @media (max-width:380px){
   .portada .botones .btn{padding:0 11px;font-size:10.5px}
@@ -415,7 +457,7 @@ h1 em,h2 em{font-style:italic;font-weight:400;color:var(--rojo)}
   .etiqueta .ic{display:none}
 }
 @media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{transition-duration:.01ms !important}
+  *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important}
 }
 .ph-portada-asientos-rojos{--ph:url(data:image/webp;base64,UklGRsYBAABXRUJQVlA4ILoBAAAQEQCdASpwAFQAPtFan0yqsqKrOFQKalAaCWNtf1ox9fw/UVd3ckjAS6cqKYh/qHpv9rWCkIbve8xXy+Q+Agf2vnmegxFVBReS7uycgLqaM1NfrUlrn8s7gfqLv9NczQ+Bf8c4++wXS3NEYSrZXNC98hyM2rSKsP2FTwiTTDngAVojS3D6rIZsxHM5tRuTBNyAAP7hb3vr6mr+Fm7eiCpGF8qEcHDbsgtPBBt/NVsgJinB97tDzVH3X5k2PD78Bv1z+cr0QeAYoXAxK8Cf+aY7KKK4H2pEOfAL6CteoBRjLy2YcskGgxSPTM1VgZqlNCGv2Qnj4dVvYnXaOs3PCKuyVVDf4o+yR1uVR/kk8k7GkZR4AdP1sXWVHtGFFbNxHOiZ7ew7uf0tkEK68FZVSn4nWls5u1H6oLvYFIzshV7/UPcuBqC6lBgt2Moj+Dhc3VO4pCPfIwiaZ43hYikShMqcFI/mwPSXEIzkyE6Sy1k0OKu6H6z894PghaPLWxlRhhKpbdfY/yL88LOL+TRMN66EVCcUVqi8QU5YM9IEhc6Mj7NZyvNKhVunhjIoMk5Xxa86ZYsIBZPFAAAA)}
 .ph-asientos-cuero-camel{--ph:url(data:image/webp;base64,UklGRnIBAABXRUJQVlA4IGYBAADwDwCdASpwAFQAPtlgokyoNC6iMNorMoAbCWUAyfi0neM3OZEQERh7E8dSWvgfXRXq95rr/7zzSPK/0JdoleBfnSlQvURrmmyri/pPzRZX9wzgFGVLExKy9AAHSWeYl7RIgDo8/jUPU80Rny7yUORhfvaRxp2wpZB7b8hGmEs13DMqsbBZlvKAAP72hkquJMLlC46yvbsQL4V69TcGsD6gQzZyqdmC/1u9pY9FZlh3fvqZTFoJ8nBXcWhL8W/lXjFHkDKX3Gikxy+kMeL3d57OmJhD2HLY5oJh/C9Oh7HuwscfJD/E9oPCCrKNBtrXE9zINJ9fG8CTWqUgynYoCOzIS/BsqdT2VPaKLQFS29fhYgSDe3zKwABMirEtz88xexx7Wr3a3b0JoGW7+n/Tkr4b8u7Sm9vJ/Id19BXLFxyuaucHXLKbPJaNWcWyJqpGsidVuk0kywuSxIwnB6FHjI/QnPE4JAAA)}
@@ -433,6 +475,17 @@ h1 em,h2 em{font-style:italic;font-weight:400;color:var(--rojo)}
   <symbol id="emblema" viewBox="208 36 201 265"><path fill-rule="evenodd" d="M303.0 38.0 306.0 38.1 306.6 39.5 306.6 298.0 306.0 298.8 211.2 207.7 210.1 206.0 248.1 89.5 255.1 74.0 260.0 66.0 265.1 59.2 270.9 53.0 276.5 48.2 282.8 44.1 289.0 41.1 295.5 39.1 303.0 38.0ZM311.1 38.0 316.2 38.2 325.0 40.1 332.2 43.1 338.8 47.0 345.0 52.1 350.7 58.0 355.6 64.2 360.7 72.2 364.7 79.8 368.7 89.2 406.7 206.0 405.8 207.5 311.2 298.7 310.5 298.7 310.2 298.0 310.3 39.5 311.0 38.0ZM302.4 42.0 304.0 42.1 304.5 42.8 304.3 52.0 292.0 58.2 286.5 62.2 281.2 67.1 272.1 78.5 264.1 93.0 260.1 103.0 224.6 212.2 223.5 213.7 215.0 205.8 214.9 204.0 251.1 92.8 255.1 82.8 259.2 74.8 264.1 67.0 269.2 60.4 275.3 54.2 280.7 50.0 287.5 46.1 295.5 43.2 302.2 42.0ZM313.2 42.0 321.0 43.1 327.2 45.2 333.2 48.2 340.2 53.2 346.5 59.2 351.7 65.5 356.6 73.0 361.6 82.5 365.6 92.5 402.0 204.2 401.8 205.8 393.5 213.7 392.8 213.3 392.2 212.0 356.7 103.0 352.6 92.8 344.5 78.2 335.5 67.0 330.2 62.2 324.8 58.1 312.5 52.0 312.2 43.2 313.0 42.1ZM302.8 57.0 304.0 56.8 304.6 57.8 304.6 80.0 303.8 81.4 276.8 81.6 275.7 81.0 276.0 79.9 281.1 73.2 288.0 66.2 294.9 61.0 302.8 57.0ZM312.5 57.0 314.1 57.0 320.2 60.0 328.6 66.0 336.5 74.2 340.8 80.0 341.0 81.3 312.7 81.2 312.2 80.0 312.5 57.0ZM274.0 84.2 304.1 84.5 304.6 85.8 304.6 108.5 304.3 109.5 303.5 109.8 264.0 109.9 262.5 109.5 264.1 103.8 267.1 96.0 272.1 86.2 274.0 84.3ZM313.2 84.2 343.4 84.5 346.7 89.8 350.6 98.2 354.3 108.8 353.9 109.8 312.8 109.6 312.2 108.2 312.2 85.8 313.0 84.3ZM261.7 112.8 304.2 113.0 304.6 137.0 303.8 138.1 253.5 138.0 253.2 137.0 261.5 112.8ZM313.1 112.8 355.2 112.8 356.6 115.5 363.7 137.0 363.0 138.1 312.9 138.0 312.2 137.0 312.2 114.0 313.0 112.8ZM252.5 141.0 304.0 141.1 304.6 142.5 304.6 164.8 304.0 166.4 244.3 166.5 244.0 165.0 252.2 141.1ZM313.1 141.0 364.5 141.1 365.6 143.0 372.8 164.9 372.8 166.0 372.2 166.6 313.0 166.5 312.2 165.0 312.2 142.2 313.0 141.0ZM243.1 169.5 303.8 169.4 304.6 170.8 304.2 194.6 235.2 194.8 234.7 194.2 235.0 192.8 242.1 171.0 243.0 169.6ZM312.9 169.5 373.5 169.4 374.6 170.8 381.6 192.2 382.1 194.0 381.8 194.7 313.0 194.8 312.2 193.5 312.2 170.8 312.8 169.6ZM234.3 197.8 304.0 197.9 304.6 199.0 304.6 222.0 303.5 223.2 233.2 223.1 228.1 218.5 227.2 217.0 233.1 198.8 234.2 197.8ZM313.2 197.8 383.0 197.9 383.8 198.8 389.6 217.0 388.7 218.5 383.2 223.2 313.0 223.1 312.2 222.0 312.2 198.8 313.0 197.8ZM237.4 226.0 304.0 226.2 304.6 227.8 304.6 249.5 303.8 250.9 261.8 250.7 237.5 227.5 236.8 226.5 237.2 226.0ZM313.5 226.0 379.8 226.1 379.4 227.5 356.5 249.6 354.5 250.9 312.8 250.7 312.2 249.5 312.2 227.8 312.5 226.5 313.2 226.0ZM266.1 253.8 304.2 254.0 304.6 290.2 304.2 291.4 303.0 290.8 265.9 255.0 265.5 254.2 266.0 253.8ZM313.3 253.8 350.0 253.7 351.4 254.2 312.8 291.4 312.2 290.2 312.2 255.0 313.2 253.8Z"/></symbol>
   <symbol id="nombre" viewBox="23 313 454 60"><path fill-rule="evenodd" d="M95.9 315.5 152.2 315.8 177.2 365.0 179.0 366.5 217.4 366.2 216.5 365.2 212.8 363.6 208.2 360.7 202.0 354.8 198.1 347.8 196.1 338.2 196.1 333.8 197.0 329.9 200.3 324.2 205.5 320.1 214.5 317.2 222.2 316.1 233.8 315.6 289.8 315.7 290.5 316.8 290.5 350.2 291.1 354.2 293.2 357.4 296.8 359.7 303.5 361.5 310.5 361.9 315.0 361.5 320.8 359.5 324.5 356.6 326.8 353.0 327.6 349.5 327.1 316.8 327.8 315.7 405.5 315.5 411.5 316.1 415.8 317.1 420.5 319.2 423.3 321.2 425.7 324.0 427.3 328.0 427.7 331.2 426.8 335.5 425.6 337.8 422.0 341.7 417.5 343.8 410.9 344.5 392.0 344.5 391.2 345.2 422.0 367.5 424.0 368.1 465.2 368.1 466.5 367.7 466.8 316.5 467.8 315.5 474.0 315.6 474.8 316.0 475.0 317.0 475.0 369.0 474.7 370.0 473.8 370.5 411.2 370.2 373.8 343.7 364.6 336.5 365.8 335.9 413.2 335.6 416.5 334.7 418.6 332.8 418.9 330.0 417.8 328.0 415.4 326.2 412.8 325.2 406.5 324.1 367.5 324.3 366.7 323.2 367.5 317.8 365.8 317.0 338.0 317.0 336.5 317.5 336.2 349.5 335.7 353.5 334.7 356.8 332.5 360.7 328.5 364.8 323.8 367.6 317.1 369.8 308.0 370.4 301.0 369.7 297.0 368.7 290.2 365.5 285.0 360.5 283.1 357.0 281.9 352.8 281.8 318.2 281.4 317.2 280.2 317.0 247.0 317.0 246.0 317.7 244.6 322.5 243.5 323.7 223.8 324.0 216.5 325.0 210.5 327.1 206.2 330.8 204.8 334.5 205.2 341.0 207.1 346.5 211.0 351.8 216.2 355.6 223.8 358.7 234.0 360.6 245.2 360.9 245.8 361.8 246.0 367.0 245.2 368.0 170.0 368.1 168.7 367.2 164.5 359.0 163.0 357.1 116.5 357.0 114.2 357.9 102.5 368.6 101.2 368.9 96.5 363.8 96.6 362.2 144.5 318.6 145.2 317.5 144.0 317.0 96.8 317.0 95.6 317.8 94.0 323.2 93.2 324.0 65.2 324.2 64.7 326.0 64.7 367.2 63.5 368.1 57.0 368.1 56.0 367.0 55.7 324.5 54.8 324.1 25.5 324.0 24.9 323.0 25.1 316.0 26.2 315.5 95.8 315.5ZM147.9 327.5 148.6 327.5 149.5 329.0 158.6 347.0 158.2 348.3 126.8 348.4 125.8 348.0 126.2 347.0 147.8 327.6Z"/></symbol>
 </svg>
+
+<!-- entrada: el respaldo se dibuja, el nombre se descubre, se cose la costura y el telón se abre por ella -->
+<div class="telon" aria-hidden="true">
+  <div class="mitad sup">
+    <svg class="i-em" viewBox="208 36 201 265"><g class="trazos"><path d="M303.0 38.0 306.0 38.1 306.6 39.5 306.6 298.0 306.0 298.8 211.2 207.7 210.1 206.0 248.1 89.5 255.1 74.0 260.0 66.0 265.1 59.2 270.9 53.0 276.5 48.2 282.8 44.1 289.0 41.1 295.5 39.1 303.0 38.0Z"/><path d="M311.1 38.0 316.2 38.2 325.0 40.1 332.2 43.1 338.8 47.0 345.0 52.1 350.7 58.0 355.6 64.2 360.7 72.2 364.7 79.8 368.7 89.2 406.7 206.0 405.8 207.5 311.2 298.7 310.5 298.7 310.2 298.0 310.3 39.5 311.0 38.0Z"/><path d="M302.4 42.0 304.0 42.1 304.5 42.8 304.3 52.0 292.0 58.2 286.5 62.2 281.2 67.1 272.1 78.5 264.1 93.0 260.1 103.0 224.6 212.2 223.5 213.7 215.0 205.8 214.9 204.0 251.1 92.8 255.1 82.8 259.2 74.8 264.1 67.0 269.2 60.4 275.3 54.2 280.7 50.0 287.5 46.1 295.5 43.2 302.2 42.0Z"/><path d="M313.2 42.0 321.0 43.1 327.2 45.2 333.2 48.2 340.2 53.2 346.5 59.2 351.7 65.5 356.6 73.0 361.6 82.5 365.6 92.5 402.0 204.2 401.8 205.8 393.5 213.7 392.8 213.3 392.2 212.0 356.7 103.0 352.6 92.8 344.5 78.2 335.5 67.0 330.2 62.2 324.8 58.1 312.5 52.0 312.2 43.2 313.0 42.1Z"/><path d="M302.8 57.0 304.0 56.8 304.6 57.8 304.6 80.0 303.8 81.4 276.8 81.6 275.7 81.0 276.0 79.9 281.1 73.2 288.0 66.2 294.9 61.0 302.8 57.0Z"/><path d="M312.5 57.0 314.1 57.0 320.2 60.0 328.6 66.0 336.5 74.2 340.8 80.0 341.0 81.3 312.7 81.2 312.2 80.0 312.5 57.0Z"/><path d="M274.0 84.2 304.1 84.5 304.6 85.8 304.6 108.5 304.3 109.5 303.5 109.8 264.0 109.9 262.5 109.5 264.1 103.8 267.1 96.0 272.1 86.2 274.0 84.3Z"/><path d="M313.2 84.2 343.4 84.5 346.7 89.8 350.6 98.2 354.3 108.8 353.9 109.8 312.8 109.6 312.2 108.2 312.2 85.8 313.0 84.3Z"/><path d="M261.7 112.8 304.2 113.0 304.6 137.0 303.8 138.1 253.5 138.0 253.2 137.0 261.5 112.8Z"/><path d="M313.1 112.8 355.2 112.8 356.6 115.5 363.7 137.0 363.0 138.1 312.9 138.0 312.2 137.0 312.2 114.0 313.0 112.8Z"/><path d="M252.5 141.0 304.0 141.1 304.6 142.5 304.6 164.8 304.0 166.4 244.3 166.5 244.0 165.0 252.2 141.1Z"/><path d="M313.1 141.0 364.5 141.1 365.6 143.0 372.8 164.9 372.8 166.0 372.2 166.6 313.0 166.5 312.2 165.0 312.2 142.2 313.0 141.0Z"/><path d="M243.1 169.5 303.8 169.4 304.6 170.8 304.2 194.6 235.2 194.8 234.7 194.2 235.0 192.8 242.1 171.0 243.0 169.6Z"/><path d="M312.9 169.5 373.5 169.4 374.6 170.8 381.6 192.2 382.1 194.0 381.8 194.7 313.0 194.8 312.2 193.5 312.2 170.8 312.8 169.6Z"/><path d="M234.3 197.8 304.0 197.9 304.6 199.0 304.6 222.0 303.5 223.2 233.2 223.1 228.1 218.5 227.2 217.0 233.1 198.8 234.2 197.8Z"/><path d="M313.2 197.8 383.0 197.9 383.8 198.8 389.6 217.0 388.7 218.5 383.2 223.2 313.0 223.1 312.2 222.0 312.2 198.8 313.0 197.8Z"/><path d="M237.4 226.0 304.0 226.2 304.6 227.8 304.6 249.5 303.8 250.9 261.8 250.7 237.5 227.5 236.8 226.5 237.2 226.0Z"/><path d="M313.5 226.0 379.8 226.1 379.4 227.5 356.5 249.6 354.5 250.9 312.8 250.7 312.2 249.5 312.2 227.8 312.5 226.5 313.2 226.0Z"/><path d="M266.1 253.8 304.2 254.0 304.6 290.2 304.2 291.4 303.0 290.8 265.9 255.0 265.5 254.2 266.0 253.8Z"/><path d="M313.3 253.8 350.0 253.7 351.4 254.2 312.8 291.4 312.2 290.2 312.2 255.0 313.2 253.8Z"/></g><path class="lleno" fill-rule="evenodd" d="M303.0 38.0 306.0 38.1 306.6 39.5 306.6 298.0 306.0 298.8 211.2 207.7 210.1 206.0 248.1 89.5 255.1 74.0 260.0 66.0 265.1 59.2 270.9 53.0 276.5 48.2 282.8 44.1 289.0 41.1 295.5 39.1 303.0 38.0ZM311.1 38.0 316.2 38.2 325.0 40.1 332.2 43.1 338.8 47.0 345.0 52.1 350.7 58.0 355.6 64.2 360.7 72.2 364.7 79.8 368.7 89.2 406.7 206.0 405.8 207.5 311.2 298.7 310.5 298.7 310.2 298.0 310.3 39.5 311.0 38.0ZM302.4 42.0 304.0 42.1 304.5 42.8 304.3 52.0 292.0 58.2 286.5 62.2 281.2 67.1 272.1 78.5 264.1 93.0 260.1 103.0 224.6 212.2 223.5 213.7 215.0 205.8 214.9 204.0 251.1 92.8 255.1 82.8 259.2 74.8 264.1 67.0 269.2 60.4 275.3 54.2 280.7 50.0 287.5 46.1 295.5 43.2 302.2 42.0ZM313.2 42.0 321.0 43.1 327.2 45.2 333.2 48.2 340.2 53.2 346.5 59.2 351.7 65.5 356.6 73.0 361.6 82.5 365.6 92.5 402.0 204.2 401.8 205.8 393.5 213.7 392.8 213.3 392.2 212.0 356.7 103.0 352.6 92.8 344.5 78.2 335.5 67.0 330.2 62.2 324.8 58.1 312.5 52.0 312.2 43.2 313.0 42.1ZM302.8 57.0 304.0 56.8 304.6 57.8 304.6 80.0 303.8 81.4 276.8 81.6 275.7 81.0 276.0 79.9 281.1 73.2 288.0 66.2 294.9 61.0 302.8 57.0ZM312.5 57.0 314.1 57.0 320.2 60.0 328.6 66.0 336.5 74.2 340.8 80.0 341.0 81.3 312.7 81.2 312.2 80.0 312.5 57.0ZM274.0 84.2 304.1 84.5 304.6 85.8 304.6 108.5 304.3 109.5 303.5 109.8 264.0 109.9 262.5 109.5 264.1 103.8 267.1 96.0 272.1 86.2 274.0 84.3ZM313.2 84.2 343.4 84.5 346.7 89.8 350.6 98.2 354.3 108.8 353.9 109.8 312.8 109.6 312.2 108.2 312.2 85.8 313.0 84.3ZM261.7 112.8 304.2 113.0 304.6 137.0 303.8 138.1 253.5 138.0 253.2 137.0 261.5 112.8ZM313.1 112.8 355.2 112.8 356.6 115.5 363.7 137.0 363.0 138.1 312.9 138.0 312.2 137.0 312.2 114.0 313.0 112.8ZM252.5 141.0 304.0 141.1 304.6 142.5 304.6 164.8 304.0 166.4 244.3 166.5 244.0 165.0 252.2 141.1ZM313.1 141.0 364.5 141.1 365.6 143.0 372.8 164.9 372.8 166.0 372.2 166.6 313.0 166.5 312.2 165.0 312.2 142.2 313.0 141.0ZM243.1 169.5 303.8 169.4 304.6 170.8 304.2 194.6 235.2 194.8 234.7 194.2 235.0 192.8 242.1 171.0 243.0 169.6ZM312.9 169.5 373.5 169.4 374.6 170.8 381.6 192.2 382.1 194.0 381.8 194.7 313.0 194.8 312.2 193.5 312.2 170.8 312.8 169.6ZM234.3 197.8 304.0 197.9 304.6 199.0 304.6 222.0 303.5 223.2 233.2 223.1 228.1 218.5 227.2 217.0 233.1 198.8 234.2 197.8ZM313.2 197.8 383.0 197.9 383.8 198.8 389.6 217.0 388.7 218.5 383.2 223.2 313.0 223.1 312.2 222.0 312.2 198.8 313.0 197.8ZM237.4 226.0 304.0 226.2 304.6 227.8 304.6 249.5 303.8 250.9 261.8 250.7 237.5 227.5 236.8 226.5 237.2 226.0ZM313.5 226.0 379.8 226.1 379.4 227.5 356.5 249.6 354.5 250.9 312.8 250.7 312.2 249.5 312.2 227.8 312.5 226.5 313.2 226.0ZM266.1 253.8 304.2 254.0 304.6 290.2 304.2 291.4 303.0 290.8 265.9 255.0 265.5 254.2 266.0 253.8ZM313.3 253.8 350.0 253.7 351.4 254.2 312.8 291.4 312.2 290.2 312.2 255.0 313.2 253.8Z"/></svg>
+    <svg class="i-no logo" viewBox="0 0 454 60"><use href="#nombre"/></svg>
+  </div>
+  <div class="mitad inf">
+    <svg class="i-lema logo" viewBox="44 428 412 36"><path fill-rule="evenodd" d="M184.0 430.5 185.2 430.3 186.4 431.2 186.3 432.5 185.2 433.8 183.8 433.9 182.7 433.2 182.7 431.8 183.8 430.6ZM51.4 432.0 53.6 432.2 53.2 436.8 55.5 437.5 56.0 438.5 55.5 439.8 52.8 440.2 52.0 441.5 50.5 450.0 51.0 451.5 53.0 452.8 52.9 454.0 52.2 454.8 48.0 454.6 47.0 453.7 46.7 452.2 48.8 441.2 48.5 440.3 47.3 439.5 47.3 438.8 48.0 437.6 49.5 436.8 50.3 433.2 51.2 432.1ZM361.7 432.0 363.5 432.0 363.9 432.8 360.5 435.8 359.4 435.8 359.2 435.0 361.5 432.0ZM93.0 437.2 98.2 437.3 100.1 438.2 101.2 440.0 101.3 442.8 99.4 454.2 98.8 454.8 96.9 454.8 95.5 453.6 93.2 454.9 89.8 455.0 88.2 454.5 86.8 452.8 86.8 448.2 88.2 446.0 90.0 445.0 96.5 443.9 97.9 442.5 98.0 441.2 97.4 440.2 94.8 439.8 92.5 440.8 90.5 443.3 88.2 443.2 88.0 441.8 89.2 439.4 90.8 438.1 93.0 437.3ZM142.3 437.2 145.6 437.2 147.7 439.5 147.9 444.0 146.6 450.0 144.8 453.3 142.8 454.8 139.0 455.0 136.2 453.5 134.6 460.2 133.5 461.2 131.5 461.1 131.1 460.0 135.5 438.5 136.3 437.5 138.0 437.3 139.5 438.9 142.2 437.3ZM223.3 437.2 227.0 437.1 229.2 437.8 230.7 439.2 231.2 441.2 230.8 443.8 228.5 444.0 227.9 443.5 227.4 440.5 226.2 439.9 224.2 439.9 222.2 441.2 221.2 443.1 220.1 449.2 220.3 450.8 221.2 452.0 223.0 452.5 224.8 451.8 227.5 448.2 229.2 448.1 229.9 448.8 229.7 450.5 228.7 452.5 225.5 454.8 222.0 455.2 219.5 454.7 217.9 453.5 216.9 451.0 217.0 446.5 218.2 441.5 220.2 438.8 223.2 437.3ZM270.2 437.2 273.2 437.0 275.5 437.6 277.3 439.2 277.9 441.0 277.7 445.8 276.8 447.2 268.2 447.5 267.1 448.2 267.2 451.0 269.2 452.5 272.0 451.7 274.2 449.0 276.7 449.2 276.6 450.8 275.6 452.8 272.5 454.8 269.0 455.2 266.4 454.8 264.9 453.5 263.9 451.2 264.0 446.5 265.1 441.5 267.1 438.8 270.0 437.3ZM318.7 437.2 321.0 437.1 322.6 438.0 323.4 440.2 323.2 442.5 322.2 443.5 320.5 443.4 319.2 440.2 317.5 439.9 316.2 440.6 315.0 443.0 312.7 454.0 312.1 454.8 310.0 454.8 309.3 454.0 312.4 438.5 313.2 437.5 314.8 437.3 316.5 438.6 318.5 437.3ZM398.7 437.2 403.8 437.3 405.7 438.2 406.8 439.8 406.8 443.8 405.0 454.2 404.2 454.9 402.5 454.8 401.2 453.6 398.5 455.0 395.0 455.0 393.2 454.0 392.3 452.2 392.2 449.0 393.8 446.1 395.8 445.0 402.2 443.9 403.6 442.5 403.7 441.2 403.0 440.3 400.2 439.8 398.2 440.7 396.2 443.3 394.0 443.2 393.8 441.5 395.0 439.3 398.5 437.3ZM445.4 437.2 451.0 437.4 452.8 438.4 453.9 440.5 453.8 442.8 452.8 443.5 451.0 443.2 450.5 440.9 449.0 439.9 445.8 440.1 444.0 441.8 444.5 443.6 450.2 445.1 451.8 446.2 452.5 447.8 452.6 449.8 451.7 452.2 450.3 453.8 448.2 454.8 444.8 455.2 441.8 454.8 440.0 453.6 439.1 451.8 439.1 449.5 440.2 448.8 442.2 449.2 442.6 451.5 444.5 452.5 447.5 451.9 448.8 450.5 449.1 449.0 448.5 448.1 442.8 446.7 440.8 444.5 440.6 442.5 441.2 440.0 443.0 438.2 445.2 437.3ZM182.3 437.5 184.2 437.4 184.9 438.5 181.9 453.8 181.2 454.7 179.2 454.9 178.4 454.0 181.2 440.0 182.2 437.5ZM358.3 437.5 360.2 437.4 360.9 438.5 357.9 453.8 357.2 454.7 355.2 454.9 354.4 454.0 357.2 439.8 358.2 437.5ZM140.7 440.0 143.5 440.1 144.5 441.4 144.7 442.8 142.8 450.0 141.7 451.5 140.2 452.4 139.0 452.5 137.8 451.7 136.9 449.2 138.1 443.0 139.0 441.2 140.5 440.1ZM270.8 440.0 273.0 439.9 274.4 441.0 274.7 443.5 273.8 444.7 268.1 444.5 268.1 443.2 269.0 441.5 270.8 440.0ZM94.9 447.0 96.8 447.0 96.6 449.2 95.2 451.5 93.0 452.5 90.2 451.5 90.0 449.1 91.8 447.4 94.8 447.0ZM400.5 447.0 402.5 447.0 402.6 448.2 401.3 451.0 398.8 452.5 396.0 451.6 395.8 449.0 397.5 447.4 400.5 447.0Z"/></svg>
+  </div>
+</div>
 
 <button type="button" class="salto" data-ir="tapizados">Saltar al contenido</button>
 
@@ -468,7 +521,7 @@ h1 em,h2 em{font-style:italic;font-weight:400;color:var(--rojo)}
       </ul>
     </div>
     <div class="foto vivo">
-      <figure class="marco cosido ph-portada-asientos-rojos">
+      <figure class="marco ph-portada-asientos-rojos">
         <img src="assets/img/portada-asientos-rojos.webp" alt="Asientos delanteros y paneles de puerta tapizados en piel roja" width="1100" height="825" fetchpriority="high">
       </figure>
       <p class="pie-foto">Asientos y puertas · piel roja</p>
@@ -485,30 +538,22 @@ h1 em,h2 em{font-style:italic;font-weight:400;color:var(--rojo)}
       </div>
       <p class="entradilla ap">Roces, quemaduras, cortes o grietas: cambiamos lo gastado por piezas de fábrica o le hacemos el diseño que usted quiera.</p>
     </div>
-    <ul class="muestras">
-      <li class="muestra vivo ap" data-vel="-0.05">
-        <figure class="marco cosido ph-asientos-cuero-camel"><img src="assets/img/asientos-cuero-camel.webp" alt="Asientos delanteros tapizados en piel color camel" width="1100" height="825" loading="lazy"></figure>
-        <div class="t"><span class="n">01</span><h3>Asientos</h3></div>
-        <p>En piel, polipiel o tela. Uno solo o todos</p>
-        <span class="precio">Desde <b>65 €</b></span>
+    <ul class="mosaico">
+      <li class="pieza a vivo ap">
+        <figure class="marco ph-asientos-cuero-camel"><img src="assets/img/asientos-cuero-camel.webp" alt="Asientos delanteros tapizados en piel color camel" width="1100" height="825" loading="lazy"></figure>
+        <p class="rotulo"><span class="n">01</span><b>Asientos</b><small>Piel, polipiel o tela · desde 65 €</small></p>
       </li>
-      <li class="muestra vivo ap" data-vel="0.04">
-        <figure class="marco cosido ph-volante-a-medio-forrar"><img src="assets/img/volante-a-medio-forrar.webp" alt="Volante a medio forrar en piel negra, en el banco del taller" width="1095" height="825" loading="lazy"></figure>
-        <div class="t"><span class="n">02</span><h3>Volantes</h3></div>
-        <p>En piel, con la costura del color que elija</p>
-        <span class="precio">En <b>24 horas</b></span>
+      <li class="pieza b vivo ap">
+        <figure class="marco ph-volante-a-medio-forrar"><img src="assets/img/volante-a-medio-forrar.webp" alt="Volante a medio forrar en piel negra, en el banco del taller" width="1095" height="825" loading="lazy"></figure>
+        <p class="rotulo"><span class="n">02</span><b>Volantes</b><small>En piel · en 24 horas</small></p>
       </li>
-      <li class="muestra vivo ap" data-vel="-0.02">
-        <figure class="marco cosido ph-cambio-de-marchas"><img src="assets/img/cambio-de-marchas.webp" alt="Pomo y fuelle del cambio de marchas tapizados en piel gris claro" width="1098" height="825" loading="lazy"></figure>
-        <div class="t"><span class="n">03</span><h3>Cambios de marcha</h3></div>
-        <p>Pomo y fuelle, en original o a su gusto</p>
-        <span class="precio">Con <b>material original</b></span>
+      <li class="pieza c vivo ap">
+        <figure class="marco ph-cambio-de-marchas"><img src="assets/img/cambio-de-marchas.webp" alt="Pomo y fuelle del cambio de marchas tapizados en piel gris claro" width="1098" height="825" loading="lazy"></figure>
+        <p class="rotulo"><span class="n">03</span><b>Cambios</b><small>Pomo y fuelle</small></p>
       </li>
-      <li class="muestra vivo ap" data-vel="0.06">
-        <figure class="marco cosido ph-asientos-azules"><img src="assets/img/asientos-azules.webp" alt="Asientos tapizados en dos colores, negro y azul" width="1100" height="825" loading="lazy"></figure>
-        <div class="t"><span class="n">04</span><h3>Tapizado completo</h3></div>
-        <p>Todo el interior, con el diseño que quiera</p>
-        <span class="precio">Desde <b>990 €</b></span>
+      <li class="pieza d vivo ap">
+        <figure class="marco ph-asientos-azules"><img src="assets/img/asientos-azules.webp" alt="Asientos tapizados en dos colores, negro y azul" width="1100" height="825" loading="lazy"></figure>
+        <p class="rotulo"><span class="n">04</span><b>Tapizado completo</b><small>Todo el interior, a su diseño · desde 990 €</small></p>
       </li>
     </ul>
     <p class="tambien ap"><b>También</b><span>Puertas</span><span>Salpicaderos</span><span>Techos y guarnecidos</span><span>Suelos y moquetas</span><span>Maleteros</span></p>
@@ -523,15 +568,17 @@ h1 em,h2 em{font-style:italic;font-weight:400;color:var(--rojo)}
       <p class="entradilla ap">Son nuestra pasión. Restauramos el interior con mimo, respetando el modelo original: asientos, volante, capota, puertas, suelo y techo.</p>
       <span class="precio ap">Clásico completo desde <b>1.590 €</b></span>
       <div class="moto ap">
-        <h3>Su moto, <em>en un día</em></h3>
-        <p>Rellenamos o rebajamos el asiento para que vaya cómodo, en piel o en el material que elija.</p>
-        <span class="precio">Desde <b>50 €</b></span>
+        <figure class="marco vivo c ph-moto-asiento"><img src="assets/img/moto-asiento.webp" alt="Asiento de moto tapizado en blanco y rojo, sobre el banco de trabajo" width="1100" height="644" loading="lazy"></figure>
+        <div>
+          <h3>Su moto, <em>en un día</em></h3>
+          <p>Rellenamos o rebajamos el asiento para que vaya cómodo, en piel o en el material que elija.</p>
+          <span class="precio">Desde <b>50 €</b></span>
+        </div>
       </div>
     </div>
     <div class="fotos">
-      <figure class="marco cosido vivo a ph-clasico-salpicadero"><img src="assets/img/clasico-salpicadero.webp" alt="Interior de un coche clásico: volante de aro fino, salpicadero y asientos en piel color hueso" width="1100" height="825" loading="lazy"></figure>
-      <figure class="marco cosido vivo b ph-clasico-de-laton"><img src="assets/img/clasico-de-laton.webp" alt="Coche de época con faros y radiador de latón, visto de frente" width="1100" height="821" loading="lazy"></figure>
-      <figure class="marco cosido vivo c ph-moto-asiento"><img src="assets/img/moto-asiento.webp" alt="Asiento de moto tapizado en blanco y rojo, sobre el banco de trabajo" width="1100" height="644" loading="lazy"></figure>
+      <figure class="marco vivo a ph-clasico-salpicadero"><img src="assets/img/clasico-salpicadero.webp" alt="Interior de un coche clásico: volante de aro fino, salpicadero y asientos en piel color hueso" width="1100" height="825" loading="lazy"></figure>
+      <figure class="marco vivo b ph-clasico-de-laton"><img src="assets/img/clasico-de-laton.webp" alt="Coche de época con faros y radiador de latón, visto de frente" width="1100" height="821" loading="lazy"></figure>
     </div>
     <span class="costura" aria-hidden="true"></span>
   </section>
@@ -548,7 +595,7 @@ h1 em,h2 em{font-style:italic;font-weight:400;color:var(--rojo)}
       </ol>
     </div>
     <div class="lado">
-      <figure class="marco cosido vivo ap ph-pomo-en-el-banco"><img src="assets/img/pomo-en-el-banco.webp" alt="Pomo de cambio forrado en piel beige, en el banco del taller" width="1100" height="825" loading="lazy"></figure>
+      <figure class="marco vivo ap ph-pomo-en-el-banco"><img src="assets/img/pomo-en-el-banco.webp" alt="Pomo de cambio forrado en piel beige, en el banco del taller" width="1100" height="825" loading="lazy"></figure>
       <div class="precios cosido ap">
         <h3>Precios orientativos</h3>
         <dl>
@@ -578,7 +625,7 @@ h1 em,h2 em{font-style:italic;font-weight:400;color:var(--rojo)}
       </dl>
     </div>
     <div class="mapa-caja">
-      <a class="mapa cosido ap" href="https://www.google.com/maps/dir/?api=1&amp;destination=Tapicer%C3%ADas+Autos+Tacuri%2C+Calle+de+Tarragona+6%2C+28914+Legan%C3%A9s" target="_blank" rel="noopener" aria-label="Cómo llegar a C/ Tarragona, 6, Leganés, en Google Maps">
+      <a class="mapa ap" href="https://www.google.com/maps/dir/?api=1&amp;destination=Tapicer%C3%ADas+Autos+Tacuri%2C+Calle+de+Tarragona+6%2C+28914+Legan%C3%A9s" target="_blank" rel="noopener" aria-label="Cómo llegar a C/ Tarragona, 6, Leganés, en Google Maps">
         <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-3.7618872%2C40.3182820%2C-3.7498872%2C40.3242820&amp;layer=mapnik" title="Mapa de la zona de la calle Tarragona, en Leganés" loading="lazy" tabindex="-1"></iframe>
         <span class="pin" aria-hidden="true"></span>
         <span class="ruta">Cómo llegar</span>
@@ -638,6 +685,7 @@ h1 em,h2 em{font-style:italic;font-weight:400;color:var(--rojo)}
 
 <script>
 (function () {
+  var root = document.documentElement;
   var reducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var secciones = [].slice.call(document.querySelectorAll('.sec'));
   var costuras = [].slice.call(document.querySelectorAll('.costura'));
@@ -646,6 +694,29 @@ h1 em,h2 em{font-style:italic;font-weight:400;color:var(--rojo)}
   var cab = document.querySelector('.cab');
   var ficha = document.getElementById('ficha');
   var esTelefono = /Android.*Mobile|iPhone|iPod|Windows Phone/i.test(navigator.userAgent);
+
+  /* ---- entrada: el telón se abre por la costura cuando el logo ya está cosido ---- */
+  [].forEach.call(document.querySelectorAll('.telon .trazos path'), function (p) {
+    try { p.style.setProperty('--l', Math.ceil(p.getTotalLength()) + 2); } catch (e) {}
+  });
+  var portadaAp = [].slice.call(document.querySelectorAll('.portada .ap'));
+  function arrancaPortada() {
+    portadaAp.forEach(function (el, i) { el.style.transitionDelay = (120 + i * 110) + 'ms'; });
+    root.classList.remove('intro');
+    setTimeout(function () { portadaAp.forEach(function (el) { el.style.transitionDelay = ''; }); }, 2200);
+  }
+  if (root.classList.contains('intro')) {
+    if (window.pageYOffset > 40) root.classList.remove('intro', 'telon-on');
+    else {
+      /* el dibujo dura unos 2,4 s desde que se pinta; si el guion llega tarde, se abre ya */
+      var espera = Math.max(250, 2500 - (window.performance ? performance.now() : 0));
+      setTimeout(function () {
+        root.classList.add('abre');
+        setTimeout(arrancaPortada, 260);
+        setTimeout(function () { root.classList.remove('telon-on', 'abre'); }, 1250);
+      }, espera);
+    }
+  }
 
   /* ---- desplazamiento propio (botones, no enlaces #) ---- */
   var anim = null;
@@ -725,7 +796,8 @@ h1 em,h2 em{font-style:italic;font-weight:400;color:var(--rojo)}
         s.classList.add('pre');
         [].forEach.call(s.querySelectorAll('.marco'), function (m) { m.classList.add('espera'); });
       }
-      [].forEach.call(s.querySelectorAll('.ap'), function (el, i) { el.style.transitionDelay = (i * 100) + 'ms'; });
+      if (!s.classList.contains('portada'))
+        [].forEach.call(s.querySelectorAll('.ap'), function (el, i) { el.style.transitionDelay = (i * 100) + 'ms'; });
     });
     var io = new IntersectionObserver(function (ents) {
       ents.forEach(function (en) {
@@ -758,13 +830,12 @@ h1 em,h2 em{font-style:italic;font-weight:400;color:var(--rojo)}
     else { img.loading = 'eager'; img.addEventListener('load', lista, { once: true }); img.addEventListener('error', va, { once: true }); }
   }
 
-  /* ---- al bajar: color de la cabecera, sección actual y paralaje suave ---- */
+  /* ---- al bajar: color de la cabecera, sección actual y paralaje suave de las fotos ---- */
   var marcos = [].slice.call(document.querySelectorAll('.marco'));
-  var muestras = [].slice.call(document.querySelectorAll('.muestra[data-vel]'));
   var activo = -1, pendiente = false;
   function alBajar() {
     pendiente = false;
-    var h = window.innerHeight, idx = 0, ancho = window.innerWidth > 900;
+    var h = window.innerHeight, idx = 0;
     for (var i = 0; i < secciones.length; i++) {
       var r = secciones[i].getBoundingClientRect();
       if (r.top <= h * 0.45) idx = i;
@@ -777,11 +848,6 @@ h1 em,h2 em{font-style:italic;font-weight:400;color:var(--rojo)}
         var p = ((r.top + r.height / 2) - h / 2) / h;             /* -1 arriba … 1 abajo */
         p = Math.max(-1, Math.min(1, p));
         m.style.setProperty('--py', (p * r.height * -0.055).toFixed(1) + 'px');
-      });
-      if (ancho) muestras.forEach(function (c) {
-        var r = c.getBoundingClientRect();
-        var p = ((r.top + r.height / 2) - h / 2) / h;
-        c.style.setProperty('--dy', (p * h * parseFloat(c.getAttribute('data-vel'))).toFixed(1) + 'px');
       });
     }
     if (idx === activo) return;
