@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mármoles Carrobles · Encimeras, obras y cementerio en Leganés desde 1980</title>
+<meta name="description" content="Hnos. Romero Carrobles, empresa familiar de Leganés desde 1980. Encimeras de cocina y baño, escaleras, solados, chimeneas y trabajos de cementerio en mármol, granito y compacto. Presupuesto sin compromiso.">
+<meta name="theme-color" content="#C41E2A">
+<script>
+  /* Todo se ve sin JavaScript. El guion del final solo esconde lo que queda por
+     debajo de la pantalla (clase «pre») y abre el telón de entrada. Si no llega a
+     marcar window.__animOk, se quitan las clases y la página queda entera y quieta. */
+  document.documentElement.classList.add('js');
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && !location.hash && (window.pageYOffset || 0) < 40)
+    document.documentElement.classList.add('intro');
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!window.__animOk) document.documentElement.classList.remove('js', 'intro');
+  });
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet">
+<!--PRELOAD--><link rel="preload" as="image" href="assets/img/portada.webp"><!--/PRELOAD-->
+<style>
+:root{
+  --rojo:#C41E2A;            /* el rojo de la furgoneta */
+  --rojo-o:#8F141D;
+  --oro:#F2B233;             /* el amarillo de su templo */
+  --piedra:#F5F2EC;
+  --blanco:#FFFFFF;
+  --tinta:#211C1B;
+  --gris:#6A635E;
+  --linea:rgba(33,28,27,.16);
+  --granito:#1A1819;
+  --granito-2:#2A2729;
+  --serif:'Marcellus','Times New Roman',serif;
+  --sans:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  /* la diagonal de la furgoneta */
+  --cuna:polygon(0 0,61% 0,46% 100%,0 100%);
+  --cuna-oro:polygon(0 0,62% 0,47% 100%,0 100%);
+  --cuna-llena:polygon(0 0,100% 0,100% 100%,0 100%);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:var(--piedra)}
+body{margin:0;font:400 17px/1.5 var(--sans);color:var(--tinta);background:var(--piedra);overflow-x:hidden}
+img{display:block;max-width:100%}
+h1,h2,h3,p,ul,ol{margin:0;padding:0}
+ul,ol{list-style:none}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--oro);outline-offset:3px}
+.salta{position:fixed;left:8px;top:-60px;z-index:200;background:#fff;padding:10px 14px}
+.salta:focus{top:8px}
+
+/* ── Botones: una losa con su canto ───────────────────────────── */
+.losa{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:12px 22px;
+  font:600 15px/1.1 var(--sans);letter-spacing:.01em;text-decoration:none;text-align:center;
+  background:var(--oro);color:var(--tinta);
+  box-shadow:1px 1px 0 #B9801A,2px 2px 0 #B9801A,3px 3px 0 #B9801A;
+  transition:transform .28s cubic-bezier(.2,.7,.2,1),box-shadow .28s cubic-bezier(.2,.7,.2,1)}
+.losa.clara{background:#fff;box-shadow:1px 1px 0 #A79E93,2px 2px 0 #A79E93,3px 3px 0 #A79E93}
+.losa.roja{background:var(--rojo);color:#fff;box-shadow:1px 1px 0 var(--rojo-o),2px 2px 0 var(--rojo-o),3px 3px 0 var(--rojo-o)}
+.losa.hueca{background:transparent;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.6)}
+@media (hover:hover){
+  .losa:not(.hueca):hover{transform:translate(-3px,-3px);box-shadow:1px 1px 0 #B9801A,2px 2px 0 #B9801A,3px 3px 0 #B9801A,4px 4px 0 #B9801A,5px 5px 0 #B9801A,6px 6px 0 #B9801A}
+  .losa.clara:hover{box-shadow:1px 1px 0 #A79E93,2px 2px 0 #A79E93,3px 3px 0 #A79E93,4px 4px 0 #A79E93,5px 5px 0 #A79E93,6px 6px 0 #A79E93}
+  .losa.roja:hover{box-shadow:1px 1px 0 var(--rojo-o),2px 2px 0 var(--rojo-o),3px 3px 0 var(--rojo-o),4px 4px 0 var(--rojo-o),5px 5px 0 var(--rojo-o),6px 6px 0 var(--rojo-o)}
+  .losa.hueca:hover{background:#fff;color:var(--rojo-o)}
+}
+.losa:active{transform:translate(1px,1px)}
+
+/* ── Cabecera: tres piezas sueltas de piedra ──────────────────── */
+.cab{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;justify-content:space-between;align-items:flex-start;
+  padding:0 clamp(12px,2.4vw,28px);pointer-events:none}
+.cab>*{pointer-events:auto}
+.c-menu,.c-wa{margin-top:14px;min-height:42px;padding:9px 16px;font:600 14px/1.1 var(--sans)}
+.c-menu{display:inline-flex;align-items:center;gap:10px;background:#fff;box-shadow:1px 1px 0 #A79E93,2px 2px 0 #A79E93,3px 3px 0 #A79E93;transition:transform .28s}
+.c-menu i{display:flex;gap:3px;height:14px}
+.c-menu i b{display:block;width:2px;height:100%;background:var(--rojo);transition:transform .3s}
+@media (hover:hover){.c-menu:hover{transform:translate(-2px,-2px)}.c-menu:hover i b:nth-child(2){transform:scaleY(.6)}}
+.c-marca{display:flex;align-items:center;gap:10px;padding:10px 16px 11px 14px;background:#fff;color:var(--tinta);text-align:left;
+  box-shadow:0 1px 0 #A79E93,0 2px 0 #A79E93,0 3px 0 #A79E93}
+.c-marca svg{width:44px;height:42px;color:var(--rojo);flex:none}
+.c-nombre{display:block;font:400 19px/1.05 var(--serif);letter-spacing:.09em;text-transform:uppercase}
+.c-sec{display:block;height:15px;overflow:hidden;font:500 12px/15px var(--sans);color:var(--gris);margin-top:2px}
+.c-sec span{display:block;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.c-sec span.fuera{transform:translateY(-100%)}
+.c-wa{min-height:42px}
+
+/* ── Fotos: corte de inglete y marcador ya desenfocado ─────────── */
+.foto{position:relative;overflow:hidden;background:var(--ph,#ccc) center/cover no-repeat;margin:0}
+.foto img{width:100%;height:100%;object-fit:cover}
+[data-par] img{height:116%;margin-top:-8%;will-change:transform}
+.pie{position:absolute;left:0;bottom:0;padding:5px 11px;background:#fff;color:var(--tinta);font:500 12px/1.3 var(--sans)}
+.eti{font:500 13px/1.3 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--rojo)}
+.eti b{font:400 15px var(--serif);letter-spacing:.06em;margin-right:.5em}
+
+/* ── Secciones: una pantalla, una detrás de otra ───────────────── */
+.sec{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;scroll-margin-top:0}
+h1,h2{font-family:var(--serif);font-weight:400;letter-spacing:.005em;text-wrap:balance}
+h2{font-size:clamp(31px,3.7vw,54px);line-height:1.08}
+
+/* I · Portada ------------------------------------------------- */
+.hero{background:var(--granito);color:#fff}
+.h-foto{position:absolute;inset:0 0 0 38%}
+.h-oro,.h-cuna{position:absolute;inset:0}
+.h-oro{background:var(--oro);clip-path:var(--cuna-oro)}
+.h-cuna{background:var(--rojo);clip-path:var(--cuna)}
+.h-txt{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;min-height:inherit;
+  width:47%;padding:100px 0 44px clamp(24px,4.6vw,68px)}
+.h-logo{width:clamp(96px,10.5vw,142px);height:auto;color:var(--oro);margin-bottom:clamp(14px,2.6vh,26px)}
+.hero h1{font-size:clamp(36px,4.15vw,62px);line-height:1.05;max-width:11.5em}
+.h-txt p{margin-top:clamp(12px,2.2vh,20px);max-width:27em;color:rgba(255,255,255,.93)}
+.h-bot{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(16px,3vh,28px)}
+
+/* II · Encimeras ---------------------------------------------- */
+.enc{background:var(--piedra);display:grid;grid-template-columns:minmax(0,41fr) minmax(0,59fr);gap:clamp(24px,3.4vw,52px);
+  padding:96px clamp(24px,4.6vw,68px) 40px;align-items:center}
+.enc h2{margin-top:12px}
+.enc-p{margin-top:14px;max-width:32em;color:#443C39}
+.pasos{margin-top:18px;border-top:1px solid var(--linea)}
+.pasos li{display:grid;grid-template-columns:30px 1fr;gap:6px;padding:9px 0;border-bottom:1px solid var(--linea);font-size:15.5px;line-height:1.35}
+.pasos b{font:400 16px/1.3 var(--serif);color:var(--rojo)}
+.mats{margin-top:14px;font-size:14px;color:var(--gris)}
+.mats strong{color:var(--tinta);font-weight:600}
+.enc .losa{margin-top:18px}
+.enc-fotos{display:grid;grid-template-columns:3fr 2fr;grid-template-rows:minmax(0,62fr) minmax(0,38fr);gap:10px;height:min(76vh,640px)}
+.ef1{grid-column:1/3;clip-path:polygon(7% 0,100% 0,100% 100%,0 100%)}
+.ef2{clip-path:polygon(0 0,100% 0,96% 100%,0 100%)}
+.ef3{clip-path:polygon(5% 0,100% 0,100% 100%,0 100%)}
+.ef3 .pie{left:5%}
+
+/* III · Obras ------------------------------------------------- */
+.obr{background:#fff;display:flex;flex-direction:column;padding:96px 0 0}
+.ob-cab{display:grid;grid-template-columns:minmax(0,58fr) minmax(0,42fr);gap:28px;align-items:end;padding:0 clamp(24px,4.6vw,68px) clamp(18px,3vh,30px)}
+.ob-cab h2{margin-top:12px}
+.ob-cab p{color:#443C39;max-width:30em}
+.col{flex:1;display:flex;min-height:320px;margin:0 -2.4%}
+.col li{position:relative;flex:1 1 0;min-width:0;margin-right:-3.2%;clip-path:polygon(14% 0,100% 0,86% 100%,0 100%);
+  transition:flex-grow .7s cubic-bezier(.2,.7,.2,1),opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.col .foto{position:absolute;inset:0}
+.col .foto::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 58%,rgba(20,14,12,.72));pointer-events:none}
+.col strong{position:absolute;left:0;right:0;bottom:18px;z-index:2;text-align:center;font:400 clamp(18px,1.75vw,25px)/1.1 var(--serif);color:#fff}
+.col small{display:block;font:500 13px/1.3 var(--sans);opacity:.9;margin-top:3px}
+@media (hover:hover){.col li:hover{flex-grow:1.55;transition-delay:0s}}
+
+/* IV · Cementerio --------------------------------------------- */
+.cem{background:var(--granito);color:#EDE9E3;display:grid;grid-template-columns:minmax(0,47fr) minmax(0,53fr);gap:clamp(24px,3.6vw,56px);
+  padding:96px clamp(24px,4.6vw,68px) 40px;align-items:center}
+.cem .eti{color:var(--oro)}
+.cem h2{margin-top:12px;color:#fff}
+.cem-p{margin-top:14px;max-width:32em;color:#CFC9C2}
+.lista{columns:2;column-gap:26px;margin-top:18px;border-top:1px solid rgba(255,255,255,.17);padding-top:10px;max-width:33em}
+.lista li{break-inside:avoid;padding:5px 0;font-size:15.5px;color:#EDE9E3}
+.lista li::before{content:'';display:inline-block;width:7px;height:1px;background:var(--oro);vertical-align:.3em;margin-right:9px}
+.consejo{margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.17);font-size:14.5px;line-height:1.45;color:#BDB6AF;max-width:33em}
+.consejo strong{color:var(--oro);font-weight:600}
+.cem .losa{margin-top:18px}
+.cem-fotos{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:minmax(0,65fr) minmax(0,35fr);gap:10px;height:min(78vh,640px)}
+.cf1{grid-column:1/3}
+.cf1{clip-path:polygon(0 0,100% 0,100% 100%,4% 100%)}
+.cf3{clip-path:polygon(0 0,100% 0,95% 100%,0 100%)}
+
+/* V · Visítenos ----------------------------------------------- */
+.vis{background:var(--blanco);color:#fff}
+.v-mapa{position:absolute;inset:0 0 0 40%;background:#E9E5DD;overflow:hidden}
+.v-mapa iframe{position:absolute;left:-46px;top:-46px;width:calc(100% + 92px);height:calc(100% + 92px);border:0;pointer-events:none;filter:saturate(.75)}
+.v-chin{position:absolute;left:50%;top:50%;z-index:2;width:46px;height:44px;margin:-44px 0 0 -23px;color:var(--rojo);filter:drop-shadow(0 2px 3px rgba(0,0,0,.35))}
+.v-ruta{position:absolute;inset:0;z-index:3}
+.v-oro,.v-cuna{position:absolute;inset:0}
+.v-oro{background:var(--oro);clip-path:polygon(0 0,57% 0,63% 100%,0 100%)}
+.v-cuna{background:var(--rojo);clip-path:polygon(0 0,56% 0,62% 100%,0 100%)}
+.v-txt{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;min-height:inherit;width:54%;
+  padding:96px 0 40px clamp(24px,4.6vw,68px);pointer-events:none}
+.v-txt>*{pointer-events:auto}
+.v-txt .eti{color:var(--oro)}
+.v-txt h2{margin-top:12px}
+.v-txt>p{margin-top:12px;max-width:30em;color:rgba(255,255,255,.94)}
+.tels{margin-top:16px;display:grid;gap:2px}
+.tels a{display:inline-block;font:400 clamp(28px,3.1vw,44px)/1.14 var(--serif);color:var(--oro);text-decoration:none;letter-spacing:.015em;width:max-content;cursor:pointer}
+.tels a small{font:500 13px/1 var(--sans);color:#fff;letter-spacing:.02em;margin-left:.6em}
+@media (hover:hover){.tels a:hover{color:#fff}}
+.v-bot{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}
+.v-datos{display:grid;grid-template-columns:1fr 1fr;gap:16px 26px;margin-top:20px;padding-top:14px;border-top:1px solid rgba(255,255,255,.3);font-size:14.5px;line-height:1.42;max-width:34em}
+.v-datos strong{display:block;color:var(--oro);font-weight:600}
+.v-datos a{text-decoration:underline;text-underline-offset:3px}
+.v-of{position:absolute;right:clamp(14px,2.6vw,32px);bottom:clamp(14px,2.6vw,32px);z-index:4;width:clamp(180px,20vw,290px);aspect-ratio:3/2;box-shadow:1px 1px 0 #A79E93,2px 2px 0 #A79E93,3px 3px 0 #A79E93}
+.v-cred{position:absolute;right:0;top:0;z-index:4;padding:1px 6px;background:rgba(255,255,255,.85);color:#333;font-size:10.5px}
+.v-tr{position:absolute;right:clamp(14px,2.6vw,32px);top:84px;z-index:4;max-width:290px;padding:10px 13px;background:#fff;color:var(--tinta);font-size:13.5px;line-height:1.4;box-shadow:1px 1px 0 #A79E93,2px 2px 0 #A79E93,3px 3px 0 #A79E93}
+.v-tr strong{font-weight:600}
+.v-trm{display:none}
+@media (max-width:1040px){.v-trm{display:block;margin-top:10px;font-size:13.5px}}
+
+/* ── Menú: la columnata ────────────────────────────────────────── */
+.mn{position:fixed;inset:0;z-index:60;display:flex;background:var(--rojo);visibility:hidden;clip-path:polygon(0 100%,100% 100%,100% 100%,0 100%);
+  transition:clip-path .65s cubic-bezier(.7,0,.2,1),visibility 0s .65s}
+.mn.abierto{visibility:visible;clip-path:var(--cuna-llena);transition:clip-path .65s cubic-bezier(.7,0,.2,1),visibility 0s}
+.mn-c{position:absolute;right:clamp(12px,2.4vw,28px);top:14px;z-index:3}
+.mn-i{position:absolute;left:clamp(16px,2.4vw,28px);top:14px;z-index:3;display:flex;align-items:center;gap:10px;color:var(--oro);font:400 18px var(--serif);letter-spacing:.09em;text-transform:uppercase}
+.mn-i svg{width:44px;height:42px}
+.mn-l{display:flex;flex:1;gap:10px;padding:78px clamp(12px,2.4vw,28px) 0;align-items:flex-end}
+.mn-l li{flex:1;height:100%}
+.mn-b{position:relative;display:block;width:100%;height:100%;overflow:hidden;background:var(--granito);color:#fff;text-align:left;
+  transform:translateY(102%);transition:transform .75s cubic-bezier(.2,.7,.2,1)}
+.mn.abierto .mn-b{transform:none}
+.mn.abierto li:nth-child(2) .mn-b{transition-delay:.07s}
+.mn.abierto li:nth-child(3) .mn-b{transition-delay:.14s}
+.mn.abierto li:nth-child(4) .mn-b{transition-delay:.21s}
+.mn.abierto li:nth-child(5) .mn-b{transition-delay:.28s}
+.mn-b img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.72);transition:transform 1s cubic-bezier(.2,.7,.2,1),filter .5s}
+.mn-b::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 52%,rgba(20,14,12,.78))}
+.mn-b>span{position:absolute;left:18px;right:14px;bottom:22px;z-index:2}
+.mn-b em{display:block;font:400 15px var(--serif);font-style:normal;color:var(--oro);letter-spacing:.06em}
+.mn-b strong{display:block;margin-top:4px;font:400 clamp(24px,2.5vw,36px)/1.05 var(--serif)}
+.mn-b small{display:block;margin-top:6px;font-size:13.5px;line-height:1.3;opacity:.92}
+@media (hover:hover){.mn-b:hover img{transform:scale(1.05);filter:brightness(.9)}}
+
+/* ── Ficha de contacto (en el ordenador, tel: no hace nada) ───── */
+.fi{position:fixed;inset:0;z-index:70;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(20,14,12,.55)}
+.fi.abierta{display:flex}
+.fi-c{position:relative;width:min(440px,100%);background:#fff;color:var(--tinta);padding:26px 24px 24px;box-shadow:1px 1px 0 #A79E93,2px 2px 0 #A79E93,3px 3px 0 #A79E93,4px 4px 0 #A79E93}
+.fi-c h3{font:400 26px/1.1 var(--serif);padding-right:44px}
+.fi-n{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding:10px 0;border-top:1px solid var(--linea);font:400 24px var(--serif)}
+.fi-n small{display:block;font:500 12.5px var(--sans);color:var(--gris)}
+.fi-co{font:600 13.5px var(--sans);padding:8px 12px;background:var(--piedra)}
+.fi-c>.losa{width:100%;margin-top:14px}
+.fi-e{margin-top:12px;font-size:14.5px}
+.fi-x{position:absolute;right:14px;top:14px;font:600 13.5px var(--sans);padding:8px 10px;background:var(--piedra)}
+
+/* ── Entrada: el templo se levanta y el rojo se corta en diagonal ── */
+.telon{display:none}
+html.intro .telon{display:flex;position:fixed;inset:0;z-index:100;align-items:center;justify-content:center;flex-direction:column;background:var(--rojo);clip-path:var(--cuna-llena);transition:clip-path 1.05s cubic-bezier(.7,0,.2,1)}
+html.intro .telon-oro{display:block;position:fixed;inset:0;z-index:99;background:var(--oro);clip-path:var(--cuna-llena);transition:clip-path 1.05s cubic-bezier(.7,0,.2,1)}
+.telon-oro{display:none}
+.telon svg{width:min(52vw,260px);height:auto;color:var(--oro);overflow:visible;transition:opacity .4s}
+.t-nom{margin-top:18px;font:400 clamp(21px,3.2vw,32px)/1 var(--serif);letter-spacing:.16em;text-transform:uppercase;color:#fff;opacity:0;transform:translateY(8px);transition:opacity .7s,transform .7s}
+.telon .trazo{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.05s cubic-bezier(.4,0,.2,1)}
+.telon .fr{opacity:0;transform:translateY(-16px);transition:opacity .6s,transform .75s cubic-bezier(.2,.7,.2,1)}
+.telon.v1 .trazo{stroke-dashoffset:0}
+.telon.v2 .fr{opacity:1;transform:none}
+.telon.v2 .t-nom{opacity:1;transform:none}
+html.intro .telon.abre{clip-path:var(--cuna)}
+html.intro .telon-oro.abre{clip-path:var(--cuna-oro)}
+.telon.abre svg,.telon.abre .t-nom{opacity:0;transition:opacity .28s}
+html.intro .h-txt>*,html.intro .cab{opacity:0}
+html.sale .h-txt>*,html.sale .cab{opacity:1;transition:opacity .8s .45s}
+
+/* ── Entradas al bajar ─────────────────────────────────────────── */
+.rev{transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.js .rev.pre{opacity:0;transform:translateY(14px)}
+.js .gr.pre{clip-path:inset(0 100% 0 0);transform:none;opacity:1}
+.gr{transition:clip-path 1.15s cubic-bezier(.4,0,.2,1)}
+.fx{transition:opacity 1.1s ease,transform 1.3s cubic-bezier(.2,.7,.2,1)}
+.js .fx.pre{opacity:0;transform:scale(1.035)}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}.d4{transition-delay:.48s}
+
+/* ── Tableta ───────────────────────────────────────────────────── */
+@media (max-width:1040px){
+  .enc,.cem{padding-left:24px;padding-right:24px}
+  .h-txt{width:54%}
+  .v-tr{display:none}
+}
+
+/* ── Móvil: foto arriba y diagonal debajo ──────────────────────── */
+@media (max-width:780px),(max-width:1100px) and (orientation:portrait){
+  :root{
+    --cuna:polygon(0 37%,100% 27%,100% 100%,0 100%);
+    --cuna-oro:polygon(0 36%,100% 26%,100% 100%,0 100%);
+  }
+  body{font-size:16px}
+  .c-menu,.c-wa{margin-top:8px;min-height:40px;padding:8px 12px;font-size:13.5px}
+  .c-marca{padding:7px 10px 8px 8px;gap:7px}
+  .c-marca svg{width:30px;height:29px}
+  .c-nombre{font-size:13.5px;letter-spacing:.07em}
+  .c-sec{font-size:11px;height:13px;line-height:13px}
+  .eti{font-size:12px}
+  h2{font-size:clamp(26px,7.6vw,33px)}
+
+  .h-foto{inset:0 0 auto 0;height:42%}
+  .h-txt{width:100%;justify-content:flex-end;padding:0 20px max(24px,env(safe-area-inset-bottom))}
+  .h-logo{width:clamp(58px,10vh,82px);margin-bottom:10px}
+  .hero h1{font-size:clamp(29px,8.8vw,38px)}
+  .h-txt p{font-size:15.5px}
+  .h-bot{margin-top:14px;gap:10px}
+  .h-bot .losa{flex:1;padding:12px 10px;min-height:46px;font-size:14.5px}
+
+  .enc,.cem{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:0 0 22px}
+  .enc-fotos,.cem-fotos{order:-1;display:block;height:29svh;min-height:150px}
+  .ef2,.ef3,.cf2,.cf3{display:none}
+  .ef1,.cf1{height:100%;clip-path:polygon(0 0,100% 0,100% 88%,0 100%)}
+  .ef1 .pie{display:none}
+  .enc-t,.cem-t{padding:12px 20px 0}
+  .enc h2,.cem h2{margin-top:8px}
+  .enc-p,.cem-p{margin-top:9px;font-size:15px;line-height:1.42}
+  .pasos{margin-top:10px}
+  .pasos li{padding:6px 0;font-size:14.5px;grid-template-columns:24px 1fr}
+  .mats,.consejo{display:none}
+  .enc-fotos,.cem-fotos{height:25svh}
+  .enc .losa,.cem .losa{margin-top:12px;width:100%}
+
+  .obr{padding-top:66px}
+  .ob-cab{display:block;padding:0 20px 12px}
+  .ob-cab h2{margin-top:6px}
+  .ob-cab p{margin-top:7px;font-size:15px;line-height:1.4}
+  .col{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:5px;margin:0;min-height:0}
+  .col li{margin:0;clip-path:none}
+  .col li:first-child{grid-column:1/3}
+  .col strong{bottom:9px;font-size:18px}
+  .col small{display:none}
+
+  .lista{margin-top:10px;padding-top:6px;column-gap:14px}
+  .lista li{padding:3px 0;font-size:14px}
+  .lista li::before{width:5px;margin-right:6px}
+
+  .v-mapa{inset:0 0 auto 0;height:32%}
+  /* el centro del mapa baja al 62 % para que la chincheta no quede bajo la cabecera */
+  .v-mapa iframe{top:-18%;height:160%}
+  .v-chin{top:62%}
+  .mn-b::after{background:linear-gradient(90deg,rgba(20,14,12,.55),transparent 75%)}
+  .v-oro{clip-path:polygon(0 30.5%,100% 25.5%,100% 100%,0 100%)}
+  .v-cuna{clip-path:polygon(0 31.5%,100% 26.5%,100% 100%,0 100%)}
+  .v-txt{width:100%;justify-content:flex-end;padding:0 20px max(22px,env(safe-area-inset-bottom))}
+  .v-of,.v-tr{display:none}
+  .v-txt h2{margin-top:7px}
+  .v-txt>p{margin-top:8px;font-size:15px;line-height:1.4}
+  .tels{margin-top:10px}
+  .tels a{font-size:clamp(25px,7.6vw,31px)}
+  .v-bot{margin-top:12px;gap:10px}
+  .v-bot .losa{flex:1;padding:11px 8px;min-height:44px;font-size:14px}
+  .v-datos{margin-top:13px;padding-top:10px;gap:10px 16px;font-size:13px;line-height:1.36}
+
+  .mn-l{flex-direction:column;gap:6px;padding:66px 10px 10px;align-items:stretch}
+  .mn-l li{height:auto;flex:1;min-height:0}
+  .mn-b{transform:translateX(-102%)}
+  .mn-b>span{left:16px;bottom:50%;transform:translateY(50%);display:grid;grid-template-columns:30px 1fr;align-items:baseline}
+  .mn-b small{display:none}
+  .mn-b strong{margin:0;font-size:25px}
+  .mn-i span{font-size:15px}
+  .mn-i svg{width:32px;height:31px}
+}
+/* tableta en vertical: la misma composición, a su escala */
+@media (min-width:600px) and (max-width:1100px) and (orientation:portrait){
+  body{font-size:19px}
+  h2{font-size:clamp(40px,6vw,56px)}
+  .hero h1{font-size:clamp(50px,7.4vw,70px)}
+  .h-logo{width:150px;margin-bottom:22px}
+  .h-txt,.v-txt{padding:0 44px 56px}
+  .h-txt p,.enc-p,.cem-p,.v-txt>p,.ob-cab p{font-size:19px;line-height:1.45}
+  .h-bot .losa,.v-bot .losa{flex:0 1 auto;padding:16px 30px;font-size:17px}
+  .enc-fotos{height:40svh}
+  .cem-fotos{height:34svh}
+  .enc-t,.cem-t{padding:34px 44px 0}
+  .pasos li,.lista li{font-size:18px;padding:12px 0}
+  .pasos li{grid-template-columns:34px 1fr}
+  .lista{margin-top:20px}
+  .mats{display:block;font-size:16px;margin-top:18px}
+  .consejo{display:block;font-size:16px;margin-top:18px;padding-top:16px}
+  .enc .losa,.cem .losa{margin-top:24px;min-height:56px;font-size:17px}
+  .ob-cab{padding:0 44px 24px}
+  .col strong{font-size:27px}
+  .v-mapa{height:44%}
+  .v-oro{clip-path:polygon(0 42.5%,100% 37.5%,100% 100%,0 100%)}
+  .v-cuna{clip-path:polygon(0 43.5%,100% 38.5%,100% 100%,0 100%)}
+  .tels a{font-size:50px}
+  .v-datos{font-size:16px;max-width:none}
+  .v-trm{font-size:16px}
+  .mn-b strong{font-size:40px}
+}
+/* móviles bajitos: lo secundario se guarda */
+@media (max-width:780px) and (max-height:640px){
+  .h-txt p,.mats,.consejo,.v-datos div+div,.ob-cab p{display:none}
+  .enc-p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .pasos li{padding:4px 0;font-size:13.5px}
+  .enc-fotos,.cem-fotos{height:23svh;min-height:110px}
+  .v-txt>p{display:none}
+  .cem-p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  h2{font-size:25px}
+  .hero h1{font-size:27px}
+  .h-logo{width:50px;margin-bottom:6px}
+  .lista li{padding:2px 0;font-size:13.5px}
+}
+/* portátiles bajitos: se quita lo accesorio */
+@media (min-width:781px) and (max-height:720px){
+  .mats,.consejo{display:none}
+  h2{font-size:clamp(28px,3.1vw,40px)}
+  .hero h1{font-size:clamp(32px,3.5vw,46px)}
+  .h-logo{width:90px}
+  .pasos li{padding:6px 0}
+  .enc,.cem{padding-top:78px;padding-bottom:22px}
+  .obr{padding-top:78px}
+  .v-txt{padding-top:78px;padding-bottom:22px}
+  .v-datos{margin-top:12px;padding-top:10px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;transition-delay:0s!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+<button type="button" class="salta" data-ir="encimeras">Saltar al contenido</button>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="templo" viewBox="0 0 220 210">
+    <g class="fr">
+      <path fill="currentColor" fill-rule="evenodd" d="M4 50 110 3 216 62H197V76H9ZM30 60H150V52H186L110 17Z"/>
+      <text x="100" y="56.5" text-anchor="middle" textLength="86" lengthAdjust="spacingAndGlyphs" fill="currentColor" stroke="currentColor" stroke-width=".55" style="font:400 15px 'Marcellus','Times New Roman',serif;letter-spacing:.02em">CARROBLES</text>
+    </g>
+    <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <path class="trazo" pathLength="1" d="M26 197 18 197Q17 205 28 205H89Q97 205 95 196"/>
+      <path class="trazo" pathLength="1" d="M36 192V96"/>
+      <path class="trazo" pathLength="1" d="M54 192V134L50 120V96"/>
+      <path class="trazo" pathLength="1" d="M74 192V142L69 124V96"/>
+      <path class="trazo" pathLength="1" d="M24 95 16 90 18 84H88L90 95"/>
+      <path class="trazo" pathLength="1" d="M133 196 125 197Q124 205 135 205H196Q204 205 202 197L194 196"/>
+      <path class="trazo" pathLength="1" d="M146 192V142L150 124V96"/>
+      <path class="trazo" pathLength="1" d="M164 192V134L168 120V96"/>
+      <path class="trazo" pathLength="1" d="M184 192V96"/>
+      <path class="trazo" pathLength="1" d="M130 95 128 84H200L204 90 196 95"/>
+    </g>
+  </symbol>
+</svg>
+
+<div class="telon-oro" aria-hidden="true"></div>
+<div class="telon" aria-hidden="true">
+  <svg viewBox="0 0 220 210"><use href="#templo"/></svg>
+  <div class="t-nom">Carrobles</div>
+</div>
+
+<header class="cab">
+  <button type="button" class="c-menu" id="abre-menu" aria-haspopup="dialog" aria-expanded="false"><i aria-hidden="true"><b></b><b></b><b></b></i>Menú</button>
+  <button type="button" class="c-marca" data-ir="inicio" aria-label="Mármoles Carrobles, volver al inicio">
+    <svg viewBox="0 0 220 210" aria-hidden="true"><use href="#templo"/></svg>
+    <span><span class="c-nombre">Carrobles</span><span class="c-sec" id="c-sec"><span>I · Mármoles y granitos</span></span></span>
+  </button>
+  <a class="losa roja c-wa" href="https://wa.me/34670261071?text=Hola%2C%20quer%C3%ADa%20pedir%20presupuesto" target="_blank" rel="noopener">WhatsApp</a>
+</header>
+
+<nav class="mn" id="menu" aria-label="Secciones" aria-hidden="true">
+  <div class="mn-i"><svg viewBox="0 0 220 210" aria-hidden="true"><use href="#templo"/></svg><span>Carrobles</span></div>
+  <button type="button" class="losa clara mn-c" id="cierra-menu">Cerrar</button>
+  <ul class="mn-l">
+    <li><button type="button" class="mn-b" data-ir="inicio"><img src="assets/img/p1.webp" alt=""><span><em>I</em><strong>Inicio</strong><small>Mármol y granito desde 1980</small></span></button></li>
+    <li><button type="button" class="mn-b" data-ir="encimeras"><img src="assets/img/p5.webp" alt=""><span><em>II</em><strong>Encimeras</strong><small>Cocina y baño</small></span></button></li>
+    <li><button type="button" class="mn-b" data-ir="obras"><img src="assets/img/p3.webp" alt=""><span><em>III</em><strong>Obras</strong><small>Escaleras, chimeneas, mesas</small></span></button></li>
+    <li><button type="button" class="mn-b" data-ir="cementerio"><img src="assets/img/p4.webp" alt=""><span><em>IV</em><strong>Cementerio</strong><small>Sepulturas, nichos, letras</small></span></button></li>
+    <li><button type="button" class="mn-b" data-ir="visitenos"><img src="assets/img/p2.webp" alt=""><span><em>V</em><strong>Visítenos</strong><small>Teléfonos y cómo llegar</small></span></button></li>
+  </ul>
+</nav>
+
+<main>
+  <section class="sec hero" id="inicio" data-t="I · Mármoles y granitos">
+    <div class="h-foto foto" data-par=".1" style="--ph:url(data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAABwBgCdASoeACgAPtVYpUyoJSOiMBqtUQAaiWcAyntT2u1yxx63ato+qX/DK50A1FQFmFXKEvvjGJMft8AA/iqH7IcS+u5fohy/Nubbunc24uLH6DCZ5WFNhRaxSrvuuJIWAqeZgNFdNKInvPwWr8GiA5tIKT4oP15DYAAA)"><img src="assets/img/portada.webp" width="1300" height="1733" alt="Escalera revestida de mármol marrón veteado, trabajo de Carrobles" fetchpriority="high"></div>
+    <div class="h-oro" aria-hidden="true"></div>
+    <div class="h-cuna" aria-hidden="true"></div>
+    <div class="h-txt">
+      <svg class="h-logo" viewBox="0 0 220 210" role="img" aria-label="Logotipo de Carrobles: un templo con dos columnas"><use href="#templo"/></svg>
+      <h1>Piedra natural, trabajada en familia desde 1980</h1>
+      <p>Encimeras de cocina y baño, escaleras, chimeneas y trabajos de cementerio en mármol, granito y compacto. De nuestro taller a su casa.</p>
+      <div class="h-bot">
+        <a class="losa" href="https://wa.me/34670261071?text=Hola%2C%20quer%C3%ADa%20pedir%20presupuesto" target="_blank" rel="noopener">Pedir presupuesto</a>
+        <button type="button" class="losa hueca" data-ir="encimeras">Ver trabajos</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec enc" id="encimeras" data-t="II · Encimeras">
+    <div class="enc-t">
+      <div class="eti rev"><b>II</b>Encimeras</div>
+      <h2 class="gr rev">Medida, cortada y colocada por el mismo equipo</h2>
+      <p class="enc-p rev d1">Elaboramos encimeras de cocina y de baño en cualquier material. Cada pieza se revisa desde que entra en el taller hasta que sale, y le llega plastificada, con su precinto.</p>
+      <ol class="pasos rev d2">
+        <li><b>1</b><span>Medimos en su casa</span></li>
+        <li><b>2</b><span>Elaboramos en nuestro taller</span></li>
+        <li><b>3</b><span>Plastificamos para que no sufra en el transporte</span></li>
+        <li><b>4</b><span>Colocamos, con aspiración para que no quede polvo</span></li>
+      </ol>
+      <p class="mats rev d3"><strong>Materiales:</strong> granito, mármol, Silestone, Compac, Neolith y Dekton</p>
+      <a class="losa roja rev d3" href="https://wa.me/34670261071?text=Hola%2C%20quer%C3%ADa%20pedir%20presupuesto" target="_blank" rel="noopener">Pedir presupuesto de encimera</a>
+    </div>
+    <div class="enc-fotos">
+      <figure class="ef1 foto fx" data-par=".06" style="--ph:url(data:image/webp;base64,UklGRq4AAABXRUJQVlA4IKIAAAAwBgCdASooABkAPslUpEynpSQiNVv8APAZCWgAuzlBVX4xjQAZQpnqht04Xl6tKXPGH5pFX8KLNygAAP4mke3s5PeEzkII3PPGhV1D9kG0eG6d9NA6m0HrLYoiVGo8XrJSyVUnHzLEiFr946oDAd2feZhbx21Ue8kity4BhN/fK8gs35276CNnBiZrIXbXJBWFhZSKarvxODq/Ec19X3R0wAA=)"><img src="assets/img/cocina.webp" width="1300" height="799" loading="lazy" decoding="async" alt="Cocina con muebles rojos y encimera clara"><figcaption class="pie">Encimera de cocina</figcaption></figure>
+      <figure class="ef2 foto fx d1" style="--ph:url(data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAADwBgCdASooABwAPt1epkyopSOiKrgN+RAbiWcAyrQKJ3D1ML20zDBfbarzoQuXY/Le/JjqAZ1qn6ibD/Lj0kkgAP7xanmH0DgNU01VSRrHxtjndNZ6A8/bl7fxmp25ClwMSZz9gyPc7ScXJhaHcXAen/wDTB8Zyh7nmDxDoAEydY2vaZrdEDgz0/uLi3ILtNpLUAAA)"><img src="assets/img/bano.webp" width="1100" height="759" loading="lazy" decoding="async" alt="Encimera de baño en mármol oscuro veteado con dos grifos"><figcaption class="pie">Baño en mármol</figcaption></figure>
+      <figure class="ef3 foto fx d2" style="--ph:url(data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAACwBQCdASooABoAPtlcoEyoJSMiMA1RABsJZwDKACHhgnHHoir2O7/uJwOBFKqqcRF53nBbKjgA/tHy7rF1T2UC9/8VH5WDhDRWaO/Pmro3xeJno0Yxs0qDM9GlhREci8ZdzXpR3w6z+4AA)"><img src="assets/img/seno.webp" width="900" height="592" loading="lazy" decoding="async" alt="Lavabo tallado en una sola pieza con la encimera"><figcaption class="pie">Seno integrado</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="sec obr" id="obras" data-t="III · Obras">
+    <div class="ob-cab">
+      <div>
+        <div class="eti rev"><b>III</b>Otros trabajos</div>
+        <h2 class="gr rev">Toda la casa, también en piedra</h2>
+      </div>
+      <p class="rev d1">Escaleras, solados y chapados, por dentro y por fuera. Chimeneas de granito, mármol o caliza hechas a mano. Y mesas a la medida que usted necesite.</p>
+    </div>
+    <ul class="col">
+      <li class="rev"><figure class="foto" style="--ph:url(data:image/webp;base64,UklGRsYAAABXRUJQVlA4ILoAAADwBwCdASokACgAPtFYokyoJS6iNVVdUdAaCWMAuNvygREy8dWK1v6jzSZJ0/Cyrk/1WeuFQ+6XRy/JITuxfNY7Y4qTl5FFwAAA/hHXOiVIH7whAFF/VKy/TS51TFFiCANIe+PHGOvk3HXWGtp8hP9P9xx40ClsiSXysK7DLVBgX+ICE9qVl8tQRaryyi8sskgZjsodIUV6xKivsdopIV5H0pXU4tIKMcjG3e0ffs8eElgzJLgRy/IAAAA=)"><img src="assets/img/escalera.webp" width="800" height="897" loading="lazy" decoding="async" alt="Portal con escalera de mármol negro veteado y huellas claras"></figure><strong>Escaleras<small>Interiores y exteriores</small></strong></li>
+      <li class="rev d1"><figure class="foto" style="--ph:url(data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAADwBQCdASonACgAPt1aok03JKKiMdZsAuAbiWMAvnu5gdkVgDb/P43ofo8vqfzl4dA19uoL67KPIAD+3PBqURSkfqo5MxW2Ev1JNc5eWKxAA9qsjc9jwTFcQmA/1uBEMQpOuVvkmfEmtb/3sXLDCU79zC7owNz/MZnxwDsHMt7zvPfBMlQupd78aBLUAA==)"><img src="assets/img/solado.webp" width="760" height="770" loading="lazy" decoding="async" alt="Pasillo con solado de granito pulido"></figure><strong>Solados<small>Granito y mármol</small></strong></li>
+      <li class="rev d2"><figure class="foto" style="--ph:url(data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAADQBQCdASooABwAPtlgpkyoJiOiMBqqqQAbCWcAw+gznFObfxq8nS9SYZYONn2NMX+kOHQCOl8AAPxS5vWgFIfHJ+sLSw8BvnXTS8ngh0BkKk62xSRWOCOy75PcAw/YWLPPRi1rFsLPxWwA)"><img src="assets/img/chapado.webp" width="900" height="607" loading="lazy" decoding="async" alt="Portal con paredes chapadas en piedra clara y rampa"></figure><strong>Chapados<small>Portales y entradas</small></strong></li>
+      <li class="rev d3"><figure class="foto" style="--ph:url(data:image/webp;base64,UklGRuAAAABXRUJQVlA4INQAAADwBwCdASooACYAPt1cpk0opSOiLjQOYRAbiWMAuDAGKbRu7TCQsaosDPbu8tUfYHpHHvlqD+64V8UC/oEonaw/JXTlQKrxqQAA/WRhv1PHPot8iQH/wQbaK2h1+sDvj1IHxip4iaTWM2szbh0kTdSPrfIvQeyoKzjn9rNkOBgmb+rMcrdyynbVYtT1HcEhoUOtcyf6SGu442BztqNjBouY8J9V+GuW+oF7COOeBA0j0ukzE3dYOY+zD2SN7IyAhky6fbpZ7Y5jrSYjyuRlpEICSqAAAA==)"><img src="assets/img/chimenea.webp" width="640" height="600" loading="lazy" decoding="async" alt="Chimenea con embocadura de piedra clara"></figure><strong>Chimeneas<small>Hechas a mano</small></strong></li>
+      <li class="rev d4"><figure class="foto" style="--ph:url(data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAAAQBQCdASokACgAPt1eokyopSMiLisxEBuJZWtyV5kR19DqyQZDh8TQEpCkMRxXS6gAAP7mShTu6qK4Pi4TlIQpiWiXBqLoV7vEmPeCIthD7Z1nbHqpQc9n2HcJhrtW+2jDSZyRZWKLYZPPA/8lA14whPFRVet831yXcgYKt3mgOGsAAAA=)"><img src="assets/img/mesa.webp" width="900" height="649" loading="lazy" decoding="async" alt="Mesa baja de piedra y cristal en un salón"></figure><strong>Mesas<small>A su medida</small></strong></li>
+    </ul>
+  </section>
+
+  <section class="sec cem" id="cementerio" data-t="IV · Cementerio">
+    <div class="cem-t">
+      <div class="eti rev"><b>IV</b>Cementerio</div>
+      <h2 class="gr rev">Un recuerdo en piedra, con el cuidado que merece</h2>
+      <p class="cem-p rev d1">Trabajamos cada caso de forma particular, y nos ocupamos de la colocación y el montaje en el cementerio. Le asesoramos, con presupuesto sin compromiso.</p>
+      <ul class="lista rev d2">
+        <li>Sepulturas</li><li>Nichos</li><li>Columbarios</li><li>Libros y pergaminos</li><li>Cristos y cruces</li>
+        <li>Búcaros y pilas</li><li>Letras y grabaciones</li><li>Fotocerámica</li><li>Imágenes de marmolina</li><li>Hornacinas</li>
+      </ul>
+      <p class="consejo rev d3"><strong>Para cuidarla:</strong> mármol, con jabón neutro y un paño húmedo, nunca con lejía. Granito pulido, con detergente de pH neutro. Lo ideal, de tres a cuatro veces al año.</p>
+      <button type="button" class="losa rev d3" data-ficha>Hablar con nosotros</button>
+    </div>
+    <div class="cem-fotos">
+      <figure class="cf1 foto fx" style="--ph:url(data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAAAwBQCdASooABwAPtlWo0yoJKMiMBqtUQAbCWcAyCAK0PBbj1l4PPSgo6VHmX/TUPwFEAD+jGXBI1kEaml+F5+iqSqGZnvDTxu39XRv5mYU9LQbTzRVJfrE6N5s/ok1ivB4aJ6tbM4Ehns5SppzU4CbtaEgAAAA)"><img src="assets/img/modelo.webp" width="900" height="638" loading="lazy" decoding="async" alt="Modelo de lápida de granito gris con imagen y búcaro de bronce"></figure>
+      <figure class="cf2 foto fx d1" style="--ph:url(data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAACQBQCdASooAB0APt1uqU+op6OiKqoBEBuJZwDN/BZoP6ToOlf5XFTtpwD9F/N5jhsdQYaXkAD+64rwfxbx3vp2KU592RcJB/RHAnSl7TiKvRFtjwu+OZIEMGKEZpO5CZN/lwe/Gh7+9vUEkAXVa8znK2S6ukTbCrYAmbUwrDoQAA==)"><img src="assets/img/pergamino.webp" width="900" height="648" loading="lazy" decoding="async" alt="Pergamino de granito negro con una dedicatoria grabada"></figure>
+      <figure class="cf3 foto fx d2" style="--ph:url(data:image/webp;base64,UklGRq4AAABXRUJQVlA4IKIAAADwBgCdASooACYAPr1SnkynJSMiPHgIAOAXiWcAzygeSDir+Sp4ejpF2Pg5TtaTQBYpEJm/N/Dttf/a1Djg2k18AP72EqdQ6lLaIuqY8rfvPe2+Y8lSty1zppEpklE8jSg088QlG1QGLLmB0P9EJSoBx9+vfcpoD2zdlrauqN4EFfmb4thv1eXXqIj7Tn6OHc1CGomBtMg5JBBTIrxFmkiAAAA=)"><img src="assets/img/letras.webp" width="760" height="727" loading="lazy" decoding="async" alt="Muestrario de letras y números de metal"></figure>
+    </div>
+  </section>
+
+  <section class="sec vis" id="visitenos" data-t="V · Visítenos">
+    <div class="v-mapa">
+      <iframe title="Mapa del Paseo de la Ermita, 27, en Leganés" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=-3.7698%2C40.3383%2C-3.7558%2C40.3453&amp;layer=mapnik" tabindex="-1"></iframe>
+      <svg class="v-chin" viewBox="0 0 220 210" aria-hidden="true"><use href="#templo"/></svg>
+      <a class="v-ruta" href="https://www.google.com/maps/dir/?api=1&amp;destination=40.3418325,-3.7627987" target="_blank" rel="noopener" aria-label="Cómo llegar al Paseo de la Ermita, 27, en Google Maps"></a>
+      <span class="v-cred">© OpenStreetMap</span>
+      <div class="v-tr"><strong>En transporte:</strong> junto al cementerio. Parada de autobús Medicina – Cementerio a 80 m. Metro Julián Besteiro y Cercanías Zarzaquemada a 1,2 km.</div>
+      <figure class="v-of foto" style="--ph:url(data:image/webp;base64,UklGRsQAAABXRUJQVlA4ILgAAABwBgCdASooABsAPt1oqU6opqOiKqgBEBuJQBjk+sA1bbZ+0SUfoV8SAIFAnsMMbuuvgGi2ZKGRUyfw4AAA/khCYiL1NysdLuRgc3Ves2C0TP+Ej1bH9cdo18lRSEL4gCHUvweeKHiK5YbegV8+yI0GnFNjNu3MVptUPzoS/1zRJ176d5og+wNRrGEyhwPK4xS9lcasOeAB9Vl8fgRbf+A10u2ba/buG6sm5AkCXoOKwqnLg9SOUQAA)"><img src="assets/img/oficina.webp" width="1000" height="666" loading="lazy" decoding="async" alt="La oficina de Carrobles en Leganés, con el muestrario de piedras al fondo"></figure>
+    </div>
+    <div class="v-oro" aria-hidden="true"></div>
+    <div class="v-cuna" aria-hidden="true"></div>
+    <div class="v-txt">
+      <div class="eti rev"><b>V</b>Visítenos</div>
+      <h2 class="gr rev">Venga a ver la piedra antes de elegirla</h2>
+      <p class="rev d1">Una familia de marmolistas. En Leganés desde 1980 y con taller de elaboración en Yuncos desde 2005.</p>
+      <div class="tels rev d1">
+        <a href="tel:+34916801049" data-ficha>91 680 10 49</a>
+        <a href="https://wa.me/34670261071?text=Hola%2C%20quer%C3%ADa%20pedir%20presupuesto" target="_blank" rel="noopener">670 26 10 71<small>WhatsApp</small></a>
+      </div>
+      <div class="v-bot rev d2">
+        <a class="losa" href="https://wa.me/34670261071?text=Hola%2C%20quer%C3%ADa%20pedir%20presupuesto" target="_blank" rel="noopener">Pedir presupuesto</a>
+        <a class="losa hueca" href="https://www.google.com/maps/dir/?api=1&amp;destination=40.3418325,-3.7627987" target="_blank" rel="noopener">Cómo llegar</a>
+      </div>
+      <div class="v-datos rev d3">
+        <div><strong>Leganés</strong>Pº de la Ermita, 27 · 28914<br><a href="mailto:romero@marmolescarrobles.com" data-ficha>romero@marmolescarrobles.com</a></div>
+        <div><strong>Yuncos (Toledo)</strong>C/ Felipe II, nave 96<br>Pol. Ind. Villa de Yuncos · 45210</div>
+      </div>
+      <p class="v-trm">Junto al cementerio, con parada de autobús a 80 m</p>
+    </div>
+  </section>
+</main>
+
+<div class="fi" id="ficha" role="dialog" aria-modal="true" aria-labelledby="fi-t">
+  <div class="fi-c">
+    <button type="button" class="fi-x" id="fi-x">Cerrar</button>
+    <h3 id="fi-t">Hablemos de su piedra</h3>
+    <div class="fi-n"><div><small>Teléfono</small><span>91 680 10 49</span></div><button type="button" class="fi-co" data-copia="916801049">Copiar</button></div>
+    <div class="fi-n" style="margin-top:0"><div><small>Móvil y WhatsApp</small><span>670 26 10 71</span></div><button type="button" class="fi-co" data-copia="670261071">Copiar</button></div>
+    <a class="losa roja" href="https://wa.me/34670261071?text=Hola%2C%20quer%C3%ADa%20pedir%20presupuesto" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+    <p class="fi-e">romero@marmolescarrobles.com<br>Pº de la Ermita, 27, Leganés</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  var d = document, html = d.documentElement;
+  var quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function (s, c) { return (c || d).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || d).querySelectorAll(s)); };
+
+  /* Desplazamiento propio: los enlaces #ancla hacen saltar el aviso del visor */
+  var anim = null;
+  function ir(id) {
+    var el = d.getElementById(id); if (!el) return;
+    var ini = window.pageYOffset, fin = el.getBoundingClientRect().top + ini, dist = fin - ini;
+    if (anim) cancelAnimationFrame(anim);
+    if (quieto || Math.abs(dist) < 2) { window.scrollTo(0, fin); return; }
+    var dur = Math.min(1700, 800 + Math.abs(dist) * .22), t0 = null;
+    (function paso(t) {
+      if (t0 === null) t0 = t;
+      var p = Math.min(1, (t - t0) / dur);
+      var e = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+      window.scrollTo(0, ini + dist * e);
+      if (p < 1) anim = requestAnimationFrame(paso); else anim = null;
+    })(performance.now());
+  }
+  ['wheel', 'touchstart'].forEach(function (ev) {
+    window.addEventListener(ev, function () { if (anim) { cancelAnimationFrame(anim); anim = null; } }, { passive: true });
+  });
+
+  /* Menú */
+  var menu = $('#menu'), abre = $('#abre-menu'), cierra = $('#cierra-menu');
+  function ponMenu(si) {
+    menu.classList.toggle('abierto', si);
+    menu.setAttribute('aria-hidden', si ? 'false' : 'true');
+    abre.setAttribute('aria-expanded', si ? 'true' : 'false');
+    if (si) cierra.focus(); else if (d.activeElement && menu.contains(d.activeElement)) abre.focus();
+  }
+  abre.addEventListener('click', function () { ponMenu(true); });
+  cierra.addEventListener('click', function () { ponMenu(false); });
+  $$('[data-ir]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var dest = b.getAttribute('data-ir');
+      if (menu.classList.contains('abierto')) { ponMenu(false); setTimeout(function () { ir(dest); }, 350); }
+      else ir(dest);
+    });
+  });
+
+  /* Ficha: en un ordenador, tel: y mailto: no hacen nada */
+  var ficha = $('#ficha'), esTel = /Android.*Mobile|iPhone|iPod|Windows Phone/.test(navigator.userAgent);
+  function ponFicha(si) { ficha.classList.toggle('abierta', si); if (si) $('#fi-x').focus(); }
+  $$('[data-ficha]').forEach(function (a) {
+    if (a.tagName === 'A') {
+      if (esTel) return;
+      a.removeAttribute('href'); a.setAttribute('role', 'button'); a.tabIndex = 0;
+    }
+    a.addEventListener('click', function () { ponFicha(true); });
+  });
+  if (esTel) {
+    /* En el teléfono, «Hablar con nosotros» llama directamente */
+    var bh = $('.cem button[data-ficha]');
+    if (bh) bh.addEventListener('click', function () { ponFicha(false); location.href = 'tel:+34916801049'; });
+  }
+  $('#fi-x').addEventListener('click', function () { ponFicha(false); });
+  ficha.addEventListener('click', function (e) { if (e.target === ficha) ponFicha(false); });
+  $$('[data-copia]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var v = b.getAttribute('data-copia'), ok = function () { b.textContent = 'Copiado'; setTimeout(function () { b.textContent = 'Copiar'; }, 1600); };
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(v).then(ok);
+      else { var t = d.createElement('textarea'); t.value = v; d.body.appendChild(t); t.select(); try { d.execCommand('copy'); ok(); } catch (e) {} t.remove(); }
+    });
+  });
+  d.addEventListener('keydown', function (e) { if (e.key === 'Escape') { ponMenu(false); ponFicha(false); } });
+
+  /* Sección actual en la placa de arriba */
+  var cSec = $('#c-sec'), secs = $$('.sec'), actual = secs[0];
+  function miraSeccion() {
+    var mitad = window.innerHeight * .45, s = secs[0];
+    secs.forEach(function (x) { if (x.getBoundingClientRect().top <= mitad) s = x; });
+    if (s === actual) return; actual = s;
+    while (cSec.children.length > 1) cSec.removeChild(cSec.firstElementChild);
+    var vieja = cSec.firstElementChild, nueva = d.createElement('span');
+    nueva.textContent = s.getAttribute('data-t');
+    cSec.appendChild(nueva);
+    void nueva.offsetWidth;
+    vieja.classList.add('fuera'); nueva.classList.add('fuera');
+    setTimeout(function () {
+      if (vieja.parentNode) vieja.remove();
+      nueva.style.transition = 'none'; nueva.classList.remove('fuera');
+      void nueva.offsetWidth; nueva.style.transition = '';
+    }, 520);
+  }
+
+  /* Paralaje suave de las fotos: solo eso va atado al scroll */
+  var pars = quieto ? [] : $$('[data-par]').map(function (el) { return { el: el, img: $('img', el), k: parseFloat(el.getAttribute('data-par')) }; });
+  var pide = false;
+  function pinta() {
+    pide = false;
+    var h = window.innerHeight;
+    pars.forEach(function (p) {
+      var r = p.el.getBoundingClientRect();
+      if (r.bottom < -80 || r.top > h + 80) return;
+      var c = (r.top + r.height / 2 - h / 2);
+      p.img.style.transform = 'translate3d(0,' + (-c * p.k).toFixed(1) + 'px,0)';
+    });
+    miraSeccion();
+  }
+  window.addEventListener('scroll', function () { if (!pide) { pide = true; requestAnimationFrame(pinta); } }, { passive: true });
+  window.addEventListener('resize', pinta);
+  pinta();
+
+  /* Entradas: solo se esconde lo que queda por debajo de la pantalla */
+  if (!quieto && 'IntersectionObserver' in window) {
+    var todo = $$('.rev,.fx');
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.remove('pre'); io.unobserve(e.target);
+        /* el titular, mientras está recortado, no cuenta como visible: lo avisa su etiqueta */
+        var g = e.target.nextElementSibling;
+        if (e.target.classList.contains('eti') && g && g.classList.contains('gr')) g.classList.remove('pre');
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: .05 });
+    todo.forEach(function (el) {
+      if (el.getBoundingClientRect().top > window.innerHeight) {
+        el.classList.add('pre');
+        if (!el.classList.contains('gr')) io.observe(el);
+      }
+    });
+  }
+
+  /* Telón: se levantan las columnas, se posa el frontón y el rojo se corta en diagonal */
+  var telon = $('.telon'), oro = $('.telon-oro');
+  if (html.classList.contains('intro')) {
+    setTimeout(function () { telon.classList.add('v1'); }, 120);
+    setTimeout(function () { telon.classList.add('v2'); }, 1150);
+    setTimeout(function () { telon.classList.add('abre'); oro.classList.add('abre'); html.classList.add('sale'); }, 2400);
+    setTimeout(function () {
+      /* El guion se queda solo con el texto de la portada, ya visible */
+      html.classList.remove('intro', 'sale');
+      telon.remove(); oro.remove();
+    }, 3700);
+  }
+  window.__animOk = true;
+})();
+</script>
+</body>
+</html>
