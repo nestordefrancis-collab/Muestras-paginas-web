@@ -242,6 +242,8 @@ html.intro .telon-oro{display:block;position:fixed;inset:0;z-index:99;background
 html.intro .telon.abre{clip-path:var(--cuna)}
 html.intro .telon-oro.abre{clip-path:var(--cuna-oro)}
 .telon.abre svg,.telon.abre .t-nom{opacity:0;transition:opacity .28s}
+/* el texto y la cabecera van por encima del telón para aparecer mientras se abre */
+html.intro .h-txt,html.intro .cab{z-index:101}
 html.intro .h-txt>*,html.intro .cab{opacity:0}
 html.sale .h-txt>*,html.sale .cab{opacity:1;transition:opacity .8s .45s}
 
