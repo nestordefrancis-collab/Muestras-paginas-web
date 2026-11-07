@@ -799,6 +799,28 @@ h2 em,h1 em{font-style:normal;color:var(--rojo)}
     else { img.loading = 'eager'; img.addEventListener('load', lista, { once: true }); img.addEventListener('error', va, { once: true }); }
   }
 
+  /* ---- mapa: el recuadro se pide con la forma exacta del marco, centrado en el taller, y se
+     vuelve a pedir si el marco cambia de tamaño (OpenStreetMap no se recentra solo y la
+     chincheta, que va al centro del marco, se despegaba del taller) ---- */
+  var marcoMapa = document.querySelector('.mapa'), ifr = marcoMapa && marcoMapa.querySelector('iframe');
+  if (ifr) {
+    var LAT = 40.3290254, LON = -3.7832681, Z = 16;
+    var ultimo = '', espMapa = null;
+    function pideMapa() {
+      var r = ifr.getBoundingClientRect(); if (r.width < 50 || r.height < 50) return;
+      var clave = Math.round(r.width / 30) + 'x' + Math.round(r.height / 30); if (clave === ultimo) return;
+      ultimo = clave;
+      /* grados por píxel a ese zum; un 2 % menos para que el mapa elija ese zum y no el de abajo */
+      var dLon = 360 / (256 * Math.pow(2, Z)) * 0.98, dLat = dLon * Math.cos(LAT * Math.PI / 180);
+      var bb = [LON - r.width / 2 * dLon, LAT - r.height / 2 * dLat, LON + r.width / 2 * dLon, LAT + r.height / 2 * dLat]
+        .map(function (v) { return v.toFixed(6); }).join('%2C');
+      ifr.src = 'https://www.openstreetmap.org/export/embed.html?bbox=' + bb + '&layer=mapnik';
+    }
+    pideMapa();
+    if ('ResizeObserver' in window) new ResizeObserver(function () { clearTimeout(espMapa); espMapa = setTimeout(pideMapa, 350); }).observe(marcoMapa);
+    else window.addEventListener('resize', function () { clearTimeout(espMapa); espMapa = setTimeout(pideMapa, 350); });
+  }
+
   /* ---- al bajar: plano actual en el cajetín, zona del marco y paralaje suave ---- */
   var fotos = [].slice.call(document.querySelectorAll('.foto'));
   var activo = -1, pendiente = false;
