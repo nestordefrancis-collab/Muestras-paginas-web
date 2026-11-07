@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zen Pilates · Pilates con fisioterapeuta en Leganés</title>
+<meta name="description" content="Centro de pilates y yoga en Leganés desde 2007. Máquinas (reformer, cadillac, silla y barril), suelo, yoga, embarazo y posparto e hipopresivos, con fisioterapeuta en cada clase. Sin matrícula ni permanencia.">
+<meta name="theme-color" content="#F5F1EB">
+<script>
+  /* Todo se ve sin JavaScript. El guion del final solo esconde lo que queda por debajo
+     de la pantalla (clase «pre») y hace la entrada. Si no llega a marcar window.__animOk,
+     se quitan las clases y la página queda entera y quieta. */
+  document.documentElement.classList.add('js');
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && !location.hash && (window.pageYOffset || 0) < 40)
+    document.documentElement.classList.add('intro');
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!window.__animOk) document.documentElement.classList.remove('js', 'intro');
+  });
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- las fuentes no bloquean: la página (y la entrada) arrancan sin esperarlas -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Jost:wght@300;400;500&display=swap"></noscript>
+<!--PRELOAD--><link rel="preload" as="image" href="assets/img/portada.webp" imagesrcset="assets/img/portada_m.webp 900w, assets/img/portada.webp 1500w" imagesizes="(max-width:780px) 100vw, 46vw"><!--/PRELOAD-->
+<style>
+:root{
+  --papel:#F5F1EB;            /* crema */
+  --papel-2:#ECE5DB;
+  --tinta:#2A2521;            /* tinta marrón, casi negra */
+  --gris:#71675E;
+  --linea:rgba(42,37,33,.15);
+  --crema:#F1EBE3;
+  --linea-c:rgba(241,235,227,.2);
+  --magenta:#FF0E9E;          /* la esfera de su logo */
+  --magenta-t:#C8007A;        /* el mismo tono, legible sobre crema */
+  --ambar:#FFC20F;            /* el rótulo de su logo */
+  --sans:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'DM Mono',ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+  --px:clamp(24px,5vw,76px);
+  --muelle:cubic-bezier(.34,1.5,.5,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:var(--papel)}
+body{margin:0;font:400 17px/1.55 var(--sans);color:var(--tinta);background:var(--papel);overflow-x:hidden}
+img{display:block;max-width:100%}
+h1,h2,h3,p,ul,ol,figure{margin:0;padding:0}
+ul,ol{list-style:none}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:inherit}
+:focus-visible{outline:2px solid var(--magenta-t);outline-offset:3px}
+.salta{position:fixed;left:8px;top:-60px;z-index:200;background:#fff;padding:10px 14px}
+.salta:focus{top:8px}
+h1,h2{font-family:var(--sans);font-weight:300;letter-spacing:-.012em;text-wrap:balance}
+h2{font-size:clamp(34px,3.8vw,56px);line-height:1.05}
+.eti{font:400 12px/1.3 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--gris)}
+.eti i{font-style:normal;color:var(--magenta-t);margin-right:1em}
+.oscuro .eti{color:rgba(241,235,227,.62)}
+.oscuro .eti i{color:var(--magenta)}
+
+/* ── Botones: el muelle de la flecha se estira al pasar ─────────── */
+.pil{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:50px;padding:0 22px 0 26px;border-radius:999px;
+  background:var(--tinta);color:var(--papel);font:500 13.5px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;white-space:nowrap;
+  transition:background .4s,color .4s}
+.mu{width:34px;height:12px;flex:none;overflow:visible}
+.mu path{fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.mu .mu-c{transform-origin:1px 6px;transition:transform .75s var(--muelle)}
+.mu .mu-p{transition:transform .75s var(--muelle)}
+.pil.claro{background:var(--crema);color:var(--tinta)}
+.enl{position:relative;display:inline-flex;align-items:center;min-height:46px;font:400 12.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;text-decoration:none}
+.enl::after{content:'';position:absolute;left:0;right:0;bottom:12px;height:1px;background:currentColor;transform-origin:0 50%;transition:transform .7s var(--muelle)}
+@media (hover:hover){
+  .pil:hover{background:#000}
+  .pil.claro:hover{background:#fff}
+  .pil:hover .mu-c{transform:scaleX(1.5)}
+  .pil:hover .mu-p{transform:translateX(8.5px)}
+  .enl:hover::after{transform:scaleX(1.14)}
+}
+
+/* ── Logo arriba a la izquierda ─────────────────────────────────── */
+.logo{position:fixed;left:var(--px);top:22px;z-index:50;display:flex;align-items:center;gap:12px;color:var(--tinta);transition:color .5s}
+.logo-esf{width:36px;height:36px;flex:none}
+.logo-rot{height:34px;width:44.5px;flex:none}
+html.tono-oscuro .logo{color:var(--crema)}
+
+/* ── El carril: navegación abajo, con un carro de reformer que se desliza ── */
+.carril{position:fixed;left:50%;bottom:18px;z-index:55;transform:translateX(-50%);width:min(1000px,calc(100% - 48px));height:64px;
+  display:flex;align-items:center;gap:22px;padding:0 7px 0 28px;border-radius:999px;color:var(--tinta);
+  background:rgba(245,241,235,.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  box-shadow:0 0 0 1px var(--linea),0 18px 40px -22px rgba(42,37,33,.5);transition:background .5s,color .5s,box-shadow .5s}
+html.carril-oscuro .carril{background:rgba(42,37,33,.9);color:var(--crema);box-shadow:0 0 0 1px var(--linea-c),0 18px 40px -22px rgba(0,0,0,.6)}
+.c-via{position:relative;flex:1;height:64px}
+.c-via ol{display:grid;grid-template-columns:repeat(5,1fr);height:100%}
+.c-via ol button{position:relative;display:flex;flex-direction:column;align-items:center;width:100%;height:100%;padding-top:13px;
+  font:400 11px/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:inherit;opacity:.58;transition:opacity .4s}
+.c-via ol button[aria-current]{opacity:1}
+.c-via ol button span{transition:transform .5s var(--muelle)}
+.c-via ol button::after{content:'';position:absolute;left:50%;top:38px;width:1px;height:9px;background:currentColor;transition:height .5s var(--muelle)}
+@media (hover:hover){.c-via ol button:hover{opacity:1}.c-via ol button:hover span{transform:translateY(-2px)}.c-via ol button:hover::after{height:13px}}
+.c-linea{position:absolute;left:0;right:0;top:42px;height:1px;background:currentColor;opacity:.3;pointer-events:none}
+.c-carro{position:absolute;left:0;top:37px;width:38px;height:11px;margin-left:-19px;border-radius:6px;background:currentColor;pointer-events:none;
+  transform:translateX(var(--x,0px));transition:transform .95s var(--muelle)}
+.c-carro::after{content:'';position:absolute;left:50%;top:50%;width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;background:var(--magenta)}
+.c-menu{display:none}
+.c-res{flex:none}
+html.carril-oscuro .c-res{background:var(--crema);color:var(--tinta)}
+
+/* Hoja del menú en el móvil */
+.hoja{position:fixed;left:0;right:0;bottom:0;z-index:54;padding:22px 22px 104px;background:var(--papel);color:var(--tinta);
+  box-shadow:0 -20px 50px -30px rgba(42,37,33,.55);transform:translateY(105%);visibility:hidden;transition:transform .6s cubic-bezier(.2,.75,.2,1),visibility 0s .6s}
+.hoja.abierta{transform:none;visibility:visible;transition:transform .6s cubic-bezier(.2,.75,.2,1),visibility 0s}
+.hoja ol li+li{border-top:1px solid var(--linea)}
+.hoja ol button{display:flex;align-items:baseline;gap:16px;width:100%;padding:12px 0}
+.hoja ol button em{font:400 11px var(--mono);font-style:normal;letter-spacing:.14em;color:var(--gris);width:22px}
+.hoja ol button strong{font:300 30px/1.1 var(--sans)}
+.hoja ol button[aria-current] strong{color:var(--magenta-t)}
+.hoja p{margin-top:14px;padding-top:12px;border-top:1px solid var(--linea);font:400 12px/1.6 var(--mono);letter-spacing:.06em;color:var(--gris)}
+
+/* ── Fotos ─────────────────────────────────────────────────────── */
+.foto{position:relative;overflow:hidden;background:var(--papel-2) var(--ph) center/cover no-repeat}
+.foto img{width:100%;height:100%;object-fit:cover}
+@media (hover:hover){.foto.zum img{transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}.foto.zum:hover img{transform:scale(1.03)}}
+
+/* ── Secciones de una pantalla ─────────────────────────────────── */
+.sec{position:relative;min-height:100vh;min-height:100svh;overflow:hidden}
+.sec+.sec{border-top:1px solid var(--linea)}
+.oscuro{background:var(--tinta);color:var(--crema)}
+
+/* I · Inicio */
+.s-ini{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr)}
+.ini-txt{display:flex;flex-direction:column;justify-content:center;padding:118px var(--px) 128px}
+.s-ini h1{margin-top:22px;font-size:clamp(42px,4.7vw,76px);line-height:1.02;max-width:11.5em}
+.ini-p{margin-top:24px;max-width:30em;color:#4E463F;font-size:18px}
+.ini-bot{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:32px}
+.ini-datos{display:flex;flex-wrap:wrap;gap:8px 0;margin-top:38px;padding-top:14px;border-top:1px solid var(--linea);font:400 12px/1.4 var(--mono);letter-spacing:.08em;color:var(--gris)}
+.ini-datos li{padding-right:18px;margin-right:18px;border-right:1px solid var(--linea)}
+.ini-datos li:last-child{border:0;margin:0;padding:0}
+.ini-datos b{font-weight:500;color:var(--tinta)}
+.ini-datos li:first-child::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--magenta);margin-right:9px;vertical-align:.05em}
+.ini-foto{height:100vh;height:100svh}
+.ini-foto img{object-position:50% 38%;height:110%;margin-top:-5%}
+
+/* II · Método */
+.s-met{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4.4vw,76px);align-items:center;padding:96px var(--px) 112px}
+.s-met h2{margin-top:16px}
+.met-p{margin-top:16px;max-width:31em;color:#4E463F}
+.para{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.para li{padding:7px 13px;border:1px solid var(--linea);border-radius:999px;font:400 11.5px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.maquinas{display:grid;grid-template-columns:1fr 1fr;margin-top:26px;border-top:1px solid var(--linea)}
+.maquinas li{display:grid;grid-template-columns:34px 1fr;padding:13px 16px 12px 0;border-bottom:1px solid var(--linea)}
+.maquinas li:nth-child(even){padding-left:18px;border-left:1px solid var(--linea)}
+.maquinas em{grid-row:1/3;font:400 11.5px/1.9 var(--mono);font-style:normal;color:var(--magenta-t)}
+.maquinas strong{font:400 22px/1.2 var(--sans)}
+.maquinas small{font:400 12px/1.45 var(--mono);color:var(--gris)}
+.met-fotos{display:grid;grid-template-columns:1.18fr .82fr;grid-template-rows:1fr 1fr;gap:12px;height:min(68vh,580px)}
+.met-fotos .mf3{grid-column:2;grid-row:1/3}
+.pie{position:absolute;left:0;bottom:0;z-index:2;padding:6px 10px;background:var(--papel);color:var(--tinta);font:400 10.5px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase}
+
+/* III · Horario */
+.s-hor{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:clamp(28px,4.4vw,76px);align-items:center;padding:96px var(--px) 112px;background:var(--papel-2)}
+.s-hor h2{margin-top:16px}
+.leyenda{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:18px;font:400 11.5px/1.3 var(--mono);letter-spacing:.06em;color:var(--gris)}
+.tarifas{margin-top:24px;border-top:1px solid var(--linea)}
+.tarifas li{display:grid;grid-template-columns:auto minmax(16px,1fr) auto;align-items:baseline;column-gap:10px;padding:11px 0 10px;border-bottom:1px solid var(--linea)}
+.tarifas li span{font:400 17px/1.25 var(--sans)}
+.tarifas li small{grid-column:1/-1;margin-top:2px;font:400 11.5px/1.4 var(--mono);color:var(--gris);letter-spacing:.02em}
+.tarifas li i{align-self:center;border-bottom:1px dotted rgba(42,37,33,.35)}
+.tarifas li b{font:400 15px/1 var(--mono);white-space:nowrap}
+.nota{margin-top:12px;font:400 11.5px/1.45 var(--mono);color:var(--gris)}
+.dias{display:none}
+.tabla{display:grid;grid-template-columns:68px repeat(5,minmax(0,1fr));background:var(--papel);box-shadow:0 0 0 1px var(--linea);font:400 12px/1.2 var(--mono)}
+.fila{display:contents}
+.tabla .c{display:flex;align-items:center;gap:8px;min-height:37px;padding:0 12px;border-top:1px solid var(--linea);transition:background .25s}
+.tabla .cab .c{min-height:40px;border-top:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gris)}
+.tabla .h{color:var(--gris);font-size:11.5px}
+.tabla .c.pri{color:#9A9087}
+.tabla .c.lar{grid-column:2/-1;justify-content:center;color:#9A9087;letter-spacing:.12em;text-transform:uppercase;font-size:11px;background:repeating-linear-gradient(135deg,transparent 0 7px,rgba(42,37,33,.035) 7px 8px)}
+.tabla .c small{display:block;font-size:10px;color:var(--gris);letter-spacing:.02em}
+.pt{flex:none;width:8px;height:8px;border-radius:50%;background:var(--tinta)}
+.pt.sue{background:var(--magenta)}
+.pt.yog{background:var(--ambar)}
+.pt.cro{background:transparent;box-shadow:inset 0 0 0 1.5px var(--magenta)}
+.pt.hip{background:transparent;box-shadow:inset 0 0 0 1.5px #D9A100}
+.pt.pri{background:transparent;box-shadow:inset 0 0 0 1px #B3A99F}
+.leyenda span{display:inline-flex;align-items:center;gap:7px}
+@media (hover:hover){
+  .fila:hover .c{background:rgba(255,14,158,.06)}
+  .tabla[data-col="0"] [data-d="0"],.tabla[data-col="1"] [data-d="1"],.tabla[data-col="2"] [data-d="2"],
+  .tabla[data-col="3"] [data-d="3"],.tabla[data-col="4"] [data-d="4"]{background:rgba(255,14,158,.06)}
+  .fila:hover [data-d].hov{background:rgba(255,14,158,.16)}
+}
+
+/* IV · Mercedes */
+.s-mer{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:clamp(28px,4.6vw,80px);align-items:center;padding:96px var(--px) 112px}
+.mer-fotos{position:relative;padding:0 13% 13% 0}
+.mer-fotos .mf-1{aspect-ratio:1/1;max-height:min(58vh,520px);width:100%}
+.mer-fotos .mf-2{position:absolute;right:0;bottom:0;width:46%;aspect-ratio:15/8;box-shadow:0 0 0 8px var(--tinta)}
+.mer-fotos .pie{background:var(--tinta);color:var(--crema)}
+.s-mer h2{margin-top:16px}
+.mer-p{margin-top:16px;max-width:33em;color:rgba(241,235,227,.8)}
+.linea-t{position:relative;display:grid;grid-template-columns:repeat(5,1fr);margin-top:34px}
+.linea-t::before{content:'';position:absolute;left:0;right:0;top:4px;height:1px;background:var(--linea-c);transform-origin:0 50%;transition:transform 1.5s cubic-bezier(.3,.6,.2,1)}
+.js .linea-t.pre::before{transform:scaleX(0)}
+.linea-t li{position:relative;padding:22px 14px 0 0}
+.linea-t li::before{content:'';position:absolute;left:0;top:0;width:9px;height:9px;border-radius:50%;background:var(--tinta);box-shadow:inset 0 0 0 1.5px var(--crema)}
+.linea-t li.yo::before{background:var(--magenta);box-shadow:none}
+.linea-t b{display:block;font:300 30px/1 var(--sans);letter-spacing:-.01em}
+.linea-t li.yo b{color:var(--magenta)}
+.linea-t span{display:block;margin-top:8px;font:400 11.5px/1.45 var(--mono);color:rgba(241,235,227,.7)}
+.forma{display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;margin-top:30px;padding-top:18px;border-top:1px solid var(--linea-c)}
+.forma p{flex:1 1 260px;font:400 12.5px/1.55 var(--mono);color:rgba(241,235,227,.75)}
+.forma p strong{color:var(--crema);font-weight:500}
+
+/* V · Cómo llegar */
+.s-lle{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.l-txt{display:flex;flex-direction:column;justify-content:center;padding:96px var(--px) 112px}
+.s-lle h2{margin-top:16px}
+.tels{display:grid;gap:2px;margin-top:24px}
+.tels a{display:inline-flex;align-items:baseline;gap:16px;width:max-content;font:300 clamp(32px,3.2vw,46px)/1.15 var(--sans);text-decoration:none;cursor:pointer}
+.tels a small{font:400 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--gris)}
+@media (hover:hover){.tels a:hover{color:var(--magenta-t)}}
+.l-datos{display:grid;grid-template-columns:1fr 1fr;gap:16px 30px;margin-top:24px;padding-top:16px;border-top:1px solid var(--linea);font-size:14.5px;line-height:1.5;color:#4E463F}
+.l-datos strong{display:block;margin-bottom:4px;font:400 11px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--tinta)}
+.l-datos .ancho{grid-column:1/-1}
+.l-datos .ct{display:none}
+.l-bot{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:26px}
+.mapa{position:relative;overflow:hidden;background:#E4DED5}
+.mapa iframe{position:absolute;left:-46px;top:-46px;width:calc(100% + 92px);height:calc(100% + 92px);border:0;pointer-events:none;filter:grayscale(1) sepia(.18) contrast(1.02) brightness(1.03)}
+.chin{position:absolute;left:50%;top:50%;z-index:2;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;box-shadow:0 0 0 7px rgba(255,14,158,.18),0 6px 14px rgba(0,0,0,.25)}
+.chin svg{width:100%;height:100%}
+.ruta{position:absolute;inset:0;z-index:3}
+.cred{position:absolute;right:0;top:0;z-index:4;padding:1px 6px;background:rgba(255,255,255,.85);color:#333;font-size:10.5px}
+
+/* ── Ficha de reserva ──────────────────────────────────────────── */
+.fi{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(42,37,33,.55)}
+.fi.abierta{display:flex}
+.fi-c{position:relative;width:min(460px,100%);background:var(--papel);color:var(--tinta);padding:30px 28px 26px;border-radius:22px}
+.fi-c .eti{margin-bottom:10px}
+.fi-c h3{font:300 32px/1.05 var(--sans);padding-right:70px;text-wrap:balance}
+.fi-c>p{margin-top:10px;font-size:15px;color:#4E463F}
+.fi-n{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding-top:12px;border-top:1px solid var(--linea);font:300 26px/1.1 var(--sans)}
+.fi-n+.fi-n{margin-top:10px}
+.fi-n small{display:block;margin-bottom:3px;font:400 10.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--gris)}
+.fi-b{flex:none;font:400 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:9px 13px;border:1px solid var(--linea);border-radius:999px;text-decoration:none}
+.fi-c>.pil{width:100%;margin-top:18px}
+.fi-e{margin-top:12px;font:400 12px/1.6 var(--mono);color:var(--gris)}
+.fi-x{position:absolute;right:16px;top:16px;font:400 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:9px 12px;border:1px solid var(--linea);border-radius:999px}
+html.es-tel .solo-pc,html:not(.es-tel) .solo-tel{display:none}
+
+/* ── Entrada: el logo aparece en grande sobre la portada y la esfera viaja a su sitio ── */
+.velo{display:none}
+html.intro .velo{display:flex;position:fixed;inset:0;z-index:100;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;
+  background:rgba(245,241,235,.9);transition:background .9s cubic-bezier(.6,0,.3,1)}
+.intro-esf{width:min(30vmin,200px);height:min(30vmin,200px);opacity:0;transform:scale(.86);transition:opacity .7s,transform 1.1s cubic-bezier(.3,.7,.2,1)}
+.intro-esf svg{width:100%;height:100%}
+.intro-rot{display:block;width:min(19vmin,128px);height:auto;margin-top:min(3vmin,20px);color:var(--ambar);opacity:0;transform:translateY(10px);transition:opacity .7s .15s,transform .9s .15s cubic-bezier(.2,.7,.2,1)}
+.intro-l{margin-top:min(4vmin,26px);font:400 11.5px/1.4 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--gris);opacity:0;transition:opacity .7s}
+html.i1 .intro-esf{opacity:1;transform:none}
+html.i1 .intro-rot{opacity:1;transform:none}
+html.i2 .intro-l{opacity:1}
+html.i3 .velo{background:rgba(245,241,235,0)}
+html.i3 .intro-rot,html.i3 .intro-l{opacity:0;transition:opacity .35s}
+html.i3 .intro-esf{transition:transform 1s cubic-bezier(.65,0,.25,1)}
+html.intro .logo-esf,html.intro .logo-rot,html.intro .carril,html.intro .ini-txt>*{opacity:0}
+html.intro .ini-txt>*{transform:translateY(14px)}
+html.sale .logo-esf{opacity:1}
+html.sale .logo-rot,html.sale .carril{opacity:1;transition:opacity .7s .1s}
+html.sale .ini-txt>*{opacity:1;transform:none;transition:opacity .8s,transform .9s cubic-bezier(.2,.7,.2,1)}
+html.sale .ini-txt>:nth-child(2){transition-delay:.08s}
+html.sale .ini-txt>:nth-child(3){transition-delay:.16s}
+html.sale .ini-txt>:nth-child(4){transition-delay:.24s}
+html.sale .ini-txt>:nth-child(5){transition-delay:.32s}
+
+/* ── Entradas al bajar ─────────────────────────────────────────── */
+.rev{transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.js .rev.pre{opacity:0;transform:translateY(14px)}
+.apa{transition:opacity 1.1s ease,transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.js .apa.pre{opacity:0;transform:scale(1.04)}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}.d4{transition-delay:.48s}
+
+/* ── Pantallas bajas de ordenador ──────────────────────────────── */
+@media (min-width:781px) and (max-height:760px){
+  h2{font-size:clamp(30px,3.3vw,46px)}
+  .s-ini h1{font-size:clamp(38px,4.2vw,62px)}
+  .ini-txt{padding:96px var(--px) 112px}
+  .ini-p{margin-top:18px;font-size:17px}
+  .ini-bot{margin-top:24px}
+  .ini-datos{margin-top:26px}
+  .s-met,.s-hor,.s-mer,.l-txt{padding-top:84px;padding-bottom:100px}
+  .met-p{display:none}
+  .maquinas{margin-top:20px}
+  .maquinas li{padding-top:9px;padding-bottom:8px}
+  .tabla .c{min-height:31px}
+  .tarifas li{padding:8px 0 7px}
+  .mer-p{font-size:15.5px}
+  .linea-t{margin-top:24px}
+  .forma{margin-top:20px}
+  .l-datos{margin-top:18px}
+}
+
+/* ── Móvil y tableta en vertical ───────────────────────────────── */
+@media (max-width:780px),(max-width:1100px) and (orientation:portrait){
+  body{font-size:15.5px}
+  h2{font-size:clamp(28px,8vw,40px)}
+  .eti{font-size:10.5px;letter-spacing:.14em}
+  .logo{left:18px;top:14px;gap:9px}
+  .logo-esf{width:28px;height:28px}
+  .logo-rot{height:27px;width:35.3px}
+
+  .carril{left:10px;right:10px;bottom:10px;width:auto;transform:none;height:62px;gap:10px;padding:0 6px 0 8px}
+  .c-via{position:absolute;left:24px;right:24px;top:0;height:12px;flex:none}
+  .c-via ol button{padding:0}
+  .c-via ol button span{display:none}
+  .c-via ol button::after{top:3px;height:6px}
+  .c-linea{top:6px}
+  .c-carro{top:2px;width:22px;height:8px;margin-left:-11px}
+  .c-carro::after{width:4px;height:4px;margin:-2px 0 0 -2px}
+  .c-menu{display:flex;align-items:center;gap:10px;flex:1;min-width:0;height:100%;padding:8px 0 0 14px;font:400 11px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase}
+  .c-menu b{font-weight:400;opacity:.62;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .c-menu i{flex:none;width:8px;height:8px;border-left:1px solid;border-top:1px solid;transform:translateY(2px) rotate(45deg);transition:transform .4s}
+  .c-menu[aria-expanded="true"] i{transform:translateY(-2px) rotate(225deg)}
+  .c-res{margin-top:8px;min-height:44px;padding:0 16px 0 18px;font-size:12px;gap:10px}
+  .c-res .mu{width:26px}
+
+  .sec{display:flex;flex-direction:column;align-items:stretch}
+  .ini-foto{order:-1;height:36svh;flex:none}
+  .ini-foto img{height:100%;margin:0;object-position:50% 46%}
+  .ini-txt{flex:1;justify-content:flex-start;padding:20px 20px 92px}
+  .s-ini h1{margin-top:10px;font-size:clamp(30px,8.6vw,44px)}
+  .ini-p{margin-top:10px;font-size:15.5px;line-height:1.45}
+  .ini-bot{margin-top:16px;gap:6px 22px}
+  .ini-bot .enl{display:none}
+  .ini-datos{margin-top:16px;padding-top:10px;font-size:10.5px}
+  .ini-datos li{padding-right:10px;margin-right:10px}
+
+  .s-met,.s-hor,.s-mer{justify-content:flex-start;padding:64px 20px 92px;gap:0}
+  .met-p{margin-top:10px;font-size:15px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .para{display:none}
+  .maquinas{margin-top:14px}
+  .maquinas li{grid-template-columns:24px 1fr;padding:8px 8px 7px 0}
+  .maquinas li:nth-child(even){padding-left:10px}
+  .maquinas strong{font-size:17px}
+  .maquinas small{font-size:10.5px;line-height:1.35}
+  .met-fotos{order:2;margin-top:14px;height:19svh;grid-template-columns:1.4fr 1fr .8fr;grid-template-rows:1fr;gap:6px}
+  .met-fotos .mf3{grid-column:auto;grid-row:auto}
+  .pie{display:none}
+
+  .s-hor{display:flex}
+  .leyenda{display:none}
+  .tarifas{order:3;margin-top:12px;border:0;display:flex;flex-wrap:wrap;gap:4px 14px}
+  .tarifas li{display:flex;padding:0;border:0;gap:6px}
+  .tarifas li span{font-size:13px}
+  .tarifas li small,.tarifas li i{display:none}
+  .tarifas li b{font-size:12px}
+  .tarifas li:nth-child(n+3){display:none}
+  .nota{display:none}
+  .js .dias{order:2;display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:14px}
+  .dias button{min-height:38px;border-radius:999px;text-align:center;font:400 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;box-shadow:inset 0 0 0 1px var(--linea)}
+  .dias button[aria-pressed="true"]{background:var(--tinta);color:var(--papel);box-shadow:none}
+  .tabla{order:2;margin-top:8px;grid-template-columns:44px repeat(5,minmax(0,1fr));font-size:10px}
+  .tabla .c{min-height:26px;padding:0 6px;gap:5px}
+  .tabla .c small{display:none}
+  .tabla .cab .c{min-height:28px;font-size:9.5px;letter-spacing:.08em}
+  .pt{width:7px;height:7px}
+  .js .tabla{grid-template-columns:56px minmax(0,1fr);font-size:12px}
+  .js .tabla .cab{display:none}
+  .js .tabla .c{min-height:28px;padding:0 12px;gap:9px}
+  .js .tabla .c small{display:inline;margin-left:4px;font-size:10px}
+  .js .tabla[data-ver="0"] [data-d]:not([data-d="0"]),.js .tabla[data-ver="1"] [data-d]:not([data-d="1"]),.js .tabla[data-ver="2"] [data-d]:not([data-d="2"]),
+  .js .tabla[data-ver="3"] [data-d]:not([data-d="3"]),.js .tabla[data-ver="4"] [data-d]:not([data-d="4"]){display:none}
+  .js .tabla[data-ver="0"] .v0,.js .tabla[data-ver="1"] .v1,.js .tabla[data-ver="2"] .v2,.js .tabla[data-ver="3"] .v3,.js .tabla[data-ver="4"] .v4{display:none}
+
+  .mer-fotos{order:-1;padding:0;margin-bottom:14px}
+  .mer-fotos .mf-1{aspect-ratio:auto;height:22svh;max-height:none}
+  .mer-fotos .mf-1 img{object-position:50% 24%}
+  .mer-fotos .mf-2{display:none}
+  .mer-p{margin-top:10px;font-size:15px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .linea-t{grid-template-columns:1fr;margin-top:14px}
+  .linea-t::before{left:4px;right:auto;top:4px;bottom:10px;width:1px;height:auto;transform-origin:50% 0}
+  .js .linea-t.pre::before{transform:scaleY(0)}
+  .linea-t li{display:flex;align-items:baseline;gap:12px;padding:0 0 9px 24px}
+  .linea-t li::before{top:5px}
+  .linea-t b{font-size:20px;width:44px;flex:none}
+  .linea-t span{margin:0;font-size:11px}
+  .forma{display:none}
+
+  .s-lle{display:flex}
+  .mapa{order:-1;height:26svh;flex:none}
+  .l-txt{flex:1;justify-content:flex-start;padding:18px 20px 92px}
+  .s-lle h2{margin-top:10px}
+  .tels{margin-top:12px}
+  .tels a{font-size:clamp(27px,7.8vw,34px);gap:12px}
+  .l-datos .lg{display:none}
+  .l-datos .ct{display:inline}
+  .l-datos{grid-template-columns:1fr;margin-top:14px;padding-top:10px;gap:9px;font-size:13.5px;line-height:1.4}
+  .l-datos strong{margin-bottom:2px;font-size:10px}
+  .l-bot{display:none}
+}
+@media (min-width:600px) and (max-width:1100px) and (orientation:portrait){
+  body{font-size:18px}
+  h2{font-size:clamp(40px,6vw,58px)}
+  .eti{font-size:12px}
+  .s-ini{padding-top:76px}
+  .logo{left:36px;top:20px}
+  .logo-esf{width:36px;height:36px}
+  .logo-rot{height:34px;width:44.5px}
+  .ini-foto{height:44svh}
+  .ini-txt,.s-met,.s-hor,.s-mer,.l-txt{padding-left:48px;padding-right:48px}
+  .s-ini h1{font-size:clamp(48px,7vw,66px)}
+  .ini-p,.met-p,.mer-p{font-size:18px}
+  .ini-datos{font-size:12px}
+  .s-met,.s-hor,.s-mer{padding-top:100px;padding-bottom:112px}
+  .para{display:flex}
+  .maquinas strong{font-size:22px}
+  .maquinas small{font-size:12px}
+  .met-fotos{height:26svh}
+  .pie{display:block}
+  .tarifas li:nth-child(n+3){display:flex}
+  .tarifas li span{font-size:16px}
+  .js .tabla .c{min-height:40px;font-size:14px}
+  .mer-fotos .mf-1{height:30svh}
+  .linea-t b{font-size:26px;width:60px}
+  .linea-t span{font-size:13px}
+  .forma{display:flex}
+  .mapa{height:36svh}
+  .l-txt{padding-top:36px}
+  .l-datos{grid-template-columns:1fr 1fr;font-size:16px}
+  .l-bot{display:flex}
+  .carril{left:24px;right:24px;bottom:18px;height:68px}
+  .c-menu{font-size:12px}
+  .c-res{font-size:13px;padding:0 20px}
+}
+@media (max-width:780px) and (max-height:740px){
+  .ini-datos{display:none}
+}
+@media (max-width:780px) and (max-height:640px){
+  .s-met,.s-hor,.s-mer{padding-top:56px;padding-bottom:84px}
+  .ini-foto{height:31svh}
+  .ini-txt{padding-top:16px;padding-bottom:84px}
+  .s-ini h1{font-size:30px}
+  .ini-p,.ini-datos,.met-p,.mer-p{display:none}
+  h2{font-size:27px}
+  .maquinas small{display:none}
+  .met-fotos{height:19svh}
+  .js .tabla .c{min-height:23px;font-size:11.5px}
+  .tarifas{display:none}
+  .mer-fotos .mf-1{height:19svh}
+  .linea-t li{padding-bottom:6px}
+  .mapa{height:22svh}
+  .l-txt{padding-top:12px;padding-bottom:84px}
+  .l-datos .tr{display:none}
+}
+@media (max-width:360px){.ini-datos li:nth-child(3){display:none}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;transition-delay:0s!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+<button type="button" class="salta" data-ir="metodo">Saltar al contenido</button>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="g-esf" cx=".51" cy=".49" r=".56">
+      <stop offset="0" stop-color="#FFFFFF"/><stop offset=".1" stop-color="#FFE6FA"/><stop offset=".36" stop-color="#FF86E6"/><stop offset=".72" stop-color="#FF22AE"/><stop offset="1" stop-color="#FF0E9E"/>
+    </radialGradient>
+  </defs>
+  <symbol id="esfera" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="url(#g-esf)"/></symbol>
+  <symbol id="rotulo" viewBox="62.8 538.4 380.0 290.3"><path fill="currentColor" fill-rule="evenodd" d="M72.4 540.5 193.8 540.4 194.2 540.6 194.4 541.0 194.1 541.8 188.5 549.5 110.5 656.2 110.8 656.8 112.0 656.9 192.0 657.0 192.5 657.3 192.7 658.0 192.7 678.0 192.2 679.1 191.8 679.3 190.5 679.3 66.0 679.3 65.2 679.3 64.9 679.0 64.8 678.5 65.1 677.8 148.7 563.5 148.5 563.0 147.8 562.8 72.5 562.8 72.0 562.5 71.9 561.8 71.9 541.8 72.2 540.6ZM209.5 540.5 289.0 540.4 289.8 540.6 290.1 541.0 290.3 541.8 290.4 561.8 290.2 562.3 289.8 562.7 235.0 562.8 234.2 562.9 233.8 563.3 233.6 596.8 233.7 597.2 234.0 597.7 235.0 597.9 287.0 597.9 288.0 598.1 288.3 598.5 288.4 599.0 288.3 619.2 288.0 620.2 287.5 620.6 234.8 620.7 233.9 621.0 233.6 621.8 233.6 656.0 234.0 656.7 234.8 656.9 291.5 657.0 291.9 657.2 292.0 658.0 292.0 678.0 291.9 678.8 291.5 679.2 290.8 679.4 210.0 679.4 209.5 679.3 209.1 679.0 208.9 678.0 208.9 541.8 209.2 540.7ZM311.4 540.5 329.0 540.4 330.5 541.0 416.2 638.7 416.8 638.5 416.9 637.8 416.9 541.2 417.2 540.6 418.0 540.4 439.0 540.4 440.0 540.8 440.3 541.2 440.3 542.0 440.3 677.8 440.3 678.5 439.8 679.1 438.8 679.3 421.0 679.3 420.2 679.2 419.4 678.8 391.2 646.5 375.5 628.2 371.1 623.5 355.5 605.3 336.2 583.3 335.5 582.3 334.5 581.7 334.1 582.0 334.0 582.8 334.0 678.5 333.5 679.2 333.0 679.4 312.0 679.4 311.0 679.0 310.7 677.8 310.7 541.8 310.9 541.0 311.2 540.6ZM177.5 692.8 191.5 692.7 192.3 693.0 192.7 693.8 192.7 791.5 192.5 793.1 192.1 793.5 191.5 793.7 177.8 793.7 177.0 793.5 176.5 792.8 176.4 694.0 176.6 693.2 177.5 692.8ZM148.1 699.2 150.2 699.0 152.2 699.1 155.2 700.2 156.7 701.2 157.7 702.2 158.7 703.5 159.7 705.8 160.0 708.2 159.8 710.5 158.8 713.3 156.8 715.7 155.5 716.7 153.5 717.6 152.5 717.8 149.2 717.8 147.5 717.6 145.8 716.7 144.2 715.6 143.0 714.3 141.9 712.2 141.1 709.5 141.1 707.8 142.1 704.2 143.2 702.5 144.4 701.2 146.2 700.0 148.0 699.3ZM292.8 711.2 293.2 711.1 293.5 711.2 293.7 711.8 293.6 725.0 294.0 725.7 295.0 725.9 313.0 725.9 313.7 726.2 313.9 727.0 313.9 740.0 313.5 740.7 312.8 740.9 294.8 740.9 294.0 741.1 293.7 741.5 293.7 771.8 294.0 775.0 295.1 777.2 296.9 778.8 299.0 779.8 302.8 779.9 304.5 779.7 308.0 778.7 312.5 776.6 316.2 774.4 317.0 774.4 317.3 775.0 317.4 789.0 317.1 789.8 316.2 790.6 314.2 791.7 308.5 793.7 306.8 794.0 304.5 794.6 302.5 794.8 296.5 794.8 294.0 794.6 290.8 793.7 288.2 792.7 285.0 790.7 283.0 788.8 281.1 786.5 279.2 783.2 278.1 780.0 277.4 776.2 277.4 741.5 277.0 741.1 276.5 740.9 267.2 740.8 266.5 740.7 266.1 740.2 266.1 737.5 266.8 736.3 291.2 712.4 292.8 711.3ZM225.2 725.0 230.5 724.8 235.0 725.0 239.8 726.1 242.8 727.2 246.2 729.1 249.5 731.7 251.6 734.2 252.6 735.8 253.6 738.0 254.7 741.5 255.0 744.8 255.0 780.5 255.5 781.5 256.2 781.9 257.2 781.7 261.2 779.3 263.9 780.8 264.3 781.8 264.3 788.0 263.8 789.5 260.5 791.8 257.0 793.6 252.5 794.8 247.5 794.8 245.5 794.5 243.5 793.7 242.1 792.8 239.8 790.2 239.2 790.0 234.5 792.7 232.0 793.6 228.5 794.6 226.0 794.9 220.8 794.8 219.2 794.6 215.8 793.6 212.5 791.5 210.2 789.2 208.1 786.5 207.1 784.5 206.0 780.8 205.8 777.5 206.0 774.0 207.2 769.8 208.2 767.8 210.1 765.2 211.5 764.1 216.0 761.1 222.0 758.1 226.0 756.7 227.2 756.0 228.5 755.7 229.8 755.1 233.8 753.8 235.2 753.1 236.8 752.7 238.5 751.8 238.9 751.2 238.6 746.8 237.7 744.2 236.0 742.3 234.0 741.1 233.0 740.9 231.2 740.7 226.8 740.6 224.0 741.0 221.2 742.0 217.2 744.1 214.2 746.3 210.3 750.2 207.8 753.5 207.2 753.6 207.0 753.4 206.9 736.0 207.1 734.2 209.2 732.0 211.3 730.2 214.8 728.1 216.8 727.1 219.5 726.1 225.0 725.0ZM349.9 725.0 354.8 724.8 358.2 724.9 360.5 725.2 364.0 726.0 367.0 727.1 369.0 728.1 372.2 730.2 375.6 733.2 377.6 735.8 379.6 738.8 380.8 741.2 382.6 746.5 383.1 749.5 383.6 751.2 384.0 758.0 384.3 759.8 384.3 762.2 384.1 763.2 383.5 763.6 340.8 763.7 340.2 763.8 339.9 764.2 340.2 766.2 342.0 770.4 343.2 772.2 345.1 774.5 348.0 776.7 349.8 777.6 353.2 778.8 358.8 779.3 364.8 778.8 368.8 777.7 371.5 776.7 377.3 773.8 380.0 772.0 380.5 772.1 381.2 772.8 382.8 773.4 383.0 774.8 383.0 785.8 382.7 786.8 380.2 788.6 374.5 791.7 368.8 793.6 363.5 794.6 360.8 794.9 352.0 794.8 349.0 794.5 345.5 793.7 342.5 792.6 340.2 791.6 337.2 789.8 334.4 787.5 332.2 785.3 330.1 782.5 328.1 779.5 326.2 775.8 325.0 772.8 324.0 769.8 323.1 765.5 322.8 758.8 322.9 754.8 323.2 752.2 324.1 748.0 325.1 744.8 327.1 740.5 328.1 738.8 330.2 736.0 333.2 732.8 336.2 730.1 337.8 729.2 341.8 727.1 344.2 726.2 349.8 725.0ZM412.8 725.0 417.5 724.8 421.5 725.0 427.0 726.0 432.8 728.1 436.5 730.0 436.9 730.5 437.1 731.5 437.8 732.5 437.8 746.0 437.8 746.8 437.5 747.2 437.0 747.2 435.5 746.1 430.0 743.0 425.2 741.1 421.2 740.0 417.8 739.8 414.5 740.0 412.2 741.2 411.1 742.8 411.2 744.2 412.0 745.5 413.3 746.8 420.2 751.6 427.5 756.1 430.5 758.1 434.4 761.2 436.6 763.5 438.7 766.2 439.7 768.0 440.7 771.0 440.8 777.0 440.5 779.5 439.7 782.0 438.7 784.2 436.6 787.2 434.4 789.5 431.2 791.7 427.0 793.7 423.2 794.6 421.0 794.9 412.8 794.8 410.0 794.5 406.2 793.7 403.0 792.7 398.0 790.7 394.3 788.8 393.9 788.0 393.9 771.8 394.0 771.0 394.2 770.5 395.0 770.7 396.2 771.7 400.8 774.7 404.2 776.7 409.0 778.7 412.5 779.8 416.5 780.1 419.8 779.7 422.2 778.5 423.5 777.4 423.9 776.8 424.1 775.2 423.8 773.8 422.8 772.3 421.5 771.1 417.0 768.1 412.5 765.6 407.5 762.6 403.2 759.5 399.0 755.8 397.2 753.7 396.1 751.8 395.0 749.0 394.4 746.2 394.3 743.5 395.0 738.2 396.2 735.2 398.1 732.2 401.4 729.2 404.8 727.2 407.8 726.0 412.8 725.0ZM68.0 726.0 90.0 725.9 95.8 726.1 102.5 727.0 106.8 728.1 108.2 728.7 109.8 729.1 111.8 730.1 115.5 732.1 118.2 734.2 120.6 736.2 123.5 740.0 125.6 743.5 126.6 746.0 127.6 749.0 128.7 754.2 128.8 757.0 128.7 766.0 127.7 771.0 126.7 774.0 124.6 778.5 122.6 781.5 121.0 783.5 117.2 787.3 114.2 789.5 110.5 791.7 105.0 793.7 101.0 794.6 98.2 794.8 91.5 794.8 85.8 793.8 84.5 793.3 84.0 793.5 83.7 794.0 83.7 795.0 83.7 825.2 83.5 826.1 83.0 826.6 68.8 826.7 68.0 826.5 67.5 825.8 67.4 727.0 67.5 726.4 68.0 726.0ZM143.0 726.0 157.5 725.9 158.2 726.1 158.7 726.8 158.7 791.8 158.6 793.0 158.0 793.6 143.8 793.7 143.0 793.5 142.5 792.8 142.4 727.0 142.5 726.4 143.0 726.0ZM351.9 739.8 356.8 739.7 358.5 739.9 359.8 740.2 361.9 741.2 364.8 743.9 366.6 746.8 367.7 750.2 367.6 751.0 367.0 751.5 341.8 751.4 340.5 751.1 340.2 750.8 340.2 750.2 341.1 748.0 342.2 746.0 344.2 743.3 347.5 741.0 350.0 740.0 351.8 739.8ZM84.1 741.0 84.8 740.9 90.5 740.8 96.5 741.0 101.5 742.1 104.0 743.2 106.8 745.1 108.7 747.2 110.6 750.5 111.8 754.2 112.1 757.2 112.1 762.5 111.6 766.0 110.6 769.0 108.6 772.5 105.8 775.6 103.0 777.7 100.8 778.8 97.5 779.7 91.8 779.9 89.8 779.7 86.2 778.7 84.2 777.8 83.9 777.5 83.7 776.8 83.6 742.0 83.7 741.5 84.0 741.1ZM238.1 763.0 238.8 763.2 238.9 763.8 238.9 777.0 238.8 777.9 238.2 778.6 235.2 780.8 233.2 781.8 230.5 782.4 228.5 782.4 226.2 781.8 224.5 780.5 224.0 780.0 223.0 778.5 222.3 776.2 222.3 774.5 223.0 772.2 224.3 770.2 225.5 769.1 227.0 768.1 233.0 765.1 237.0 763.6 238.0 763.0Z"/></symbol>
+  <symbol id="muelle" viewBox="0 0 34 12"><path class="mu-c" d="M1 6 3.5 1.5 6.5 10.5 9.5 1.5 12.5 10.5 15.5 1.5 18 6"/><path class="mu-p" d="M18 6H32M27.5 1.5 32 6 27.5 10.5"/></symbol>
+</svg>
+
+<div class="velo" id="intro" aria-hidden="true">
+  <div class="intro-esf" id="intro-esf"><svg viewBox="0 0 100 100"><use href="#esfera"/></svg></div>
+  <svg class="intro-rot" viewBox="0 0 380.0 290.3"><use href="#rotulo"/></svg>
+  <p class="intro-l">Londres 2001 · Leganés 2007</p>
+</div>
+
+<button type="button" class="logo" data-ir="inicio" aria-label="Zen Pilates, volver al inicio">
+  <svg class="logo-esf" id="logo-esf" viewBox="0 0 100 100" aria-hidden="true"><use href="#esfera"/></svg>
+  <svg class="logo-rot" viewBox="0 0 380.0 290.3" aria-hidden="true"><use href="#rotulo"/></svg>
+</button>
+
+<nav class="carril" id="carril" aria-label="Secciones">
+  <div class="c-via">
+    <span class="c-linea" aria-hidden="true"></span>
+    <ol>
+      <li><button type="button" data-ir="inicio" aria-current="true"><span>Inicio</span></button></li>
+      <li><button type="button" data-ir="metodo"><span>Método</span></button></li>
+      <li><button type="button" data-ir="horario"><span>Horario</span></button></li>
+      <li><button type="button" data-ir="mercedes"><span>Mercedes</span></button></li>
+      <li><button type="button" data-ir="llegar"><span>Cómo llegar</span></button></li>
+    </ol>
+    <span class="c-carro" id="carro" aria-hidden="true"></span>
+  </div>
+  <button type="button" class="c-menu" id="c-menu" aria-expanded="false" aria-controls="hoja">Menú <b id="c-actual">01 · Inicio</b><i aria-hidden="true"></i></button>
+  <button type="button" class="pil c-res" data-ficha>Reservar<svg class="mu" aria-hidden="true"><use href="#muelle"/></svg></button>
+</nav>
+<div class="hoja" id="hoja" aria-label="Menú">
+  <ol>
+    <li><button type="button" data-ir="inicio"><em>01</em><strong>Inicio</strong></button></li>
+    <li><button type="button" data-ir="metodo"><em>02</em><strong>El método</strong></button></li>
+    <li><button type="button" data-ir="horario"><em>03</em><strong>Horario y precios</strong></button></li>
+    <li><button type="button" data-ir="mercedes"><em>04</em><strong>Mercedes</strong></button></li>
+    <li><button type="button" data-ir="llegar"><em>05</em><strong>Cómo llegar</strong></button></li>
+  </ol>
+  <p>601 27 98 89 · 91 686 55 76<br>C. Siete Picos, 1 · Leganés</p>
+</div>
+
+<main>
+  <section class="sec s-ini" id="inicio" data-tono="claro">
+    <div class="ini-txt">
+      <p class="eti">Pilates · Yoga · Fisioterapia</p>
+      <h1>Pilates con fisioterapeuta, en Leganés desde 2007</h1>
+      <p class="ini-p">Máquinas, suelo y yoga en grupos reducidos o en clases privadas. Cada sesión la imparte o la supervisa una fisioterapeuta.</p>
+      <div class="ini-bot">
+        <button type="button" class="pil" data-ficha>Reservar clase de prueba<svg class="mu" aria-hidden="true"><use href="#muelle"/></svg></button>
+        <button type="button" class="enl" data-ir="horario">Ver el horario</button>
+      </div>
+      <ul class="ini-datos">
+        <li><b>4,8</b> en Google · 51 reseñas</li>
+        <li>Sin matrícula ni permanencia</li>
+        <li>Junto a la Carlos III</li>
+      </ul>
+    </div>
+    <div class="ini-foto foto" data-par=".05" style="--ph:url(data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAACQBgCdASobACgAPt1cp0yopSOiMBqqqRAbiWIAxNhRGXYYN59UQhfA4YYgEc0x2CBPgzQtp1J6utqTzx+AAM3IDJY4mJWv4HO/I1dDUcC9baHcUMy4/RowhNIAt5McZV/GmKr550iNNkgZCsYCd+PnxKiR5h9V2vH5SJbcYl+diNkcv8NgO9V68PsVk8gCMK8j9U+ybAA=)"><img src="assets/img/portada.webp" srcset="assets/img/portada_m.webp 900w, assets/img/portada.webp 1500w" sizes="(max-width:780px) 100vw, 46vw" width="1500" height="2250" alt="La sala de Zen Pilates: una fila de reformers de madera ante la ventana con el logo" fetchpriority="high"></div>
+  </section>
+
+  <section class="sec s-met" id="metodo" data-tono="claro">
+    <div class="met-txt">
+      <p class="eti rev"><i>02</i>El método</p>
+      <h2 class="rev d1">Todas las máquinas del método, con una fisio en cada clase</h2>
+      <p class="met-p rev d2">El método Pilates reeduca la postura y fortalece la musculatura profunda del abdomen y del suelo pélvico, respetando la biomecánica de cada cuerpo. En grupos reducidos o en sesiones individuales.</p>
+      <ul class="para rev d2" aria-label="Indicado para">
+        <li>Espalda</li><li>Suelo pélvico</li><li>Embarazo y posparto</li><li>Rehabilitación</li><li>Corrección postural</li><li>Hipopresivos</li>
+      </ul>
+      <ol class="maquinas rev d3">
+        <li><em>01</em><strong>Reformer</strong><small>Carro con muelles: fuerza sin impacto</small></li>
+        <li><em>02</em><strong>Cadillac</strong><small>Trapecio para estirar y rehabilitar</small></li>
+        <li><em>03</em><strong>Silla Wunda</strong><small>Fuerza y equilibrio en poco espacio</small></li>
+        <li><em>04</em><strong>Barril</strong><small>Movilidad para la columna</small></li>
+      </ol>
+    </div>
+    <div class="met-fotos">
+      <figure class="foto zum apa mf1" data-par=".04" style="--ph:url(data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAADQBgCdASooABsAPt1cqEyopSQiMBqqqRAbiWUAwZBS6e7cVv+oN0UWA1QdQw2SzogJhqhd33/ZbGOJeXrHRwAA/uJoz9Mb9nGYYjMVcnYIbA9PsNK1TF/r2MjwGG9yFdmrzUkIMRm915ZjdqgYGRDP/sL8M4aBtjScFJmOU/yeJEahs4KqNJIOMSsCiIhGNjKMwhYIt9qeFHLM0CWAAA==)"><img src="assets/img/grupo.webp" width="602" height="401" loading="lazy" decoding="async" alt="Una clase de máquinas: alumnas tumbadas en los reformers y la instructora corrigiendo"><figcaption class="pie">Clase de máquinas</figcaption></figure>
+      <figure class="foto zum apa d1 mf2" style="--ph:url(data:image/webp;base64,UklGRjgBAABXRUJQVlA4ICwBAADQCACdASooACgAPt1Wp0yopKOiMdZsARAbiWoAvnr5+gDEq4kqqUV8U/XGGQvvfkAtgfcDUgpnZmQdQIAFSKsmrTya3iknJmfvb1SgMIZMAP70e/VXuGabshSl7doGr29f5WVWLkhTsSo9VOFhe9KF4GHaRKDPyip8hRdLwX+TJXv6a0dbigiV1P5f7N/KBOJIP4P1be9tUOlvyAgMjF72yc5kKHNGSu+GirDzfmGA+WSRDP5pBmIRimyG+2Ghl+KZ6gyvvgRm4uLBgoEHefdmKnjJjF1EOThJsHr9XPfc27Xfc/tvvj2rR+B/JdfBPLA9sftgOFL9mFEjfwGja/0Okv3YvV9gXC7Hg8i2wSozXYxAOs7kxHbKbPLddJlwQxh4VabO+48Y8kGQAAA=)"><img src="assets/img/posparto.webp" width="720" height="715" loading="lazy" decoding="async" alt="Clase de posparto: madres haciendo ejercicio en la colchoneta con sus bebés al lado"><figcaption class="pie">Posparto, con tu peque</figcaption></figure>
+      <figure class="foto zum apa d2 mf3" style="--ph:url(data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAADwBACdASobACgAPs1UokynpKMiNUgA8BmJZwDMHCyZ6QigXJbUK0O/G4F3cA5VTwAA/u/sap1g7JJ4F7oq0p5Q3+sv/nJ5PafutRg74h5N93j2O1NwXNR7mwTX/IsS2kjz1hy2TC2AxeRqMlLBDSOM+5K1dtn0ty3pM6SevWbIAA==)"><img src="assets/img/embarazo.webp" width="640" height="960" loading="lazy" decoding="async" alt="Silueta de una mujer embarazada estirando los brazos ante la ventana con el logo de Zen Pilates" style="object-position:40% 50%"><figcaption class="pie">Embarazo</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="sec s-hor" id="horario" data-tono="claro">
+    <div class="hor-txt">
+      <p class="eti rev"><i>03</i>Horario y precios</p>
+      <h2 class="rev d1">De lunes a viernes, de mañana y de tarde</h2>
+      <div class="leyenda rev d2" aria-hidden="true"><span><i class="pt"></i>Máquinas</span><span><i class="pt sue"></i>Suelo</span><span><i class="pt yog"></i>Yoga</span><span><i class="pt cro"></i>Cross pilates</span><span><i class="pt hip"></i>Hipopresivos</span><span><i class="pt pri"></i>Privadas</span></div>
+      <ul class="tarifas rev d3">
+        <li><span>Clase suelta</span><i></i><b>15,50 €</b><small>Suelo, yoga o barra</small></li>
+        <li><span>Mensualidad</span><i></i><b>desde 50 €</b><small>1 día a la semana · 2 días, 70 € · 3, 85 € · 4, 95 €</small></li>
+        <li><span>Bonos de máquina o suelo</span><i></i><b>4 · 10 · 15 · 20</b><small>Sesiones, para horarios que cambian</small></li>
+        <li><span>Valoración con fisioterapeuta</span><i></i><b>35 €</b></li>
+      </ul>
+      <p class="nota rev d3">Sin matrícula ni permanencia. Horario de 2026: confírmalo al reservar.</p>
+    </div>
+    <div class="dias" id="dias" role="group" aria-label="Día de la semana">
+      <button type="button" data-dia="0" aria-pressed="true">Lun</button><button type="button" data-dia="1" aria-pressed="false">Mar</button><button type="button" data-dia="2" aria-pressed="false">Mié</button><button type="button" data-dia="3" aria-pressed="false">Jue</button><button type="button" data-dia="4" aria-pressed="false">Vie</button>
+    </div>
+    <div class="tabla rev d2" id="tabla" role="table" aria-label="Horario de clases de lunes a viernes">
+    <div class="fila cab" role="row"><span class="c h" role="columnheader">Hora</span><span class="c" data-d="0" role="columnheader">Lunes</span><span class="c" data-d="1" role="columnheader">Martes</span><span class="c" data-d="2" role="columnheader">Miércoles</span><span class="c" data-d="3" role="columnheader">Jueves</span><span class="c" data-d="4" role="columnheader">Viernes</span></div>
+    <div class="fila v0 v2 v4" role="row"><span class="c h" role="rowheader">8:30</span><span class="c" data-d="0" role="cell"></span><span class="c" data-d="1" role="cell"><i class="pt"></i><span>Máquinas</span></span><span class="c" data-d="2" role="cell"></span><span class="c" data-d="3" role="cell"><i class="pt"></i><span>Máquinas</span></span><span class="c" data-d="4" role="cell"></span></div>
+    <div class="fila " role="row"><span class="c h" role="rowheader">9:30</span><span class="c" data-d="0" role="cell"><i class="pt"></i><span>Máquinas</span></span><span class="c" data-d="1" role="cell"><i class="pt"></i><span>Máquinas</span></span><span class="c" data-d="2" role="cell"><i class="pt"></i><span>Máquinas</span></span><span class="c" data-d="3" role="cell"><i class="pt"></i><span>Máquinas</span></span><span class="c" data-d="4" role="cell"><i class="pt"></i><span>Máquinas</span></span></div>
+    <div class="fila " role="row"><span class="c h" role="rowheader">10:30</span><span class="c" data-d="0" role="cell"><i class="pt cro"></i><span>Cross pilates</span></span><span class="c" data-d="1" role="cell"><i class="pt yog"></i><span>Yoga<small>vinyasa</small></span></span><span class="c" data-d="2" role="cell"><i class="pt"></i><span>Máquinas</span></span><span class="c pri" data-d="3" role="cell"><i class="pt pri"></i><span>Privada</span></span><span class="c" data-d="4" role="cell"><i class="pt sue"></i><span>Suelo</span></span></div>
+    <div class="fila " role="row"><span class="c h" role="rowheader">11:30</span><span class="c" data-d="0" role="cell"><i class="pt"></i><span>Máquinas</span></span><span class="c" data-d="1" role="cell"><i class="pt"></i><span>Máquinas</span></span><span class="c" data-d="2" role="cell"><i class="pt"></i><span>Máquinas</span></span><span class="c" data-d="3" role="cell"><i class="pt"></i><span>Máquinas</span></span><span class="c" data-d="4" role="cell"><i class="pt"></i><span>Máquinas</span></span></div>
+    <div class="fila" role="row"><span class="c h" role="rowheader">12:30</span><span class="c lar" role="cell">Clases privadas hasta las 15:00</span></div>
+    <div class="fila " role="row"><span class="c h" role="rowheader">15:00</span><span class="c pri" data-d="0" role="cell"><i class="pt pri"></i><span>Privada</span></span><span class="c" data-d="1" role="cell"><i class="pt"></i><span>Máquinas</span></span><span class="c pri" data-d="2" role="cell"><i class="pt pri"></i><span>Privada</span></span><span class="c" data-d="3" role="cell"><i class="pt"></i><span>Máquinas</span></span><span class="c" data-d="4" role="cell"><i class="pt"></i><span>Máquinas</span></span></div>
+    <div class="fila " role="row"><span class="c h" role="rowheader">16:00</span><span class="c pri" data-d="0" role="cell"><i class="pt pri"></i><span>Privada</span></span><span class="c pri" data-d="1" role="cell"><i class="pt pri"></i><span>Privada</span></span><span class="c pri" data-d="2" role="cell"><i class="pt pri"></i><span>Privada</span></span><span class="c pri" data-d="3" role="cell"><i class="pt pri"></i><span>Privada</span></span><span class="c" data-d="4" role="cell"><i class="pt hip"></i><span>Hipopresivos<small>en reformer</small></span></span></div>
+    <div class="fila " role="row"><span class="c h" role="rowheader">17:00</span><span class="c" data-d="0" role="cell"><i class="pt"></i><span>Máquinas</span></span><span class="c" data-d="1" role="cell"><i class="pt"></i><span>Máquinas</span></span><span class="c" data-d="2" role="cell"><i class="pt"></i><span>Máquinas</span></span><span class="c" data-d="3" role="cell"><i class="pt"></i><span>Máquinas</span></span><span class="c" data-d="4" role="cell"><i class="pt cro"></i><span>Cross pilates</span></span></div>
+    <div class="fila " role="row"><span class="c h" role="rowheader">18:00</span><span class="c" data-d="0" role="cell"><i class="pt sue"></i><span>Suelo</span></span><span class="c" data-d="1" role="cell"><i class="pt"></i><span>Máquinas</span></span><span class="c" data-d="2" role="cell"><i class="pt sue"></i><span>Suelo</span></span><span class="c" data-d="3" role="cell"><i class="pt"></i><span>Máquinas</span></span><span class="c" data-d="4" role="cell"><i class="pt"></i><span>Máquinas</span></span></div>
+    <div class="fila " role="row"><span class="c h" role="rowheader">19:00</span><span class="c" data-d="0" role="cell"><i class="pt yog"></i><span>Yoga<small>dinámico</small></span></span><span class="c" data-d="1" role="cell"><i class="pt sue"></i><span>Suelo</span></span><span class="c" data-d="2" role="cell"><i class="pt yog"></i><span>Yoga<small>dinámico</small></span></span><span class="c" data-d="3" role="cell"><i class="pt sue"></i><span>Suelo</span></span><span class="c" data-d="4" role="cell"><i class="pt"></i><span>Máquinas</span></span></div>
+    <div class="fila v4" role="row"><span class="c h" role="rowheader">20:00</span><span class="c" data-d="0" role="cell"><i class="pt"></i><span>Máquinas</span></span><span class="c" data-d="1" role="cell"><i class="pt"></i><span>Máquinas</span></span><span class="c" data-d="2" role="cell"><i class="pt"></i><span>Máquinas</span></span><span class="c" data-d="3" role="cell"><i class="pt"></i><span>Máquinas</span></span><span class="c" data-d="4" role="cell"></span></div>
+    </div>
+  </section>
+
+  <section class="sec s-mer oscuro" id="mercedes" data-tono="oscuro">
+    <div class="mer-fotos">
+      <figure class="foto apa mf-1" style="--ph:url(data:image/webp;base64,UklGRrYAAABXRUJQVlA4IKoAAACwBwCdASooACgAPsFOnEynpKKiON28APAYCWkAAEwdN30QiLelKMoujzlNS5YMHzUqTJkUlKcA0dqJvkawFPFLqJ46xrkAAP5f3IWYtU2yLZYh1uTzmGVFIohT9W6EYeUS1YmFvPPW3cvgaJ7D1PnlEQTBarmQ8gXr9yjn/uer0kwyB3y79i7ArAkrmnKSqzVbEqFvajsnXRcWhOWI5u7WXw1rRzthU/QAAA==)"><img src="assets/img/mercedes.webp" width="960" height="954" loading="lazy" decoding="async" alt="Retrato en blanco y negro de Mercedes Camarero, directora de Zen Pilates"><figcaption class="pie">Mercedes Camarero · Directora</figcaption></figure>
+      <figure class="foto apa d2 mf-2" style="--ph:url(data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAABQBgCdASooABUAPt1eqVAopKOiqrgKARAbiWMAw21AAEX799gMXftFTU818X5ibOCw8DgYdScdj2MBgAD0XGjX+dgT8QVT6wOsmBKqxJmqMjQgjY/gCEX4RkEAI+I38D7/jMMLSDyz0ldfbLiqSx+8IXcLfBSmxtGrEgXkymIs6D0AAAA=)"><img src="assets/img/holbox.webp" width="960" height="512" loading="lazy" decoding="async" alt="Clase de yoga en una playa de arena blanca en Holbox, México"></figure>
+    </div>
+    <div class="mer-txt">
+      <p class="eti rev"><i>04</i>Quién te enseña</p>
+      <h2 class="rev d1">Mercedes Camarero, de Londres a Leganés</h2>
+      <p class="mer-p rev d2">Fisioterapeuta colegiada y directora del centro. Se formó en Pilates con Alan Herman, precursor del método en Europa, y dio clases en Londres durante seis años: en KX, David Lloyd, Holmes Place, Chelsea Club y para el Fulham F.C.</p>
+      <ol class="linea-t rev d2">
+        <li><b>1994</b><span>Instructora de yoga</span></li>
+        <li><b>1999</b><span>Fisioterapeuta, en Madrid</span></li>
+        <li><b>2001</b><span>Pilates con Alan Herman, en Londres</span></li>
+        <li class="yo"><b>2007</b><span>Vuelve y abre Zen Pilates</span></li>
+        <li><b>Hoy</b><span>Forma a nuevos monitores</span></li>
+      </ol>
+      <div class="forma rev d3">
+        <p><strong>Cursos de monitor:</strong> Pilates Reformer (30 h), Pilates Suelo, Yoga y reciclaje para instructores.</p>
+        <button type="button" class="pil claro" data-ficha>Preguntar por la formación<svg class="mu" aria-hidden="true"><use href="#muelle"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec s-lle" id="llegar" data-tono="claro">
+    <div class="l-txt">
+      <p class="eti rev"><i>05</i>Cómo llegar</p>
+      <h2 class="rev d1">Al lado de la Universidad Carlos III</h2>
+      <div class="tels rev d2">
+        <a href="tel:+34601279889" data-ficha>601 27 98 89<small>Móvil</small></a>
+        <a href="tel:+34916865576" data-ficha>91 686 55 76<small>Centro</small></a>
+      </div>
+      <div class="l-datos rev d3">
+        <div><strong>Dirección</strong>C. Siete Picos, 1 · 28912 Leganés<span class="lg"><br>info@zenpilates.es</span></div>
+        <div><strong>Horario de clases</strong>Lunes a jueves, 8:30–21:00<br>Viernes, 9:30–20:00</div>
+        <div class="ancho tr"><strong>Transporte</strong><span class="lg">Autobuses 432, 450, 480, 482 y 485 en la Av. de la Universidad, a 140 m. Metro Casa del Reloj (L12), a 630 m; Metro y Cercanías Leganés Central, a 760 m.</span><span class="ct">Bus 432, 450, 480, 482 y 485 a 140 m · Metro Casa del Reloj (L12) a 630 m</span></div>
+      </div>
+      <div class="l-bot rev d3">
+        <button type="button" class="pil" data-ficha>Reservar clase de prueba<svg class="mu" aria-hidden="true"><use href="#muelle"/></svg></button>
+        <a class="enl" href="https://www.google.com/maps/dir/?api=1&amp;destination=40.3310338,-3.7642559" target="_blank" rel="noopener">Abrir la ruta</a>
+      </div>
+    </div>
+    <div class="mapa">
+      <iframe title="Mapa de la calle Siete Picos, 1, en Leganés" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=-3.7712%2C40.3278%2C-3.7573%2C40.3343&amp;layer=mapnik" tabindex="-1"></iframe>
+      <span class="chin" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#esfera"/></svg></span>
+      <a class="ruta" href="https://www.google.com/maps/dir/?api=1&amp;destination=40.3310338,-3.7642559" target="_blank" rel="noopener" aria-label="Cómo llegar a la calle Siete Picos, 1, en Google Maps"></a>
+      <span class="cred">© OpenStreetMap</span>
+    </div>
+  </section>
+</main>
+
+<div class="fi" id="ficha" role="dialog" aria-modal="true" aria-labelledby="fi-t">
+  <div class="fi-c">
+    <button type="button" class="fi-x" id="fi-x">Cerrar</button>
+    <p class="eti">Clase de prueba</p>
+    <h3 id="fi-t">Reserva tu primera clase</h3>
+    <p>Sin matrícula ni permanencia. Llámanos y te buscamos sitio en el grupo que mejor te encaje.</p>
+    <div class="fi-n"><div><small>Móvil</small>601 27 98 89</div><a class="fi-b solo-tel" href="tel:+34601279889">Llamar</a><button type="button" class="fi-b solo-pc" data-copia="601279889">Copiar</button></div>
+    <div class="fi-n"><div><small>Centro</small>91 686 55 76</div><a class="fi-b solo-tel" href="tel:+34916865576">Llamar</a><button type="button" class="fi-b solo-pc" data-copia="916865576">Copiar</button></div>
+    <a class="pil" href="https://wa.me/34601279889?text=Hola%2C%20quer%C3%ADa%20reservar%20una%20clase%20de%20prueba" target="_blank" rel="noopener">Escribir por WhatsApp<svg class="mu" aria-hidden="true"><use href="#muelle"/></svg></a>
+    <p class="fi-e">info@zenpilates.es<br>C. Siete Picos, 1 · 28912 Leganés</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  var d = document, html = d.documentElement;
+  var quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function (s, c) { return (c || d).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || d).querySelectorAll(s)); };
+  var esTel = /Android.*Mobile|iPhone|iPod|Windows Phone/.test(navigator.userAgent);
+  if (esTel) html.classList.add('es-tel');
+
+  /* Desplazamiento propio: los enlaces #ancla hacen saltar el aviso del visor */
+  var anim = null;
+  function ir(id) {
+    var el = d.getElementById(id); if (!el) return;
+    var ini = window.pageYOffset, fin = el.getBoundingClientRect().top + ini, dist = fin - ini;
+    if (anim) cancelAnimationFrame(anim);
+    if (quieto || Math.abs(dist) < 2) { window.scrollTo(0, fin); return; }
+    var dur = Math.min(1700, 800 + Math.abs(dist) * .22), t0 = null;
+    (function paso(t) {
+      if (t0 === null) t0 = t;
+      var p = Math.min(1, (t - t0) / dur);
+      var e = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+      window.scrollTo(0, ini + dist * e);
+      if (p < 1) anim = requestAnimationFrame(paso); else anim = null;
+    })(performance.now());
+  }
+  ['wheel', 'touchstart'].forEach(function (ev) {
+    window.addEventListener(ev, function () { if (anim) { cancelAnimationFrame(anim); anim = null; } }, { passive: true });
+  });
+
+  /* Menú del móvil: una hoja que sube desde el carril */
+  var hoja = $('#hoja'), cMenu = $('#c-menu'), carril = $('#carril');
+  function ponHoja(si) { hoja.classList.toggle('abierta', si); cMenu.setAttribute('aria-expanded', si ? 'true' : 'false'); }
+  cMenu.addEventListener('click', function () { ponHoja(!hoja.classList.contains('abierta')); });
+  d.addEventListener('click', function (e) { if (!hoja.contains(e.target) && !carril.contains(e.target)) ponHoja(false); });
+  $$('[data-ir]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var dest = b.getAttribute('data-ir');
+      if (hoja.classList.contains('abierta')) { ponHoja(false); setTimeout(function () { ir(dest); }, 250); }
+      else ir(dest);
+    });
+  });
+
+  /* Ficha de reserva: en un ordenador, tel: no hace nada */
+  var ficha = $('#ficha');
+  function ponFicha(si) { ficha.classList.toggle('abierta', si); if (si) { ponHoja(false); $('#fi-x').focus(); } }
+  $$('[data-ficha]').forEach(function (a) {
+    if (a.tagName === 'A') {
+      if (esTel) return;
+      a.removeAttribute('href'); a.setAttribute('role', 'button'); a.tabIndex = 0;
+    }
+    a.addEventListener('click', function () { ponFicha(true); });
+  });
+  $('#fi-x').addEventListener('click', function () { ponFicha(false); });
+  ficha.addEventListener('click', function (e) { if (e.target === ficha) ponFicha(false); });
+  $$('[data-copia]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var v = b.getAttribute('data-copia'), ok = function () { b.textContent = 'Copiado'; setTimeout(function () { b.textContent = 'Copiar'; }, 1600); };
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(v).then(ok);
+      else { var t = d.createElement('textarea'); t.value = v; d.body.appendChild(t); t.select(); try { d.execCommand('copy'); ok(); } catch (e) {} t.remove(); }
+    });
+  });
+  d.addEventListener('keydown', function (e) { if (e.key === 'Escape') { ponHoja(false); ponFicha(false); } });
+
+  /* Horario: en el móvil se ve un día (hoy, si es laborable) */
+  var tabla = $('#tabla'), dias = $$('#dias button');
+  function verDia(n) {
+    tabla.setAttribute('data-ver', n);
+    dias.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-dia') == n ? 'true' : 'false'); });
+  }
+  var hoy = (new Date().getDay() + 6) % 7;
+  verDia(hoy < 5 ? hoy : 0);
+  dias.forEach(function (b) { b.addEventListener('click', function () { verDia(b.getAttribute('data-dia')); }); });
+  /* en el ordenador, al pasar por una clase se marcan su fila y su día */
+  tabla.addEventListener('mouseover', function (e) {
+    var c = e.target.closest('[data-d]');
+    $$('.hov', tabla).forEach(function (x) { x.classList.remove('hov'); });
+    if (c && c.getAttribute('data-d').length === 1) { tabla.setAttribute('data-col', c.getAttribute('data-d')); c.classList.add('hov'); }
+    else tabla.removeAttribute('data-col');
+  });
+  tabla.addEventListener('mouseleave', function () { tabla.removeAttribute('data-col'); });
+
+  /* Sección actual: el carro se desliza hasta su parada */
+  var secs = $$('.sec'), actual = null, carro = $('#carro'), paradas = $$('.c-via ol button'), hojaB = $$('.hoja ol button'), cAct = $('#c-actual');
+  var nombres = ['Inicio', 'El método', 'Horario', 'Mercedes', 'Cómo llegar'];
+  function tonoEn(y) {
+    var s = secs[0];
+    secs.forEach(function (x) { if (x.getBoundingClientRect().top <= y) s = x; });
+    return s.getAttribute('data-tono');
+  }
+  function miraSeccion() {
+    var h = window.innerHeight, i = 0;
+    secs.forEach(function (x, k) { if (x.getBoundingClientRect().top <= h * .45) i = k; });
+    html.classList.toggle('tono-oscuro', tonoEn(44) === 'oscuro');
+    html.classList.toggle('carril-oscuro', tonoEn(h - 50) === 'oscuro');
+    if (i === actual) return; actual = i;
+    carro.style.setProperty('--x', ((i + .5) / secs.length * carro.parentNode.offsetWidth).toFixed(1) + 'px');
+    paradas.concat(hojaB).forEach(function (b) {
+      if (b.getAttribute('data-ir') === secs[i].id) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+    });
+    cAct.textContent = '0' + (i + 1) + ' · ' + nombres[i];
+  }
+
+  /* Paralaje suave de las fotos: solo eso va atado al scroll */
+  var pars = quieto ? [] : $$('[data-par]').map(function (el) { return { el: el, img: $('img', el), k: parseFloat(el.getAttribute('data-par')) }; });
+  var pide = false;
+  function pinta() {
+    pide = false;
+    var h = window.innerHeight;
+    pars.forEach(function (p) {
+      var r = p.el.getBoundingClientRect();
+      if (r.bottom < -80 || r.top > h + 80) return;
+      p.img.style.transform = 'translate3d(0,' + (-(r.top + r.height / 2 - h / 2) * p.k).toFixed(1) + 'px,0)';
+    });
+    miraSeccion();
+  }
+  window.addEventListener('scroll', function () { if (!pide) { pide = true; requestAnimationFrame(pinta); } }, { passive: true });
+  window.addEventListener('resize', function () { actual = null; pinta(); });
+  pinta();
+
+  /* Entradas: solo se esconde lo que queda por debajo de la pantalla */
+  if (!quieto && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.remove('pre'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: .04 });
+    $$('.rev,.apa,.linea-t').forEach(function (el) {
+      if (el.getBoundingClientRect().top > window.innerHeight) { el.classList.add('pre'); io.observe(el); }
+    });
+  }
+
+  /* Entrada: el logo aparece en grande sobre la portada atenuada; la esfera respira
+     y viaja hasta su sitio en la cabecera mientras se aclara la portada */
+  if (html.classList.contains('intro')) {
+    var esf = $('#intro-esf'), dest = $('#logo-esf');
+    var empieza = function () {
+      requestAnimationFrame(function () { html.classList.add('i1'); });
+      setTimeout(function () { html.classList.add('i2'); }, 650);
+      setTimeout(function () {
+        var a = esf.getBoundingClientRect(), b = dest.getBoundingClientRect();
+        var k = b.width / a.width;
+        var dx = (b.left + b.width / 2) - (a.left + a.width / 2), dy = (b.top + b.height / 2) - (a.top + a.height / 2);
+        html.classList.add('i3');
+        esf.style.transform = 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px) scale(' + k.toFixed(4) + ')';
+      }, 1450);
+      setTimeout(function () {
+        html.classList.add('sale');
+        $('#intro').remove();
+        setTimeout(function () { html.classList.remove('intro', 'i1', 'i2', 'i3', 'sale'); }, 1200);
+      }, 2480);
+    };
+    /* espera a la foto de la portada, como mucho 600 ms: se ve a través del velo */
+    var fotoP = $('.ini-foto img'), una = false;
+    var arranca = function () { if (!una) { una = true; empieza(); } };
+    if (fotoP.complete && fotoP.naturalWidth) arranca();
+    else { fotoP.addEventListener('load', arranca); fotoP.addEventListener('error', arranca); setTimeout(arranca, 600); }
+  }
+  window.__animOk = true;
+})();
+</script>
+</body>
+</html>
