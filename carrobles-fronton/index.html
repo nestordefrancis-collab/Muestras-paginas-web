@@ -102,8 +102,12 @@ h2{font-size:clamp(31px,3.7vw,54px);line-height:1.08}
 
 /* I · Portada ------------------------------------------------- */
 .hero{background:var(--granito);color:#fff}
-.h-foto{position:absolute;inset:0}
-.h-foto img{object-position:72% 50%}
+/* en escritorio la foto ocupa la derecha; durante la entrada, toda la pantalla, y se recoloca
+   mientras entra la cuña */
+.h-foto{position:absolute;inset:0 0 0 38%}
+.h-foto img{object-position:42% 40%}
+html.intro .h-foto{left:0;transition:left 1.05s cubic-bezier(.7,0,.2,1)}
+html.intro.sale .h-foto{left:38%}
 .h-oro,.h-cuna{position:absolute;inset:0}
 .h-oro{background:var(--oro);clip-path:var(--cuna-oro)}
 .h-cuna{background:var(--rojo);clip-path:var(--cuna)}
@@ -276,7 +280,8 @@ html.sale .h-txt>*,html.sale .cab{opacity:1;transition:opacity .8s .55s}
   .eti{font-size:12px}
   h2{font-size:clamp(26px,7.6vw,33px)}
 
-  .h-foto img{object-position:50% 30%}
+  .h-foto,html.intro .h-foto,html.intro.sale .h-foto{left:0}
+  .h-foto img{object-position:58% 20%}
   .h-txt{width:100%;justify-content:flex-end;padding:0 20px max(24px,env(safe-area-inset-bottom))}
   .h-logo{width:clamp(58px,10vh,82px);margin-bottom:10px}
   .hero h1{font-size:clamp(29px,8.8vw,38px)}
@@ -455,7 +460,7 @@ html.sale .h-txt>*,html.sale .cab{opacity:1;transition:opacity .8s .55s}
 
 <main>
   <section class="sec hero" id="inicio" data-t="I · Mármoles y granitos">
-    <div class="h-foto foto" data-par=".1" style="--ph:url(data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAABwBgCdASoeACgAPtVYpUyoJSOiMBqtUQAaiWcAyntT2u1yxx63ato+qX/DK50A1FQFmFXKEvvjGJMft8AA/iqH7IcS+u5fohy/Nubbunc24uLH6DCZ5WFNhRaxSrvuuJIWAqeZgNFdNKInvPwWr8GiA5tIKT4oP15DYAAA)"><img src="assets/img/portada.webp" width="1300" height="1733" alt="Escalera revestida de mármol marrón veteado, trabajo de Carrobles" fetchpriority="high"></div>
+    <div class="h-foto foto" data-par=".1" style="--ph:url(data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAADQBQCdASooABQAPt1eq1CopKOiqrgKARAbiWcAzcA6fT5dXIlBwrjm/wdAPwGuNxJsoZIoaJYAAP7o2vnTfGIa8NcWUizLqw7atFwrhRNV1qGaFFhQ74chiNf75iZrSqXKfvNo8gPvJxiKuHyg5YCyEIAAAA==)"><img src="assets/img/portada.webp" width="2600" height="1327" alt="Lavabo volado de granito negro veteado con un seno de cristal, trabajo de Carrobles" fetchpriority="high"></div>
     <div class="h-oro" aria-hidden="true"></div>
     <div class="h-cuna" aria-hidden="true"></div>
     <div class="h-txt">
@@ -701,14 +706,17 @@ html.sale .h-txt>*,html.sale .cab{opacity:1;transition:opacity .8s .55s}
      fuste de una columna hasta que el hueco cubre la pantalla, y entra la diagonal */
   var vano = $('.vano'), vanoNom = $('.vano-nom'), vt = $('#vano-t');
   if (html.classList.contains('intro')) {
-    var W = window.innerWidth, H = window.innerHeight, movil = W <= 780 || (W <= 1100 && H > W);
-    /* el vano se abre sobre la parte de la foto que queda visible al final */
-    var cx = movil ? W / 2 : W * .76, cy = movil ? H * .22 : H / 2;
-    var s0 = Math.min(150, W * .3) / 220;                 /* el templo mide 220 × 210 */
-    /* el punto fijo del zum es el centro del fuste izquierdo (55,142) */
-    var qx = cx + (55 - 110) * s0, qy = cy + (142 - 105) * s0;
-    var s1 = Math.max(qx / 25, (W - qx) / 25, qy / 45, (H - qy) / 44) * 1.08;
-    var pon = function (s) { vt.setAttribute('transform', 'translate(' + qx + ' ' + qy + ') scale(' + s + ') translate(-55 -142)'); };
+    var W = window.innerWidth, H = window.innerHeight;
+    /* el templo, centrado en la pantalla; el conjunto templo + nombre queda centrado en vertical */
+    var s0 = Math.min(170, W * .34) / 220;                /* el templo mide 220 × 210 */
+    var cx = W / 2, cy = H / 2 - 30;
+    /* el zum crece desde el centro del templo: el hueco que acaba cubriendo la pantalla es el
+       frontón, que es el que está en el centro del dibujo */
+    var qx = cx, qy = cy - 40 * s0;
+    /* punto fijo (110,65) del dibujo: dentro del frontón macizo. Desde ahí el frontón llega
+       25 unidades hacia arriba en su vértice, pero solo ~11 hacia abajo (la viga acaba en 76) */
+    var s1 = Math.max(qx / 60, (W - qx) / 60, qy / 12, (H - qy) / 10) * 1.1;
+    var pon = function (s) { vt.setAttribute('transform', 'translate(' + qx + ' ' + qy + ') scale(' + s + ') translate(-110 -65)'); };
     pon(s0);
     vanoNom.style.top = (cy + 112 * s0) + 'px';
     vanoNom.style.right = 'auto'; vanoNom.style.width = '360px'; vanoNom.style.left = (cx - 180) + 'px';
