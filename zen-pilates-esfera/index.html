@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zen Pilates · Pilates y yoga con fisioterapeuta en Leganés</title>
+<meta name="description" content="Centro de pilates y yoga en Leganés desde 2007. Máquinas, suelo, yoga, embarazo y posparto e hipopresivos, con una fisioterapeuta en cada clase. Sin matrícula ni permanencia.">
+<meta name="theme-color" content="#FBF7F4">
+<script>
+  /* Todo se ve sin JavaScript. El guion del final solo esconde lo que queda por debajo
+     de la pantalla (clase «pre») y hace la entrada. Si no llega a marcar window.__animOk,
+     se quitan las clases y la página queda entera y quieta. */
+  document.documentElement.classList.add('js');
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && !location.hash && (window.pageYOffset || 0) < 40)
+    document.documentElement.classList.add('intro');
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!window.__animOk) document.documentElement.classList.remove('js', 'intro', 'mazo', 'suelta');
+  });
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- la fuente no bloquea: la página (y la entrada) arrancan sin esperarla -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;700;800&display=swap"></noscript>
+<style>
+:root{
+  --base:#FBF7F4;             /* blanco cálido */
+  --rosa:#FFE6F2;             /* el magenta de la esfera, muy aclarado */
+  --rosa-2:#FFD2E9;
+  --ambar-c:#FFF1C6;          /* el ámbar del rótulo, aclarado */
+  --ciruela:#3A1530;
+  --tinta:#2B2326;
+  --gris:#6D6166;
+  --linea:rgba(43,35,38,.12);
+  --crema:#FFF2F8;
+  --magenta:#FF0E9E;          /* la esfera de su logo */
+  --magenta-t:#C8007A;        /* el mismo tono, legible sobre claro */
+  --ambar:#FFC20F;            /* el rótulo de su logo */
+  --esf:radial-gradient(circle at 51% 49%,#fff 0,#FFE6FA 10%,#FF86E6 36%,#FF22AE 72%,#FF0E9E 100%);
+  --esf-txt:radial-gradient(circle at 50% 38%,#FF6CCB 0,#FF1AA8 52%,#E2007F 100%);   /* para llevar texto blanco encima */
+  --sans:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --px:clamp(24px,5vw,80px);
+  --muelle:cubic-bezier(.34,1.56,.64,1);
+  --suave:cubic-bezier(.22,.8,.24,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:var(--base)}
+body{margin:0;font:400 17px/1.55 var(--sans);color:var(--tinta);background:var(--base);overflow-x:hidden}
+img{display:block;max-width:100%}
+h1,h2,h3,p,ul,ol,figure{margin:0;padding:0}
+ul,ol{list-style:none}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:inherit}
+:focus-visible{outline:2px solid var(--magenta-t);outline-offset:3px}
+.salta{position:fixed;left:8px;top:-60px;z-index:200;background:#fff;padding:10px 14px}
+.salta:focus{top:8px}
+h1,h2{font-family:var(--sans);font-weight:800;letter-spacing:-.035em;text-wrap:balance}
+h2{font-size:clamp(34px,4vw,60px);line-height:1.02}
+.eti{display:inline-flex;align-items:center;gap:10px;font:700 13px/1.2 var(--sans);letter-spacing:.02em;color:var(--magenta-t)}
+.eti::before{content:'';flex:none;width:12px;height:12px;border-radius:50%;background:var(--esf)}
+.oscuro .eti{color:#FF7BC6}
+
+/* ── Botones: la bola de la izquierda respira y el color sale de ella ── */
+.bol{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:12px;min-height:54px;padding:0 26px 0 12px;border-radius:999px;
+  background:var(--b-fondo,var(--tinta));color:var(--b-texto,#fff);font:700 15.5px/1 var(--sans);letter-spacing:-.005em;text-decoration:none;white-space:nowrap;transition:color .45s}
+.bol::before{content:'';position:absolute;inset:0;z-index:-1;border-radius:inherit;background:var(--b-relleno,#000);clip-path:circle(0 at 26px 50%);transition:clip-path .75s var(--suave)}
+.bol i{flex:none;width:30px;height:30px;border-radius:50%;background:var(--esf);transition:transform .7s var(--muelle)}
+.bol.amb{--b-fondo:var(--ambar);--b-texto:var(--tinta);--b-relleno:var(--tinta)}
+.bol.cla{--b-fondo:#fff;--b-texto:var(--tinta);--b-relleno:var(--rosa-2)}
+.bol.osc{--b-fondo:var(--tinta);--b-texto:#fff;--b-relleno:var(--magenta-t)}
+@media (hover:hover){
+  .bol:hover::before{clip-path:circle(160% at 26px 50%)}
+  .bol:hover i{transform:scale(1.22)}
+  .bol.amb:hover{color:#fff}
+}
+
+/* ── Logo arriba a la izquierda; reservar arriba a la derecha ─────── */
+.logo{position:fixed;left:var(--px);top:22px;z-index:50;display:flex;align-items:center;gap:12px;color:var(--tinta);transition:color .5s}
+.logo-esf{width:38px;height:38px;flex:none}
+.logo-rot{height:36px;width:47.1px;flex:none}
+html.tono-oscuro .logo{color:var(--crema)}
+.reserva{position:fixed;right:var(--px);top:16px;z-index:50}
+.reserva .bol{min-height:50px;box-shadow:0 10px 26px -14px rgba(43,35,38,.45)}
+
+/* ── El anillo: un botón redondo abajo a la derecha que lleva la cuenta de las secciones ── */
+.anillo{position:fixed;right:22px;bottom:22px;z-index:56;width:72px;height:72px;border-radius:50%;background:#fff;color:var(--tinta);
+  box-shadow:0 0 0 1px var(--linea),0 16px 34px -16px rgba(43,35,38,.5);transition:transform .6s var(--muelle)}
+.anillo svg{position:absolute;inset:0;width:100%;height:100%}
+.anillo circle{fill:none;stroke:rgba(43,35,38,.14);stroke-width:3.2;stroke-linecap:round;transition:stroke .5s}
+.anillo circle.on{stroke:var(--magenta)}
+.anillo b{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font:800 17px/1 var(--sans);letter-spacing:-.02em}
+.anillo b small{margin-top:3px;font:700 9.5px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--gris)}
+@media (hover:hover){.anillo:hover{transform:scale(1.07)}}
+.anillo[aria-expanded="true"] b small{color:var(--magenta-t)}
+
+/* La tarjeta del menú crece desde el anillo */
+.menu{position:fixed;right:22px;bottom:108px;z-index:55;width:min(360px,calc(100% - 44px));padding:14px;border-radius:30px;background:#fff;
+  box-shadow:0 0 0 1px var(--linea),0 30px 60px -28px rgba(43,35,38,.55);transform-origin:calc(100% - 36px) calc(100% + 50px);
+  transform:scale(.2);opacity:0;visibility:hidden;transition:transform .55s var(--suave),opacity .3s,visibility 0s .55s}
+.menu.abierto{transform:none;opacity:1;visibility:visible;transition:transform .65s var(--muelle),opacity .3s,visibility 0s}
+.menu ol button{display:flex;align-items:center;gap:14px;width:100%;padding:8px 10px;border-radius:20px;transition:background .3s}
+.menu ol button em{flex:none;display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--rosa);color:var(--magenta-t);
+  font:800 13px var(--sans);font-style:normal;transition:transform .6s var(--muelle)}
+.menu ol button strong{font:800 24px/1.1 var(--sans);letter-spacing:-.03em}
+.menu ol button[aria-current] em{background:var(--esf-txt);color:#fff}
+@media (hover:hover){.menu ol button:hover{background:var(--base)}.menu ol button:hover em{transform:scale(1.15)}}
+.menu-pie{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;padding:12px 10px 4px;border-top:1px solid var(--linea);font:500 13.5px/1.4 var(--sans);color:var(--gris)}
+.menu-pie .bol{min-height:44px;font-size:14px;padding-right:18px}
+.menu-pie .bol i{width:24px;height:24px}
+
+/* ── Fotos en círculo ──────────────────────────────────────────── */
+.circ{position:relative;border-radius:50%;aspect-ratio:1/1;background:var(--rosa) var(--ph) center/cover no-repeat}
+.circ img{width:100%;height:100%;object-fit:cover;border-radius:inherit}
+
+/* ── Secciones de una pantalla ─────────────────────────────────── */
+.sec{position:relative;min-height:100vh;min-height:100svh;overflow:hidden}
+.oscuro{background:var(--ciruela);color:var(--crema)}
+
+/* I · Inicio: el texto en el centro y las fotos alrededor, como esferas */
+.s-ini{display:flex;align-items:center;justify-content:center;text-align:center;padding:110px 24px 120px}
+.ini-txt{position:relative;z-index:3;max-width:640px}
+.s-ini h1{margin-top:18px;font-size:clamp(44px,5vw,78px);line-height:.98}
+.s-ini h1 em{font-style:normal;color:var(--magenta-t)}
+.ini-p{margin:22px auto 0;max-width:31em;font-size:18.5px;color:#4E4448}
+.ini-bot{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:30px}
+.orbes{position:absolute;inset:0;z-index:1;pointer-events:none}
+.orb{position:absolute;left:var(--x);top:var(--y);width:var(--s);height:var(--s);margin:calc(var(--s) * -.5) 0 0 calc(var(--s) * -.5);
+  transition:transform 1.3s var(--muelle),opacity .45s}
+.orb-in{width:100%;height:100%}
+.orb .circ{width:100%;box-shadow:0 22px 40px -26px rgba(43,35,38,.5)}
+.orb.bola .orb-in{border-radius:50%;background:var(--esf)}
+.orb.mini .orb-in{border-radius:50%;background:var(--ambar)}
+.o1{--x:86%;--y:28%;--s:clamp(170px,19vw,300px)}
+.o2{--x:13%;--y:69%;--s:clamp(140px,15vw,220px)}
+.o3{--x:17%;--y:24%;--s:clamp(110px,12vw,180px)}
+.o4{--x:79%;--y:80%;--s:clamp(120px,13vw,190px)}
+.o5{--x:33%;--y:88%;--s:clamp(80px,8vw,120px)}
+.o6{--x:64%;--y:11%;--s:clamp(70px,7vw,104px)}
+.o7{--x:2%;--y:100%;--s:clamp(220px,32vmin,340px)}
+.o8{--x:30%;--y:12%;--s:22px}
+.o9{--x:94%;--y:58%;--s:30px}
+
+/* II · Clases */
+.s-cla{display:flex;flex-direction:column;justify-content:center;padding:100px var(--px) 112px;background:var(--rosa)}
+.cla-cab{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(24px,4vw,64px);align-items:end}
+.cla-cab h2{margin-top:14px}
+.cla-cab>p{max-width:30em;color:#4E4448}
+.tarjetas{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:clamp(22px,3.6vh,38px)}
+.tj{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;align-items:center;padding:16px 20px 16px 16px;border-radius:30px;background:#fff;
+  box-shadow:0 1px 0 rgba(43,35,38,.04);transition:transform .7s var(--muelle),box-shadow .5s}
+.tj .circ,.tj .punto{grid-row:1/3;width:clamp(64px,6.4vw,86px)}
+.tj .punto{aspect-ratio:1/1;border-radius:50%;background:var(--esf)}
+.tj .punto.amb{background:radial-gradient(circle at 51% 49%,#fff 0,#FFF4CF 14%,#FFD452 52%,#FFC20F 100%)}
+.tj h3{align-self:end;font:800 22px/1.1 var(--sans);letter-spacing:-.025em}
+.tj p{align-self:start;font-size:14.5px;line-height:1.4;color:var(--gris)}
+@media (hover:hover){
+  .tj:hover{transform:scale(1.025);box-shadow:0 26px 40px -30px rgba(200,0,122,.55)}
+  .tj .circ img{transition:transform 1s var(--suave)}
+  .tj:hover .circ img{transform:scale(1.08)}
+}
+
+/* III · Horario */
+.s-hor{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(28px,4.6vw,80px);align-items:center;padding:100px var(--px) 112px}
+.s-hor h2{margin-top:14px}
+.hor-p{margin-top:14px;max-width:28em;color:#4E4448}
+.precios{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px}
+.precio{display:flex;flex-direction:column;align-items:center;justify-content:center;width:clamp(116px,10.4vw,148px);aspect-ratio:1/1;border-radius:50%;text-align:center;padding:10px}
+.precio b{font:800 clamp(24px,2.3vw,32px)/1 var(--sans);letter-spacing:-.03em}
+.precio small{margin-top:6px;font:500 12.5px/1.25 var(--sans);color:var(--gris)}
+.precio.p1{background:var(--rosa)}
+.precio.p2{background:var(--ambar-c)}
+.precio.p3{box-shadow:inset 0 0 0 1.5px var(--linea)}
+.bonos{margin-top:16px;font-size:14px;color:var(--gris)}
+.agenda{padding:22px;border-radius:32px;background:#fff;box-shadow:0 0 0 1px var(--linea)}
+.dias{display:none}
+.js .dias{display:flex;justify-content:space-between;gap:8px;margin-bottom:16px}
+.dias button{display:flex;align-items:center;justify-content:center;width:58px;height:58px;border-radius:50%;background:var(--base);font:800 15px var(--sans);
+  transition:transform .6s var(--muelle),background .3s,color .3s}
+.dias button[aria-pressed="true"]{background:var(--esf-txt);color:#fff;transform:scale(1.08)}
+@media (hover:hover){.dias button:hover{transform:scale(1.1)}}
+.dia h3{font:800 18px/1.2 var(--sans);margin:0 0 10px 4px}
+.js .dia h3{display:none}
+.js .dia:not(.on){display:none}
+.dia+.dia{margin-top:16px}
+.js .dia+.dia{margin-top:0}
+.dia ul{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cl{display:flex;align-items:center;gap:10px;min-height:44px;padding:0 14px 0 8px;border-radius:999px;background:var(--base);font:500 14.5px/1.15 var(--sans)}
+.cl b{flex:none;display:flex;align-items:center;justify-content:center;min-width:52px;height:32px;padding:0 8px;border-radius:999px;background:#fff;font:800 13px var(--sans)}
+.cl small{display:block;font-size:11.5px;color:var(--gris)}
+.cl.t-sue b{background:var(--magenta);color:#fff}
+.cl.t-yog b{background:var(--ambar)}
+.cl.t-cro b,.cl.t-hip b{box-shadow:inset 0 0 0 1.5px var(--magenta)}
+.cl.t-pri{color:var(--gris)}
+.cl.lar{grid-column:1/-1;background:repeating-linear-gradient(135deg,var(--base) 0 8px,#F5EEEA 8px 9px)}
+.nota{margin-top:12px;font-size:12.5px;color:var(--gris);text-align:center}
+
+/* IV · Mercedes */
+.s-mer{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,88px);align-items:center;padding:100px var(--px) 112px}
+.mer-fotos{position:relative;width:min(100%,420px);justify-self:center}
+.mer-fotos .m1{width:100%;box-shadow:0 0 0 12px rgba(255,14,158,.22)}
+.mer-fotos .m2{position:absolute;right:-6%;bottom:-2%;width:40%;box-shadow:0 0 0 8px var(--ciruela)}
+.s-mer h2{margin-top:14px}
+.mer-p{margin-top:16px;max-width:33em;color:rgba(255,242,248,.8)}
+.anios{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:30px}
+.anios li{display:flex;flex-direction:column;align-items:center;text-align:center}
+.anios b{display:flex;align-items:center;justify-content:center;width:clamp(64px,5.6vw,84px);aspect-ratio:1/1;border-radius:50%;box-shadow:inset 0 0 0 1.5px rgba(255,242,248,.32);
+  font:800 clamp(16px,1.4vw,20px)/1 var(--sans);letter-spacing:-.02em}
+.anios li.yo b{background:var(--esf-txt);box-shadow:none;color:#fff}
+.anios span{margin-top:10px;font-size:13px;line-height:1.35;color:rgba(255,242,248,.72)}
+.forma{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;margin-top:30px}
+.forma p{flex:1 1 240px;font-size:14.5px;color:rgba(255,242,248,.78)}
+.forma p strong{color:#fff}
+
+/* V · Cómo llegar */
+.s-lle{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,72px);align-items:center;padding:100px var(--px) 112px;background:var(--ambar-c)}
+.s-lle h2{margin-top:14px}
+.tels{display:grid;gap:2px;margin-top:22px}
+.tels a{display:inline-flex;align-items:baseline;gap:14px;width:max-content;font:800 clamp(30px,3vw,44px)/1.15 var(--sans);letter-spacing:-.03em;text-decoration:none;cursor:pointer}
+.tels a small{font:700 12px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--gris)}
+@media (hover:hover){.tels a:hover{color:var(--magenta-t)}}
+.l-datos{display:grid;grid-template-columns:1fr 1fr;gap:14px 28px;margin-top:22px;font-size:15px;line-height:1.5;color:#4E4448}
+.l-datos strong{display:block;margin-bottom:3px;font:800 13px/1.3 var(--sans);color:var(--tinta)}
+.l-datos .ancho{grid-column:1/-1}
+.l-datos .ct{display:none}
+.l-bot{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.l-mapa{display:flex;flex-direction:column;align-items:center}
+.mapa{position:relative;width:min(100%,560px,62vh);aspect-ratio:1/1;clip-path:circle(50% at 50% 50%);background:#E9E2D6}
+.mapa iframe{position:absolute;left:-46px;top:-46px;width:calc(100% + 92px);height:calc(100% + 92px);border:0;pointer-events:none;filter:grayscale(1) sepia(.12) contrast(1.02) brightness(1.04)}
+.chin{position:absolute;left:50%;top:50%;z-index:2;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:var(--esf);box-shadow:0 0 0 9px rgba(255,14,158,.2),0 6px 14px rgba(0,0,0,.25)}
+.ruta{position:absolute;inset:0;z-index:3}
+.cred{margin-top:8px;font-size:11px;color:var(--gris)}
+.tr-c{display:none}
+
+/* ── Ficha de reserva ──────────────────────────────────────────── */
+.fi{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(58,21,48,.5)}
+.fi.abierta{display:flex}
+.fi-c{position:relative;width:min(460px,100%);background:#fff;color:var(--tinta);padding:30px 28px 26px;border-radius:34px}
+.fi-c h3{margin-top:12px;font:800 32px/1.02 var(--sans);letter-spacing:-.035em;padding-right:76px;text-wrap:balance}
+.fi-c>p{margin-top:10px;font-size:15px;color:#4E4448}
+.fi-n{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;padding:12px 12px 12px 18px;border-radius:22px;background:var(--base);font:800 24px/1.1 var(--sans);letter-spacing:-.02em}
+.fi-n small{display:block;margin-bottom:3px;font:700 11px var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--gris)}
+.fi-b{flex:none;font:700 13px var(--sans);padding:10px 16px;border-radius:999px;background:#fff;box-shadow:inset 0 0 0 1px var(--linea);text-decoration:none}
+.fi-c>.bol{width:100%;margin-top:16px;justify-content:center}
+.fi-e{margin-top:12px;font-size:13.5px;color:var(--gris);text-align:center}
+.fi-x{position:absolute;right:18px;top:18px;font:700 13px var(--sans);padding:9px 14px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--linea)}
+html.es-tel .solo-pc,html:not(.es-tel) .solo-tel{display:none}
+
+/* ── Entrada: las fotos salen apiladas del centro y se reparten como bolas ── */
+html.intro .orb{opacity:0}
+html.intro.mazo .orb{opacity:1;transform:translate(var(--dx,0),var(--dy,0)) scale(.42) rotate(-8deg);transition:none}
+html.intro.mazo.suelta .orb{transform:none;transition:transform 1.25s var(--muelle),opacity .4s}
+html.intro .ini-txt>*,html.intro .logo,html.intro .reserva,html.intro .anillo{opacity:0}
+html.intro .ini-txt>*{transform:translateY(18px)}
+html.intro.suelta .ini-txt>*{opacity:1;transform:none;transition:opacity .8s .45s,transform 1s .45s var(--suave)}
+html.intro.suelta .ini-txt>:nth-child(2){transition-delay:.55s}
+html.intro.suelta .ini-txt>:nth-child(3){transition-delay:.65s}
+html.intro.suelta .ini-txt>:nth-child(4){transition-delay:.75s}
+html.intro.suelta .logo,html.intro.suelta .reserva,html.intro.suelta .anillo{opacity:1;transition:opacity .7s .9s}
+
+/* ── Entradas al bajar ─────────────────────────────────────────── */
+.rev{transition:opacity .9s ease,transform .9s var(--suave)}
+.js .rev.pre{opacity:0;transform:translateY(16px)}
+.pop{transition:opacity .6s ease,transform 1.1s var(--muelle)}
+.js .pop.pre{opacity:0;transform:scale(.86)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+
+/* ── Pantallas bajas de ordenador ──────────────────────────────── */
+@media (min-width:781px) and (max-height:760px){
+  h2{font-size:clamp(30px,3.4vw,48px)}
+  .s-ini h1{font-size:clamp(42px,5vw,72px)}
+  .ini-p{margin-top:16px;font-size:17px}
+  .ini-bot{margin-top:22px}
+  .s-cla,.s-hor,.s-mer,.s-lle{padding-top:88px;padding-bottom:100px}
+  .tj{padding:12px 16px 12px 12px}
+  .tj .circ,.tj .punto{width:62px}
+  .tj h3{font-size:19px}
+  .precios{margin-top:18px}
+  .precio{width:112px}
+  .bonos{display:none}
+  .cl{min-height:38px}
+  .anios{margin-top:22px}
+  .forma{margin-top:20px}
+  .l-datos{margin-top:16px;font-size:14px}
+  .mapa{width:min(100%,520px,58vh)}
+}
+
+/* ── Móvil y tableta en vertical ───────────────────────────────── */
+@media (max-width:780px),(max-width:1100px) and (orientation:portrait){
+  body{font-size:15.5px}
+  h2{font-size:clamp(28px,8.2vw,40px)}
+  .eti{font-size:12px}
+  .logo{left:18px;top:14px;gap:9px}
+  .logo-esf{width:30px;height:30px}
+  .logo-rot{height:28px;width:36.7px}
+  .reserva{top:auto;right:auto;left:12px;bottom:12px;z-index:56}
+  .reserva .bol{min-height:56px;font-size:15px;padding-right:22px}
+  .anillo{right:12px;bottom:12px;width:62px;height:62px}
+  .anillo b{font-size:15px}
+  .menu{left:12px;right:12px;bottom:84px;width:auto;transform-origin:calc(100% - 31px) calc(100% + 40px)}
+  .menu ol button{padding:6px 8px}
+  .menu ol button strong{font-size:22px}
+
+  .sec{display:flex;flex-direction:column;align-items:stretch}
+  .s-ini{justify-content:flex-end;padding:0 20px 92px}
+  .ini-txt{text-align:left;max-width:none}
+  .s-ini h1{margin-top:12px;font-size:clamp(34px,10vw,48px)}
+  .ini-p{margin:12px 0 0;font-size:15.5px;line-height:1.45}
+  .ini-bot{display:none}
+  .o1{--x:66%;--y:22%;--s:44vw}
+  .o2{--x:15%;--y:17%;--s:21vw}
+  .o3{--x:24%;--y:34%;--s:27vw}
+  .o4{--x:91%;--y:43%;--s:18vw}
+  .o5,.o6{display:none}
+  .o7{--x:100%;--y:2%;--s:30vw}
+  .o8{--x:45%;--y:8%;--s:16px}
+  .o9{--x:90%;--y:51%;--s:20px}
+
+  .s-cla,.s-hor,.s-mer,.s-lle{justify-content:flex-start;padding:66px 20px 92px}
+  .cla-cab{display:block}
+  .cla-cab>p{margin-top:10px;font-size:15px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .tarjetas{grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+  .tj{grid-template-columns:auto 1fr;gap:0 10px;min-height:66px;padding:10px 12px 10px 10px;border-radius:999px}
+  .tj .circ,.tj .punto{grid-row:auto;width:44px}
+  .tj h3{align-self:center;font-size:15.5px;line-height:1.15}
+  .tj p{display:none}
+
+  .s-hor{display:flex}
+  .hor-p{display:none}
+  .precios{order:2;gap:8px;margin-top:12px;flex-wrap:nowrap}
+  .precio{flex:1 1 0;width:auto;max-width:84px;padding:4px}
+  .precio b{font-size:18px}
+  .precio small{font-size:10px;margin-top:2px;line-height:1.15}
+  .bonos{display:none}
+  .agenda{order:3;margin-top:10px;padding:12px;border-radius:26px}
+  .js .dias{margin-bottom:10px}
+  .dias button{width:44px;height:44px;font-size:14px}
+  .dia ul{gap:6px}
+  .cl{min-height:32px;font-size:13px;padding:0 8px 0 4px;gap:7px}
+  .cl b{min-width:46px;height:28px;font-size:12px}
+  .cl small{display:none}
+  .nota{display:none}
+
+  .mer-fotos{width:150px;justify-self:auto;margin:0 0 18px 4px}
+  .mer-fotos .m1{box-shadow:0 0 0 7px rgba(255,14,158,.22)}
+  .mer-fotos .m2{width:46%;right:-16%;box-shadow:0 0 0 5px var(--ciruela)}
+  .mer-p{margin-top:10px;font-size:15px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .anios{gap:4px;margin-top:16px}
+  .anios b{width:54px;font-size:14.5px}
+  .anios span{margin-top:6px;font-size:11px;line-height:1.25}
+  .forma{display:none}
+
+  .s-lle{display:flex}
+  .l-mapa{order:-1;align-items:flex-end;margin:-8px 0 -40px}
+  .mapa{width:40vw}
+  .cred,.l-bot{display:none}
+  .s-lle h2{margin-top:10px}
+  .tels{margin-top:12px}
+  .tels a{font-size:clamp(27px,7.6vw,34px);gap:10px}
+  .l-datos{grid-template-columns:1fr;gap:8px;margin-top:12px;font-size:13.5px;line-height:1.4}
+  .l-datos strong{font-size:12px;margin-bottom:1px}
+  .l-datos .lg{display:none}
+  .l-datos .ct{display:inline}
+}
+@media (min-width:600px) and (max-width:1100px) and (orientation:portrait){
+  body{font-size:18px}
+  h2{font-size:clamp(40px,6vw,58px)}
+  .logo{left:36px;top:22px}
+  .logo-esf{width:38px;height:38px}
+  .logo-rot{height:36px;width:47.1px}
+  .s-ini,.s-cla,.s-hor,.s-mer,.s-lle{padding-left:48px;padding-right:48px}
+  .s-cla,.s-hor,.s-mer,.s-lle{padding-top:110px;padding-bottom:120px}
+  .s-ini h1{font-size:clamp(52px,8vw,72px)}
+  .ini-p,.cla-cab>p,.mer-p{font-size:18px}
+  .ini-bot .bol.cla{display:inline-flex}
+  .o1{--s:36vw}.o3{--s:22vw}.o2{--s:18vw}
+  .tj{grid-template-columns:auto 1fr;gap:4px 14px;padding:16px;border-radius:30px}
+  .tj .circ,.tj .punto{grid-row:1/3;width:72px}
+  .tj h3{align-self:end;font-size:21px}
+  .tj p{display:block;font-size:14.5px}
+  .precio{max-width:150px}
+  .precio b{font-size:28px}
+  .cl{min-height:48px;font-size:15px}
+  .mer-fotos{width:240px}
+  .anios b{width:76px;font-size:18px}
+  .anios span{font-size:13px}
+  .forma{display:flex}
+  .l-mapa{margin:0}
+  .mapa{width:34vw}
+  .l-datos{grid-template-columns:1fr 1fr;font-size:16px}
+  .l-bot{display:flex}
+  .reserva{left:24px;bottom:22px}
+  .anillo{right:24px;bottom:22px;width:72px;height:72px}
+}
+@media (max-width:780px) and (max-height:640px){
+  .precios,.l-datos .tr{display:none}
+  .s-cla,.s-hor,.s-mer,.s-lle{padding-top:58px;padding-bottom:84px}
+  .s-ini{padding-bottom:84px}
+  .s-ini h1{font-size:31px}
+  .ini-p,.cla-cab>p,.mer-p{display:none}
+  h2{font-size:27px}
+  .tj p{display:none}
+  .tj{padding:10px}
+  .tj .circ,.tj .punto{width:38px}
+  .cl{min-height:30px}
+  .dias button{width:40px;height:40px}
+  .mer-fotos{width:110px;margin-bottom:12px}
+  .mapa{width:34vw}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;transition-delay:0s!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+<button type="button" class="salta" data-ir="clases">Saltar al contenido</button>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="g-esf" cx=".51" cy=".49" r=".56">
+      <stop offset="0" stop-color="#FFFFFF"/><stop offset=".1" stop-color="#FFE6FA"/><stop offset=".36" stop-color="#FF86E6"/><stop offset=".72" stop-color="#FF22AE"/><stop offset="1" stop-color="#FF0E9E"/>
+    </radialGradient>
+  </defs>
+  <symbol id="esfera" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="url(#g-esf)"/></symbol>
+  <symbol id="rotulo" viewBox="62.8 538.4 380.0 290.3"><path fill="currentColor" fill-rule="evenodd" d="M72.4 540.5 193.8 540.4 194.2 540.6 194.4 541.0 194.1 541.8 188.5 549.5 110.5 656.2 110.8 656.8 112.0 656.9 192.0 657.0 192.5 657.3 192.7 658.0 192.7 678.0 192.2 679.1 191.8 679.3 190.5 679.3 66.0 679.3 65.2 679.3 64.9 679.0 64.8 678.5 65.1 677.8 148.7 563.5 148.5 563.0 147.8 562.8 72.5 562.8 72.0 562.5 71.9 561.8 71.9 541.8 72.2 540.6ZM209.5 540.5 289.0 540.4 289.8 540.6 290.1 541.0 290.3 541.8 290.4 561.8 290.2 562.3 289.8 562.7 235.0 562.8 234.2 562.9 233.8 563.3 233.6 596.8 233.7 597.2 234.0 597.7 235.0 597.9 287.0 597.9 288.0 598.1 288.3 598.5 288.4 599.0 288.3 619.2 288.0 620.2 287.5 620.6 234.8 620.7 233.9 621.0 233.6 621.8 233.6 656.0 234.0 656.7 234.8 656.9 291.5 657.0 291.9 657.2 292.0 658.0 292.0 678.0 291.9 678.8 291.5 679.2 290.8 679.4 210.0 679.4 209.5 679.3 209.1 679.0 208.9 678.0 208.9 541.8 209.2 540.7ZM311.4 540.5 329.0 540.4 330.5 541.0 416.2 638.7 416.8 638.5 416.9 637.8 416.9 541.2 417.2 540.6 418.0 540.4 439.0 540.4 440.0 540.8 440.3 541.2 440.3 542.0 440.3 677.8 440.3 678.5 439.8 679.1 438.8 679.3 421.0 679.3 420.2 679.2 419.4 678.8 391.2 646.5 375.5 628.2 371.1 623.5 355.5 605.3 336.2 583.3 335.5 582.3 334.5 581.7 334.1 582.0 334.0 582.8 334.0 678.5 333.5 679.2 333.0 679.4 312.0 679.4 311.0 679.0 310.7 677.8 310.7 541.8 310.9 541.0 311.2 540.6ZM177.5 692.8 191.5 692.7 192.3 693.0 192.7 693.8 192.7 791.5 192.5 793.1 192.1 793.5 191.5 793.7 177.8 793.7 177.0 793.5 176.5 792.8 176.4 694.0 176.6 693.2 177.5 692.8ZM148.1 699.2 150.2 699.0 152.2 699.1 155.2 700.2 156.7 701.2 157.7 702.2 158.7 703.5 159.7 705.8 160.0 708.2 159.8 710.5 158.8 713.3 156.8 715.7 155.5 716.7 153.5 717.6 152.5 717.8 149.2 717.8 147.5 717.6 145.8 716.7 144.2 715.6 143.0 714.3 141.9 712.2 141.1 709.5 141.1 707.8 142.1 704.2 143.2 702.5 144.4 701.2 146.2 700.0 148.0 699.3ZM292.8 711.2 293.2 711.1 293.5 711.2 293.7 711.8 293.6 725.0 294.0 725.7 295.0 725.9 313.0 725.9 313.7 726.2 313.9 727.0 313.9 740.0 313.5 740.7 312.8 740.9 294.8 740.9 294.0 741.1 293.7 741.5 293.7 771.8 294.0 775.0 295.1 777.2 296.9 778.8 299.0 779.8 302.8 779.9 304.5 779.7 308.0 778.7 312.5 776.6 316.2 774.4 317.0 774.4 317.3 775.0 317.4 789.0 317.1 789.8 316.2 790.6 314.2 791.7 308.5 793.7 306.8 794.0 304.5 794.6 302.5 794.8 296.5 794.8 294.0 794.6 290.8 793.7 288.2 792.7 285.0 790.7 283.0 788.8 281.1 786.5 279.2 783.2 278.1 780.0 277.4 776.2 277.4 741.5 277.0 741.1 276.5 740.9 267.2 740.8 266.5 740.7 266.1 740.2 266.1 737.5 266.8 736.3 291.2 712.4 292.8 711.3ZM225.2 725.0 230.5 724.8 235.0 725.0 239.8 726.1 242.8 727.2 246.2 729.1 249.5 731.7 251.6 734.2 252.6 735.8 253.6 738.0 254.7 741.5 255.0 744.8 255.0 780.5 255.5 781.5 256.2 781.9 257.2 781.7 261.2 779.3 263.9 780.8 264.3 781.8 264.3 788.0 263.8 789.5 260.5 791.8 257.0 793.6 252.5 794.8 247.5 794.8 245.5 794.5 243.5 793.7 242.1 792.8 239.8 790.2 239.2 790.0 234.5 792.7 232.0 793.6 228.5 794.6 226.0 794.9 220.8 794.8 219.2 794.6 215.8 793.6 212.5 791.5 210.2 789.2 208.1 786.5 207.1 784.5 206.0 780.8 205.8 777.5 206.0 774.0 207.2 769.8 208.2 767.8 210.1 765.2 211.5 764.1 216.0 761.1 222.0 758.1 226.0 756.7 227.2 756.0 228.5 755.7 229.8 755.1 233.8 753.8 235.2 753.1 236.8 752.7 238.5 751.8 238.9 751.2 238.6 746.8 237.7 744.2 236.0 742.3 234.0 741.1 233.0 740.9 231.2 740.7 226.8 740.6 224.0 741.0 221.2 742.0 217.2 744.1 214.2 746.3 210.3 750.2 207.8 753.5 207.2 753.6 207.0 753.4 206.9 736.0 207.1 734.2 209.2 732.0 211.3 730.2 214.8 728.1 216.8 727.1 219.5 726.1 225.0 725.0ZM349.9 725.0 354.8 724.8 358.2 724.9 360.5 725.2 364.0 726.0 367.0 727.1 369.0 728.1 372.2 730.2 375.6 733.2 377.6 735.8 379.6 738.8 380.8 741.2 382.6 746.5 383.1 749.5 383.6 751.2 384.0 758.0 384.3 759.8 384.3 762.2 384.1 763.2 383.5 763.6 340.8 763.7 340.2 763.8 339.9 764.2 340.2 766.2 342.0 770.4 343.2 772.2 345.1 774.5 348.0 776.7 349.8 777.6 353.2 778.8 358.8 779.3 364.8 778.8 368.8 777.7 371.5 776.7 377.3 773.8 380.0 772.0 380.5 772.1 381.2 772.8 382.8 773.4 383.0 774.8 383.0 785.8 382.7 786.8 380.2 788.6 374.5 791.7 368.8 793.6 363.5 794.6 360.8 794.9 352.0 794.8 349.0 794.5 345.5 793.7 342.5 792.6 340.2 791.6 337.2 789.8 334.4 787.5 332.2 785.3 330.1 782.5 328.1 779.5 326.2 775.8 325.0 772.8 324.0 769.8 323.1 765.5 322.8 758.8 322.9 754.8 323.2 752.2 324.1 748.0 325.1 744.8 327.1 740.5 328.1 738.8 330.2 736.0 333.2 732.8 336.2 730.1 337.8 729.2 341.8 727.1 344.2 726.2 349.8 725.0ZM412.8 725.0 417.5 724.8 421.5 725.0 427.0 726.0 432.8 728.1 436.5 730.0 436.9 730.5 437.1 731.5 437.8 732.5 437.8 746.0 437.8 746.8 437.5 747.2 437.0 747.2 435.5 746.1 430.0 743.0 425.2 741.1 421.2 740.0 417.8 739.8 414.5 740.0 412.2 741.2 411.1 742.8 411.2 744.2 412.0 745.5 413.3 746.8 420.2 751.6 427.5 756.1 430.5 758.1 434.4 761.2 436.6 763.5 438.7 766.2 439.7 768.0 440.7 771.0 440.8 777.0 440.5 779.5 439.7 782.0 438.7 784.2 436.6 787.2 434.4 789.5 431.2 791.7 427.0 793.7 423.2 794.6 421.0 794.9 412.8 794.8 410.0 794.5 406.2 793.7 403.0 792.7 398.0 790.7 394.3 788.8 393.9 788.0 393.9 771.8 394.0 771.0 394.2 770.5 395.0 770.7 396.2 771.7 400.8 774.7 404.2 776.7 409.0 778.7 412.5 779.8 416.5 780.1 419.8 779.7 422.2 778.5 423.5 777.4 423.9 776.8 424.1 775.2 423.8 773.8 422.8 772.3 421.5 771.1 417.0 768.1 412.5 765.6 407.5 762.6 403.2 759.5 399.0 755.8 397.2 753.7 396.1 751.8 395.0 749.0 394.4 746.2 394.3 743.5 395.0 738.2 396.2 735.2 398.1 732.2 401.4 729.2 404.8 727.2 407.8 726.0 412.8 725.0ZM68.0 726.0 90.0 725.9 95.8 726.1 102.5 727.0 106.8 728.1 108.2 728.7 109.8 729.1 111.8 730.1 115.5 732.1 118.2 734.2 120.6 736.2 123.5 740.0 125.6 743.5 126.6 746.0 127.6 749.0 128.7 754.2 128.8 757.0 128.7 766.0 127.7 771.0 126.7 774.0 124.6 778.5 122.6 781.5 121.0 783.5 117.2 787.3 114.2 789.5 110.5 791.7 105.0 793.7 101.0 794.6 98.2 794.8 91.5 794.8 85.8 793.8 84.5 793.3 84.0 793.5 83.7 794.0 83.7 795.0 83.7 825.2 83.5 826.1 83.0 826.6 68.8 826.7 68.0 826.5 67.5 825.8 67.4 727.0 67.5 726.4 68.0 726.0ZM143.0 726.0 157.5 725.9 158.2 726.1 158.7 726.8 158.7 791.8 158.6 793.0 158.0 793.6 143.8 793.7 143.0 793.5 142.5 792.8 142.4 727.0 142.5 726.4 143.0 726.0ZM351.9 739.8 356.8 739.7 358.5 739.9 359.8 740.2 361.9 741.2 364.8 743.9 366.6 746.8 367.7 750.2 367.6 751.0 367.0 751.5 341.8 751.4 340.5 751.1 340.2 750.8 340.2 750.2 341.1 748.0 342.2 746.0 344.2 743.3 347.5 741.0 350.0 740.0 351.8 739.8ZM84.1 741.0 84.8 740.9 90.5 740.8 96.5 741.0 101.5 742.1 104.0 743.2 106.8 745.1 108.7 747.2 110.6 750.5 111.8 754.2 112.1 757.2 112.1 762.5 111.6 766.0 110.6 769.0 108.6 772.5 105.8 775.6 103.0 777.7 100.8 778.8 97.5 779.7 91.8 779.9 89.8 779.7 86.2 778.7 84.2 777.8 83.9 777.5 83.7 776.8 83.6 742.0 83.7 741.5 84.0 741.1ZM238.1 763.0 238.8 763.2 238.9 763.8 238.9 777.0 238.8 777.9 238.2 778.6 235.2 780.8 233.2 781.8 230.5 782.4 228.5 782.4 226.2 781.8 224.5 780.5 224.0 780.0 223.0 778.5 222.3 776.2 222.3 774.5 223.0 772.2 224.3 770.2 225.5 769.1 227.0 768.1 233.0 765.1 237.0 763.6 238.0 763.0Z"/></symbol>
+</svg>
+
+<button type="button" class="logo" data-ir="inicio" aria-label="Zen Pilates, volver al inicio">
+  <svg class="logo-esf" viewBox="0 0 100 100" aria-hidden="true"><use href="#esfera"/></svg>
+  <svg class="logo-rot" viewBox="0 0 380.0 290.3" aria-hidden="true"><use href="#rotulo"/></svg>
+</button>
+<div class="reserva"><button type="button" class="bol amb" data-ficha><i aria-hidden="true"></i>Reservar clase</button></div>
+
+<button type="button" class="anillo" id="anillo" aria-expanded="false" aria-controls="menu" aria-label="Menú">
+  <svg viewBox="0 0 72 72" aria-hidden="true">
+    <circle cx="36" cy="36" r="31" stroke-dasharray="32.6 162.2" transform="rotate(-84.5 36 36)" class="on"/>
+    <circle cx="36" cy="36" r="31" stroke-dasharray="32.6 162.2" transform="rotate(-12.5 36 36)"/>
+    <circle cx="36" cy="36" r="31" stroke-dasharray="32.6 162.2" transform="rotate(59.5 36 36)"/>
+    <circle cx="36" cy="36" r="31" stroke-dasharray="32.6 162.2" transform="rotate(131.5 36 36)"/>
+    <circle cx="36" cy="36" r="31" stroke-dasharray="32.6 162.2" transform="rotate(203.5 36 36)"/>
+  </svg>
+  <b><span id="an-n">01</span><small>Menú</small></b>
+</button>
+<nav class="menu" id="menu" aria-label="Secciones">
+  <ol>
+    <li><button type="button" data-ir="inicio" aria-current="true"><em>01</em><strong>Inicio</strong></button></li>
+    <li><button type="button" data-ir="clases"><em>02</em><strong>Clases</strong></button></li>
+    <li><button type="button" data-ir="horario"><em>03</em><strong>Horario y precios</strong></button></li>
+    <li><button type="button" data-ir="mercedes"><em>04</em><strong>Mercedes</strong></button></li>
+    <li><button type="button" data-ir="llegar"><em>05</em><strong>Cómo llegar</strong></button></li>
+  </ol>
+  <div class="menu-pie"><span>601 27 98 89<br>91 686 55 76</span><a class="bol osc" href="https://wa.me/34601279889?text=Hola%2C%20quer%C3%ADa%20reservar%20una%20clase%20de%20prueba" target="_blank" rel="noopener"><i aria-hidden="true"></i>WhatsApp</a></div>
+</nav>
+
+<main>
+  <section class="sec s-ini" id="inicio" data-tono="claro">
+    <div class="orbes" id="orbes" aria-hidden="true">
+      <div class="orb o7 bola"><div class="orb-in" data-par=".1"></div></div>
+      <div class="orb o1"><div class="orb-in" data-par=".07"><div class="circ" style="--ph:url(data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAAAQBQCdASogACAAPt1iqU6opaOiMBgIARAbiUAXBgyy/y3IVaBHacExyKNxRHcwxqjAAOJzIb1PSUfvbiBpCMYeCHrx41FxEcOtOLVEEOfzpLMudrkXweO7aduag1frf2EH/W0xY+AjQVeVahO6tNmdgLIl/IMDDlAAAA==)"><img src="assets/img/sala.webp" width="900" height="900" alt="" fetchpriority="high"></div></div></div>
+      <div class="orb o3"><div class="orb-in" data-par=".12"><div class="circ" style="--ph:url(data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAACwBQCdASogACAAPslSokynpKMiN/qoAPAZCWcAFGABnVahiCuKiGALr9NJJASOtspntlr/rGAA/uuFPXu3fCniyOeLp8cvUtPsPW90GDMLGf8w1zEWqDX7e6DxGgYszDu3/znL8Kdxh0LM799O/8FBY4y8pcbCcDNo3UxgWpQCRO7ASJMgYR44ENoL65JAAAA=)"><img src="assets/img/embarazo.webp" width="640" height="640" alt=""></div></div></div>
+      <div class="orb o2"><div class="orb-in" data-par=".05"><div class="circ" style="--ph:url(data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAACwBQCdASogACAAPt1gp0yopaOiMAgBEBuJZQDGQGlf1yPluVuw8QPeWpnxKshTzpdoOXdAtAAA/v2FKSdL7+psJK8ZH/hEB4JXo4gtPtOAKJVeEGNgYWNkasWqFC2bBFgl/H514MikhkN5VNIHJ+Yw+RajZb/ubWLYj3ZBn10bJYBJWXzuwqhtHe0UAA==)"><img src="assets/img/grupo.webp" width="397" height="397" alt=""></div></div></div>
+      <div class="orb o4"><div class="orb-in" data-par=".09"><div class="circ" style="--ph:url(data:image/webp;base64,UklGRrwAAABXRUJQVlA4ILAAAABQBgCdASogACAAPt1WpE2opCMiMBgMARAbiWwArDKAvUDbeReLMIqCwTYnf+05wQYb9HS80UYoJ4pgAAD+9oY924JibfrgrT9JlDzVeMnSJJcpu/dAJtDGdf5koutvRxREPyXnw46kJ8RZKiKLi368yp8SkoLaqbhgCfsLxwzNxiwbPt7cQVx/Remku2aCW6Icf5FN41FTT6POLTqLM4lhGjHTEwtXc9g0tNZ57uPAAA==)"><img src="assets/img/posparto.webp" width="715" height="715" alt=""></div></div></div>
+      <div class="orb o5"><div class="orb-in" data-par=".14"><div class="circ" style="--ph:url(data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAADwBACdASogACAAPt1aqUyopSQiKA1REBuJQBR5giNPt8Ah/v8iCZjt67ZPm6WcKugA8pla7/evMUuBiJlH4XzEgKqLPTDqOP0c7+q4/mmkmMbHKihSAY3KBm3/u4nSQ2UGbBDK8PdGQ6Xv069zL+p8xo/lrSLryxRg+EPuPz6AAA==)"><img src="assets/img/holbox.webp" width="640" height="640" alt=""></div></div></div>
+      <div class="orb o6"><div class="orb-in" data-par=".16"><div class="circ" style="--ph:url(data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAAAQBQCdASogACAAPt1iqU2opiQiMAgBEBuJYwC84BxtkfY1OZYOozBhRegGX37mNpQAAP5gnCfRi1JUmZVXVcmycERCwHr+J1PcJnAPArFE5Ydpbs3qJNjUesSRLuTLz7yzUSrlprZbgeTn8psOMjp9y2n7LbSx8V6HG9OgdXa0TAAA)"><img src="assets/img/suelo.webp" width="398" height="398" alt=""></div></div></div>
+      <div class="orb o8 mini"><div class="orb-in"></div></div>
+      <div class="orb o9 bola"><div class="orb-in"></div></div>
+    </div>
+    <div class="ini-txt">
+      <p class="eti">Pilates, yoga y fisioterapia en Leganés</p>
+      <h1>Muévete mejor, con una <em>fisio</em> a tu lado</h1>
+      <p class="ini-p">Pilates en máquinas y en suelo, yoga y clases de embarazo y posparto, en grupos reducidos y desde 2007. Sin matrícula ni permanencia.</p>
+      <div class="ini-bot">
+        <button type="button" class="bol amb" data-ficha><i aria-hidden="true"></i>Reservar clase de prueba</button>
+        <button type="button" class="bol cla" data-ir="clases"><i aria-hidden="true"></i>Ver las clases</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec s-cla" id="clases" data-tono="claro">
+    <div class="cla-cab">
+      <div>
+        <p class="eti rev">Clases</p>
+        <h2 class="rev d1">Una clase para cada momento</h2>
+      </div>
+      <p class="rev d2">Todas las sesiones las imparte o las supervisa una fisioterapeuta, así que entrenas seguro aunque vengas con una lesión, embarazada o recién salida del parto.</p>
+    </div>
+    <ul class="tarjetas">
+      <li class="tj pop"><div class="circ" style="--ph:url(data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAACwBQCdASogACAAPt1gp0yopaOiMAgBEBuJZQDGQGlf1yPluVuw8QPeWpnxKshTzpdoOXdAtAAA/v2FKSdL7+psJK8ZH/hEB4JXo4gtPtOAKJVeEGNgYWNkasWqFC2bBFgl/H514MikhkN5VNIHJ+Yw+RajZb/ubWLYj3ZBn10bJYBJWXzuwqhtHe0UAA==)"><img src="assets/img/grupo.webp" width="397" height="397" loading="lazy" decoding="async" alt="Clase de máquinas en los reformers"></div><h3>Máquinas</h3><p>Reformer, cadillac, silla y barril, en grupos reducidos</p></li>
+      <li class="tj pop d1"><div class="circ" style="--ph:url(data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAAAQBQCdASogACAAPt1iqU2opiQiMAgBEBuJYwC84BxtkfY1OZYOozBhRegGX37mNpQAAP5gnCfRi1JUmZVXVcmycERCwHr+J1PcJnAPArFE5Ydpbs3qJNjUesSRLuTLz7yzUSrlprZbgeTn8psOMjp9y2n7LbSx8V6HG9OgdXa0TAAA)"><img src="assets/img/suelo.webp" width="398" height="398" loading="lazy" decoding="async" alt="Alumna estirando en el suelo de madera de la sala"></div><h3>Suelo y barra</h3><p>Colchoneta con aro, pelota y theraband, y barra de ballet</p></li>
+      <li class="tj pop d2"><div class="circ" style="--ph:url(data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAADwBACdASogACAAPt1aqUyopSQiKA1REBuJQBR5giNPt8Ah/v8iCZjt67ZPm6WcKugA8pla7/evMUuBiJlH4XzEgKqLPTDqOP0c7+q4/mmkmMbHKihSAY3KBm3/u4nSQ2UGbBDK8PdGQ6Xv069zL+p8xo/lrSLryxRg+EPuPz6AAA==)"><img src="assets/img/holbox.webp" width="640" height="640" loading="lazy" decoding="async" alt="Clase de yoga en la playa de Holbox, México"></div><h3>Yoga</h3><p>Vinyasa y yoga dinámico, desde la iniciación</p></li>
+      <li class="tj pop d1"><div class="circ" style="--ph:url(data:image/webp;base64,UklGRrwAAABXRUJQVlA4ILAAAABQBgCdASogACAAPt1WpE2opCMiMBgMARAbiWwArDKAvUDbeReLMIqCwTYnf+05wQYb9HS80UYoJ4pgAAD+9oY924JibfrgrT9JlDzVeMnSJJcpu/dAJtDGdf5koutvRxREPyXnw46kJ8RZKiKLi368yp8SkoLaqbhgCfsLxwzNxiwbPt7cQVx/Remku2aCW6Icf5FN41FTT6POLTqLM4lhGjHTEwtXc9g0tNZ57uPAAA==)"><img src="assets/img/posparto.webp" width="715" height="715" loading="lazy" decoding="async" alt="Madres haciendo ejercicio con sus bebés al lado"></div><h3>Embarazo y posparto</h3><p>Clases propias y, en el posparto, con tu peque</p></li>
+      <li class="tj pop d2"><span class="punto" aria-hidden="true"></span><h3>Hipopresivos</h3><p>Suelo pélvico, posparto e incontinencia, también en reformer</p></li>
+      <li class="tj pop d3"><span class="punto amb" aria-hidden="true"></span><h3>Privadas y fisio</h3><p>Sesiones a solas y valoración con fisioterapeuta</p></li>
+    </ul>
+  </section>
+
+  <section class="sec s-hor" id="horario" data-tono="claro">
+    <div class="hor-txt">
+      <p class="eti rev">Horario y precios</p>
+      <h2 class="rev d1">Elige tu día</h2>
+      <p class="hor-p rev d2">De lunes a viernes, por la mañana y por la tarde. Sin matrícula ni permanencia: pagas por clase, por bono o al mes.</p>
+      <div class="precios">
+        <div class="precio p1 pop d1"><b>15,50 €</b><small>clase suelta</small></div>
+        <div class="precio p2 pop d2"><b>50 €</b><small>al mes, desde</small></div>
+        <div class="precio p3 pop d3"><b>35 €</b><small>valoración con fisio</small></div>
+      </div>
+      <p class="bonos rev d3">Mensualidad de 1 a 4 días por semana (50, 70, 85 y 95 €) y bonos de 4, 10, 15 o 20 sesiones de máquina o suelo.</p>
+    </div>
+    <div class="agenda rev d2">
+      <div class="dias" id="dias" role="group" aria-label="Día de la semana">
+        <button type="button" data-dia="0" aria-pressed="true" aria-label="Lunes">L</button><button type="button" data-dia="1" aria-pressed="false" aria-label="Martes">M</button><button type="button" data-dia="2" aria-pressed="false" aria-label="Miércoles">X</button><button type="button" data-dia="3" aria-pressed="false" aria-label="Jueves">J</button><button type="button" data-dia="4" aria-pressed="false" aria-label="Viernes">V</button>
+      </div>
+      <div class="dia on" data-dia="0"><h3>Lunes</h3><ul><li class="cl t-maq"><b>9:30</b><span>Máquinas</span></li><li class="cl t-cro"><b>10:30</b><span>Cross pilates</span></li><li class="cl t-maq"><b>11:30</b><span>Máquinas</span></li><li class="cl lar t-pri"><b>12:30</b><span>Clases privadas hasta las 15:00</span></li><li class="cl t-pri"><b>15:00</b><span>Privada</span></li><li class="cl t-pri"><b>16:00</b><span>Privada</span></li><li class="cl t-maq"><b>17:00</b><span>Máquinas</span></li><li class="cl t-sue"><b>18:00</b><span>Suelo</span></li><li class="cl t-yog"><b>19:00</b><span>Yoga<small>dinámico</small></span></li><li class="cl t-maq"><b>20:00</b><span>Máquinas</span></li></ul></div>
+      <div class="dia" data-dia="1"><h3>Martes</h3><ul><li class="cl t-maq"><b>8:30</b><span>Máquinas</span></li><li class="cl t-maq"><b>9:30</b><span>Máquinas</span></li><li class="cl t-yog"><b>10:30</b><span>Yoga<small>vinyasa</small></span></li><li class="cl t-maq"><b>11:30</b><span>Máquinas</span></li><li class="cl lar t-pri"><b>12:30</b><span>Clases privadas hasta las 15:00</span></li><li class="cl t-maq"><b>15:00</b><span>Máquinas</span></li><li class="cl t-pri"><b>16:00</b><span>Privada</span></li><li class="cl t-maq"><b>17:00</b><span>Máquinas</span></li><li class="cl t-maq"><b>18:00</b><span>Máquinas</span></li><li class="cl t-sue"><b>19:00</b><span>Suelo</span></li><li class="cl t-maq"><b>20:00</b><span>Máquinas</span></li></ul></div>
+      <div class="dia" data-dia="2"><h3>Miércoles</h3><ul><li class="cl t-maq"><b>9:30</b><span>Máquinas</span></li><li class="cl t-maq"><b>10:30</b><span>Máquinas</span></li><li class="cl t-maq"><b>11:30</b><span>Máquinas</span></li><li class="cl lar t-pri"><b>12:30</b><span>Clases privadas hasta las 15:00</span></li><li class="cl t-pri"><b>15:00</b><span>Privada</span></li><li class="cl t-pri"><b>16:00</b><span>Privada</span></li><li class="cl t-maq"><b>17:00</b><span>Máquinas</span></li><li class="cl t-sue"><b>18:00</b><span>Suelo</span></li><li class="cl t-yog"><b>19:00</b><span>Yoga<small>dinámico</small></span></li><li class="cl t-maq"><b>20:00</b><span>Máquinas</span></li></ul></div>
+      <div class="dia" data-dia="3"><h3>Jueves</h3><ul><li class="cl t-maq"><b>8:30</b><span>Máquinas</span></li><li class="cl t-maq"><b>9:30</b><span>Máquinas</span></li><li class="cl t-pri"><b>10:30</b><span>Privada</span></li><li class="cl t-maq"><b>11:30</b><span>Máquinas</span></li><li class="cl lar t-pri"><b>12:30</b><span>Clases privadas hasta las 15:00</span></li><li class="cl t-maq"><b>15:00</b><span>Máquinas</span></li><li class="cl t-pri"><b>16:00</b><span>Privada</span></li><li class="cl t-maq"><b>17:00</b><span>Máquinas</span></li><li class="cl t-maq"><b>18:00</b><span>Máquinas</span></li><li class="cl t-sue"><b>19:00</b><span>Suelo</span></li><li class="cl t-maq"><b>20:00</b><span>Máquinas</span></li></ul></div>
+      <div class="dia" data-dia="4"><h3>Viernes</h3><ul><li class="cl t-maq"><b>9:30</b><span>Máquinas</span></li><li class="cl t-sue"><b>10:30</b><span>Suelo</span></li><li class="cl t-maq"><b>11:30</b><span>Máquinas</span></li><li class="cl lar t-pri"><b>12:30</b><span>Clases privadas hasta las 15:00</span></li><li class="cl t-maq"><b>15:00</b><span>Máquinas</span></li><li class="cl t-hip"><b>16:00</b><span>Hipopresivos<small>en reformer</small></span></li><li class="cl t-cro"><b>17:00</b><span>Cross pilates</span></li><li class="cl t-maq"><b>18:00</b><span>Máquinas</span></li><li class="cl t-maq"><b>19:00</b><span>Máquinas</span></li></ul></div>
+      <p class="nota">Horario de 2026: confírmalo al reservar.</p>
+    </div>
+  </section>
+
+  <section class="sec s-mer oscuro" id="mercedes" data-tono="oscuro">
+    <div class="mer-fotos">
+      <div class="circ m1 pop" style="--ph:url(data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAABQBQCdASogACAAPt1urlIopqQiqAgBEBuJaQAA0x0H7YMjeCOjkreDVq+oyl2FVT3v6AAA/rCoLieQV7bgEFV+kz/IipiJFZqvjzY4GuczaXJhxo9xJgSsEEhI4F0/2Z3aBsbQ0W7UyuPJ6u5YzXP5ux6L8qRophRc0AAA)"><img src="assets/img/mercedes.webp" width="760" height="760" loading="lazy" decoding="async" alt="Retrato en blanco y negro de Mercedes Camarero, directora de Zen Pilates"></div>
+      <div class="circ m2 pop d2" style="--ph:url(data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAACwBQCdASogACAAPtVao0yoJaMiN/VYAQAaiWMAuwBFcKNHUO5bvOAj89QbeP8RqSJi34wts5gA/pAdwTGGNWveC20KGXg1hIE+5KpxsldKZUxAw/pGnDwS+aOlhKxJW9Cb7FLpZvRzr6m7xAAAAA==)"><img src="assets/img/muelles.webp" width="401" height="401" loading="lazy" decoding="async" alt="Los muelles y poleas de un cadillac de madera"></div>
+    </div>
+    <div class="mer-txt">
+      <p class="eti rev">Quién te enseña</p>
+      <h2 class="rev d1">Mercedes Camarero, de Londres a Leganés</h2>
+      <p class="mer-p rev d2">Fisioterapeuta colegiada y directora del centro. Se formó en Pilates con Alan Herman, precursor del método en Europa, y dio clases en Londres durante seis años: en KX, David Lloyd, Holmes Place, Chelsea Club y para el Fulham F.C.</p>
+      <ol class="anios">
+        <li class="pop d1"><b>1994</b><span>Instructora de yoga</span></li>
+        <li class="pop d2"><b>1999</b><span>Fisioterapeuta</span></li>
+        <li class="pop d3"><b>2001</b><span>Pilates en Londres</span></li>
+        <li class="pop d4 yo"><b>2007</b><span>Abre Zen Pilates</span></li>
+        <li class="pop d5"><b>Hoy</b><span>Forma monitores</span></li>
+      </ol>
+      <div class="forma rev d3">
+        <p><strong>Cursos de monitor:</strong> Pilates Reformer (30 h), Pilates Suelo, Yoga y reciclaje para instructores.</p>
+        <button type="button" class="bol cla" data-ficha><i aria-hidden="true"></i>Preguntar por la formación</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec s-lle" id="llegar" data-tono="claro">
+    <div class="l-txt">
+      <p class="eti rev">Cómo llegar</p>
+      <h2 class="rev d1">Al lado de la Universidad Carlos III</h2>
+      <div class="tels rev d2">
+        <a href="tel:+34601279889" data-ficha>601 27 98 89<small>Móvil</small></a>
+        <a href="tel:+34916865576" data-ficha>91 686 55 76<small>Centro</small></a>
+      </div>
+      <div class="l-datos rev d3">
+        <div><strong>Dirección</strong>C. Siete Picos, 1 · 28912 Leganés<span class="lg"><br>info@zenpilates.es</span></div>
+        <div><strong>Horario de clases</strong>Lunes a jueves, 8:30–21:00<br>Viernes, 9:30–20:00</div>
+        <div class="ancho tr"><strong>Transporte</strong><span class="lg">Autobuses 432, 450, 480, 482 y 485 en la Av. de la Universidad, a 140 m. Metro Casa del Reloj (L12), a 630 m; Metro y Cercanías Leganés Central, a 760 m.</span><span class="ct">Bus 432, 450, 480, 482 y 485 a 140 m · Metro Casa del Reloj (L12) a 630 m</span></div>
+      </div>
+      <div class="l-bot rev d3">
+        <button type="button" class="bol osc" data-ficha><i aria-hidden="true"></i>Reservar clase de prueba</button>
+        <a class="bol cla" href="https://www.google.com/maps/dir/?api=1&amp;destination=40.3310338,-3.7642559" target="_blank" rel="noopener"><i aria-hidden="true"></i>Abrir la ruta</a>
+      </div>
+    </div>
+    <div class="l-mapa pop d1">
+      <div class="mapa">
+        <iframe title="Mapa de la calle Siete Picos, 1, en Leganés" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=-3.7712%2C40.3278%2C-3.7573%2C40.3343&amp;layer=mapnik" tabindex="-1"></iframe>
+        <span class="chin" aria-hidden="true"></span>
+        <a class="ruta" href="https://www.google.com/maps/dir/?api=1&amp;destination=40.3310338,-3.7642559" target="_blank" rel="noopener" aria-label="Cómo llegar a la calle Siete Picos, 1, en Google Maps"></a>
+      </div>
+      <span class="cred">© OpenStreetMap</span>
+    </div>
+  </section>
+</main>
+
+<div class="fi" id="ficha" role="dialog" aria-modal="true" aria-labelledby="fi-t">
+  <div class="fi-c">
+    <button type="button" class="fi-x" id="fi-x">Cerrar</button>
+    <p class="eti">Clase de prueba</p>
+    <h3 id="fi-t">Reserva tu primera clase</h3>
+    <p>Sin matrícula ni permanencia. Llámanos y te buscamos sitio en el grupo que mejor te encaje.</p>
+    <div class="fi-n"><div><small>Móvil</small>601 27 98 89</div><a class="fi-b solo-tel" href="tel:+34601279889">Llamar</a><button type="button" class="fi-b solo-pc" data-copia="601279889">Copiar</button></div>
+    <div class="fi-n"><div><small>Centro</small>91 686 55 76</div><a class="fi-b solo-tel" href="tel:+34916865576">Llamar</a><button type="button" class="fi-b solo-pc" data-copia="916865576">Copiar</button></div>
+    <a class="bol amb" href="https://wa.me/34601279889?text=Hola%2C%20quer%C3%ADa%20reservar%20una%20clase%20de%20prueba" target="_blank" rel="noopener"><i aria-hidden="true"></i>Escribir por WhatsApp</a>
+    <p class="fi-e">info@zenpilates.es · C. Siete Picos, 1 · Leganés</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  var d = document, html = d.documentElement;
+  var quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function (s, c) { return (c || d).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || d).querySelectorAll(s)); };
+  var esTel = /Android.*Mobile|iPhone|iPod|Windows Phone/.test(navigator.userAgent);
+  if (esTel) html.classList.add('es-tel');
+
+  /* Desplazamiento propio: los enlaces #ancla hacen saltar el aviso del visor */
+  var anim = null;
+  function ir(id) {
+    var el = d.getElementById(id); if (!el) return;
+    var ini = window.pageYOffset, fin = el.getBoundingClientRect().top + ini, dist = fin - ini;
+    if (anim) cancelAnimationFrame(anim);
+    if (quieto || Math.abs(dist) < 2) { window.scrollTo(0, fin); return; }
+    var dur = Math.min(1700, 800 + Math.abs(dist) * .22), t0 = null;
+    (function paso(t) {
+      if (t0 === null) t0 = t;
+      var p = Math.min(1, (t - t0) / dur);
+      var e = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+      window.scrollTo(0, ini + dist * e);
+      if (p < 1) anim = requestAnimationFrame(paso); else anim = null;
+    })(performance.now());
+  }
+  ['wheel', 'touchstart'].forEach(function (ev) {
+    window.addEventListener(ev, function () { if (anim) { cancelAnimationFrame(anim); anim = null; } }, { passive: true });
+  });
+
+  /* El anillo abre la tarjeta del menú */
+  var menu = $('#menu'), anillo = $('#anillo');
+  function ponMenu(si) { menu.classList.toggle('abierto', si); anillo.setAttribute('aria-expanded', si ? 'true' : 'false'); }
+  anillo.addEventListener('click', function () { ponMenu(!menu.classList.contains('abierto')); });
+  d.addEventListener('click', function (e) { if (!menu.contains(e.target) && !anillo.contains(e.target)) ponMenu(false); });
+  $$('[data-ir]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var dest = b.getAttribute('data-ir');
+      if (menu.classList.contains('abierto')) { ponMenu(false); setTimeout(function () { ir(dest); }, 250); }
+      else ir(dest);
+    });
+  });
+
+  /* Ficha de reserva: en un ordenador, tel: no hace nada */
+  var ficha = $('#ficha');
+  function ponFicha(si) { ficha.classList.toggle('abierta', si); if (si) { ponMenu(false); $('#fi-x').focus(); } }
+  $$('[data-ficha]').forEach(function (a) {
+    if (a.tagName === 'A') {
+      if (esTel) return;
+      a.removeAttribute('href'); a.setAttribute('role', 'button'); a.tabIndex = 0;
+    }
+    a.addEventListener('click', function () { ponFicha(true); });
+  });
+  $('#fi-x').addEventListener('click', function () { ponFicha(false); });
+  ficha.addEventListener('click', function (e) { if (e.target === ficha) ponFicha(false); });
+  $$('[data-copia]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var v = b.getAttribute('data-copia'), ok = function () { b.textContent = 'Copiado'; setTimeout(function () { b.textContent = 'Copiar'; }, 1600); };
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(v).then(ok);
+      else { var t = d.createElement('textarea'); t.value = v; d.body.appendChild(t); t.select(); try { d.execCommand('copy'); ok(); } catch (e) {} t.remove(); }
+    });
+  });
+  d.addEventListener('keydown', function (e) { if (e.key === 'Escape') { ponMenu(false); ponFicha(false); } });
+
+  /* Horario: un día cada vez (hoy, si es laborable) */
+  var dias = $$('#dias button'), paneles = $$('.dia');
+  function verDia(n) {
+    dias.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-dia') == n ? 'true' : 'false'); });
+    paneles.forEach(function (p) { p.classList.toggle('on', p.getAttribute('data-dia') == n); });
+  }
+  var hoy = (new Date().getDay() + 6) % 7;
+  verDia(hoy < 5 ? hoy : 0);
+  dias.forEach(function (b) { b.addEventListener('click', function () { verDia(b.getAttribute('data-dia')); }); });
+
+  /* Sección actual: el anillo se va completando y el logo cambia de tono */
+  var secs = $$('.sec'), actual = null, arcos = $$('#anillo circle'), anN = $('#an-n'), menuB = $$('#menu ol button');
+  function tonoEn(y) {
+    var s = secs[0];
+    secs.forEach(function (x) { if (x.getBoundingClientRect().top <= y) s = x; });
+    return s.getAttribute('data-tono');
+  }
+  function miraSeccion() {
+    var h = window.innerHeight, i = 0;
+    secs.forEach(function (x, k) { if (x.getBoundingClientRect().top <= h * .45) i = k; });
+    html.classList.toggle('tono-oscuro', tonoEn(44) === 'oscuro');
+    if (i === actual) return; actual = i;
+    arcos.forEach(function (c, k) { c.classList.toggle('on', k <= i); });
+    anN.textContent = '0' + (i + 1);
+    anillo.setAttribute('aria-label', 'Menú, sección ' + (i + 1) + ' de ' + secs.length);
+    menuB.forEach(function (b) { if (b.getAttribute('data-ir') === secs[i].id) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current'); });
+  }
+
+  /* Paralaje: las esferas de la portada suben a distinta velocidad (solo eso va atado al scroll) */
+  var pars = quieto ? [] : $$('[data-par]').map(function (el) { return { el: el, k: parseFloat(el.getAttribute('data-par')) }; });
+  var pide = false;
+  function pinta() {
+    pide = false;
+    var y = window.pageYOffset, h = window.innerHeight;
+    if (y < h * 1.2) pars.forEach(function (p) { p.el.style.transform = 'translate3d(0,' + (-y * p.k).toFixed(1) + 'px,0)'; });
+    miraSeccion();
+  }
+  window.addEventListener('scroll', function () { if (!pide) { pide = true; requestAnimationFrame(pinta); } }, { passive: true });
+  window.addEventListener('resize', function () { actual = null; pinta(); });
+  pinta();
+
+  /* Entradas: solo se esconde lo que queda por debajo de la pantalla */
+  if (!quieto && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.remove('pre'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: .04 });
+    $$('.rev,.pop').forEach(function (el) {
+      if (el.getBoundingClientRect().top > window.innerHeight) { el.classList.add('pre'); io.observe(el); }
+    });
+  }
+
+  /* Entrada: las fotos salen apiladas del centro, como un mazo, y se reparten
+     hasta su sitio con un rebote de muelle; luego sube el texto */
+  if (html.classList.contains('intro')) {
+    var orbes = $$('.orb'), caja = $('#inicio').getBoundingClientRect();
+    var cx = caja.left + caja.width / 2, cy = caja.top + caja.height * .46;
+    orbes.forEach(function (o, k) {
+      var r = o.getBoundingClientRect();
+      o.style.setProperty('--dx', (cx - (r.left + r.width / 2)).toFixed(1) + 'px');
+      o.style.setProperty('--dy', (cy - (r.top + r.height / 2)).toFixed(1) + 'px');
+      o.style.transitionDelay = (k * .07).toFixed(2) + 's';
+    });
+    html.classList.add('mazo');
+    var empieza = function () {
+      void d.body.offsetWidth;
+      setTimeout(function () { html.classList.add('suelta'); }, 380);
+      setTimeout(function () {
+        orbes.forEach(function (o) { o.style.transitionDelay = ''; });
+        html.classList.remove('intro', 'mazo', 'suelta');
+      }, 2700);
+    };
+    /* espera a la foto grande, como mucho 600 ms: sin ella se ve su marcador borroso */
+    var foto = $('.o1 img'), una = false;
+    var arranca = function () { if (!una) { una = true; requestAnimationFrame(empieza); } };
+    if (foto.complete && foto.naturalWidth) arranca();
+    else { foto.addEventListener('load', arranca); foto.addEventListener('error', arranca); setTimeout(arranca, 600); }
+  }
+  window.__animOk = true;
+})();
+</script>
+</body>
+</html>
