@@ -637,7 +637,7 @@ html.sale .logo,html.sale .tag,html.sale .presu{opacity:1;transition:opacity .9s
     var s1 = Math.max(qx / 60, (W - qx) / 60, qy / 12, (H - qy) / 10) * 1.1;
     var pon = function (s) { vt.setAttribute('transform', 'translate(' + qx.toFixed(2) + ' ' + qy.toFixed(2) + ') scale(' + s.toFixed(4) + ') translate(-110 -65)'); };
     pon(s0);
-    var T0 = 900, DUR = 1250, ini = null;
+    var T0 = 800, DUR = 1250, ini = null;
     var paso = function (t) {
       if (ini === null) ini = t;
       var p = Math.max(0, Math.min(1, (t - ini - T0) / DUR));
@@ -651,7 +651,15 @@ html.sale .logo,html.sale .tag,html.sale .presu{opacity:1;transition:opacity .9s
         setTimeout(function () { html.classList.remove('intro', 'sale'); }, 1700);
       }
     };
-    requestAnimationFrame(paso);
+    /* el zum no empieza hasta que la foto de la portada ha llegado (si falla, empieza igual) */
+    var fotoP = $('.h-foto img');
+    var arranca = function () { requestAnimationFrame(paso); };
+    if (fotoP.complete && fotoP.naturalWidth) arranca();
+    else {
+      var una = false, va = function () { if (!una) { una = true; arranca(); } };
+      fotoP.addEventListener('load', function () { (fotoP.decode ? fotoP.decode() : Promise.resolve()).then(va, va); });
+      fotoP.addEventListener('error', va);
+    }
   }
   window.__animOk = true;
 })();
