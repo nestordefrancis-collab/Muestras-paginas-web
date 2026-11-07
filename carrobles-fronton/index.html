@@ -102,7 +102,8 @@ h2{font-size:clamp(31px,3.7vw,54px);line-height:1.08}
 
 /* I · Portada ------------------------------------------------- */
 .hero{background:var(--granito);color:#fff}
-.h-foto{position:absolute;inset:0 0 0 38%}
+.h-foto{position:absolute;inset:0}
+.h-foto img{object-position:72% 50%}
 .h-oro,.h-cuna{position:absolute;inset:0}
 .h-oro{background:var(--oro);clip-path:var(--cuna-oro)}
 .h-cuna{background:var(--rojo);clip-path:var(--cuna)}
@@ -227,25 +228,21 @@ h2{font-size:clamp(31px,3.7vw,54px);line-height:1.08}
 .fi-e{margin-top:12px;font-size:14.5px}
 .fi-x{position:absolute;right:14px;top:14px;font:600 13.5px var(--sans);padding:8px 10px;background:var(--piedra)}
 
-/* ── Entrada: el templo se levanta y el rojo se corta en diagonal ── */
-.telon{display:none}
-html.intro .telon{display:flex;position:fixed;inset:0;z-index:100;align-items:center;justify-content:center;flex-direction:column;background:var(--rojo);clip-path:var(--cuna-llena);transition:clip-path 1.05s cubic-bezier(.7,0,.2,1)}
-html.intro .telon-oro{display:block;position:fixed;inset:0;z-index:99;background:var(--oro);clip-path:var(--cuna-llena);transition:clip-path 1.05s cubic-bezier(.7,0,.2,1)}
-.telon-oro{display:none}
-.telon svg{width:min(52vw,260px);height:auto;color:var(--oro);overflow:visible;transition:opacity .4s}
-.t-nom{margin-top:18px;font:400 clamp(21px,3.2vw,32px)/1 var(--serif);letter-spacing:.16em;text-transform:uppercase;color:#fff;opacity:0;transform:translateY(8px);transition:opacity .7s,transform .7s}
-.telon .trazo{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.05s cubic-bezier(.4,0,.2,1)}
-.telon .fr{opacity:0;transform:translateY(-16px);transition:opacity .6s,transform .75s cubic-bezier(.2,.7,.2,1)}
-.telon.v1 .trazo{stroke-dashoffset:0}
-.telon.v2 .fr{opacity:1;transform:none}
-.telon.v2 .t-nom{opacity:1;transform:none}
-html.intro .telon.abre{clip-path:var(--cuna)}
-html.intro .telon-oro.abre{clip-path:var(--cuna-oro)}
-.telon.abre svg,.telon.abre .t-nom{opacity:0;transition:opacity .28s}
-/* el texto y la cabecera van por encima del telón para aparecer mientras se abre */
-html.intro .h-txt,html.intro .cab{z-index:101}
+/* ── Entrada: la piedra se ve por la silueta del templo, que crece hasta abrirse ── */
+.vano{display:none}
+html.intro .vano{display:block;position:fixed;inset:0;z-index:100;width:100%;height:100%;pointer-events:none}
+.vano-nom{display:none}
+html.intro .vano-nom{display:block;position:fixed;z-index:101;left:0;right:0;text-align:center;pointer-events:none;
+  font:400 clamp(17px,2vw,22px)/1.3 var(--serif);letter-spacing:.2em;text-transform:uppercase;color:var(--tinta);transition:opacity .45s}
+.vano-nom small{display:block;margin-top:3px;font:500 12px/1.3 var(--sans);letter-spacing:.16em;color:var(--gris)}
+html.intro .vano-nom.fuera{opacity:0}
+/* la diagonal roja entra después, ya con la foto descubierta */
+html.intro .h-cuna,html.intro .h-oro{clip-path:polygon(0 0,0 0,0 100%,0 100%);transition:clip-path 1s cubic-bezier(.7,0,.2,1)}
+html.intro .h-oro{transition-delay:.06s}
+html.intro.sale .h-cuna{clip-path:var(--cuna)}
+html.intro.sale .h-oro{clip-path:var(--cuna-oro)}
 html.intro .h-txt>*,html.intro .cab{opacity:0}
-html.sale .h-txt>*,html.sale .cab{opacity:1;transition:opacity .8s .45s}
+html.sale .h-txt>*,html.sale .cab{opacity:1;transition:opacity .8s .55s}
 
 /* ── Entradas al bajar ─────────────────────────────────────────── */
 .rev{transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
@@ -269,6 +266,7 @@ html.sale .h-txt>*,html.sale .cab{opacity:1;transition:opacity .8s .45s}
     --cuna:polygon(0 37%,100% 27%,100% 100%,0 100%);
     --cuna-oro:polygon(0 36%,100% 26%,100% 100%,0 100%);
   }
+  html.intro .h-cuna,html.intro .h-oro{clip-path:polygon(0 100%,100% 100%,100% 100%,0 100%)}
   body{font-size:16px}
   .c-menu,.c-wa{margin-top:8px;min-height:40px;padding:8px 12px;font-size:13.5px}
   .c-marca{padding:7px 10px 8px 8px;gap:7px}
@@ -278,7 +276,7 @@ html.sale .h-txt>*,html.sale .cab{opacity:1;transition:opacity .8s .45s}
   .eti{font-size:12px}
   h2{font-size:clamp(26px,7.6vw,33px)}
 
-  .h-foto{inset:0 0 auto 0;height:42%}
+  .h-foto img{object-position:50% 30%}
   .h-txt{width:100%;justify-content:flex-end;padding:0 20px max(24px,env(safe-area-inset-bottom))}
   .h-logo{width:clamp(58px,10vh,82px);margin-bottom:10px}
   .hero h1{font-size:clamp(29px,8.8vw,38px)}
@@ -422,11 +420,17 @@ html.sale .h-txt>*,html.sale .cab{opacity:1;transition:opacity .8s .45s}
   </symbol>
 </svg>
 
-<div class="telon-oro" aria-hidden="true"></div>
-<div class="telon" aria-hidden="true">
-  <svg viewBox="0 0 220 210"><use href="#templo"/></svg>
-  <div class="t-nom">Carrobles</div>
-</div>
+<svg class="vano" aria-hidden="true" focusable="false">
+  <defs>
+    <mask id="vano-m" maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%">
+      <rect x="0" y="0" width="100%" height="100%" fill="#fff"/>
+      <!-- silueta maciza del templo: frontón y dos columnas -->
+      <path id="vano-t" fill="#000" d="M4 50 110 3 216 62H197V76H9ZM16 84H90V95H82V188H92V205H18V188H28V95H16ZM126 84H200V95H192V188H202V205H128V188H138V95H126Z"/>
+    </mask>
+  </defs>
+  <rect x="0" y="0" width="100%" height="100%" fill="#F5F2EC" mask="url(#vano-m)"/>
+</svg>
+<div class="vano-nom" aria-hidden="true">Carrobles<small>Mármoles y granitos · desde 1980</small></div>
 
 <header class="cab">
   <button type="button" class="c-menu" id="abre-menu" aria-haspopup="dialog" aria-expanded="false"><i aria-hidden="true"><b></b><b></b><b></b></i>Menú</button>
@@ -693,17 +697,36 @@ html.sale .h-txt>*,html.sale .cab{opacity:1;transition:opacity .8s .45s}
     });
   }
 
-  /* Telón: se levantan las columnas, se posa el frontón y el rojo se corta en diagonal */
-  var telon = $('.telon'), oro = $('.telon-oro');
+  /* Entrada: la escalera se ve por la silueta del templo; el templo crece desde el
+     fuste de una columna hasta que el hueco cubre la pantalla, y entra la diagonal */
+  var vano = $('.vano'), vanoNom = $('.vano-nom'), vt = $('#vano-t');
   if (html.classList.contains('intro')) {
-    setTimeout(function () { telon.classList.add('v1'); }, 120);
-    setTimeout(function () { telon.classList.add('v2'); }, 1150);
-    setTimeout(function () { telon.classList.add('abre'); oro.classList.add('abre'); html.classList.add('sale'); }, 2400);
-    setTimeout(function () {
-      /* El guion se queda solo con el texto de la portada, ya visible */
-      html.classList.remove('intro', 'sale');
-      telon.remove(); oro.remove();
-    }, 3700);
+    var W = window.innerWidth, H = window.innerHeight, movil = W <= 780 || (W <= 1100 && H > W);
+    /* el vano se abre sobre la parte de la foto que queda visible al final */
+    var cx = movil ? W / 2 : W * .76, cy = movil ? H * .22 : H / 2;
+    var s0 = Math.min(150, W * .3) / 220;                 /* el templo mide 220 × 210 */
+    /* el punto fijo del zum es el centro del fuste izquierdo (55,142) */
+    var qx = cx + (55 - 110) * s0, qy = cy + (142 - 105) * s0;
+    var s1 = Math.max(qx / 25, (W - qx) / 25, qy / 45, (H - qy) / 44) * 1.08;
+    var pon = function (s) { vt.setAttribute('transform', 'translate(' + qx + ' ' + qy + ') scale(' + s + ') translate(-55 -142)'); };
+    pon(s0);
+    vanoNom.style.top = (cy + 112 * s0) + 'px';
+    vanoNom.style.right = 'auto'; vanoNom.style.width = '360px'; vanoNom.style.left = (cx - 180) + 'px';
+    var T0 = 750, DUR = 1150, ini = null;
+    var paso = function (t) {
+      if (ini === null) ini = t;
+      var p = Math.max(0, Math.min(1, (t - ini - T0) / DUR));
+      var e = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      pon(s0 * Math.pow(s1 / s0, e));
+      if (p > 0) vanoNom.classList.add('fuera');
+      if (p < 1) requestAnimationFrame(paso);
+      else {
+        vano.remove(); vanoNom.remove();
+        html.classList.add('sale');
+        setTimeout(function () { html.classList.remove('intro', 'sale'); }, 1500);
+      }
+    };
+    requestAnimationFrame(paso);
   }
   window.__animOk = true;
 })();
