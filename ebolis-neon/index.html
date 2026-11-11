@@ -129,23 +129,36 @@ ul,ol{padding:0;list-style:none}
 .vidrio{position:relative;overflow:hidden;background-size:cover;background-position:center}
 .vidrio img{width:100%;height:100%;object-fit:cover;object-position:52% 60%}
 .vidrio::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(112deg,rgba(255,255,255,.09) 0%,rgba(255,255,255,0) 34%,rgba(255,255,255,0) 64%,rgba(255,255,255,.05) 78%,rgba(255,255,255,0) 90%);pointer-events:none}
-.vidrio::after{content:"";position:absolute;inset:0;z-index:2;background:#000;opacity:0;pointer-events:none}
-.pie-p{position:absolute;z-index:3;left:12px;bottom:12px;padding:7px 11px;background:rgba(10,10,10,.72);font-size:12px;letter-spacing:.04em;color:#D9D6D0}
+.pie-p{position:absolute;z-index:4;left:12px;bottom:12px;padding:7px 11px;background:rgba(10,10,10,.72);font-size:12px;letter-spacing:.04em;color:#D9D6D0}
 
-/* Entrada: el neón se enciende y luego la luz de dentro */
-.entra .letrero .le{fill:var(--apagado)}
-.entra .letrero .txt{opacity:0}
-.entra .cartel::before{opacity:0}
-.entra .vidrio::after{opacity:.92}
-.entra .portada .rev,.entra .rotulo .b-menu,.entra .rotulo .b-pres{opacity:0}
-.arranca .letrero .le{animation:enciende .95s steps(1,end) both;animation-delay:var(--d)}
-@keyframes enciende{0%{fill:var(--apagado)}9%{fill:var(--tubo)}15%{fill:var(--apagado)}24%{fill:var(--tubo)}29%{fill:var(--apagado)}44%,100%{fill:var(--tubo)}}
-.arranca .letrero .txt{animation:aparece .7s ease both;animation-delay:1.05s}
-.arranca .cartel::before{animation:aparece .8s ease both;animation-delay:1.1s}
-.arranca .vidrio::after{animation:luces 1s steps(1,end) both;animation-delay:1.35s}
-@keyframes luces{0%{opacity:.92}14%{opacity:.35}22%{opacity:.86}34%{opacity:.2}44%{opacity:.62}56%,100%{opacity:0}}
-.arranca .portada .rev{animation:sube .9s var(--curva) both;animation-delay:calc(1.85s + var(--i,0) * 120ms)}
-.arranca .rotulo .b-menu,.arranca .rotulo .b-pres{animation:aparece .6s ease both;animation-delay:1.7s}
+/* Entrada: un abanico con muestras de sus acabados; la del centro es una ventana a su cocina y crece hasta llenar el cristal */
+.abanico,.frente{display:none}
+.mu{position:absolute;top:var(--it,40%);bottom:var(--ib,40%);left:var(--il,40%);right:var(--il,40%);border-radius:3px;overflow:hidden;background:#1a1a1a;box-shadow:0 8px 20px rgba(0,0,0,.38),0 0 0 1px rgba(255,255,255,.07);transform-origin:50% 90%;opacity:0}
+.mu img{width:100%;height:100%;object-fit:cover}
+.mu .et{position:absolute;left:0;right:0;bottom:0;height:16%;display:flex;align-items:center;padding:0 7%;background:#F2F0EB;color:#161616;font-weight:500;font-size:var(--etf,11px);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;overflow:hidden}
+.abanico .k1,.abanico .k4{z-index:1}
+.abanico .k2,.abanico .k3{z-index:2}
+.entra .vidrio{background:#0c0c0c}
+.entra .vidrio::before{z-index:3}
+.entra .abanico{display:block;position:absolute;inset:0;z-index:0;pointer-events:none}
+.entra .vidrio picture img{position:relative;z-index:1;opacity:0}
+.entra .frente{display:block;z-index:2;background:none;pointer-events:none}
+.entra .pie-p,.entra .portada .rev{opacity:0}
+.arranca .abanico .k1{animation:abre1 1.3s both .16s}
+.arranca .abanico .k2{animation:abre2 1.3s both .1s}
+.arranca .abanico .k3{animation:abre3 1.3s both .1s}
+.arranca .abanico .k4{animation:abre4 1.3s both .16s}
+@keyframes abre1{0%{opacity:0;transform:translate3d(0,34px,0) rotate(0deg);animation-timing-function:cubic-bezier(.2,.7,.2,1)}30%{opacity:1;transform:translate3d(0,0,0) rotate(0deg);animation-timing-function:cubic-bezier(.3,.9,.25,1)}100%{opacity:1;transform:translate3d(0,0,0) rotate(-27deg)}}
+@keyframes abre2{0%{opacity:0;transform:translate3d(0,34px,0) rotate(0deg);animation-timing-function:cubic-bezier(.2,.7,.2,1)}30%{opacity:1;transform:translate3d(0,0,0) rotate(0deg);animation-timing-function:cubic-bezier(.3,.9,.25,1)}100%{opacity:1;transform:translate3d(0,0,0) rotate(-13.5deg)}}
+@keyframes abre3{0%{opacity:0;transform:translate3d(0,34px,0) rotate(0deg);animation-timing-function:cubic-bezier(.2,.7,.2,1)}30%{opacity:1;transform:translate3d(0,0,0) rotate(0deg);animation-timing-function:cubic-bezier(.3,.9,.25,1)}100%{opacity:1;transform:translate3d(0,0,0) rotate(13.5deg)}}
+@keyframes abre4{0%{opacity:0;transform:translate3d(0,34px,0) rotate(0deg);animation-timing-function:cubic-bezier(.2,.7,.2,1)}30%{opacity:1;transform:translate3d(0,0,0) rotate(0deg);animation-timing-function:cubic-bezier(.3,.9,.25,1)}100%{opacity:1;transform:translate3d(0,0,0) rotate(27deg)}}
+.arranca .vidrio picture img{animation:saca .4s cubic-bezier(.2,.7,.2,1) .1s both,crece 1s cubic-bezier(.65,0,.25,1) 1.5s both}
+.arranca .frente{animation:saca .4s cubic-bezier(.2,.7,.2,1) .1s both,apaga .3s ease 1.45s forwards}
+@keyframes saca{from{opacity:0;transform:translate3d(0,34px,0)}to{opacity:1;transform:none}}
+@keyframes crece{to{-webkit-clip-path:inset(0px 0px 0px 0px round 0px);clip-path:inset(0px 0px 0px 0px round 0px)}}
+@keyframes apaga{to{opacity:0}}
+.arranca .portada .rev{animation:sube .9s var(--curva) both;animation-delay:calc(1.8s + var(--i,0) * 110ms)}
+.arranca .pie-p{animation:aparece .6s ease 2.5s both}
 @keyframes aparece{from{opacity:0}to{opacity:1}}
 @keyframes sube{from{opacity:0;transform:translate3d(0,16px,0)}to{opacity:1;transform:none}}
 
@@ -417,6 +430,13 @@ ul,ol{padding:0;list-style:none}
           <source media="(max-width:860px)" srcset="assets/img/portada-m.webp">
           <img src="assets/img/portada-l.webp" srcset="assets/img/portada-l.webp 1600w, assets/img/portada.webp 2600w" sizes="62vw" width="1600" height="1200" alt="Cocina en U con muebles negros mate sin tiradores, encimera blanca de vetas doradas, vitrinas negras y campana de cobre" fetchpriority="high">
         </picture>
+        <div class="abanico" aria-hidden="true">
+          <span class="mu k1"><img src="assets/img/mu-vetas.webp" width="480" height="720" alt=""><span class="et">Vetas doradas</span></span>
+          <span class="mu k4"><img src="assets/img/mu-blanco.webp" width="480" height="720" alt=""><span class="et">Blanco veteado</span></span>
+          <span class="mu k2"><img src="assets/img/mu-madera.webp" width="480" height="720" alt=""><span class="et">Madera</span></span>
+          <span class="mu k3"><img src="assets/img/mu-petroleo.webp" width="480" height="720" alt=""><span class="et">Azul petróleo</span></span>
+        </div>
+        <span class="mu frente" aria-hidden="true"><span class="et">Negro mate</span></span>
         <span class="pie-p">Negro mate, vetas doradas y cobre</span>
       </div>
       <div class="pilar d" aria-hidden="true"></div>
@@ -566,14 +586,33 @@ ul,ol{padding:0;list-style:none}
   var movil=/Android.*Mobile|iPhone|iPod|Windows Phone/.test(navigator.userAgent);
   var secciones=$$('.s');
 
-  /* Entrada: el neón del rótulo se enciende y después la luz de dentro de la tienda */
-  function finEntrada(){h.classList.remove('entra','arranca');}
+  /* Entrada: el abanico de acabados se abre y la muestra del centro, que es una ventana a su cocina, crece hasta llenar el cristal */
+  var vidrio=$('.vidrio'),fotoP=$('.vidrio picture img');
+  function finEntrada(){h.classList.remove('entra','arranca');if(fotoP){fotoP.style.webkitClipPath='';fotoP.style.clipPath='';}}
   if(h.classList.contains('entra')){
-    if(window.scrollY>10){finEntrada();}
+    if(window.scrollY>10||!vidrio||!fotoP){finEntrada();}
     else{
-      var foto=$('.vidrio img'),t0=performance.now(),va=false;
-      var arranca=function(){if(va)return;va=true;h.classList.add('arranca');setTimeout(finEntrada,2950);};
-      (function espera(){var lista=foto&&foto.complete&&foto.naturalWidth;if(lista||performance.now()-t0>700){arranca();}else{requestAnimationFrame(espera);}})();
+      var muestras=$$('.abanico img'),t0=performance.now(),va=false;
+      var mide=function(){
+        var r=vidrio.getBoundingClientRect(),W=r.width,H=r.height,alto=H*.56,ancho=alto*2/3;
+        if(ancho>W*.3){ancho=W*.3;alto=ancho*1.5;}
+        /* el abanico, algo por debajo del centro: así la ventana cae sobre los frentes negros */
+        var arriba=Math.min(H*.6-alto/2,H-alto-H*.1),it=arriba.toFixed(1)+'px',ib=(H-alto-arriba).toFixed(1)+'px',il=((W-ancho)/2).toFixed(1)+'px';
+        var v='inset('+it+' '+il+' '+ib+' '+il+' round 3px)';
+        vidrio.style.setProperty('--it',it);vidrio.style.setProperty('--ib',ib);vidrio.style.setProperty('--il',il);
+        vidrio.style.setProperty('--etf',Math.min(11,ancho/12.5).toFixed(1)+'px');
+        fotoP.style.webkitClipPath=v;fotoP.style.clipPath=v;
+      };
+      /* se recoge cuando la foto ha terminado de crecer y el texto de subir (y, pase lo que pase, a los 5 s) */
+      var arranca=function(){
+        if(va)return;va=true;mide();h.classList.add('arranca');
+        fotoP.addEventListener('animationend',function(e){if(e.animationName==='crece')setTimeout(finEntrada,750);});
+        setTimeout(finEntrada,5000);
+      };
+      (function espera(){
+        var lista=fotoP.complete&&fotoP.naturalWidth&&muestras.every(function(m){return m.complete;});
+        if(lista||performance.now()-t0>700){arranca();}else{requestAnimationFrame(espera);}
+      })();
       var corta=function(){if(h.classList.contains('entra'))finEntrada();};
       addEventListener('wheel',corta,{passive:true,once:true});
       addEventListener('touchmove',corta,{passive:true,once:true});
